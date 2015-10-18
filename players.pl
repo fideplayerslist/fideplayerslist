@@ -5,13 +5,25 @@ my $cnt=0;
 
 my $reference_year=2015;
 
-my @listed_fields=qw(name country sex birthday rating);
+my @listed_fields=qw(name country sex birthday rating title);
 
 my $command='';
 
 while(!($command=~/x/i))
 {
-	print "\nx = exit\np = preprocess\nas = age stats\ncs = country stats\nfc = field counts\nyt = young talents\not = old talents\nhw = high rated women\n\nenter command: ";
+	print qq(
+x = exit
+p = preprocess
+as = age stats
+cs = country stats
+fc = field counts
+yt = young talents
+ot = old talents
+hm = high rated men ( >=2600 )
+hw = high rated women ( >=2400 )
+h = high rated players ( >=2500 )
+
+enter command: );
 	$command=<>;
 	chomp($command);
 	
@@ -40,7 +52,7 @@ while(!($command=~/x/i))
 	
 	if($command=~/yt/i)
 	{
-		young_talents(10,30,'young',50);
+		young_talents(5,9,'young',250);
 	}
 	
 	if($command=~/ot/i)
@@ -48,9 +60,19 @@ while(!($command=~/x/i))
 		young_talents(60,100,'old',100);
 	}
 	
+	if($command=~/hm/i)
+	{
+		high_rated_players("M",2600);
+	}
+	
 	if($command=~/hw/i)
 	{
-		high_rated_women();
+		high_rated_players("F",2400);
+	}
+	
+	if($command=~/h$/i)
+	{
+		high_rated_players("M|F",2500);
 	}
 	
 }
@@ -360,8 +382,10 @@ sub field_counts
 
 }
 
-sub high_rated_women
+sub high_rated_players
 {
+
+	my ($sex,$floor)=@_;
 
 	my $birthdays={};
 	
@@ -370,9 +394,9 @@ sub high_rated_women
 	iterate(sub {
 		my $record=shift;
 		
-		if(($record->{rating}>2400)&&($record->{sex} eq 'F'))
+		if(($record->{rating}>=$floor)&&($record->{sex}=~/$sex/)&&($record->{age} ne ''))
 		{
-			my $item=sprintf "%-40s %3s %1s %4d %8d %4d",$record->{name},$record->{country},$record->{sex},$record->{birthday},$record->{rating},$record->{age};
+			my $item="$record->{name} \t$record->{country}\t$record->{sex}\t$record->{birthday}\t$record->{rating}\t$record->{age}\t$record->{title}";
 			
 			$items->{$item}=$record->{rating};
 		}
@@ -388,7 +412,18 @@ sub high_rated_women
 	}
 	@items;
 	
-	print join("\n",@items),"\n";
+	my $high_rated_txt='';
+	
+	for(my $i=0;$i<@items;$i++)
+	{
+	
+		$high_rated_txt.=(($i+1).".\t$items[$i]\n");
+	
+	}
+	
+	print $high_rated_txt;
+	
+	save("high_rated_txt",$high_rated_txt,"rank\tname\tcountry\tgender\tbirthday\trating\tage\ttitle");
 
 }
 
