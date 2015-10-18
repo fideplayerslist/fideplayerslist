@@ -63,11 +63,6 @@ sub young_talents
 	
 	close(AGE_STATS);
 	
-	for(my $i=1;$i<=100;$i++)
-	{
-		#print "$i $age_stats->{$i}->{AVGRM} $age_stats->{$i}->{AVGRF}\n";
-	}
-	
 	my $list={};
 	
 	iterate(sub {
@@ -143,7 +138,7 @@ sub age_stats
 		}
 	});
 	
-	my $age_stats_txt="age\tnumber of males\tmale average rating\tnumber of females\tfemale average rating\n";
+	my $age_stats_txt='';
 	
 	for(my $i=1;$i<=100;$i++)
 	{
