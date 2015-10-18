@@ -17,6 +17,7 @@ while(!($command=~/x/i))
 	
 	if($command=~/p/i)
 	{
+		$cnt=0;
 		preprocess();
 	}
 	
@@ -29,14 +30,32 @@ while(!($command=~/x/i))
 sub high_rated
 {
 
+	my $birthdays={};
+	
+	my $items={};
+
 	iterate(sub {
 		my $record=shift;
 		
 		if(($record->{rating}>2400)&&($record->{sex} eq 'F'))
 		{
-			print "$record->{line}\n";
+			my $item=sprintf "%-40s %3s %1s %4d %8d",$record->{name},$record->{country},$record->{sex},$record->{birthday},$record->{rating};
+			
+			$items->{$item}=$record->{rating};
 		}
 	});
+	
+	my @items=keys %{$items};
+	
+	@items=sort
+	{
+	
+		$items->{$b}<=>$items->{$a};
+	
+	}
+	@items;
+	
+	print join("\n",@items),"\n";
 
 }
 
