@@ -99,14 +99,14 @@ sub young_talents
 	for(my $i=0;$i<$size;$i++)
 	{
 		my $index=$i+1;
-		my $item="$index. $talents[$i] ".int($list->{$talents[$i]});
+		my $item="$index. $talents[$i]\t".int($list->{$talents[$i]});
 		
 		$young_talents_txt.="$item\n";
 	}
 	
 	print $young_talents_txt;
 	
-	save($name."_talents.txt",$young_talents_txt);
+	save($name."_talents.txt",$young_talents_txt,"name\tcountry\tgender\tage\texpected rating\tactual rating\trating surplus");
 	
 }
 
@@ -124,11 +124,38 @@ sub averagef
 
 sub save
 {
-	my ($file_name,$content)=@_;
+	my ($file_name,$content,$html_headers)=@_;
 	
 	open(OUTF,">$file_name");
 	print OUTF $content;
 	close(OUTF);
+	
+	if($html_headers ne '')
+	{
+	
+		$content="$html_headers\n$content";
+		
+		my @content=split /\n/,$content;
+		
+		my $html_content="<table border=1 cellpadding=3 cellspacing=3>";
+		
+		foreach(@content)
+		{
+		
+			my @fields=split /\t/,$_;
+			
+			my $item=join('',map { "<td align=center>$_</td>"; } @fields);
+			
+			$html_content.="<tr>$item</tr>\n";
+		
+		}
+		
+		$html_content.="</table>";
+		
+		$file_name=~s/.txt$/.html/;
+		save($file_name,$html_content);
+	
+	}
 }
 
 sub age_stats
@@ -164,7 +191,7 @@ sub age_stats
 	
 	print $age_stats_txt;
 	
-	save("age_stats.txt",$age_stats_txt);
+	save("age_stats.txt",$age_stats_txt,"age\trated males\taverage rating males\trated females\taverage rating females");
 	
 }
 
