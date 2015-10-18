@@ -1,0 +1,100 @@
+1. Karpov, Anatoly	RUS	M	64	1855	2628 772
+2. Afromeev, Vladimir	RUS	M	61	1887	2646 759
+3. Huebner, Robert	GER	M	67	1832	2588 755
+4. Beliavsky, Alexander G	SLO	M	62	1879	2622 743
+5. Mecking, Henrique	BRA	M	63	1868	2606 737
+6. Vaganian, Rafael A	ARM	M	64	1855	2577 721
+7. Alburt, Lev O	USA	M	70	1818	2539 720
+8. Ljubojevic, Ljubomir	SRB	M	65	1856	2571 714
+9. Nunn, John D M	ENG	M	60	1888	2597 708
+10. Timman, Jan H	NED	M	64	1855	2562 706
+11. Dzindzichashvili, Roman	USA	M	71	1843	2550 706
+12. Tukmakov, Vladimir B	UKR	M	69	1833	2540 706
+13. Ribli, Zoltan	HUN	M	64	1855	2559 703
+14. Dorfman, Iossif	FRA	M	63	1868	2567 698
+15. Kavalek, Lubomir	USA	M	72	1832	2527 695
+16. Spassky, Boris V.	RUS	M	78	1854	2548 693
+17. Sosonko, Gennadi	NED	M	72	1832	2520 688
+18. Gulko, Boris F	USA	M	68	1853	2537 683
+19. Rashkovsky, Nukhim N	RUS	M	69	1833	2515 681
+20. Kurajica, Bojan	BIH	M	68	1853	2527 673
+21. Smejkal, Jan	CZE	M	69	1833	2504 670
+22. Pinter, Jozsef	HUN	M	62	1879	2543 664
+23. Matanovic, Aleksandar	SRB	M	85	1830	2490 660
+24. Vaisser, Anatoly	FRA	M	66	1855	2515 659
+25. Krogius, Nikolai V	RUS	M	85	1830	2485 655
+26. Andersson, Ulf	SWE	M	64	1855	2510 654
+27. Viktorov, Alexandr G	RUS	M	66	1855	2510 654
+28. Zilberstein, David	ITA	M	74	1846	2500 653
+29. Dydyshko, Viacheslav	BLR	M	66	1855	2506 650
+30. Giorgadze, Tamaz	GEO	M	68	1853	2504 650
+31. Sveshnikov, Evgeny	LAT	M	65	1856	2504 647
+32. Adorjan, Andras	HUN	M	65	1856	2504 647
+33. Beim, Valeri	AUT	M	65	1856	2502 645
+34. Pfleger, Helmut, Dr.	GER	M	72	1832	2477 645
+35. Spraggett, Kevin	CAN	M	61	1887	2529 642
+36. Makarichev, Sergey	RUS	M	62	1879	2520 641
+37. Liu, Wenzhe	CHN	M	75	1835	2473 637
+38. Alexandria, Nana	GEO	F	66	1706	2342 635
+39. Parma, Bruno	SLO	M	74	1846	2480 633
+40. Levitina, Irina S	USA	F	61	1776	2405 628
+41. Rogoff, Kenneth S	USA	M	62	1879	2505 626
+42. Genkovich, Anatoliy	UKR	M	95	1744	2370 625
+43. Khasin, Alexander	RUS	M	64	1855	2481 625
+44. Ubilava, Elizbar	ESP	M	65	1856	2482 625
+45. Gutman, Lev	GER	M	70	1818	2443 624
+46. Kaplan, Julio P	USA	M	65	1856	2480 623
+47. Zuckerman, Bernard	USA	M	72	1832	2455 623
+48. Keene, Raymond D	ENG	M	67	1832	2455 622
+49. Vegera, Vladimir	RUS	M	60	1888	2510 621
+50. Stean, Michael F	ENG	M	62	1879	2500 621
+51. Vorotnikov, Vladislav V	RUS	M	68	1853	2474 620
+52. Arkhipov, Sergey	RUS	M	61	1887	2507 620
+53. Korchnoi, Viktor	SUI	M	84	1879	2499 619
+54. Litynska, Marta	UKR	F	66	1706	2326 619
+55. Mikhalchishin, Adrian	SLO	M	61	1887	2506 619
+56. Martinez, Carlos Alejandro	BRA	M	60	1888	2507 618
+57. Kovacevic, Vlatko	CRO	M	73	1850	2467 616
+58. Zhelnin, Vladimir V	RUS	M	68	1853	2469 615
+59. Gofshtein, Leonid	ISR	M	62	1879	2493 614
+60. Portisch, Lajos	HUN	M	78	1854	2467 612
+61. Timoscenko, Gennadij	SVK	M	66	1855	2468 612
+62. Petukhov, Valery	RUS	M	66	1855	2468 612
+63. Peskov, Serafim	RUS	M	76	1826	2438 611
+64. Dvoretzky, Mark	RUS	M	68	1853	2465 611
+65. Volkovinsky, Vladimir	UKR	M	62	1879	2490 611
+66. Tarjan, James E	USA	M	63	1868	2479 610
+67. Sigurjonsson, Gudmundur	ISL	M	68	1853	2463 609
+68. Torre, Eugenio	PHI	M	64	1855	2463 607
+69. Kuzmin, Gennadi P	UKR	M	69	1833	2441 607
+70. Kormishkin, Andrei	RUS	M	76	1826	2433 606
+71. Jansa, Vlastimil	CZE	M	73	1850	2456 605
+72. Romanishin, Oleg M	UKR	M	63	1868	2474 605
+73. Hug, Werner	SUI	M	63	1868	2473 604
+74. Knaak, Rainer	GER	M	62	1879	2482 603
+75. Suttles, Duncan	CAN	M	70	1818	2420 601
+76. Benko, Pal C	USA	M	87	1807	2408 600
+77. Stoica, Valentin	ROU	M	65	1856	2457 600
+78. Zuidema, Coen	NED	M	73	1850	2450 599
+79. Zlotnik, Boris A	RUS	M	69	1833	2433 599
+80. Zaltsman, Vitaly F	USA	M	74	1846	2445 598
+81. Palatnik, Semon	USA	M	65	1856	2455 598
+82. Loginov, Valery A	RUS	M	60	1888	2486 597
+83. Hulak, Krunoslav	CRO	M	64	1855	2453 597
+84. Gavrilov, Victor	RUS	M	65	1856	2454 597
+85. Anikaev, Yuri N	RUS	M	67	1832	2427 594
+86. Biyiasas, Peter	USA	M	65	1856	2450 593
+87. Weinstein, Norman	USA	M	65	1856	2450 593
+88. Yuferov, Sergey N	RUS	M	70	1818	2412 593
+89. Wedberg, Tom	SWE	M	62	1879	2472 593
+90. Marovic, Drazen	CRO	M	77	1853	2445 591
+91. Darga, Klaus	GER	M	81	1861	2453 591
+92. Okhotnik, Vladimir	FRA	M	65	1856	2448 591
+93. Strauss, David J	USA	M	69	1833	2425 591
+94. Pinchuk, Sergey T	UZB	M	72	1832	2423 591
+95. Petrosian, Arshak B	ARM	M	62	1879	2470 591
+96. Kurnosov, Gennady	RUS	M	67	1832	2423 590
+97. Nepomnishay, Mikhail I.	RUS	M	66	1855	2446 590
+98. Cebalo, Miso	CRO	M	70	1818	2409 590
+99. Commons, Kim S	USA	M	64	1855	2445 589
+100. Bezzubov, Yuriy	RUS	M	73	1850	2438 587

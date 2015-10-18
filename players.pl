@@ -11,7 +11,7 @@ my $command='';
 
 while(!($command=~/x/i))
 {
-	print "\nx = exit\np = preprocess\nas = age stats\nyt = yount talents\nhw = high rated women\n\nenter command: ";
+	print "\nx = exit\np = preprocess\nas = age stats\nyt = young talents\not = old talents\nhw = high rated women\n\nenter command: ";
 	$command=<>;
 	chomp($command);
 	
@@ -30,7 +30,12 @@ while(!($command=~/x/i))
 	
 	if($command=~/yt/i)
 	{
-		young_talents();
+		young_talents(10,30,'young',50);
+	}
+	
+	if($command=~/ot/i)
+	{
+		young_talents(60,100,'old',100);
 	}
 	
 	if($command=~/hw/i)
@@ -42,6 +47,9 @@ while(!($command=~/x/i))
 
 sub young_talents
 {
+	
+	my ($from,$to,$name,$size)=@_;
+
 	open(AGE_STATS,"age_stats.txt");
 	
 	my $age_stats={};
@@ -69,7 +77,7 @@ sub young_talents
 		my $record=shift;
 		
 		if(($record->{rating}>0)&&($record->{sex}=~/M|F/)
-		&&($record->{age}>0)&&($record->{age}<=30))
+		&&($record->{age}>=$from)&&($record->{age}<=$to))
 		{
 			my $expected_rating=$age_stats->{$record->{age}}->{"AVGR$record->{sex}"};
 			my $rating_surplus=$record->{rating}-$expected_rating;
@@ -88,7 +96,7 @@ sub young_talents
 	
 	my $young_talents_txt='';
 	
-	for(my $i=0;$i<50;$i++)
+	for(my $i=0;$i<$size;$i++)
 	{
 		my $index=$i+1;
 		my $item="$index. $talents[$i] ".int($list->{$talents[$i]});
@@ -98,7 +106,7 @@ sub young_talents
 	
 	print $young_talents_txt;
 	
-	save("young_talents.txt",$young_talents_txt);
+	save($name."_talents.txt",$young_talents_txt);
 	
 }
 
