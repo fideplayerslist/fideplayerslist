@@ -22,6 +22,7 @@ ot = old talents
 hm = high rated men ( >=2600 )
 hw = high rated women ( >=2400 )
 h = high rated players ( >=2500 )
+ga = GM average ratings
 
 enter command: );
 	$command=<>;
@@ -73,6 +74,11 @@ enter command: );
 	if($command=~/h$/i)
 	{
 		high_rated_players("M|F",2500);
+	}
+	
+	if($command=~/ga/i)
+	{
+		gm_average_ratings();
 	}
 	
 }
@@ -226,6 +232,11 @@ sub age_stats
 		{
 			$age_stats->{$record->{age}}->{"R$record->{sex}"}++;
 			$age_stats->{$record->{age}}->{"CR$record->{sex}"}+=$record->{rating};
+			
+			if($record->{title} eq 'GM')
+			{
+				$age_stats->{$record->{age}}->{"GM$record->{sex}"}++;
+			}
 		}
 	});
 	
@@ -236,10 +247,12 @@ sub age_stats
 	
 		my $RM=$age_stats->{$i}->{RM};
 		my $AVGRM=averagef($age_stats->{$i}->{CRM},$RM);
+		my $GMM=$age_stats->{$i}->{GMM};
 		my $RF=$age_stats->{$i}->{RF};
 		my $AVGRF=averagef($age_stats->{$i}->{CRF},$RF);
+		my $GMF=$age_stats->{$i}->{GMF};
 		
-		my $item="$i\t$RM\t$AVGRM\t$RF\t$AVGRF";
+		my $item="$i\t$RM\t$AVGRM\t$RF\t$AVGRF\t$GMM\t$GMF";
 		
 		$age_stats_txt.="$item\n";
 	
@@ -247,7 +260,7 @@ sub age_stats
 	
 	print $age_stats_txt;
 	
-	save("age_stats.txt",$age_stats_txt,"age\trated males\taverage rating males\trated females\taverage rating females");
+	save("age_stats.txt",$age_stats_txt,"age\trated males\taverage rating males\trated females\taverage rating females\tmale GMs\tfemale GMs");
 	
 }
 
@@ -424,6 +437,34 @@ sub high_rated_players
 	print $high_rated_txt;
 	
 	save("high_rated_txt",$high_rated_txt,"rank\tname\tcountry\tgender\tbirthday\trating\tage\ttitle");
+
+}
+
+sub gm_average_ratings
+{
+
+	my $gm_avgr={};
+
+	iterate(sub {
+		my $record=shift;
+		
+		if(($record->{rating}>0)&&($record->{sex}=~/F|M/)&&($record->{age} ne '')&&($record->{title} eq 'GM'))
+		{
+			$gm_avgr->{"CR$record->{sex}"}+=$record->{rating};
+			$gm_avgr->{"R$record->{sex}"}++;
+		}
+	});
+	
+	my $RM=$gm_avgr->{RM};
+	my $GMAVGRM=averagef($gm_avgr->{CRM},$RM);
+	my $RF=$gm_avgr->{RF};
+	my $GMAVGRF=averagef($gm_avgr->{CRF},$RF);
+	
+	my $gm_average_ratings_txt="$RM\t$GMAVGRM\t$RF\t$GMAVGRF\n";
+	
+	print $gm_average_ratings_txt;
+	
+	save("gm_average_ratings.txt",$gm_average_ratings_txt,"male GMs\tmale GM average rating\tfemale GMs\tfemale GM average rating");
 
 }
 
