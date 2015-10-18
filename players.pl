@@ -52,7 +52,7 @@ enter command: );
 	
 	if($command=~/yt/i)
 	{
-		young_talents(5,9,'young',250);
+		young_talents(10,30,'young',50);
 	}
 	
 	if($command=~/ot/i)

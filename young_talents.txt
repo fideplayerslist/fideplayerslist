@@ -1,250 +1,50 @@
-1. Guo, Arthur	USA	M	9	1319	2073	753
-2. Tashev, Aleksandar	BUL	M	9	1319	2058	738
-3. Wang, Jason	USA	M	9	1319	2040	720
-4. Murzin, Volodar	RUS	M	9	1319	2007	687
-5. Makoveev, Ilya	RUS	M	9	1319	1982	662
-6. Didorenko, Egor	RUS	M	9	1319	1961	641
-7. Tugstumur, Yesuntumur	MGL	M	9	1319	1960	640
-8. Hernandez Placeres, Ronald	CUB	M	8	1258	1890	631
-9. Chuzhba, Daniil	UKR	M	9	1319	1938	618
-10. Maneluk, Daniil	RUS	M	8	1258	1876	617
-11. Ghazarian, Kirk Vagho	USA	M	9	1319	1920	600
-12. Wagner, Leopold Franziskus	GER	M	9	1319	1911	591
-13. Karibaev, Dimash	KAZ	M	9	1319	1902	582
-14. Daneshvar, Bardiya	IRI	M	9	1319	1897	577
-15. Cotes Ontibon, Anibal Santiago	COL	M	8	1258	1832	573
-16. Pastukhov, Gleb	RUS	M	9	1319	1881	561
-17. Aditya Mittal	IND	M	9	1319	1880	560
-18. Zhou, Aiden	CAN	M	9	1319	1870	550
-19. Gukesh D	IND	M	9	1319	1869	549
-20. Paduano, Claudio	ITA	M	9	1319	1865	545
-21. Seregin, Ignat	RUS	M	9	1319	1855	535
-22. Vagoohian, Ramila	IRI	F	8	1208	1741	532
-23. Xu, Arthur Zihan	USA	M	8	1258	1782	523
-24. Timofeev, Lev	RUS	M	9	1319	1832	512
-25. Makhlouf, Ali	MAR	M	9	1319	1821	501
-26. Ansat, Aldiyar	KAZ	M	7	1214	1714	499
-27. Piliposyan, Robert	ARM	M	8	1258	1746	487
-28. Yoo, Christopher Woojin	USA	M	9	1319	1807	487
-29. Krupa, Miroslav	SVK	M	9	1319	1798	478
-30. Golchin, Soroosh	IRI	M	5	1250	1723	472
-31. Biliak, Viktoria	UKR	F	9	1261	1719	457
-32. Ionochkin, Maksim	RUS	M	9	1319	1776	456
-33. Issani, Nameer	CAN	M	9	1319	1776	456
-34. Amilal Munkhdalai	MGL	M	9	1319	1774	454
-35. Erkhes, Bayarbat	MGL	M	8	1258	1709	450
-36. Abhash Roimya Saikia	IND	M	7	1214	1665	450
-37. Venicz, Levente	HUN	M	8	1258	1708	449
-38. Davtyan, Arsen	ARM	M	9	1319	1769	449
-39. Polavaram, Rithik S	USA	M	9	1319	1769	449
-40. Kochetov, Vladislav	RUS	M	8	1258	1703	444
-41. Flores Quillas, Diego Saul Rodri	PER	M	9	1319	1757	437
-42. Hohlova, Anna	RUS	F	9	1261	1697	435
-43. Akhmedinov, Satbek	KAZ	M	9	1319	1754	434
-44. Foerster-Yialamas, Lucas	USA	M	8	1258	1687	428
-45. Fridman, Roman A.	RUS	M	9	1319	1748	428
-46. Markovic, Nikola D	SRB	M	9	1319	1747	427
-47. Cherepanova, Evita	RUS	F	9	1261	1686	424
-48. Kostolansky, Sebastian Lukas	SVK	M	9	1319	1740	420
-49. Nasihat, Amir Reza	IRI	M	8	1258	1678	419
-50. Makkar, Rajat	FRA	M	8	1258	1674	415
-51. Zvereva, Margarita	RUS	F	9	1261	1677	415
-52. Ivanov, Svetlen	BUL	M	7	1214	1626	411
-53. Velasquez Cristancho, Juan Pablo	VEN	M	9	1319	1725	405
-54. Metliakov, Bogdan	RUS	M	9	1319	1724	404
-55. Gukhman, Sergey	RUS	M	9	1319	1717	397
-56. Severich, Axl	BOL	M	9	1319	1715	395
-57. Kochetov, Vyacheslav	RUS	M	8	1258	1652	393
-58. Kairbekova, Amina	KAZ	F	9	1261	1655	393
-59. Hrbek, Stepan	CZE	M	9	1319	1711	391
-60. Shin, Seungcheol	KOR	M	9	1319	1711	391
-61. Sreeshwan Maralakshikari	IND	M	9	1319	1707	387
-62. Babaei, Amir Hossein	IRI	M	9	1319	1706	386
-63. Ciocan, Ariana-Roxana	ROU	F	8	1208	1592	383
-64. Van Foreest, Machteld	NED	F	8	1208	1592	383
-65. Grunin, Denis	RUS	M	8	1258	1642	383
-66. Galaviz Medina, Atlas Adom	MEX	M	9	1319	1702	382
-67. Arya Bhakta	IND	M	9	1319	1702	382
-68. Pranav, V	IND	M	9	1319	1701	381
-69. Baratov, Victor	RUS	M	9	1319	1699	379
-70. Lystsov, Leonid	RUS	M	8	1258	1633	374
-71. Velasco Pilpe, Isacc Israel	ECU	M	9	1319	1691	371
-72. Boris, Peter Theodore	USA	M	9	1319	1690	370
-73. Kong, Suh Young	KOR	F	9	1261	1632	370
-74. Ismagilov, Igor	RUS	M	8	1258	1628	369
-75. Pasztor, Balazs	HUN	M	9	1319	1689	369
-76. Shulga, Mikhail	RUS	M	8	1258	1627	368
-77. Mendonca, Leon Luke	IND	M	9	1319	1687	367
-78. Ponomarev, Grigori	RUS	M	9	1319	1685	365
-79. Trofimov, Pavel	RUS	M	9	1319	1684	364
-80. Piccinno, Matteo	ITA	M	9	1319	1683	363
-81. Anikeev, Mark	RUS	M	9	1319	1682	362
-82. Alimbetov, Dias	KAZ	M	9	1319	1682	362
-83. Shuman, Nathaniel Lande	USA	M	9	1319	1680	360
-84. Shestakova, Bogdana	RUS	F	9	1261	1621	359
-85. Nikhil Magizhnan	IND	M	9	1319	1677	357
-86. Menetrier, Augustine	FRA	F	7	1194	1551	356
-87. Melo,Ruan Kelvin Gama	BRA	M	9	1319	1676	356
-88. Grebnev, Aleksey	RUS	M	9	1319	1674	354
-89. Temuujin, Kherlen	MGL	M	9	1319	1673	353
-90. Mekhane, Adam	FRA	M	8	1258	1611	352
-91. Danchenko, Artemiy	RUS	M	9	1319	1672	352
-92. Oh, Yulkeun	KOR	M	9	1319	1671	351
-93. Norena Flores, Nasya Yamila	PER	F	8	1208	1555	346
-94. Putar, Lara	CRO	F	8	1208	1555	346
-95. Shobeiri, Radin	IRI	M	9	1319	1665	345
-96. Omati, Bardia	IRI	M	9	1319	1664	344
-97. Bharath Subramaniyam H	IND	M	8	1258	1602	343
-98. Rindone, Andrea	ITA	M	8	1258	1602	343
-99. Hommer, Jeremy	GER	M	9	1319	1663	343
-100. Stalmach, Richard	CZE	M	9	1319	1659	339
-101. Hasanzadeh, Eilia	IRI	M	7	1214	1551	336
-102. Tamer, Ahmed	EGY	M	9	1319	1655	335
-103. Kuzmin, Roman	RUS	M	9	1319	1653	333
-104. Boldyrev, Nikita	RUS	M	9	1319	1653	333
-105. Schubert, Nikita	GER	M	9	1319	1652	332
-106. Kuznetsov, Vadim	RUS	M	9	1319	1651	331
-107. Deng Yu Dong Michael	HKG	M	9	1319	1650	330
-108. Han, Yichen	NED	M	8	1258	1588	329
-109. Guamialama Lafuente,Oscar Julian	ECU	M	9	1319	1649	329
-110. Poroshin, Aleksandr	RUS	M	8	1258	1587	328
-111. Atovmian, Artem	RUS	M	9	1319	1647	327
-112. Lubarskaya, Regina	RUS	F	9	1261	1589	327
-113. Vetokhin, Savva	RUS	M	6	1169	1495	326
-114. Gaal, Zsoka	HUN	F	8	1208	1534	325
-115. Acevedo Mendoza, Juan David	COL	M	9	1319	1645	325
-116. Lim, Christopher	AUS	M	9	1319	1644	324
-117. Gomboev, Vladimir	RUS	M	9	1319	1643	323
-118. Sagdiev, Daniel	RUS	M	9	1319	1643	323
-119. Nikolic, Marko	BIH	M	9	1319	1643	323
-120. Hovyan, Nikolay	ARM	M	7	1214	1537	322
-121. Nasihat, Romina	IRI	M	7	1214	1536	321
-122. Md. Sajidul, Haque	BAN	M	6	1169	1490	321
-123. Munkhzul, Davaakhuu	MGL	F	9	1261	1582	320
-124. Khoshjam, Labkhand	IRI	F	8	1208	1528	319
-125. Anghel, Iulian-Mihai	ROU	M	9	1319	1638	318
-126. Neretin, Ivan	RUS	M	9	1319	1638	318
-127. Kichin, Alexander	RUS	M	8	1258	1576	317
-128. Bui, Bao Anh Le	GER	M	9	1319	1637	317
-129. Rivera Fernandez, Fredy Aleja	COL	M	8	1258	1575	316
-130. Vo, Pham Thien Phuc	VIE	M	9	1319	1636	316
-131. Pick, Max	GER	M	8	1258	1574	315
-132. Mercado Tapias, Juan Diego	COL	M	9	1319	1635	315
-133. Yushin, Igor	RUS	M	8	1258	1572	313
-134. Kulev, Atanas	BUL	M	9	1319	1633	313
-135. Swarnavo Choudhury	BAN	M	9	1319	1633	313
-136. Serloni, Ludovico	ITA	M	9	1319	1633	313
-137. Heidarzadeh, Arsha	IRI	M	8	1258	1571	312
-138. Zhang,Zhaoke	CHN	M	9	1319	1632	312
-139. Toro, Miguel Angel	COL	M	9	1319	1631	311
-140. Georgiev, Konstantin	BUL	M	8	1258	1569	310
-141. Feliciano Santiago, Paola F.	VEN	F	9	1261	1571	309
-142. Petrovsky, Nikita	RUS	M	8	1258	1567	308
-143. Sindarov, Islombek	UZB	M	8	1258	1567	308
-144. Dubskikh, Nikolai	RUS	M	8	1258	1567	308
-145. Landa Medrano, Jonathan	PER	M	7	1214	1523	308
-146. Tham, Nam	GER	M	9	1319	1627	307
-147. Yavuz, Efe Metehan	TUR	M	9	1319	1627	307
-148. Mahdavi, Reza	IRI	M	7	1214	1522	307
-149. Kondakov, Adrian	USA	M	8	1258	1565	306
-150. Siniauski, Artsiom	BLR	M	9	1319	1626	306
-151. Casadio, Niccolo`	ITA	M	9	1319	1626	306
-152. Biyakhmet, Amirali	KAZ	M	8	1258	1563	304
-153. Georgiev, Kristian	BUL	M	9	1319	1624	304
-154. Graf, Simon	AUT	M	9	1319	1623	303
-155. Milare, Tyron	GER	M	9	1319	1623	303
-156. Park, Seonghyeon	KOR	M	9	1319	1622	302
-157. Manish Kumar (2006)	IND	M	9	1319	1622	302
-158. Ducuara Alape, Ronaldo	COL	M	9	1319	1621	301
-159. Acevedo Leon, Juan A	COL	M	8	1258	1559	300
-160. Aslanov, Umid	AZE	M	9	1319	1620	300
-161. Velasquez Huanca, Danny	PER	M	9	1319	1620	300
-162. Aizenberg, Benny	ISR	M	9	1319	1620	300
-163. Avazov, Semen	RUS	M	9	1319	1618	298
-164. Dobrynin, Ivan	RUS	M	9	1319	1617	297
-165. Karacsonyi, Kata	HUN	F	9	1261	1559	297
-166. Navumenka, Mikhei	BLR	M	8	1258	1555	296
-167. Kim, Sangyun	KOR	M	9	1319	1616	296
-168. Lomakina, Anzhelika	UKR	M	8	1258	1553	294
-169. Prem, Pranav	USA	M	9	1319	1612	292
-170. Samant,Aditya S	IND	M	9	1319	1611	291
-171. Dela Cruz, Del Emerson	PHI	M	9	1319	1610	290
-172. Mitusov, Semen	UKR	M	9	1319	1608	288
-173. Aramayo, Sebastian	BOL	M	9	1319	1608	288
-174. Baghdar, Artin	IRI	M	9	1319	1607	287
-175. Cheon, Sehyuk	KOR	M	7	1214	1502	287
-176. Chavez, Brayan Steven	COL	M	9	1319	1606	286
-177. Khamidullin, Rustam	RUS	M	9	1319	1605	285
-178. Karumova, Luisa	RUS	F	9	1261	1546	284
-179. Roh, Haeyoon	KOR	F	7	1194	1478	283
-180. Novikov, Kirill	RUS	M	9	1319	1601	281
-181. Lobato Bravo, Pablo	ESP	M	9	1319	1601	281
-182. Pestrikov, Egor	RUS	M	9	1319	1599	279
-183. Garcia Pardo, Lorena	ESP	F	8	1208	1487	278
-184. Chyzy, Jakub	POL	M	9	1319	1598	278
-185. Nejatpour, Soshiyant	IRI	M	8	1258	1536	277
-186. Vivas Espinosa, Ashly Carolina	VEN	F	8	1208	1486	277
-187. Evdokimov, Alexey	RUS	M	9	1319	1597	277
-188. Volovich, Julia	ENG	F	9	1261	1538	276
-189. Mohammadi, Aeirya	IRI	M	9	1319	1595	275
-190. Zaharia, Pavel-Darius	ROU	M	8	1258	1533	274
-191. Lima, Vinicius Taishun	BRA	M	9	1319	1594	274
-192. Jion, Jiho	KOR	M	9	1319	1594	274
-193. Vargosko, Juraj	SVK	M	7	1214	1489	274
-194. Vasilyev, Alexey	RUS	M	9	1319	1593	273
-195. Gholami, Keyhan	IRI	M	7	1214	1487	272
-196. Campos Gomez, Manuel	COL	M	8	1258	1530	271
-197. Silich, Yahor	BLR	M	9	1319	1591	271
-198. Bersebayev, Dalen	KAZ	M	9	1319	1590	270
-199. Wei, Yaqing	CHN	F	8	1208	1478	269
-200. Stevik, Patrik	SVK	M	8	1258	1528	269
-201. Babayev, Altay	AZE	M	8	1258	1528	269
-202. Ray, Hiya	WLS	F	9	1261	1531	269
-203. Kuznetsova, Polina	RUS	F	9	1261	1531	269
-204. Mogirzan, Matei-Valeriu	ROU	M	7	1214	1484	269
-205. Volkov, Vladislav	RUS	M	9	1319	1587	267
-206. Noorali, Aahil	CAN	M	9	1319	1586	266
-207. Ezizova, Bagul	TKM	F	9	1261	1528	266
-208. Simon, Milan Gabor	HUN	M	8	1258	1524	265
-209. Prokhorov, Stepan	RUS	M	9	1319	1585	265
-210. Titov, Alexander	RUS	M	9	1319	1584	264
-211. Gaona Ballesteros, Andres	COL	M	9	1319	1584	264
-212. Ermolaev, Ivan	RUS	M	9	1319	1584	264
-213. Druaux, Alexandre	FRA	M	8	1258	1522	263
-214. Makinyan, Ruben	RUS	M	9	1319	1583	263
-215. Nguyen, Quoc Hy	VIE	M	9	1319	1583	263
-216. Dev, Shah	IND	M	8	1258	1521	262
-217. Sandin, Georgi	RUS	M	9	1319	1582	262
-218. Nouri, Alekhine	PHI	M	9	1319	1581	261
-219. Ivanov, Artem	RUS	M	9	1319	1580	260
-220. Sabarez, Iulian	ROU	M	7	1214	1475	260
-221. Kadkhodaei, Kiarash	IRI	M	8	1258	1518	259
-222. Chen, Max	CAN	M	8	1258	1517	258
-223. Ng, Sheng Feng	SIN	M	9	1319	1576	256
-224. Bilovil, Bogdan	UKR	M	9	1319	1576	256
-225. Le, Minh Duc	VIE	M	9	1319	1576	256
-226. Zgonnik, Ilya	RUS	M	9	1319	1576	256
-227. Nadzamova, Viktoria	SVK	F	9	1261	1518	256
-228. Jin Yueheng	CHN	M	7	1214	1471	256
-229. Baituganov, Vyacheslav	RUS	M	9	1319	1575	255
-230. Isik, Burak Alp	TUR	M	9	1319	1575	255
-231. Sandhu, Ludwig	SWE	M	8	1258	1513	254
-232. Frolova, Alika	RUS	F	8	1208	1463	254
-233. Trost, Edvin	SWE	M	8	1258	1513	254
-234. Matveeva, Ksenya	RUS	F	9	1261	1516	254
-235. Shalapugin, Vadim	RUS	M	9	1319	1573	253
-236. Shahil Dey	IND	M	8	1258	1511	252
-237. Abramenkov, Sergei	RUS	M	8	1258	1511	252
-238. Jabbarli, Oghuz	AZE	M	6	1169	1421	252
-239. Karaivanova, Petya	BUL	F	8	1208	1460	251
-240. Gomez Rondon, Samuel	COL	M	9	1319	1571	251
-241. Belov, Danila	RUS	M	9	1319	1571	251
-242. Alimova, Dana	RUS	F	9	1261	1513	251
-243. Gagarinov, Andrey	RUS	M	8	1258	1509	250
-244. Parsaee, Amir Reza	IRI	M	8	1258	1509	250
-245. Korotaev, Yaroslav	RUS	M	9	1319	1570	250
-246. Krupnova, Anna	RUS	F	9	1261	1512	250
-247. Krivov, Nikita	RUS	M	8	1258	1508	249
-248. Dunkov, Mikhail	RUS	M	8	1258	1507	248
-249. Koshelev, Maksim	RUS	M	8	1258	1506	247
-250. Wojdak, Jan	POL	M	9	1319	1567	247
+1. Wei, Yi	CHN	M	16	1625	2734	1108
+2. Burke, John M	USA	M	14	1522	2603	1080
+3. Abdusattorov, Nodirbek	UZB	M	11	1401	2432	1030
+4. Artemiev, Vladislav	RUS	M	17	1675	2675	999
+5. Giri, Anish	NED	M	21	1798	2798	999
+6. Duda, Jan-Krzysztof	POL	M	17	1675	2658	982
+7. Sevian, Samuel	USA	M	15	1581	2556	974
+8. Pechac, Jergus	SVK	M	14	1522	2495	972
+9. Carlsen, Magnus	NOR	M	25	1880	2850	969
+10. Tabatabaei, M.amin	IRI	M	14	1522	2488	965
+11. Xiong, Jeffery	USA	M	15	1581	2537	955
+12. Caruana, Fabiano	USA	M	23	1842	2796	953
+13. So, Wesley	USA	M	22	1811	2760	949
+14. Keymer, Vincent	GER	M	11	1401	2347	945
+15. Ding, Liren	CHN	M	23	1842	2782	939
+16. Hou, Yifan	CHN	F	21	1736	2671	934
+17. Sindarov, Javokhir	UZB	M	10	1365	2299	933
+18. Deac, Bogdan-Daniel	ROU	M	14	1522	2455	932
+19. Smirnov, Anton	AUS	M	14	1522	2447	924
+20. Li, Ruifeng	USA	M	14	1522	2446	923
+21. Van Foreest, Jorden	NED	M	16	1625	2548	922
+22. Yu, Yangyi	CHN	M	21	1798	2721	922
+23. Rambaldi, Francesco	ITA	M	16	1625	2547	921
+24. Rapport, Richard	HUN	M	19	1744	2663	918
+25. Liang, Awonder	USA	M	12	1446	2365	918
+26. Firouzja, Alireza	IRI	M	12	1446	2364	917
+27. Dubov, Daniil	RUS	M	19	1744	2661	916
+28. Checa, Nicolas D	USA	M	14	1522	2437	914
+29. Nomin-Erdene, Davaademberel	MGL	F	15	1513	2424	910
+30. Gazik, Viktor	SVK	M	14	1522	2431	908
+31. Aryan Chopra	IND	M	14	1522	2430	907
+32. Esipenko, Andrey	RUS	M	13	1482	2384	901
+33. Donchenko, Alexander	GER	M	17	1675	2577	901
+34. Fawzy, Adham	EGY	M	15	1581	2483	901
+35. Tari, Aryan	NOR	M	16	1625	2521	895
+36. Goryachkina, Aleksandra	RUS	F	17	1590	2480	889
+37. Triapishko, Olexandr	RUS	M	15	1581	2471	889
+38. Gledura, Benjamin	HUN	M	16	1625	2513	887
+39. Nguyen, Thai Dai Van	CZE	M	14	1522	2409	886
+40. Nguyen, Anh Khoi	VIE	M	13	1482	2368	885
+41. Matviishen, Viktor	UKR	M	13	1482	2366	883
+42. Nyzhnyk, Illya	UKR	M	19	1744	2628	883
+43. Radovanovic, Mihajlo	SRB	M	14	1522	2404	881
+44. Fedoseev, Vladimir	RUS	M	20	1777	2659	881
+45. Karjakin, Sergey	RUS	M	25	1880	2762	881
+46. Robson, Ray	USA	M	21	1798	2680	881
+47. Nakamura, Hikaru	USA	M	28	1935	2816	881
+48. Reznikov, Michael-Allen	USA	M	14	1522	2403	880
+49. Chandra, Akshat	USA	M	16	1625	2506	880
+50. Bukavshin, Ivan	RUS	M	20	1777	2657	879
