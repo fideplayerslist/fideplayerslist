@@ -11,7 +11,7 @@ my $command='';
 
 while(!($command=~/x/i))
 {
-	print "\nx = exit\np = preprocess\nas = age stats\ncs = country stats\nyt = young talents\not = old talents\nhw = high rated women\n\nenter command: ";
+	print "\nx = exit\np = preprocess\nas = age stats\ncs = country stats\nfc = field counts\nyt = young talents\not = old talents\nhw = high rated women\n\nenter command: ";
 	$command=<>;
 	chomp($command);
 	
@@ -31,6 +31,11 @@ while(!($command=~/x/i))
 	if($command=~/cs/i)
 	{
 		country_stats();
+	}
+	
+	if($command=~/fc/i)
+	{
+		field_counts();
 	}
 	
 	if($command=~/yt/i)
@@ -316,6 +321,43 @@ sub country_stats
 	
 	save("country_stats.txt",$country_stats_txt,"country\ttotal players\tmales\trated males\taverage rating males\tfemales\trated females\taverage rating females\tfemale % of all players\tfemale % of rated players\taverage rating difference");
 	
+}
+
+sub field_counts
+{
+
+	my $field_counts={};
+	
+	iterate(sub {
+		my $record=shift;
+		
+		foreach(@listed_fields)
+		{
+			my $key=$_;
+			
+			if($record->{$key} ne '')
+			{
+				$field_counts->{$key}++;
+			}
+		}
+		
+	});
+	
+	my $field_counts_txt='';
+	
+	foreach(@listed_fields)
+		{
+			my $key=$_;
+			
+			my $item="$key\t$field_counts->{$key}";
+			
+			$field_counts_txt.="$item\n";
+		}
+		
+	print $field_counts_txt;
+		
+	save("field_counts.txt",$field_counts_txt,"field\tnon empty count");
+
 }
 
 sub high_rated_women
