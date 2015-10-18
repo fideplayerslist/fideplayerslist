@@ -11,7 +11,7 @@ my $command='';
 
 while(!($command=~/x/i))
 {
-	print "\nx = exit\np = preprocess\nas = age stats\nyt = young talents\not = old talents\nhw = high rated women\n\nenter command: ";
+	print "\nx = exit\np = preprocess\nas = age stats\ncs = country stats\nyt = young talents\not = old talents\nhw = high rated women\n\nenter command: ";
 	$command=<>;
 	chomp($command);
 	
@@ -26,6 +26,11 @@ while(!($command=~/x/i))
 	if($command=~/as/i)
 	{
 		age_stats();
+	}
+	
+	if($command=~/cs/i)
+	{
+		country_stats();
 	}
 	
 	if($command=~/yt/i)
@@ -110,6 +115,18 @@ sub young_talents
 	
 }
 
+sub ratio
+{
+	my ($cumulative,$count)=@_;
+	
+	if($count>0)
+	{
+		return $cumulative/$count;
+	}
+	
+	return 'N/A';
+}
+
 sub averagef
 {
 	my ($cumulative,$count)=@_;
@@ -117,6 +134,18 @@ sub averagef
 	if($count>0)
 	{
 		return sprintf "%.1f",$cumulative/$count;
+	}
+	
+	return 'N/A';
+}
+
+sub percentf
+{
+	my ($ratio)=@_;
+	
+	if($ratio ne 'N/A')
+	{
+		return sprintf "%.2f",$ratio*100;
 	}
 	
 	return 'N/A';
@@ -192,6 +221,100 @@ sub age_stats
 	print $age_stats_txt;
 	
 	save("age_stats.txt",$age_stats_txt,"age\trated males\taverage rating males\trated females\taverage rating females");
+	
+}
+
+sub country_stats
+{
+	
+	my $country_stats={};
+	
+	iterate(sub {
+		my $record=shift;
+		
+		if(($record->{sex}=~/M|F/)&&($record->{country} ne '')&&($record->{name} ne '')&&($record->{age} ne ''))
+		{
+			$country_stats->{$record->{country}}->{"$record->{sex}"}++;
+			if($record->{rating}>0)
+			{
+				$country_stats->{$record->{country}}->{"R$record->{sex}"}++;
+				$country_stats->{$record->{country}}->{"CR$record->{sex}"}+=$record->{rating};
+			}
+		}
+	});
+	
+	my $country_stats_txt='';
+	
+	my @countries=keys %{$country_stats};
+	
+	my @filtered_countries=();
+	
+	foreach(@countries)
+	{
+	
+		my $country=$_;
+		
+		$country_stats->{$country}->{TOT}=
+		$country_stats->{$country}->{M}+$country_stats->{$country}->{F};
+		
+		$country_stats->{$country}->{RTOT}=
+		$country_stats->{$country}->{RM}+$country_stats->{$country}->{RF};
+		
+		$country_stats->{$country}->{FRATIO}=ratio($country_stats->{$country}->{F},$country_stats->{$country}->{TOT});
+		
+		$country_stats->{$country}->{FRATIOR}=ratio($country_stats->{$country}->{RF},$country_stats->{$country}->{RTOT});
+		
+		$country_stats->{$country}->{FPERCENT}=percentf($country_stats->{$country}->{FRATIO});
+		
+		$country_stats->{$country}->{FPERCENTR}=percentf($country_stats->{$country}->{FRATIOR});
+		
+		$country_stats->{$country}->{AVGRM}=averagef($country_stats->{$country}->{CRM},$country_stats->{$country}->{RM});
+		
+		$country_stats->{$country}->{AVGRF}=averagef($country_stats->{$country}->{CRF},$country_stats->{$country}->{RF});
+		
+		$country_stats->{$country}->{AVGRDIFF}=
+			(($country_stats->{$country}->{AVGRM} ne 'N/A')&&($country_stats->{$country}->{AVGRF} ne 'N/A'))?sprintf "%.1f",$country_stats->{$country}->{AVGRM}-$country_stats->{$country}->{AVGRF}:'N/A';
+		
+		if($country_stats->{$country}->{TOT}>1000)
+		{
+		
+			push(@filtered_countries,$_);
+		
+		}
+		
+	}
+	
+	@filtered_countries=sort
+	{
+		$country_stats->{$b}->{FRATIO}<=>$country_stats->{$a}->{FRATIO};
+	}
+	@filtered_countries;
+	
+	foreach(@filtered_countries)
+	{
+	
+		my $country=$_;
+	
+		my $TOT=$country_stats->{$country}->{TOT};
+		my $M=$country_stats->{$country}->{M};
+		my $RM=$country_stats->{$country}->{RM};
+		my $AVGRM=$country_stats->{$country}->{AVGRM};
+		my $F=$country_stats->{$country}->{F};
+		my $RF=$country_stats->{$country}->{RF};
+		my $AVGRF=$country_stats->{$country}->{AVGRF};
+		my $FPERCENT=$country_stats->{$country}->{FPERCENT};
+		my $FPERCENTR=$country_stats->{$country}->{FPERCENTR};
+		my $AVGRDIFF=$country_stats->{$country}->{AVGRDIFF};
+		
+		my $item="$country\t$TOT\t$M\t$RM\t$AVGRM\t$F\t$RF\t$AVGRF\t$FPERCENT\t$FPERCENTR\t$AVGRDIFF";
+		
+		$country_stats_txt.="$item\n";
+	
+	}
+	
+	print $country_stats_txt;
+	
+	save("country_stats.txt",$country_stats_txt,"country\ttotal players\tmales\trated males\taverage rating males\tfemales\trated females\taverage rating females\tfemale % of all players\tfemale % of rated players\taverage rating difference");
 	
 }
 
