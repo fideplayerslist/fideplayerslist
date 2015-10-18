@@ -3,13 +3,15 @@ use strict;
 my $MAX_CNT=1000000;
 my $cnt=0;
 
+my $reference_year=2015;
+
 my @listed_fields=qw(name country sex birthday rating);
 
 my $command='';
 
 while(!($command=~/x/i))
 {
-	print "\nx = exit\np = preprocess\nh = high rated\n\nenter command: ";
+	print "\nx = exit\np = preprocess\nas = age stats\nyt = yount talents\nhw = high rated women\n\nenter command: ";
 	$command=<>;
 	chomp($command);
 	
@@ -21,13 +23,149 @@ while(!($command=~/x/i))
 		preprocess();
 	}
 	
-	if($command=~/h/i)
+	if($command=~/as/i)
 	{
-		high_rated();
+		age_stats();
 	}
+	
+	if($command=~/yt/i)
+	{
+		young_talents();
+	}
+	
+	if($command=~/hw/i)
+	{
+		high_rated_women();
+	}
+	
 }
 
-sub high_rated
+sub young_talents
+{
+	open(AGE_STATS,"age_stats.txt");
+	
+	my $age_stats={};
+	
+	while(<AGE_STATS>)
+	{
+		chomp $_;
+		my @fields=split /\t/,$_;
+		
+		my $age=$fields[0];
+		my $RM=$fields[1];
+		my $AVGRM=$fields[2];
+		my $RF=$fields[3];
+		my $AVGRF=$fields[4];
+		
+		$age_stats->{$age}->{AVGRM}=$AVGRM;
+		$age_stats->{$age}->{AVGRF}=$AVGRF;
+	}
+	
+	close(AGE_STATS);
+	
+	for(my $i=1;$i<=100;$i++)
+	{
+		#print "$i $age_stats->{$i}->{AVGRM} $age_stats->{$i}->{AVGRF}\n";
+	}
+	
+	my $list={};
+	
+	iterate(sub {
+		my $record=shift;
+		
+		if(($record->{rating}>0)&&($record->{sex}=~/M|F/)
+		&&($record->{age}>0)&&($record->{age}<=30))
+		{
+			my $expected_rating=$age_stats->{$record->{age}}->{"AVGR$record->{sex}"};
+			my $rating_surplus=$record->{rating}-$expected_rating;
+			
+			$list->{"$record->{name}\t$record->{country}\t$record->{sex}\t$record->{age}\t".int($expected_rating)."\t$record->{rating}"}=$rating_surplus;
+		}
+	});
+	
+	my @talents=keys %{$list};
+	
+	@talents=sort
+	{
+		$list->{$b}<=>$list->{$a};
+	}
+	@talents;
+	
+	my $young_talents_txt='';
+	
+	for(my $i=0;$i<50;$i++)
+	{
+		my $index=$i+1;
+		my $item="$index. $talents[$i] ".int($list->{$talents[$i]});
+		
+		$young_talents_txt.="$item\n";
+	}
+	
+	print $young_talents_txt;
+	
+	save("young_talents.txt",$young_talents_txt);
+	
+}
+
+sub averagef
+{
+	my ($cumulative,$count)=@_;
+	
+	if($count>0)
+	{
+		return sprintf "%.1f",$cumulative/$count;
+	}
+	
+	return 'N/A';
+}
+
+sub save
+{
+	my ($file_name,$content)=@_;
+	
+	open(OUTF,">$file_name");
+	print OUTF $content;
+	close(OUTF);
+}
+
+sub age_stats
+{
+	
+	my $age_stats={};
+	
+	iterate(sub {
+		my $record=shift;
+		
+		if(($record->{rating}>0)&&($record->{sex}=~/M|F/)&&($record->{age} ne ''))
+		{
+			$age_stats->{$record->{age}}->{"R$record->{sex}"}++;
+			$age_stats->{$record->{age}}->{"CR$record->{sex}"}+=$record->{rating};
+		}
+	});
+	
+	my $age_stats_txt="age\tnumber of males\tmale average rating\tnumber of females\tfemale average rating\n";
+	
+	for(my $i=1;$i<=100;$i++)
+	{
+	
+		my $RM=$age_stats->{$i}->{RM};
+		my $AVGRM=averagef($age_stats->{$i}->{CRM},$RM);
+		my $RF=$age_stats->{$i}->{RF};
+		my $AVGRF=averagef($age_stats->{$i}->{CRF},$RF);
+		
+		my $item="$i\t$RM\t$AVGRM\t$RF\t$AVGRF";
+		
+		$age_stats_txt.="$item\n";
+	
+	}
+	
+	print $age_stats_txt;
+	
+	save("age_stats.txt",$age_stats_txt);
+	
+}
+
+sub high_rated_women
 {
 
 	my $birthdays={};
@@ -39,7 +177,7 @@ sub high_rated
 		
 		if(($record->{rating}>2400)&&($record->{sex} eq 'F'))
 		{
-			my $item=sprintf "%-40s %3s %1s %4d %8d",$record->{name},$record->{country},$record->{sex},$record->{birthday},$record->{rating};
+			my $item=sprintf "%-40s %3s %1s %4d %8d %4d",$record->{name},$record->{country},$record->{sex},$record->{birthday},$record->{rating},$record->{age};
 			
 			$items->{$item}=$record->{rating};
 		}
@@ -87,6 +225,15 @@ sub iterate
 		}
 		
 		$record->{line}=$line;
+		
+		if($record->{birthday} ne '')
+		{
+			$record->{age}=$reference_year-$record->{birthday};
+		}
+		else
+		{
+			$record->{age}='';
+		}
 		
 		&{$sub}($record);
 	
