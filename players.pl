@@ -23,6 +23,7 @@ hm = high rated men ( >=2600 )
 hw = high rated women ( >=2400 )
 h = high rated players ( >=2500 )
 ga = GM average ratings
+sd = standard deviation
 
 enter command: );
 	$command=<>;
@@ -54,6 +55,11 @@ enter command: );
 	if($command=~/yt/i)
 	{
 		young_talents(10,30,'young',50);
+	}
+	
+	if($command=~/sd/i)
+	{
+		young_talents(1,100,'std_dev',50);
 	}
 	
 	if($command=~/ot/i)
@@ -103,7 +109,9 @@ sub young_talents
 		my $RF=$fields[3];
 		my $AVGRF=$fields[4];
 		
+		$age_stats->{$age}->{RM}=$RM;
 		$age_stats->{$age}->{AVGRM}=$AVGRM;
+		$age_stats->{$age}->{RF}=$RF;
 		$age_stats->{$age}->{AVGRF}=$AVGRF;
 	}
 	
@@ -121,6 +129,17 @@ sub young_talents
 			my $rating_surplus=$record->{rating}-$expected_rating;
 			
 			$list->{"$record->{name}\t$record->{country}\t$record->{sex}\t$record->{age}\t".int($expected_rating)."\t$record->{rating}"}=$rating_surplus;
+			
+			
+			$age_stats->{$record->{age}}->{"DEVSQ$record->{sex}"}+=
+			$rating_surplus*$rating_surplus;
+			
+			$age_stats->{TOT}->{"DEVSQ$record->{sex}"}+=
+			$rating_surplus*$rating_surplus;
+			
+			$age_stats->{TOT}->{"R$record->{sex}"}++;
+			
+			
 		}
 	});
 	
@@ -145,6 +164,37 @@ sub young_talents
 	print $young_talents_txt;
 	
 	save($name."_talents.txt",$young_talents_txt,"name\tcountry\tgender\tage\texpected rating\tactual rating\trating surplus");
+	
+	my $std_dev_txt='';
+	
+	my $TOTDEVSQM=$age_stats->{TOT}->{DEVSQM};
+	my $TOTRM=$age_stats->{TOT}->{RM};
+	my $TOTAVGDEVSQM=ratio($TOTDEVSQM,$TOTRM);
+	my $TOTSTDDEVM=sprintf "%.1f",sqrt($TOTAVGDEVSQM);
+	my $TOTDEVSQF=$age_stats->{TOT}->{DEVSQF};
+	my $TOTRF=$age_stats->{TOT}->{RF};
+	my $TOTAVGDEVSQF=ratio($TOTDEVSQF,$TOTRF);
+	my $TOTSTDDEVF=sprintf "%.1f",sqrt($TOTAVGDEVSQF);
+	
+	for(my $age=$from;$age<=$to;$age++)
+	{
+	
+		my $DEVSQM=$age_stats->{$age}->{DEVSQM};
+		my $RM=$age_stats->{$age}->{RM};
+		my $AVGDEVSQM=ratio($DEVSQM,$RM);
+		my $STDDEVM=sprintf "%.1f",sqrt($AVGDEVSQM);
+		my $DEVSQF=$age_stats->{$age}->{DEVSQF};
+		my $RF=$age_stats->{$age}->{RF};
+		my $AVGDEVSQF=ratio($DEVSQF,$RF);
+		my $STDDEVF=sprintf "%.1f",sqrt($AVGDEVSQF);
+		
+		$std_dev_txt.="$age\t$STDDEVM\t$STDDEVF\n";
+	
+	}
+	
+	$std_dev_txt.="TOT\t$TOTSTDDEVM\t$TOTSTDDEVF\n";
+	
+	save("std_dev.txt",$std_dev_txt,"age\tstd dev male\tstd dev female");
 	
 }
 
@@ -448,7 +498,9 @@ sub gm_average_ratings
 	iterate(sub {
 		my $record=shift;
 		
-		if(($record->{rating}>0)&&($record->{sex}=~/F|M/)&&($record->{age} ne '')&&($record->{title} eq 'GM'))
+		if(($record->{rating}>0)&&($record->{sex}=~/F|M/)
+		&&($record->{age}>=20)&&($record->{age}<=40)
+		&&($record->{title} eq 'GM'))
 		{
 			$gm_avgr->{"CR$record->{sex}"}+=$record->{rating};
 			$gm_avgr->{"R$record->{sex}"}++;

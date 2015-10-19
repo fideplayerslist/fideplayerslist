@@ -1,0 +1,50 @@
+1. Wei, Yi	CHN	M	16	1625	2734	1108
+2. Burke, John M	USA	M	14	1522	2603	1080
+3. Abdusattorov, Nodirbek	UZB	M	11	1401	2432	1030
+4. Artemiev, Vladislav	RUS	M	17	1675	2675	999
+5. Giri, Anish	NED	M	21	1798	2798	999
+6. Duda, Jan-Krzysztof	POL	M	17	1675	2658	982
+7. Sevian, Samuel	USA	M	15	1581	2556	974
+8. Pechac, Jergus	SVK	M	14	1522	2495	972
+9. Carlsen, Magnus	NOR	M	25	1880	2850	969
+10. Tabatabaei, M.amin	IRI	M	14	1522	2488	965
+11. Xiong, Jeffery	USA	M	15	1581	2537	955
+12. Caruana, Fabiano	USA	M	23	1842	2796	953
+13. So, Wesley	USA	M	22	1811	2760	949
+14. Keymer, Vincent	GER	M	11	1401	2347	945
+15. Ding, Liren	CHN	M	23	1842	2782	939
+16. Hou, Yifan	CHN	F	21	1736	2671	934
+17. Sindarov, Javokhir	UZB	M	10	1365	2299	933
+18. Deac, Bogdan-Daniel	ROU	M	14	1522	2455	932
+19. Smirnov, Anton	AUS	M	14	1522	2447	924
+20. Li, Ruifeng	USA	M	14	1522	2446	923
+21. Van Foreest, Jorden	NED	M	16	1625	2548	922
+22. Yu, Yangyi	CHN	M	21	1798	2721	922
+23. Rambaldi, Francesco	ITA	M	16	1625	2547	921
+24. Rapport, Richard	HUN	M	19	1744	2663	918
+25. Liang, Awonder	USA	M	12	1446	2365	918
+26. Firouzja, Alireza	IRI	M	12	1446	2364	917
+27. Dubov, Daniil	RUS	M	19	1744	2661	916
+28. Checa, Nicolas D	USA	M	14	1522	2437	914
+29. Nomin-Erdene, Davaademberel	MGL	F	15	1513	2424	910
+30. Gazik, Viktor	SVK	M	14	1522	2431	908
+31. Aryan Chopra	IND	M	14	1522	2430	907
+32. Esipenko, Andrey	RUS	M	13	1482	2384	901
+33. Topalov, Veselin	BUL	M	40	1911	2813	901
+34. Donchenko, Alexander	GER	M	17	1675	2577	901
+35. Fawzy, Adham	EGY	M	15	1581	2483	901
+36. Tari, Aryan	NOR	M	16	1625	2521	895
+37. Kasparov, Garry	RUS	M	52	1922	2812	890
+38. Goryachkina, Aleksandra	RUS	F	17	1590	2480	889
+39. Triapishko, Olexandr	RUS	M	15	1581	2471	889
+40. Gledura, Benjamin	HUN	M	16	1625	2513	887
+41. Nguyen, Thai Dai Van	CZE	M	14	1522	2409	886
+42. Nguyen, Anh Khoi	VIE	M	13	1482	2368	885
+43. Nyzhnyk, Illya	UKR	M	19	1744	2628	883
+44. Matviishen, Viktor	UKR	M	13	1482	2366	883
+45. Radovanovic, Mihajlo	SRB	M	14	1522	2404	881
+46. Fedoseev, Vladimir	RUS	M	20	1777	2659	881
+47. Anand, Viswanathan	IND	M	46	1921	2803	881
+48. Karjakin, Sergey	RUS	M	25	1880	2762	881
+49. Robson, Ray	USA	M	21	1798	2680	881
+50. Nakamura, Hikaru	USA	M	28	1935	2816	881
