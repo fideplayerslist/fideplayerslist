@@ -24,6 +24,7 @@ hw = high rated women ( >=2400 )
 h = high rated players ( >=2500 )
 ga = GM average ratings
 sd = standard deviation
+yp = young players
 
 enter command: );
 	$command=<>;
@@ -31,7 +32,7 @@ enter command: );
 	
 	print "\n";
 	
-	if($command=~/p/i)
+	if($command=~/^p$/i)
 	{
 		$cnt=0;
 		preprocess();
@@ -87,7 +88,37 @@ enter command: );
 		gm_average_ratings();
 	}
 	
+	if($command=~/yp/i)
+	{
+		young_players();
+	}
+	
 }
+
+sub young_players
+{
+
+	my $young_txt='';
+
+	iterate(sub {
+		my $record=shift;
+		
+		if(($record->{age}>=4)&&($record->{age}<=6)&&($record->{rating}>0)&&($record->{sex}=~/M|F/))
+		{
+			
+			$young_txt.="$record->{line}\n";
+			
+		}
+		
+	});
+	
+	print $young_txt;
+	
+	save("young_players.txt",$young_txt);
+
+}
+
+
 
 sub young_talents
 {

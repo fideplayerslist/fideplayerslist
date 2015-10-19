@@ -1,0 +1,42 @@
+Aarav Lakhani	IND	M	2009	1070	
+Abadi, Ali	IRI	M	2009	1098	
+Abdzadeh, Artin	IRI	M	2009	1059	
+Advait Prashant Patil	IND	M	2009	1101	
+Ardyshev, Artem	RUS	M	2009	1301	
+Aryan Mohapatra	IND	M	2009	1267	
+Bhagat Kush	IND	M	2009	1091	
+Brehaut, Diane	FRA	F	2009	1126	
+Cornileau, Raphael	FRA	M	2009	1057	
+Daaevik Wadhawan	IND	M	2009	1070	
+Gaisin, Gayaz	RUS	M	2009	1110	
+Gautham Shenbagakumar	IND	M	2009	1014	
+Geronimi, Jean-Thomas	FRA	M	2009	1218	
+Golchin, Soroosh	IRI	M	2010	1723	
+Hadifakhabi, Farnood	IRI	M	2009	1138	
+Hasanov, Ramal	AZE	M	2010	1182	
+Ilamparthi A R	IND	M	2009	1197	
+Jabbarli, Oghuz	AZE	M	2009	1421	
+Jalalvand, Amir Hesam	IRI	M	2010	1169	
+Katouzian, Ali Reza	IRI	M	2009	1320	
+Klaklov, Nikola	BUL	M	2009	1186	
+Kunka, Harshid	USA	M	2009	1010	
+Md. Sajidul, Haque	BAN	M	2009	1490	
+Mrinmoy Rajkhowa	IND	M	2010	1119	
+Najafi, Ali	IRI	M	2009	1052	
+Priansh Das	IND	M	2009	1232	
+Rasmussen, Kiara Francesca	PER	F	2009	1147	
+Rodha Al Serkal	UAE	F	2009	1147	WCM
+Rupankar Kundu	IND	M	2009	1078	
+Saitgalin, Arsen	RUS	M	2009	1299	
+Samie Darian, Danial	IRI	M	2009	1009	
+Savari, Seteyaesh	IRI	F	2010	1394	
+Shefali A N	IND	F	2009	1111	WCM
+Siddharth Manikandan	IND	M	2009	1017	
+Spinosi, Aurelien	FRA	M	2010	1061	
+Sriansh Das	IND	M	2009	1119	
+Tafazoli, Yasna	IRI	M	2009	1093	
+Taipov, Kamil	RUS	M	2009	1194	
+Tyshkevich, Igor	RUS	M	2009	1265	
+Vetokhin, Savva	RUS	M	2009	1495	
+Wasule Dhruv	IND	M	2009	1041	
+Yazdani, Mohammadhosein	IRI	M	2009	1295	
