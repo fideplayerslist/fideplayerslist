@@ -304,7 +304,9 @@ sub age_stats
 		my $AVGRF=averagef($age_stats->{$i}->{CRF},$RF);
 		my $GMF=$age_stats->{$i}->{GMF};
 		
-		my $item="$i\t$RM\t$AVGRM\t$RF\t$AVGRF\t$GMM\t$GMF";
+		my $age_field=($i%5==0?$i:'');
+		
+		my $item="$age_field\t$RM\t$AVGRM\t$RF\t$AVGRF\t$GMM\t$GMF";
 		
 		$age_stats_txt.="$item\n";
 	
