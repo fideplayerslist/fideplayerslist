@@ -188,7 +188,9 @@ sub young_talents
 		my $AVGDEVSQF=ratio($DEVSQF,$RF);
 		my $STDDEVF=sprintf "%.1f",sqrt($AVGDEVSQF);
 		
-		$std_dev_txt.="$age\t$STDDEVM\t$STDDEVF\n";
+		my $age_field=($age%5==0?$age:'');
+		
+		$std_dev_txt.="$age_field\t$STDDEVM\t$STDDEVF\n";
 	
 	}
 	
