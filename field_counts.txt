@@ -1,6 +1,19 @@
-name	538140
-country	538142
-sex	537138
+field	non empty count
 birthday	500285
+blitz_games	46722
+blitz_k	46722
+blitz_rating	46722
+country	538142
+fideid	538142
+flag	151469
+games	223023
+k	222927
+name	538140
+o_title	5464
+rapid_games	56756
+rapid_k	56756
+rapid_rating	56756
 rating	223023
+sex	537138
 title	16011
+w_title	3085

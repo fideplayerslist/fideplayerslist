@@ -1,3 +1,4 @@
+name	country	gender	age	expected rating	actual rating	rating surplus
 1. Karpov, Anatoly	RUS	M	64	1855	2628	772
 2. Afromeev, Vladimir	RUS	M	61	1887	2646	759
 3. Huebner, Robert	GER	M	67	1832	2588	755

@@ -1,3 +1,4 @@
+name	country	gender	age	expected rating	actual rating	rating surplus
 1. Wei, Yi	CHN	M	16	1625	2734	1108
 2. Burke, John M	USA	M	14	1522	2603	1080
 3. Abdusattorov, Nodirbek	UZB	M	11	1401	2432	1030

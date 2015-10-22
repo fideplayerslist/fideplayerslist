@@ -5,15 +5,25 @@ my $cnt=0;
 
 my $reference_year=2015;
 
-my @listed_fields=qw(name country sex birthday rating title);
+my @listed_fields=get_listed_fields();
 
 my $command='';
 
 while(!($command=~/x/i))
 {
+
+	print "\n\n---------------------------\n\nlisted fields:\n",join("\t",@listed_fields),"\n\n";
+
 	print qq(
 x = exit
-p = preprocess
+
+preprocessing:
+
+ck = count keys
+cr = create list
+
+processing:
+
 as = age stats
 cs = country stats
 fc = field counts
@@ -25,6 +35,7 @@ h = high rated players ( >=2500 )
 ga = GM average ratings
 sd = standard deviation
 yp = young players
+pwg = players without gender
 
 enter command: );
 	$command=<>;
@@ -32,10 +43,16 @@ enter command: );
 	
 	print "\n";
 	
-	if($command=~/^p$/i)
+	if($command=~/^ck$/i)
 	{
 		$cnt=0;
-		preprocess();
+		preprocess('count keys');
+	}
+	
+	if($command=~/^cr$/i)
+	{
+		$cnt=0;
+		preprocess('create list');
 	}
 	
 	if($command=~/as/i)
@@ -93,6 +110,40 @@ enter command: );
 		young_players();
 	}
 	
+	if($command=~/pwg/i)
+	{
+		players_without_gender();
+	}
+	
+}
+
+sub get_listed_fields
+{
+
+	open(KEY_COUNTS,"key_counts.txt");
+	
+	<KEY_COUNTS>;
+	<KEY_COUNTS>;
+	
+	my @keys=();
+	
+	while(<KEY_COUNTS>)
+	{
+		my $line=$_;
+		
+		chomp($line);
+		
+		my @line=split /\t/,$line;
+		
+		my $key=$line[0];
+		
+		push(@keys,$key);
+	}	
+	
+	close(KEY_COUNTS);
+	
+	return @keys;
+	
 }
 
 sub young_players
@@ -114,7 +165,37 @@ sub young_players
 	
 	print $young_txt;
 	
-	save("young_players.txt",$young_txt);
+	save("young_players",$young_txt,join("\t",@listed_fields));
+
+}
+
+
+sub players_without_gender
+{
+
+	my $without_txt='';
+	
+	my $cnt=0;
+
+	iterate(sub {
+		my $record=shift;
+		
+		if(!($record->{sex}=~/M|F/))
+		{
+			
+			$without_txt.="$record->{line}\n";
+			
+			$cnt++;
+			
+		}
+		
+	});
+	
+	$without_txt.="$cnt\n";
+	
+	print $without_txt;
+	
+	save("without",$without_txt,join("\t",@listed_fields));
 
 }
 
@@ -129,16 +210,18 @@ sub young_talents
 	
 	my $age_stats={};
 	
+	<AGE_STATS>;
+	
 	while(<AGE_STATS>)
 	{
 		chomp $_;
 		my @fields=split /\t/,$_;
 		
 		my $age=$fields[0];
-		my $RM=$fields[1];
-		my $AVGRM=$fields[2];
-		my $RF=$fields[3];
-		my $AVGRF=$fields[4];
+		my $RM=$fields[2];
+		my $AVGRM=$fields[3];
+		my $RF=$fields[4];
+		my $AVGRF=$fields[5];
 		
 		$age_stats->{$age}->{RM}=$RM;
 		$age_stats->{$age}->{AVGRM}=$AVGRM;
@@ -194,7 +277,7 @@ sub young_talents
 	
 	print $young_talents_txt;
 	
-	save($name."_talents.txt",$young_talents_txt,"name\tcountry\tgender\tage\texpected rating\tactual rating\trating surplus");
+	save($name."_talents",$young_talents_txt,"name\tcountry\tgender\tage\texpected rating\tactual rating\trating surplus");
 	
 	my $std_dev_txt='';
 	
@@ -227,7 +310,7 @@ sub young_talents
 	
 	$std_dev_txt.="TOT\t$TOTSTDDEVM\t$TOTSTDDEVF\n";
 	
-	save("std_dev.txt",$std_dev_txt,"age\tstd dev male\tstd dev female");
+	save("std_dev",$std_dev_txt,"age\tstd dev male\tstd dev female");
 	
 }
 
@@ -271,36 +354,33 @@ sub save
 {
 	my ($file_name,$content,$html_headers)=@_;
 	
-	open(OUTF,">$file_name");
-	print OUTF $content;
-	close(OUTF);
+	$content="$html_headers\n$content";
 	
-	if($html_headers ne '')
+	open(TXT,">$file_name.txt");
+	print TXT $content;
+	close(TXT);
+	
+	my @content=split /\n/,$content;
+		
+	my $html_content="<table border=1 cellpadding=3 cellspacing=3>";
+	
+	foreach(@content)
 	{
 	
-		$content="$html_headers\n$content";
+		my @fields=split /\t/,$_;
 		
-		my @content=split /\n/,$content;
+		my $item=join('',map { "<td align=center>$_</td>"; } @fields);
 		
-		my $html_content="<table border=1 cellpadding=3 cellspacing=3>";
-		
-		foreach(@content)
-		{
-		
-			my @fields=split /\t/,$_;
-			
-			my $item=join('',map { "<td align=center>$_</td>"; } @fields);
-			
-			$html_content.="<tr>$item</tr>\n";
-		
-		}
-		
-		$html_content.="</table>";
-		
-		$file_name=~s/.txt$/.html/;
-		save($file_name,$html_content);
+		$html_content.="<tr>$item</tr>\n";
 	
 	}
+	
+	$html_content.="</table>";
+	
+	open(HTML,">$file_name.html");
+	print HTML $html_content;
+	close(HTML);
+	
 }
 
 sub age_stats
@@ -337,7 +417,7 @@ sub age_stats
 		
 		my $age_field=($i%5==0?$i:'');
 		
-		my $item="$age_field\t$RM\t$AVGRM\t$RF\t$AVGRF\t$GMM\t$GMF";
+		my $item="$i\t$age_field\t$RM\t$AVGRM\t$RF\t$AVGRF\t$GMM\t$GMF";
 		
 		$age_stats_txt.="$item\n";
 	
@@ -345,7 +425,7 @@ sub age_stats
 	
 	print $age_stats_txt;
 	
-	save("age_stats.txt",$age_stats_txt,"age\trated males\taverage rating males\trated females\taverage rating females\tmale GMs\tfemale GMs");
+	save("age_stats",$age_stats_txt,"age\tage in 5 year steps\trated males\taverage rating males\trated females\taverage rating females\tmale GMs\tfemale GMs");
 	
 }
 
@@ -439,7 +519,7 @@ sub country_stats
 	
 	print $country_stats_txt;
 	
-	save("country_stats.txt",$country_stats_txt,"country\ttotal players\tmales\trated males\taverage rating males\tfemales\trated females\taverage rating females\tfemale % of all players\tfemale % of rated players\taverage rating difference");
+	save("country_stats",$country_stats_txt,"country\ttotal players\tmales\trated males\taverage rating males\tfemales\trated females\taverage rating females\tfemale % of all players\tfemale % of rated players\taverage rating difference");
 	
 }
 
@@ -476,7 +556,7 @@ sub field_counts
 		
 	print $field_counts_txt;
 		
-	save("field_counts.txt",$field_counts_txt,"field\tnon empty count");
+	save("field_counts",$field_counts_txt,"field\tnon empty count");
 
 }
 
@@ -521,7 +601,7 @@ sub high_rated_players
 	
 	print $high_rated_txt;
 	
-	save("high_rated_txt",$high_rated_txt,"rank\tname\tcountry\tgender\tbirthday\trating\tage\ttitle");
+	save("high_rated",$high_rated_txt,"rank\tname\tcountry\tgender\tbirthday\trating\tage\ttitle");
 
 }
 
@@ -551,7 +631,7 @@ sub gm_average_ratings
 	
 	print $gm_average_ratings_txt;
 	
-	save("gm_average_ratings.txt",$gm_average_ratings_txt,"male GMs\tmale GM average rating\tfemale GMs\tfemale GM average rating");
+	save("gm_average_ratings",$gm_average_ratings_txt,"male GMs\tmale GM average rating\tfemale GMs\tfemale GM average rating");
 
 }
 
@@ -561,6 +641,14 @@ sub iterate
 	my $sub=shift;
 
 	open(PLAYERS,"players.txt");
+	
+	my $head=<PLAYERS>;
+	
+	chomp($head);
+	
+	@listed_fields=split /\t/,$head;
+	
+	print "listed fields in players.txt:\n",join("\t",@listed_fields),"\n\n";
 	
 	while(my $line=<PLAYERS>)
 	{
@@ -601,20 +689,49 @@ sub iterate
 
 }
 
+sub get_key_counts
+{
+
+	my ($field_counts)=@_;
+
+	my $key_counts='';
+	foreach(sort keys(%{$field_counts}))
+	{
+	
+		my $key=$_;
+		
+		$key_counts.="$key\t$field_counts->{$key}\n";
+		
+	}
+	
+	return $key_counts;
+
+}
+
 sub preprocess
 {
 
-	print "preprocessing players\n\n";
+	my ($phase)=@_;
 
+	print "preprocessing players, phase: $phase\n\n";
+	
 	open(PLAYERS,"players_list_xml.xml");
 	
-	open(PLAYERS_TXT,">players.txt");
+	if($phase eq 'create list')
+	{
+		
+		open(PLAYERS_TXT,">players.txt");
+		
+		print PLAYERS_TXT join("\t",@listed_fields)."\n";
+	
+	}
 	
 	my $chunk='';
 	
 	my $chars=0;
 	
 	my $field_counts={};
+	my $key_counts={};
 	
 	while((my $line=<PLAYERS>)&&($cnt<$MAX_CNT))
 	{
@@ -656,26 +773,41 @@ sub preprocess
 						
 					}
 					
-					my @fields=();
-					foreach(@listed_fields)
+					if($phase eq 'count keys')
 					{
 					
-						my $key=$_;
+						my @keys=keys(%{$fields});
 						
-						my $value=$fields->{$key};
+						@keys=sort(@keys);
 						
-						push(@fields,$value);
+						my $key_list=join(',',@keys);
 						
-						if($value ne '')
-						{
-							$field_counts->{$key}++;
-						}
+						$field_counts->{$key_list}++;
 						
+						map { $key_counts->{$_}++; } @keys;
+					
 					}
 					
-					my $line_out=join("\t",@fields);
+					if($phase eq 'create list')
+					{
 					
-					print PLAYERS_TXT "$line_out\n";
+						my @fields=();
+						foreach(@listed_fields)
+						{
+						
+							my $key=$_;
+							
+							my $value=$fields->{$key};
+							
+							push(@fields,$value);
+							
+						}
+						
+						my $line_out=join("\t",@fields);
+						
+						print PLAYERS_TXT "$line_out\n";
+					
+					}
 				
 					$cnt++;
 					
@@ -684,17 +816,14 @@ sub preprocess
 					
 						print "$cnt players processed\n\n";
 						
-						my @field_counts=();
-						foreach(@listed_fields)
+						if($phase eq 'count keys')
 						{
 						
-							my $key=$_;
+							my $key_counts=get_key_counts($key_counts);
 							
-							print "has $key : $field_counts->{$key}\n";
-							
-						}
+							print "$key_counts\n";
 						
-						print "\n";
+						}
 					
 					}
 				
@@ -706,9 +835,25 @@ sub preprocess
 	
 	}
 	
-	close(PLAYERS_TXT);
+	if($phase eq 'create list')
+	{
+	
+		close(PLAYERS_TXT);
+	
+	}
 	
 	close(PLAYERS);
+	
+	if($phase eq 'count keys')
+	{
+	
+		save("key_counts","cnt\t$cnt\n".get_key_counts($key_counts),"key\tcount\t");
+		
+		save("field_counts",get_key_counts($field_counts),"field\tcount\t");
+		
+		@listed_fields=get_listed_fields();
+	
+	}
 	
 	print "preprocessing OK, $cnt players processed\n";
 
