@@ -692,19 +692,19 @@ sub iterate
 sub get_key_counts
 {
 
-	my ($field_counts)=@_;
+	my ($fc)=@_;
 
-	my $key_counts='';
-	foreach(sort keys(%{$field_counts}))
+	my $kc='';
+	foreach(sort keys(%{$fc}))
 	{
 	
 		my $key=$_;
 		
-		$key_counts.="$key\t$field_counts->{$key}\n";
+		$kc.="$key\t$fc->{$key}\n";
 		
 	}
 	
-	return $key_counts;
+	return $kc;
 
 }
 
