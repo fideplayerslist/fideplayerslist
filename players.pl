@@ -1,7 +1,8 @@
 use strict;
 
+mkdir('stats');
+
 my $MAX_CNT=1000000;
-my $cnt=0;
 
 my $reference_year=2015;
 
@@ -12,28 +13,35 @@ my $command='';
 while(!($command=~/x/i))
 {
 
-	print "\n\n---------------------------\n\nlisted fields:\n",join("\t",@listed_fields),"\n\n";
+	print "\n\n---------------------------\n\nlisted fields:\n\n",join("\t",@listed_fields),"\n\n";
 
 	print qq(
 x = exit
 
+startup:
+
+s = startup ( ck + cl + as )
+
 preprocessing:
 
 ck = count keys
-cr = create list
+cl = create list
 
-processing:
+prerequisite processing:
 
 as = age stats
+
+subsequent processing:
+
+pr = proper records
 cs = country stats
-fc = field counts
 yt = young talents
 ot = old talents
+sd = standard deviation
 hm = high rated men ( >=2600 )
 hw = high rated women ( >=2400 )
 h = high rated players ( >=2500 )
 ga = GM average ratings
-sd = standard deviation
 yp = young players
 pwg = players without gender
 
@@ -43,15 +51,22 @@ enter command: );
 	
 	print "\n";
 	
+	if($command=~/^s$/i)
+	{
+		preprocess('count keys');
+		print "\n";
+		preprocess('create list');
+		print "\ncalculating age stats\n";
+		age_stats();
+	}
+	
 	if($command=~/^ck$/i)
 	{
-		$cnt=0;
 		preprocess('count keys');
 	}
 	
-	if($command=~/^cr$/i)
+	if($command=~/^cl$/i)
 	{
-		$cnt=0;
 		preprocess('create list');
 	}
 	
@@ -65,9 +80,9 @@ enter command: );
 		country_stats();
 	}
 	
-	if($command=~/fc/i)
+	if($command=~/^pr$/i)
 	{
-		field_counts();
+		proper();
 	}
 	
 	if($command=~/yt/i)
@@ -120,7 +135,7 @@ enter command: );
 sub get_listed_fields
 {
 
-	open(KEY_COUNTS,"key_counts.txt");
+	open(KEY_COUNTS,"stats/key_counts.txt");
 	
 	<KEY_COUNTS>;
 	<KEY_COUNTS>;
@@ -173,7 +188,7 @@ sub young_players
 sub players_without_gender
 {
 
-	my $without_txt='';
+	my $without_gender_txt='';
 	
 	my $cnt=0;
 
@@ -183,7 +198,7 @@ sub players_without_gender
 		if(!($record->{sex}=~/M|F/))
 		{
 			
-			$without_txt.="$record->{line}\n";
+			$without_gender_txt.="$record->{line}\n";
 			
 			$cnt++;
 			
@@ -191,11 +206,11 @@ sub players_without_gender
 		
 	});
 	
-	$without_txt.="$cnt\n";
+	$without_gender_txt.="$cnt\n";
 	
-	print $without_txt;
+	print $without_gender_txt;
 	
-	save("without",$without_txt,join("\t",@listed_fields));
+	save("without_gender",$without_gender_txt,join("\t",@listed_fields));
 
 }
 
@@ -206,7 +221,7 @@ sub young_talents
 	
 	my ($from,$to,$name,$size)=@_;
 
-	open(AGE_STATS,"age_stats.txt");
+	open(AGE_STATS,"stats/age_stats.txt");
 	
 	my $age_stats={};
 	
@@ -356,7 +371,7 @@ sub save
 	
 	$content="$html_headers\n$content";
 	
-	open(TXT,">$file_name.txt");
+	open(TXT,">stats/$file_name.txt");
 	print TXT $content;
 	close(TXT);
 	
@@ -377,7 +392,7 @@ sub save
 	
 	$html_content.="</table>";
 	
-	open(HTML,">$file_name.html");
+	open(HTML,">stats/$file_name.html");
 	print HTML $html_content;
 	close(HTML);
 	
@@ -523,40 +538,30 @@ sub country_stats
 	
 }
 
-sub field_counts
+sub proper
 {
 
-	my $field_counts={};
+	my $proper=0;
 	
 	iterate(sub {
 		my $record=shift;
 		
-		foreach(@listed_fields)
+		if(
+			($record->{name} ne '')
+			&&
+			($record->{birthday}>1900)
+			&&
+			($record->{country} ne '')
+			&&
+			($record->{sex}=~/M|F/)
+		)
 		{
-			my $key=$_;
-			
-			if($record->{$key} ne '')
-			{
-				$field_counts->{$key}++;
-			}
+			$proper++;
 		}
 		
 	});
 	
-	my $field_counts_txt='';
-	
-	foreach(@listed_fields)
-		{
-			my $key=$_;
-			
-			my $item="$key\t$field_counts->{$key}";
-			
-			$field_counts_txt.="$item\n";
-		}
-		
-	print $field_counts_txt;
-		
-	save("field_counts",$field_counts_txt,"field\tnon empty count");
+	print "proper records: $proper\n";
 
 }
 
@@ -648,7 +653,7 @@ sub iterate
 	
 	@listed_fields=split /\t/,$head;
 	
-	print "listed fields in players.txt:\n",join("\t",@listed_fields),"\n\n";
+	print "\nlisted fields in players.txt:\n\n",join("\t",@listed_fields),"\n\n";
 	
 	while(my $line=<PLAYERS>)
 	{
@@ -710,6 +715,8 @@ sub get_key_counts
 
 sub preprocess
 {
+
+	my $cnt=0;
 
 	my ($phase)=@_;
 
