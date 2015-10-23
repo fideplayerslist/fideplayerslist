@@ -1,0 +1,247 @@
+rank	name	country	gender	birthday	rating	age	title
+1.	Carlsen, Magnus 	NOR	M	1990	2850	25	GM
+2.	Nakamura, Hikaru 	USA	M	1987	2816	28	GM
+3.	Topalov, Veselin 	BUL	M	1975	2813	40	GM
+4.	Kasparov, Garry 	RUS	M	1963	2812	52	GM
+5.	Anand, Viswanathan 	IND	M	1969	2803	46	GM
+6.	Giri, Anish 	NED	M	1994	2798	21	GM
+7.	Caruana, Fabiano 	USA	M	1992	2796	23	GM
+8.	Aronian, Levon 	ARM	M	1982	2784	33	GM
+9.	Ding, Liren 	CHN	M	1992	2782	23	GM
+10.	Kramnik, Vladimir 	RUS	M	1975	2777	40	GM
+11.	Grischuk, Alexander 	RUS	M	1983	2774	32	GM
+12.	Karjakin, Sergey 	RUS	M	1990	2762	25	GM
+13.	So, Wesley 	USA	M	1993	2760	22	GM
+14.	Tomashevsky, Evgeny 	RUS	M	1987	2758	28	GM
+15.	Vachier-Lagrave, Maxime 	FRA	M	1990	2758	25	GM
+16.	Li, Chao b 	CHN	M	1989	2750	26	GM
+17.	Jakovenko, Dmitry 	RUS	M	1983	2748	32	GM
+18.	Adams, Michael 	ENG	M	1971	2742	44	GM
+19.	Gelfand, Boris 	ISR	M	1968	2741	47	GM
+20.	Radjabov, Teimour 	AZE	M	1987	2738	28	GM
+21.	Harikrishna, P. 	IND	M	1986	2737	29	GM
+22.	Mamedyarov, Shakhriyar 	AZE	M	1985	2736	30	GM
+23.	Wei, Yi 	CHN	M	1999	2734	16	GM
+24.	Navara, David 	CZE	M	1985	2734	30	GM
+25.	Wojtaszek, Radoslaw 	POL	M	1987	2734	28	GM
+26.	Dominguez Perez, Leinier 	CUB	M	1983	2732	32	GM
+27.	Svidler, Peter 	RUS	M	1976	2727	39	GM
+28.	Ivanchuk, Vassily 	UKR	M	1969	2726	46	GM
+29.	Vitiugov, Nikita 	RUS	M	1987	2725	28	GM
+30.	Wang, Yue 	CHN	M	1987	2724	28	GM
+31.	Yu, Yangyi 	CHN	M	1994	2721	21	GM
+32.	Andreikin, Dmitry 	RUS	M	1990	2720	25	GM
+33.	Eljanov, Pavel 	UKR	M	1983	2717	32	GM
+34.	Shirov, Alexei 	LAT	M	1972	2715	43	GM
+35.	Wang, Hao 	CHN	M	1989	2712	26	GM
+36.	Morozevich, Alexander 	RUS	M	1977	2711	38	GM
+37.	Kryvoruchko, Yuriy 	UKR	M	1986	2710	29	GM
+38.	Bu, Xiangzhi 	CHN	M	1985	2710	30	GM
+39.	Ponomariov, Ruslan 	UKR	M	1983	2710	32	GM
+40.	Leko, Peter 	HUN	M	1979	2707	36	GM
+41.	Howell, David W L 	ENG	M	1990	2705	25	GM
+42.	Nepomniachtchi, Ian 	RUS	M	1990	2705	25	GM
+43.	Ni, Hua 	CHN	M	1983	2704	32	GM
+44.	Kasimdzhanov, Rustam 	UZB	M	1979	2704	36	GM
+45.	Rublevsky, Sergei 	RUS	M	1974	2702	41	GM
+46.	Fressinet, Laurent 	FRA	M	1981	2702	34	GM
+47.	Korobov, Anton 	UKR	M	1985	2700	30	GM
+48.	Kovalenko, Igor 	LAT	M	1988	2700	27	GM
+49.	Ragger, Markus 	AUT	M	1988	2698	27	GM
+50.	Le, Quang Liem 	VIE	M	1991	2697	24	GM
+51.	Bacrot, Etienne 	FRA	M	1983	2697	32	GM
+52.	Malakhov, Vladimir 	RUS	M	1980	2694	35	GM
+53.	Moiseenko, Alexander 	UKR	M	1980	2692	35	GM
+54.	Almasi, Zoltan 	HUN	M	1976	2689	39	GM
+55.	Matlakov, Maxim 	RUS	M	1991	2689	24	GM
+56.	Vallejo Pons, Francisco 	ESP	M	1982	2684	33	GM
+57.	Jobava, Baadur 	GEO	M	1983	2683	32	GM
+58.	Naiditsch, Arkadij 	AZE	M	1985	2682	30	GM
+59.	Cheparinov, Ivan 	BUL	M	1986	2681	29	GM
+60.	Robson, Ray 	USA	M	1994	2680	21	GM
+61.	Hammer, Jon Ludvig 	NOR	M	1990	2680	25	GM
+62.	Kamsky, Gata 	USA	M	1974	2680	41	GM
+63.	Sargissian, Gabriel 	ARM	M	1983	2679	32	GM
+64.	Nisipeanu, Liviu-Dieter 	GER	M	1976	2678	39	GM
+65.	Short, Nigel D 	ENG	M	1965	2678	50	GM
+66.	Saric, Ivan 	CRO	M	1990	2678	25	GM
+67.	Laznicka, Viktor 	CZE	M	1988	2676	27	GM
+68.	Artemiev, Vladislav 	RUS	M	1998	2675	17	GM
+69.	Adhiban, B. 	IND	M	1992	2674	23	GM
+70.	McShane, Luke J 	ENG	M	1984	2674	31	GM
+71.	Gyimesi, Zoltan 	HUN	M	1977	2674	38	GM
+72.	Rodshtein, Maxim 	ISR	M	1989	2673	26	GM
+73.	Areshchenko, Alexander 	UKR	M	1986	2672	29	GM
+74.	Lysyj, Igor 	RUS	M	1987	2671	28	GM
+75.	Bareev, Evgeny 	CAN	M	1966	2669	49	GM
+76.	Granda Zuniga, Julio E 	PER	M	1967	2667	48	GM
+77.	Negi, Parimarjan 	IND	M	1993	2664	22	GM
+78.	Rapport, Richard 	HUN	M	1996	2663	19	GM
+79.	Onischuk, Alexander 	USA	M	1975	2662	40	GM
+80.	Popov, Ivan 	RUS	M	1990	2661	25	GM
+81.	Dubov, Daniil 	RUS	M	1996	2661	19	GM
+82.	Zvjaginsev, Vadim 	RUS	M	1976	2660	39	GM
+83.	Inarkiev, Ernesto 	RUS	M	1985	2660	30	GM
+84.	Fedoseev, Vladimir 	RUS	M	1995	2659	20	GM
+85.	Sadler, Matthew D 	ENG	M	1974	2659	41	GM
+86.	Bruzon Batista, Lazaro 	CUB	M	1982	2659	33	GM
+87.	Movsesian, Sergei 	ARM	M	1978	2658	37	GM
+88.	Tkachiev, Vladislav 	FRA	M	1973	2658	42	GM
+89.	Postny, Evgeny 	ISR	M	1981	2658	34	GM
+90.	Duda, Jan-Krzysztof 	POL	M	1998	2658	17	GM
+91.	Lautier, Joel 	FRA	M	1973	2658	42	GM
+92.	Najer, Evgeniy 	RUS	M	1977	2658	38	GM
+93.	Safarli, Eltaj 	AZE	M	1992	2657	23	GM
+94.	Mamedov, Rauf 	AZE	M	1988	2657	27	GM
+95.	Balogh, Csaba 	HUN	M	1987	2657	28	GM
+96.	Sjugirov, Sanan 	RUS	M	1993	2657	22	GM
+97.	Bukavshin, Ivan 	RUS	M	1995	2657	20	GM
+98.	Zhigalko, Sergei 	BLR	M	1989	2656	26	GM
+99.	Smirin, Ilia 	ISR	M	1968	2655	47	GM
+100.	Gajewski, Grzegorz 	POL	M	1985	2654	30	GM
+101.	Meier, Georg 	GER	M	1987	2654	28	GM
+102.	Gharamian, Tigran 	FRA	M	1984	2654	31	GM
+103.	Nielsen, Peter Heine 	DEN	M	1973	2654	42	GM
+104.	Ivanisevic, Ivan 	SRB	M	1977	2653	38	GM
+105.	Khairullin, Ildar 	RUS	M	1990	2652	25	GM
+106.	Ganguly, Surya Shekhar 	IND	M	1983	2652	32	GM
+107.	Khismatullin, Denis 	RUS	M	1984	2651	31	GM
+108.	Vidit, Santosh Gujrathi 	IND	M	1994	2651	21	GM
+109.	Grachev, Boris 	RUS	M	1986	2649	29	GM
+110.	Fridman, Daniel 	GER	M	1976	2649	39	GM
+111.	Motylev, Alexander 	RUS	M	1979	2649	36	GM
+112.	Berkes, Ferenc 	HUN	M	1985	2648	30	GM
+113.	Akopian, Vladimir 	ARM	M	1971	2648	44	GM
+114.	Efimenko, Zahar 	UKR	M	1985	2647	30	GM
+115.	Grandelius, Nils 	SWE	M	1993	2647	22	GM
+116.	Riazantsev, Alexander 	RUS	M	1985	2646	30	GM
+117.	Afromeev, Vladimir 	RUS	M	1954	2646	61	FM
+118.	Dreev, Aleksey 	RUS	M	1969	2644	46	GM
+119.	Salov, Valery 	RUS	M	1964	2644	51	GM
+120.	Quesada Perez, Yuniesky 	CUB	M	1984	2643	31	GM
+121.	Zhou, Weiqi 	CHN	M	1986	2643	29	GM
+122.	Alekseev, Evgeny 	RUS	M	1985	2642	30	GM
+123.	Sokolov, Ivan 	NED	M	1968	2642	47	GM
+124.	Kuzubov, Yuriy 	UKR	M	1990	2641	25	GM
+125.	Iturrizaga Bonelli, Eduardo 	VEN	M	1989	2641	26	GM
+126.	Sethuraman, S.P. 	IND	M	1993	2640	22	GM
+127.	Lenic, Luka 	SLO	M	1988	2639	27	GM
+128.	Volokitin, Andrei 	UKR	M	1986	2639	29	GM
+129.	Sasikiran, Krishnan 	IND	M	1981	2639	34	GM
+130.	Shankland, Samuel L 	USA	M	1991	2638	24	GM
+131.	Zherebukh, Yaroslav 	USA	M	1993	2637	22	GM
+132.	Rakhmanov, Aleksandr 	RUS	M	1989	2637	26	GM
+133.	Azmaiparashvili, Zurab 	GEO	M	1960	2637	55	GM
+134.	Amin, Bassem 	EGY	M	1988	2636	27	GM
+135.	Edouard, Romain 	FRA	M	1990	2636	25	GM
+136.	Sutovsky, Emil 	ISR	M	1977	2635	38	GM
+137.	Fedorchuk, Sergey A. 	UKR	M	1981	2635	34	GM
+138.	Anton Guijarro, David 	ESP	M	1995	2634	20	GM
+139.	Akobian, Varuzhan 	USA	M	1983	2634	32	GM
+140.	Nguyen, Ngoc Truong Son 	VIE	M	1990	2634	25	GM
+141.	Guseinov, Gadir 	AZE	M	1986	2634	29	GM
+142.	Leitao, Rafael 	BRA	M	1979	2632	36	GM
+143.	Van Wely, Loek 	NED	M	1972	2632	43	GM
+144.	Papaioannou, Ioannis 	GRE	M	1976	2632	39	GM
+145.	Kobalia, Mikhail 	RUS	M	1978	2632	37	GM
+146.	Solak, Dragan 	TUR	M	1980	2631	35	GM
+147.	Predojevic, Borki 	BIH	M	1987	2631	28	GM
+148.	Zubov, Alexander 	UKR	M	1983	2630	32	GM
+149.	Gustafsson, Jan 	GER	M	1979	2630	36	GM
+150.	Kempinski, Robert 	POL	M	1977	2630	38	GM
+151.	Hovhannisyan, Robert 	ARM	M	1991	2630	24	GM
+152.	Sadvakasov, Darmen 	KAZ	M	1979	2629	36	GM
+153.	Gupta, Abhijeet 	IND	M	1989	2629	26	GM
+154.	Oleksiyenko, Mykhaylo 	UKR	M	1986	2628	29	GM
+155.	Naroditsky, Daniel 	USA	M	1995	2628	20	GM
+156.	Nyzhnyk, Illya 	UKR	M	1996	2628	19	GM
+157.	Karpov, Anatoly 	RUS	M	1951	2628	64	GM
+158.	Lupulescu, Constantin 	ROU	M	1984	2626	31	GM
+159.	Landa, Konstantin 	RUS	M	1972	2626	43	GM
+160.	Petrosian, Tigran L. 	ARM	M	1984	2625	31	GM
+161.	Ipatov, Alexander 	TUR	M	1993	2625	22	GM
+162.	Salem, A.R. Saleh 	UAE	M	1993	2624	22	GM
+163.	Piket, Jeroen 	NED	M	1969	2624	46	GM
+164.	Fier, Alexandr 	BRA	M	1988	2624	27	GM
+165.	Bauer, Christian 	FRA	M	1977	2623	38	GM
+166.	Jones, Gawain C B 	ENG	M	1987	2623	28	GM
+167.	Lenderman, Aleksandr 	USA	M	1989	2623	26	GM
+168.	Feller, Sebastien 	FRA	M	1991	2622	24	GM
+169.	Perunovic, Milos 	SRB	M	1984	2622	31	GM
+170.	Melkumyan, Hrant 	ARM	M	1989	2622	26	GM
+171.	Beliavsky, Alexander G 	SLO	M	1953	2622	62	GM
+172.	Bartel, Mateusz 	POL	M	1985	2622	30	GM
+173.	Zhao, Jun 	CHN	M	1986	2621	29	GM
+174.	Kravtsiv, Martyn 	UKR	M	1990	2621	25	GM
+175.	Wen, Yang 	CHN	M	1988	2620	27	GM
+176.	Krasenkow, Michal 	POL	M	1963	2620	52	GM
+177.	Swiercz, Dariusz 	POL	M	1994	2620	21	GM
+178.	Seirawan, Yasser 	USA	M	1960	2620	55	GM
+179.	Zhang, Zhong 	SIN	M	1978	2619	37	GM
+180.	L'Ami, Erwin 	NED	M	1985	2619	30	GM
+181.	Vovk, Andrey 	UKR	M	1991	2619	24	GM
+182.	Milov, Vadim 	SUI	M	1972	2618	43	GM
+183.	Khalifman, Alexander 	RUS	M	1966	2618	49	GM
+184.	Durarbayli, Vasif 	AZE	M	1992	2618	23	GM
+185.	Kononenko, Dmitry 	UKR	M	1988	2618	27	GM
+186.	Van Kampen, Robin 	NED	M	1994	2618	21	GM
+187.	Markus, Robert 	SRB	M	1983	2617	32	GM
+188.	Baklan, Vladimir 	UKR	M	1978	2617	37	GM
+189.	Prohaszka, Peter 	HUN	M	1992	2617	23	GM
+190.	Vovk, Yuri 	UKR	M	1988	2617	27	GM
+191.	Erdos, Viktor 	HUN	M	1987	2617	28	GM
+192.	Drozdovskij, Yuri 	UKR	M	1984	2616	31	GM
+193.	Smirnov, Pavel 	RUS	M	1982	2616	33	GM
+194.	Delgado Ramirez, Neuris 	PAR	M	1981	2615	34	GM
+195.	Buhmann, Rainer 	GER	M	1981	2615	34	GM
+196.	Salgado Lopez, Ivan 	ESP	M	1991	2615	24	GM
+197.	Smeets, Jan 	NED	M	1985	2614	30	GM
+198.	Banikas, Hristos 	GRE	M	1978	2614	37	GM
+199.	Belov, Vladimir 	RUS	M	1984	2614	31	GM
+200.	Chernin, Alexander 	HUN	M	1960	2614	55	GM
+201.	Kozul, Zdenko 	CRO	M	1966	2614	49	GM
+202.	Hracek, Zbynek 	CZE	M	1970	2613	45	GM
+203.	Onischuk, Vladimir 	UKR	M	1991	2612	24	GM
+204.	Tiviakov, Sergei 	NED	M	1973	2612	42	GM
+205.	Galkin, Alexander 	RUS	M	1979	2611	36	GM
+206.	Hansen, Curt 	DEN	M	1964	2611	51	GM
+207.	Miton, Kamil 	POL	M	1984	2610	31	GM
+208.	Dautov, Rustem 	GER	M	1965	2610	50	GM
+209.	Hodgson, Julian M 	ENG	M	1963	2609	52	GM
+210.	Pilavov, Georgy 	UKR	M	1974	2609	41	GM
+211.	Cordova, Emilio 	PER	M	1991	2609	24	GM
+212.	Piorun, Kacper 	POL	M	1991	2609	24	GM
+213.	Turov, Maxim 	RUS	M	1979	2609	36	GM
+214.	Miroshnichenko, Evgenij 	UKR	M	1978	2609	37	GM
+215.	Mastrovasilis, Dimitrios 	GRE	M	1983	2608	32	GM
+216.	Kovalyov, Anton 	CAN	M	1992	2608	23	GM
+217.	Georgiev, Kiril 	BUL	M	1965	2607	50	GM
+218.	Bologan, Viktor 	MDA	M	1971	2607	44	GM
+219.	Mchedlishvili, Mikheil 	GEO	M	1979	2607	36	GM
+220.	Vescovi, Giovanni 	BRA	M	1978	2606	37	GM
+221.	Aleksandrov, Aleksej 	BLR	M	1973	2606	42	GM
+222.	Mecking, Henrique 	BRA	M	1952	2606	63	GM
+223.	Agdestein, Simen 	NOR	M	1967	2606	48	GM
+224.	Zhou, Jianchao 	CHN	M	1988	2606	27	GM
+225.	Jumabayev, Rinat 	KAZ	M	1989	2606	26	GM
+226.	Stellwagen, Daniel 	NED	M	1987	2605	28	GM
+227.	Ponkratov, Pavel 	RUS	M	1988	2604	27	GM
+228.	Banusz, Tamas 	HUN	M	1989	2604	26	GM
+229.	Nikolic, Predrag 	BIH	M	1960	2603	55	GM
+230.	Pashikian, Arman 	ARM	M	1987	2603	28	GM
+231.	Kokarev, Dmitry 	RUS	M	1982	2603	33	GM
+232.	Burke, John M 	USA	M	2001	2603	14	FM
+233.	Goganov, Aleksey 	RUS	M	1991	2603	24	GM
+234.	Grigoriants, Sergey 	RUS	M	1983	2603	32	GM
+235.	Ma, Qun 	CHN	M	1991	2602	24	GM
+236.	Ye, Jiangchuan 	CHN	M	1960	2602	55	GM
+237.	Stefansson, Hannes 	ISL	M	1972	2602	43	GM
+238.	Illescas Cordoba, Miguel 	ESP	M	1965	2602	50	GM
+239.	Istratescu, Andrei 	FRA	M	1975	2602	40	GM
+240.	Ter-Sahakyan, Samvel 	ARM	M	1993	2601	22	GM
+241.	Vladimirov, Yevgeniy 	KAZ	M	1957	2601	58	GM
+242.	Nyback, Tomi 	FIN	M	1985	2601	30	GM
+243.	Stevic, Hrvoje 	CRO	M	1980	2600	35	GM
+244.	Roiz, Michael 	ISR	M	1983	2600	32	GM
+245.	Grigoryan, Karen H. 	ARM	M	1995	2600	20	GM
+246.	Tregubov, Pavel V. 	RUS	M	1971	2600	44	GM

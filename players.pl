@@ -35,15 +35,15 @@ subsequent processing:
 
 pr = proper records
 cs = country stats
-csa = country stats 20-40
-yt = young talents
-ot = old talents
+csa = country stats ( 20 - 40 )
+yt = young talents ( 10 - 30 )
+ot = old talents ( 60 - 100 )
 sd = standard deviation
 hm = high rated men ( >=2600 )
 hw = high rated women ( >=2300 )
 h = high rated players ( >=2500 )
 ga = GM average ratings
-yp = young players
+yp = young players ( 5 - 6 )
 pwg = players without gender
 
 enter command: );
@@ -317,11 +317,11 @@ sub young_talents
 		my $DEVSQM=$age_stats->{$age}->{DEVSQM};
 		my $RM=$age_stats->{$age}->{RM};
 		my $AVGDEVSQM=ratio($DEVSQM,$RM);
-		my $STDDEVM=sprintf "%.1f",sqrt($AVGDEVSQM);
+		my $STDDEVM=$AVGDEVSQM>0?sprintf "%.1f",sqrt($AVGDEVSQM):'N/A';
 		my $DEVSQF=$age_stats->{$age}->{DEVSQF};
 		my $RF=$age_stats->{$age}->{RF};
 		my $AVGDEVSQF=ratio($DEVSQF,$RF);
-		my $STDDEVF=sprintf "%.1f",sqrt($AVGDEVSQF);
+		my $STDDEVF=$AVGDEVSQF>0?sprintf "%.1f",sqrt($AVGDEVSQF):'N/A';
 		
 		my $age_field=($age%5==0?$age:'');
 		
@@ -331,7 +331,7 @@ sub young_talents
 	
 	$std_dev_txt.="TOT\t$TOTSTDDEVM\t$TOTSTDDEVF\n";
 	
-	save("std_dev",$std_dev_txt,"age\tstd dev male\tstd dev female");
+	save("std_dev_$from"."_"."$to",$std_dev_txt,"age\tstd dev male\tstd dev female");
 	
 }
 
@@ -636,7 +636,9 @@ sub high_rated_players
 	
 	print $high_rated_txt;
 	
-	save("high_rated",$high_rated_txt,"rank\tname\tcountry\tgender\tbirthday\trating\tage\ttitle");
+	$sex=~s/\|//;
+	
+	save("high_rated_$sex"."_"."above_$floor",$high_rated_txt,"rank\tname\tcountry\tgender\tbirthday\trating\tage\ttitle");
 
 }
 
