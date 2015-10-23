@@ -40,7 +40,7 @@ yt = young talents
 ot = old talents
 sd = standard deviation
 hm = high rated men ( >=2600 )
-hw = high rated women ( >=2400 )
+hw = high rated women ( >=2300 )
 h = high rated players ( >=2500 )
 ga = GM average ratings
 yp = young players
@@ -113,7 +113,7 @@ enter command: );
 	
 	if($command=~/hw/i)
 	{
-		high_rated_players("F",2400);
+		high_rated_players("F",2300);
 	}
 	
 	if($command=~/h$/i)
