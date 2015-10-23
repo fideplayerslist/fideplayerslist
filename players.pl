@@ -35,6 +35,7 @@ subsequent processing:
 
 pr = proper records
 cs = country stats
+csa = country stats 20-40
 yt = young talents
 ot = old talents
 sd = standard deviation
@@ -75,9 +76,14 @@ enter command: );
 		age_stats();
 	}
 	
-	if($command=~/cs/i)
+	if($command=~/^cs$/i)
 	{
-		country_stats();
+		country_stats(1,100);
+	}
+	
+	if($command=~/^csa$/i)
+	{
+		country_stats(20,40);
 	}
 	
 	if($command=~/^pr$/i)
@@ -446,8 +452,12 @@ sub age_stats
 
 sub country_stats
 {
+
+	my ($from,$to)=@_;
 	
 	my $country_stats={};
+	
+	my $all_stats={};
 	
 	iterate(sub {
 		my $record=shift;
@@ -459,9 +469,9 @@ sub country_stats
 			&&
 			($record->{name} ne '')
 			&&
-			($record->{age}>=20)
+			($record->{age}>=$from)
 			&&
-			($record->{age}<=40)
+			($record->{age}<=$to)
 			&&
 			($record->{country} ne 'FID')
 		)
@@ -471,12 +481,18 @@ sub country_stats
 			{
 				$country_stats->{$record->{country}}->{"R$record->{sex}"}++;
 				$country_stats->{$record->{country}}->{"CR$record->{sex}"}+=$record->{rating};
+				
+				$all_stats->{"RTOT$record->{sex}"}++;
+				$all_stats->{"CRTOT$record->{sex}"}+=$record->{rating};
 			}
 		}
 	});
 	
-	my $country_stats_txt='';
+	my $TOTAVGRM=ratio($all_stats->{CRTOTM},$all_stats->{RTOTM});
+	my $TOTAVGRF=ratio($all_stats->{CRTOTF},$all_stats->{RTOTF});
 	
+	my $country_stats_txt='';
+		
 	my @countries=keys %{$country_stats};
 	
 	my @filtered_countries=();
@@ -544,9 +560,11 @@ sub country_stats
 	
 	}
 	
+	$country_stats_txt.="totavgr male\t$TOTAVGRM\ttotavgr female\t$TOTAVGRF\n";
+	
 	print $country_stats_txt;
 	
-	save("country_stats",$country_stats_txt,"country\ttotal players\tmales\trated males\taverage rating males\tfemales\trated females\taverage rating females\tfemale % of all players\tfemale % of rated players\taverage rating difference");
+	save("country_stats_$from"."_"."$to",$country_stats_txt,"country\ttotal players\tmales\trated males\taverage rating males\tfemales\trated females\taverage rating females\tfemale % of all players\tfemale % of rated players\taverage rating difference");
 	
 }
 
