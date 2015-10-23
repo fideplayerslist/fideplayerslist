@@ -452,7 +452,19 @@ sub country_stats
 	iterate(sub {
 		my $record=shift;
 		
-		if(($record->{sex}=~/M|F/)&&($record->{country} ne '')&&($record->{name} ne '')&&($record->{age} ne ''))
+		if(
+			($record->{sex}=~/M|F/)
+			&&
+			($record->{country} ne '')
+			&&
+			($record->{name} ne '')
+			&&
+			($record->{age}>=20)
+			&&
+			($record->{age}<=40)
+			&&
+			($record->{country} ne 'FID')
+		)
 		{
 			$country_stats->{$record->{country}}->{"$record->{sex}"}++;
 			if($record->{rating}>0)
@@ -495,7 +507,7 @@ sub country_stats
 		$country_stats->{$country}->{AVGRDIFF}=
 			(($country_stats->{$country}->{AVGRM} ne 'N/A')&&($country_stats->{$country}->{AVGRF} ne 'N/A'))?sprintf "%.1f",$country_stats->{$country}->{AVGRM}-$country_stats->{$country}->{AVGRF}:'N/A';
 		
-		if($country_stats->{$country}->{TOT}>1000)
+		if($country_stats->{$country}->{RTOT}>200)
 		{
 		
 			push(@filtered_countries,$_);
