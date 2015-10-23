@@ -1,5 +1,6 @@
 birthday	blitz_games	blitz_k	blitz_rating	country	fideid	flag	games	k	name	o_title	rapid_games	rapid_k	rapid_rating	rating	sex	title	w_title
 				CAN	2625032												
+				KEN	10801880					FA							
 				TTO	7704658												
 				IRI	12509850				Abassi, Omid								
 				IRI	12509868				Abbasi, Omid		0	20	1818				
@@ -371,7 +372,7 @@ birthday	blitz_games	blitz_k	blitz_rating	country	fideid	flag	games	k	name	o_tit
 	0	20	1622	IRI	12510793		0	40	Khodadadi, Dana					1551			
 1979				RSA	14301016				Khuzwayo, Tb								
 				IRI	12505374				Kia, F.								
-				IRI	12507580		0	20	Kia, Fatemeh		0	20	1642	1706			
+				IRI	12507580		0	20	Kia, Fatemeh		0	20	1642	1707			
 1956				GRE	4211952		0	40	Kilitsian, Mihran					1737			
 1992				IND	5038537				Kishore, P.								
 				IRI	12510831				Kohi, Anahita								
@@ -419,7 +420,6 @@ birthday	blitz_games	blitz_k	blitz_rating	country	fideid	flag	games	k	name	o_tit
 1968	0	20	2027	GRE	4204417		0	20	Loupos, Vasilios		0	20	2011	1974			
 				ARG	173193				Lozeco, Polo								
 				BOL	3301320				Luna, Rayza								
-1955				IND	5037085				M, Sudarshan		0	20	1686				
 				IND	5049822				M., Udaysgar								
 				BAN	10206094				M.a., Aziz								
 				IRI	12504971				Maaroofi, Jooya								

@@ -42,7 +42,7 @@ sd = standard deviation
 hm = high rated men ( >=2600 )
 hw = high rated women ( >=2300 )
 h = high rated players ( >=2500 )
-ga = GM average ratings
+ga = GM average ratings ( 20 - 40 )
 yp = young players ( 5 - 6 )
 pwg = players without gender
 

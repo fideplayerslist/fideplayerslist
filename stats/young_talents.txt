@@ -30,19 +30,19 @@ name	country	gender	age	expected rating	actual rating	rating surplus
 29. Nomin-Erdene, Davaademberel	MGL	F	15	1513	2424	910
 30. Gazik, Viktor	SVK	M	14	1522	2431	908
 31. Aryan Chopra	IND	M	14	1522	2430	907
-32. Esipenko, Andrey	RUS	M	13	1482	2384	901
-33. Donchenko, Alexander	GER	M	17	1675	2577	901
-34. Fawzy, Adham	EGY	M	15	1581	2483	901
+32. Esipenko, Andrey	RUS	M	13	1482	2384	902
+33. Fawzy, Adham	EGY	M	15	1581	2483	901
+34. Donchenko, Alexander	GER	M	17	1675	2577	901
 35. Tari, Aryan	NOR	M	16	1625	2521	895
 36. Goryachkina, Aleksandra	RUS	F	17	1590	2480	889
 37. Triapishko, Olexandr	RUS	M	15	1581	2471	889
 38. Gledura, Benjamin	HUN	M	16	1625	2513	887
 39. Nguyen, Thai Dai Van	CZE	M	14	1522	2409	886
-40. Nguyen, Anh Khoi	VIE	M	13	1482	2368	885
-41. Matviishen, Viktor	UKR	M	13	1482	2366	883
+40. Nguyen, Anh Khoi	VIE	M	13	1482	2368	886
+41. Matviishen, Viktor	UKR	M	13	1482	2366	884
 42. Nyzhnyk, Illya	UKR	M	19	1744	2628	883
-43. Radovanovic, Mihajlo	SRB	M	14	1522	2404	881
-44. Fedoseev, Vladimir	RUS	M	20	1777	2659	881
+43. Fedoseev, Vladimir	RUS	M	20	1777	2659	881
+44. Radovanovic, Mihajlo	SRB	M	14	1522	2404	881
 45. Karjakin, Sergey	RUS	M	25	1880	2762	881
 46. Robson, Ray	USA	M	21	1798	2680	881
 47. Nakamura, Hikaru	USA	M	28	1935	2816	881
