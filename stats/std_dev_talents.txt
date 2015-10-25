@@ -1,51 +1,1001 @@
 name	country	gender	age	expected rating	actual rating	rating surplus
-1. Wei, Yi	CHN	M	16	1625	2734	1108
-2. Burke, John M	USA	M	14	1522	2603	1080
-3. Abdusattorov, Nodirbek	UZB	M	11	1401	2432	1030
-4. Artemiev, Vladislav	RUS	M	17	1675	2675	999
-5. Giri, Anish	NED	M	21	1798	2798	999
-6. Duda, Jan-Krzysztof	POL	M	17	1675	2658	982
-7. Sevian, Samuel	USA	M	15	1581	2556	974
-8. Pechac, Jergus	SVK	M	14	1522	2495	972
-9. Carlsen, Magnus	NOR	M	25	1880	2850	969
-10. Tabatabaei, M.amin	IRI	M	14	1522	2488	965
-11. Xiong, Jeffery	USA	M	15	1581	2537	955
-12. Caruana, Fabiano	USA	M	23	1842	2796	953
-13. So, Wesley	USA	M	22	1811	2760	949
-14. Keymer, Vincent	GER	M	11	1401	2347	945
-15. Ding, Liren	CHN	M	23	1842	2782	939
-16. Hou, Yifan	CHN	F	21	1736	2671	934
-17. Sindarov, Javokhir	UZB	M	10	1365	2299	933
-18. Deac, Bogdan-Daniel	ROU	M	14	1522	2455	932
-19. Smirnov, Anton	AUS	M	14	1522	2447	924
-20. Li, Ruifeng	USA	M	14	1522	2446	923
-21. Van Foreest, Jorden	NED	M	16	1625	2548	922
-22. Yu, Yangyi	CHN	M	21	1798	2721	922
-23. Rambaldi, Francesco	ITA	M	16	1625	2547	921
-24. Rapport, Richard	HUN	M	19	1744	2663	918
-25. Liang, Awonder	USA	M	12	1446	2365	918
-26. Firouzja, Alireza	IRI	M	12	1446	2364	917
-27. Dubov, Daniil	RUS	M	19	1744	2661	916
-28. Checa, Nicolas D	USA	M	14	1522	2437	914
-29. Nomin-Erdene, Davaademberel	MGL	F	15	1513	2424	910
-30. Gazik, Viktor	SVK	M	14	1522	2431	908
-31. Aryan Chopra	IND	M	14	1522	2430	907
-32. Esipenko, Andrey	RUS	M	13	1482	2384	901
-33. Topalov, Veselin	BUL	M	40	1911	2813	901
-34. Donchenko, Alexander	GER	M	17	1675	2577	901
-35. Fawzy, Adham	EGY	M	15	1581	2483	901
-36. Tari, Aryan	NOR	M	16	1625	2521	895
-37. Kasparov, Garry	RUS	M	52	1922	2812	890
-38. Goryachkina, Aleksandra	RUS	F	17	1590	2480	889
-39. Triapishko, Olexandr	RUS	M	15	1581	2471	889
-40. Gledura, Benjamin	HUN	M	16	1625	2513	887
-41. Nguyen, Thai Dai Van	CZE	M	14	1522	2409	886
-42. Nguyen, Anh Khoi	VIE	M	13	1482	2368	885
-43. Nyzhnyk, Illya	UKR	M	19	1744	2628	883
-44. Matviishen, Viktor	UKR	M	13	1482	2366	883
-45. Radovanovic, Mihajlo	SRB	M	14	1522	2404	881
-46. Fedoseev, Vladimir	RUS	M	20	1777	2659	881
-47. Anand, Viswanathan	IND	M	46	1921	2803	881
-48. Karjakin, Sergey	RUS	M	25	1880	2762	881
-49. Robson, Ray	USA	M	21	1798	2680	881
-50. Nakamura, Hikaru	USA	M	28	1935	2816	881
+1. Hou, Yifan	CHN	F	21	1736	2671	934
+2. Nomin-Erdene, Davaademberel	MGL	F	15	1513	2424	910
+3. Goryachkina, Aleksandra	RUS	F	17	1590	2480	889
+4. Abdumalik, Zhansaya	KAZ	F	15	1513	2390	876
+5. Vaishali R	IND	F	14	1459	2314	854
+6. Amina, Battsooj	MGL	F	14	1459	2313	853
+7. Assaubayeva, Bibisara	KAZ	F	11	1338	2183	844
+8. Mammadzada, Gunay	AZE	F	15	1513	2342	828
+9. Zhou, Qiyu	CAN	F	15	1513	2328	814
+10. Yu, Jennifer R	USA	F	13	1406	2220	813
+11. Gorti, Akshita	USA	F	13	1406	2211	804
+12. Lei, Tingjie	CHN	F	18	1630	2431	800
+13. Shpanko, Nadiia	UKR	F	13	1406	2198	791
+14. Salimova, Nurgyul	BUL	F	12	1361	2144	782
+15. Kalaiyalahan, Akshaya	ENG	F	14	1459	2233	773
+16. Khademalsharieh, Sarasadat	IRI	F	18	1630	2402	771
+17. Ni, Shiqun	CHN	F	18	1630	2399	768
+18. Hojjatova, Aydan	AZE	F	16	1549	2316	766
+19. Tsolakidou, Stavroula	GRE	F	15	1513	2279	765
+20. Derakhshani, Dorsa	IRI	F	17	1590	2356	765
+21. Antova, Gabriela	BUL	F	13	1406	2165	758
+22. Osmak, Iulija	UKR	F	17	1590	2347	756
+23. Muzychuk, Mariya	UKR	F	23	1775	2528	752
+24. Aulia, Medina Warda	INA	F	18	1630	2383	752
+25. Dordzhieva, Dinara	RUS	F	16	1549	2298	748
+26. Khokhlova, Daria	RUS	F	16	1549	2296	746
+27. Badelka, Olga	BLR	F	13	1406	2145	738
+28. Marjanovics, Annamaria	HUN	F	14	1459	2197	737
+29. Saduakassova, Dinara	KAZ	F	19	1665	2402	736
+30. Avramidou, Anastasia	GRE	F	15	1513	2249	735
+31. Kazarian, Anna-Maja	NED	F	15	1513	2248	734
+32. Velikic, Adela	SRB	F	18	1630	2363	732
+33. Zhai, Mo	CHN	F	19	1665	2397	731
+34. Guo, Qi	CHN	F	20	1698	2427	728
+35. Gunawan, Sasti Angel	INA	F	13	1406	2134	727
+36. Muzychuk, Anna	UKR	F	25	1822	2549	726
+37. Harshita Guddanti	IND	F	14	1459	2181	721
+38. Dimitrova, Aleksandra	RUS	F	15	1513	2235	721
+39. Ju, Wenjun	CHN	F	24	1823	2542	718
+40. Shuvalova, Polina	RUS	F	14	1459	2171	711
+41. Reyes Fonseca, Ammi Sarai	CUB	F	13	1406	2116	709
+42. Ivana Maria, Furtado	IND	F	16	1549	2259	709
+43. Drogovoz, Irina	RUS	F	16	1549	2258	708
+44. Goltseva, Ekaterina	RUS	F	13	1406	2114	707
+45. Balajayeva, Khanim	AZE	F	14	1459	2164	704
+46. Khomeriki, Nino	GEO	F	17	1590	2295	704
+47. Kashlinskaya, Alina	RUS	F	22	1744	2448	704
+48. Ziaziulkina, Nastassia	BLR	F	20	1698	2402	703
+49. Solozhenkina, Elizaveta	RUS	F	12	1361	2062	700
+50. Nur Abidah, Shanti	INA	F	14	1459	2160	700
+51. Unuk, Laura	SLO	F	16	1549	2244	694
+52. Eswaran, Ashritha	USA	F	15	1513	2207	693
+53. Harika, Dronavalli	IND	F	24	1823	2516	692
+54. Diakonova, Ekaterina	RUS	F	16	1549	2241	691
+55. Zhu, Jiner	CHN	F	13	1406	2094	687
+56. Styazhkina, Anna	RUS	F	18	1630	2318	687
+57. Cori T., Deysi	PER	F	22	1744	2431	687
+58. Padmini, Rout	IND	F	21	1736	2422	685
+59. Radeva, Viktoria	BUL	F	14	1459	2145	685
+60. Kinarsih, Alya Sekar	INA	F	14	1459	2144	684
+61. Fitriyani, Amanda Suci	INA	F	14	1459	2144	684
+62. Bivol, Alina	RUS	F	19	1665	2350	684
+63. Blagojevic, Tijana	MNE	F	18	1630	2315	684
+64. Bodnaruk, Anastasia	RUS	F	23	1775	2459	683
+65. Wang, Annie	USA	F	13	1406	2087	680
+66. Mammadova, Narmin	AZE	F	16	1549	2224	674
+67. Ulrich, Rachel J	USA	F	15	1513	2186	672
+68. Sliwicka, Alicja	POL	F	14	1459	2129	669
+69. Paramzina, Anastasya	RUS	F	17	1590	2260	669
+70. Tan, Zhongyi	CHN	F	24	1823	2492	668
+71. Arabidze, Meri	GEO	F	21	1736	2405	668
+72. Kiolbasa, Oliwia	POL	F	15	1513	2182	668
+73. Sieber, Fiona	GER	F	15	1513	2180	666
+74. Heinemann, Josefine	GER	F	17	1590	2253	662
+75. Erdenieva, Oyuna	RUS	F	14	1459	2119	659
+76. Koneru, Humpy	IND	F	28	1919	2578	658
+77. Savina, Anastasia	RUS	F	23	1775	2433	657
+78. Gunina, Valentina	RUS	F	26	1874	2529	654
+79. Gu, Tianlu	CHN	F	18	1630	2285	654
+80. Narva, Mai	EST	F	16	1549	2203	653
+81. Dzagnidze, Nana	GEO	F	28	1919	2573	653
+82. Bykova, Anastasia	RUS	F	18	1630	2283	652
+83. Wang, Jue	CHN	F	20	1698	2348	649
+84. Lagno, Kateryna	RUS	F	26	1874	2523	648
+85. Uuriintuya, Uurtsaikh	MGL	F	17	1590	2237	646
+86. Yip, Carissa	USA	F	12	1361	2007	645
+87. Maltsevskaya, Aleksandra	RUS	F	13	1406	2051	644
+88. Urh, Zala	SLO	F	13	1406	2051	644
+89. Rodriguez Rueda, Paula Andrea	COL	F	19	1665	2309	643
+90. Gazikova, Veronika	SVK	F	16	1549	2190	640
+91. Suliati, Annisa	INA	F	16	1549	2190	640
+92. Girya, Olga	RUS	F	24	1823	2464	640
+93. Haast, Anne	NED	F	22	1744	2384	640
+94. Kozina, Anastasia	RUS	F	14	1459	2099	639
+95. Tokhirjonova, Gulrukhbegim	UZB	F	16	1549	2188	638
+96. Bulmaga, Irina	ROU	F	22	1744	2381	637
+97. Schneider, Jana	GER	F	13	1406	2043	636
+98. Priyanka Nutakki	IND	F	13	1406	2042	635
+99. Sukandar, Irine Kharisma	INA	F	23	1775	2411	635
+100. Retno, Wijayanti	INA	F	16	1549	2183	633
+101. Afonasieva, Anna	RUS	F	14	1459	2093	633
+102. Vantika Agrawal	IND	F	13	1406	2039	632
+103. Vinokur, Yuliya	RUS	F	12	1361	1993	631
+104. Shvayger, Yuliya	ISR	F	21	1736	2368	631
+105. Martynkova, Olena	UKR	F	15	1513	2145	631
+106. Fataliyeva, Ulviyya	AZE	F	19	1665	2294	628
+107. Pustovoitova, Daria	RUS	F	21	1736	2364	627
+108. Osmanodja, Filiz	GER	F	19	1665	2291	625
+109. Hrescak, Ivana	SLO	F	15	1513	2139	625
+110. Muetsch, Annmarie	GER	F	13	1406	2031	624
+111. Obolentseva, Alexandra	RUS	F	14	1459	2084	624
+112. Buksa, Nataliya	UKR	F	19	1665	2287	621
+113. Rodionova, Daria	RUS	F	17	1590	2212	621
+114. Cramling, Pia	SWE	F	52	1892	2513	620
+115. Wozniak, Mariola	POL	F	17	1590	2211	620
+116. Severina, Maria	RUS	F	20	1698	2319	620
+117. Chu, Ruotong	CHN	F	14	1459	2078	618
+118. Pratyusha, Bodda	IND	F	18	1630	2248	617
+119. Hejazipour, Mitra	IRI	F	22	1744	2357	613
+120. Ding, Yixin	CHN	F	24	1823	2435	611
+121. Zayas Gonzalez, Laura Amalia	CUB	F	17	1590	2202	611
+122. Kantane, Anna	POL	F	20	1698	2310	611
+123. Vrtiakova, Anna	SVK	F	15	1513	2123	609
+124. Galliamova, Alisa	RUS	F	43	1866	2475	608
+125. Nicolas Zapata, Irene	ESP	F	18	1630	2239	608
+126. Belenkaya, Dina	RUS	F	22	1744	2352	608
+127. Potapova, Margarita	RUS	F	15	1513	2121	607
+128. Injac, Teodora	SRB	F	15	1513	2121	607
+129. Mylnikova, Olga	RUS	F	15	1513	2119	605
+130. Redondo Benavente, Ana	ESP	F	14	1459	2064	604
+131. Navrotescu, Andreea-Cristiana	FRA	F	19	1665	2270	604
+132. Yuan, Ye	CHN	F	15	1513	2117	603
+133. Khotenashvili, Bela	GEO	F	27	1899	2502	602
+134. Alekseeva, Irina	RUS	F	16	1549	2151	601
+135. Savant, Riya	IND	F	15	1513	2115	601
+136. Lysenko, Margarita	RUS	F	16	1549	2150	600
+137. Kochetkova, Anastasia	RUS	F	13	1406	2006	599
+138. Garcia Martin, Marta	ESP	F	15	1513	2113	599
+139. Ouellet, Maili-Jade	CAN	F	13	1406	2005	598
+140. Eizaguerri Floris, Maria	ESP	F	11	1338	1937	598
+141. Rogozenco, Teodora	GER	F	15	1513	2110	596
+142. Zhao, Xue	CHN	F	30	1927	2524	596
+143. Paikidze, Nazi	USA	F	22	1744	2340	596
+144. Rudenko, Veronika	UKR	F	14	1459	2055	595
+145. Du, Yuxin	CHN	F	14	1459	2053	593
+146. Tantsiura, Maria	UKR	F	19	1665	2257	591
+147. Kochukova, Anna	RUS	F	14	1459	2050	590
+148. Malassagne, Isabelle	FRA	F	17	1590	2180	589
+149. Protopopova, Anastasiya	RUS	F	15	1513	2102	588
+150. Pychova, Nela	CZE	F	16	1549	2137	587
+151. Gal, Hanna Krisztina	HUN	F	17	1590	2178	587
+152. Pavlenko, Ksenia	RUS	F	16	1549	2136	586
+153. Makarenko, Alexandra	RUS	F	19	1665	2252	586
+154. Monica, Putri Wigustira	INA	F	18	1630	2217	586
+155. Shen, Yang	CHN	F	26	1874	2460	585
+156. Paolillo, Gaia	ITA	F	17	1590	2174	583
+157. Kosteniuk, Alexandra	RUS	F	31	1942	2525	582
+158. Batsiashvili, Nino	GEO	F	28	1919	2500	580
+159. Klek, Hanna Marie	GER	F	20	1698	2279	580
+160. Mkrtchian, Anait	RUS	F	10	1300	1880	580
+161. Zahedifar, Anahita	IRI	F	12	1361	1941	579
+162. Kazimova, Narmin	AZE	F	22	1744	2323	579
+163. Szente Varga, Fruzsina	HUN	F	19	1665	2244	578
+164. Peycheva, Gergana	BUL	F	12	1361	1939	577
+165. Bauyrzhan, Arnash	KAZ	F	15	1513	2091	577
+166. Michelle Catherina, P	IND	F	19	1665	2242	576
+167. Abdulla, Khayala	AZE	F	22	1744	2320	576
+168. Li, Yunshan	CHN	F	13	1406	1981	574
+169. Miranda Medina, Fatima Patricia	CUB	F	13	1406	1980	573
+170. Frayna, Janelle Mae	PHI	F	18	1630	2204	573
+171. Palma, Maria	ITA	F	13	1406	1979	572
+172. Serikbay, Assel	KAZ	F	13	1406	1978	571
+173. Fatalibekova, Elena	RUS	F	68	1670	2242	571
+174. Soloviova, Liza	UKR	F	22	1744	2315	571
+175. Abdusattorova, Bakhora	UZB	F	16	1549	2120	570
+176. Stefanova, Antoaneta	BUL	F	36	1929	2500	570
+177. Di Benedetto, Desiree	ITA	F	15	1513	2083	569
+178. Bojkovic, Natasa	SRB	F	44	1836	2406	569
+179. Maslova, Polina	RUS	F	16	1549	2117	567
+180. Bykovtsev, Agata	USA	F	16	1549	2117	567
+181. Yanuchenko, Polina	RUS	F	14	1459	2027	567
+182. Keetman, Maaike	NED	F	16	1549	2115	565
+183. Zatonskih, Anna	USA	F	37	1910	2475	564
+184. Danielian, Elina	ARM	F	37	1910	2474	563
+185. Cmilyte, Viktorija	LTU	F	32	1971	2534	562
+186. Amrayeva, Aytan	AZE	F	18	1630	2193	562
+187. Brunello, Marina	ITA	F	21	1736	2298	561
+188. Gueci, Tea	ITA	F	16	1549	2110	560
+189. Aranaz Murillo, Amalia	ESP	F	20	1698	2259	560
+190. Sebag, Marie	FRA	F	29	1936	2496	559
+191. Wong Ching Chi	HKG	F	12	1361	1919	557
+192. Hani, Wardah	INA	F	16	1549	2107	557
+193. Gajcin, Marina	SRB	F	14	1459	2017	557
+194. Kovalevskaya, Ekaterina	RUS	F	41	1905	2462	556
+195. Wiesner, Paula	GER	F	16	1549	2106	556
+196. Imnadze, Nato	GEO	F	19	1665	2222	556
+197. Efroimski, Marsel	ISR	F	20	1698	2255	556
+198. Nguyen, Emily	USA	F	13	1406	1962	555
+199. Miljkovic, Jovana	SRB	F	16	1549	2105	555
+200. Ramos Lopez, Idara	CUB	F	12	1361	1917	555
+201. Zhukova, Natalia	UKR	F	36	1929	2485	555
+202. Kosintseva, Nadezhda	RUS	F	30	1927	2483	555
+203. Chernyak, Viktoria	RUS	F	18	1630	2186	555
+204. Havlikova, Kristyna	CZE	F	23	1775	2330	554
+205. Charochkina, Daria	RUS	F	25	1822	2376	553
+206. Khurtsidze, Nino	GEO	F	40	1872	2426	553
+207. Haussernot, Cecile	FRA	F	17	1590	2144	553
+208. Mrudul Dehankar	IND	F	11	1338	1890	551
+209. Xiao, Yiyi	CHN	F	19	1665	2217	551
+210. Terbe, Julianna	HUN	F	18	1630	2181	550
+211. Barchuk, Irina	UKR	F	18	1630	2180	549
+212. Krasnokutskaya, Sofiya	UKR	F	14	1459	2008	548
+213. Kulon, Klaudia	POL	F	23	1775	2324	548
+214. Zhao, Shengxin	CHN	F	14	1459	2007	547
+215. Cvitan, Ena	CRO	F	14	1459	2007	547
+216. Barysheva, Anastasia	RUS	F	11	1338	1886	547
+217. Ghukasyan, Siranush	ARM	F	17	1590	2138	547
+218. Aakanksha Hagawane	IND	F	15	1513	2061	547
+219. Kalantari, Sedigheh	IRI	F	13	1406	1953	546
+220. Waszczuk, Patrycja	POL	F	12	1361	1908	546
+221. Papp, Petra	HUN	F	22	1744	2290	546
+222. Gaprindashvili, Nona	GEO	F	74	1753	2299	545
+223. Tishova, Svetlana	RUS	F	15	1513	2058	544
+224. Kovacs, Judit	HUN	F	13	1406	1950	543
+225. Kubicka, Anna	POL	F	16	1549	2093	543
+226. Lingur, Zalina	RUS	F	17	1590	2134	543
+227. Guramishvili, Sopiko	GEO	F	24	1823	2365	541
+228. Schulze, Lara	GER	F	13	1406	1947	540
+229. Janska, Jitka	CZE	F	16	1549	2090	540
+230. Hoang, Thanh Trang	HUN	F	35	1923	2464	540
+231. Anufrienko, Daria	RUS	F	18	1630	2171	540
+232. Kassay, Lilla	HUN	F	16	1549	2089	539
+233. Zahn, Alina	GER	F	17	1590	2130	539
+234. Kosintseva, Tatiana	RUS	F	29	1936	2475	538
+235. Chung, Mathilde	MNC	F	16	1549	2087	537
+236. Duran, Esma Doga	TUR	F	11	1338	1876	537
+237. Bluhm, Sonja Maria	GER	F	17	1590	2128	537
+238. Skorobogatova, Marina	RUS	F	17	1590	2128	537
+239. Filippova, Darya	RUS	F	13	1406	1942	535
+240. Peng, Zhaoqin	NED	F	47	1841	2376	534
+241. Stetsko, Lanita	BLR	F	22	1744	2278	534
+242. Liao, Simone	USA	F	16	1549	2083	533
+243. Vagoohian, Ramila	IRI	F	8	1208	1741	532
+244. Khan, Anastasia	RUS	F	14	1459	1992	532
+245. Socko, Monika	POL	F	37	1910	2443	532
+246. Loskutova, Viktoriya	RUS	F	11	1338	1871	532
+247. Melia, Salome	GEO	F	28	1919	2452	532
+248. Ibrahimova, Sabina	AZE	F	20	1698	2231	532
+249. Garcia-Castany Musellas, Gal.la	ESP	F	18	1630	2163	532
+250. Khlichkova, Tatiana	RUS	F	21	1736	2268	531
+251. Bayarmaa, Bayarjargal	MGL	F	20	1698	2229	530
+252. Vasova, Maria	BUL	F	17	1590	2120	529
+253. Egyed, Judit	HUN	F	15	1513	2043	529
+254. Terbe, Zsuzsanna	HUN	F	18	1630	2160	529
+255. Bogachkova, Alena	RUS	F	18	1630	2160	529
+256. Budiarti, Farah Yumna	INA	F	18	1630	2160	529
+257. Grigorieva, Yulia	RUS	F	13	1406	1935	528
+258. Afanasieva, Alexandra	RUS	F	12	1361	1890	528
+259. Chumpitaz, Ann	PER	F	21	1736	2265	528
+260. Hunt, Harriet V	ENG	F	37	1910	2439	528
+261. Zawadzka, Jolanta	POL	F	28	1919	2448	528
+262. Munguntuul, Batkhuyag	MGL	F	28	1919	2448	528
+263. Illina, Natalia	UKR	F	15	1513	2041	527
+264. Tomashevskaya, Lidia	RUS	F	20	1698	2226	527
+265. Rakic, Marija	SRB	F	25	1822	2349	526
+266. Garifullina, Leya	RUS	F	11	1338	1865	526
+267. Movileanu, Daniela	ITA	F	19	1665	2192	526
+268. Hoang, Thi Nhu Y	VIE	F	22	1744	2270	526
+269. Delgado Alvarez, Edualis	CUB	F	13	1406	1932	525
+270. Schut, Lisa	NED	F	21	1736	2262	525
+271. Yang, Yijing	CHN	F	14	1459	1985	525
+272. Legowo Parahita Millyena	INA	F	15	1513	2039	525
+273. Mokshanova, Elizaveta	RUS	F	17	1590	2116	525
+274. Yakimenko, Anastasia	RUS	F	17	1590	2115	524
+275. Sibajeva, Marija	LTU	F	13	1406	1930	523
+276. Kurbonboeva, Sarvinoz	UZB	F	21	1736	2260	523
+277. Bellaiche, Elise	FRA	F	18	1630	2154	523
+278. Zhang, Lanlin	CHN	F	16	1549	2072	522
+279. Zaiatz, Elena	RUS	F	46	1870	2393	522
+280. Arakhamia-Grant, Ketevan	SCO	F	47	1841	2363	521
+281. Sucikova, Svetlana	SVK	F	16	1549	2070	520
+282. Javakhishvili, Lela	GEO	F	31	1942	2463	520
+283. Korchagina, Alena	RUS	F	15	1513	2034	520
+284. Nemcova, Karin	CZE	F	13	1406	1926	519
+285. Vasenina, Anna	RUS	F	16	1549	2069	519
+286. Paehtz, Elisabeth	GER	F	30	1927	2447	519
+287. Vojinovic, Jovana	SRB	F	23	1775	2295	519
+288. Pan,Shimei	CHN	F	15	1513	2033	519
+289. Paredes Bustamante, Paula Elizab	PER	F	18	1630	2150	519
+290. Daulyte, Deimante	LTU	F	26	1874	2392	517
+291. Pogonina, Natalija	RUS	F	30	1927	2445	517
+292. Martynyuk, Elizaveta	RUS	F	15	1513	2031	517
+293. Warakomska, Anna	POL	F	23	1775	2292	516
+294. San Diego, Marie Antoinette	PHI	F	16	1549	2065	515
+295. Havanecz, Bianka	HUN	F	21	1736	2252	515
+296. Argote Heredia, Valentina	COL	F	15	1513	2029	515
+297. Kozlovskaya, Valentina	RUS	F	77	1734	2249	514
+298. Smirnova, Ekaterina	RUS	F	19	1665	2180	514
+299. Varshini, V	IND	F	17	1590	2105	514
+300. Nemcova, Katerina	USA	F	25	1822	2336	513
+301. Mitskevich, Yauheniya	BLR	F	13	1406	1919	512
+302. Perez Andino, Marla Yisel	CUB	F	16	1549	2062	512
+303. Baciu, Diana	MDA	F	21	1736	2249	512
+304. Berend, Elvira	LUX	F	50	1857	2370	512
+305. Nguyen, Thi Mai Hung	VIE	F	21	1736	2249	512
+306. Peptan, Corina-Isabela	ROU	F	37	1910	2423	512
+307. Monnisha G K	IND	F	17	1590	2103	512
+308. Khusnutdinova, Alsu	RUS	F	17	1590	2103	512
+309. Kaczmarska, Joanna	POL	F	14	1459	1971	511
+310. Vazquez Maccarini, Danitza	PUR	F	15	1513	2025	511
+311. Batrak, Alexandra	RUS	F	17	1590	2102	511
+312. Mats, Diana	UKR	F	16	1549	2060	510
+313. Nova, Michaela	CZE	F	16	1549	2060	510
+314. Milovanova, Maria	RUS	F	15	1513	2024	510
+315. Gorovenko, Darya	RUS	F	15	1513	2024	510
+316. Kachiani-Gersinska, Ketino	GER	F	44	1836	2347	510
+317. Kalinowska, Zuzanna	POL	F	13	1406	1916	509
+318. Asgharzadeh, Mitra	IRI	F	13	1406	1916	509
+319. Varga, Melinda	HUN	F	18	1630	2140	509
+320. Rakhmangulova, Anastasiya	UKR	F	21	1736	2245	508
+321. Bychkova, Alina	RUS	F	14	1459	1968	508
+322. Gaboyan, Susanna	ARM	F	19	1665	2174	508
+323. Buiza Prieto, Eihartze	ESP	F	16	1549	2057	507
+324. Alexandrova, Olga	ESP	F	37	1910	2418	507
+325. Zarkovic, Mila	SRB	F	19	1665	2173	507
+326. Baraeva, Irina	RUS	F	20	1698	2206	507
+327. Marjina, Arina	RUS	F	16	1549	2056	506
+328. Roca Rojas, Ana Flavia	CUB	F	19	1665	2172	506
+329. Savenkova, Anna	RUS	F	12	1361	1867	505
+330. Olde, Margareth	EST	F	15	1513	2019	505
+331. Vidic, Teja	SLO	F	17	1590	2096	505
+332. Petrova, Irina	UKR	F	22	1744	2249	505
+333. Matveeva, Svetlana	RUS	F	46	1870	2375	504
+334. Alekseenko, Yuliya	UKR	F	11	1338	1843	504
+335. Hernandez Moya, Yuleisy	CUB	F	23	1775	2280	504
+336. Foisor, Mihaela-Veronica	ROU	F	21	1736	2240	503
+337. Krush, Irina	USA	F	32	1971	2475	503
+338. Danelia, Mariam	GEO	F	21	1736	2239	502
+339. Zhang, Xiaowen	CHN	F	26	1874	2377	502
+340. Nurgali, Nazerke	KAZ	F	11	1338	1841	502
+341. Huang, Qian	CHN	F	29	1936	2438	501
+342. Gitu, Paula-Alexandra	MDA	F	16	1549	2051	501
+343. Kim, Yana	RUS	F	17	1590	2092	501
+344. Salah, Nadezhda	UKR	F	15	1513	2015	501
+345. Mehmed, Elif	BUL	F	11	1338	1839	500
+346. Castrillon Gomez, Melissa	COL	F	20	1698	2199	500
+347. Mkrtchian, Lilit	ARM	F	33	1945	2445	499
+348. Richterova, Natasa	CZE	F	19	1665	2165	499
+349. Antolak, Julia	POL	F	15	1513	2013	499
+350. Parnali, S Dharia	IND	F	18	1630	2130	499
+351. Nayberg, Simona	USA	F	13	1406	1905	498
+352. Ushenina, Anna	UKR	F	30	1927	2426	498
+353. Macek, Vlasta	CRO	F	63	1686	2184	497
+354. Miroshnik, Ekaterina	RUS	F	12	1361	1859	497
+355. Wafa, Shahenda	EGY	F	17	1590	2088	497
+356. Mishra Anwesha	IND	F	13	1406	1903	496
+357. Moser, Eva	AUT	F	33	1945	2442	496
+358. Salonika, Saina	IND	F	12	1361	1858	496
+359. Harazinska, Ewa	POL	F	17	1590	2087	496
+360. Schleining, Zoya	GER	F	54	1867	2363	495
+361. Michna, Marta	GER	F	37	1910	2406	495
+362. Can, Isil	TUR	F	10	1300	1795	495
+363. Fuchs, Judith	GER	F	25	1822	2317	494
+364. Kobozeva, Viktoria	RUS	F	17	1590	2085	494
+365. Yao, Lan	CHN	F	15	1513	2008	494
+366. Camacho, Chardine Cheradee	PHI	F	21	1736	2230	493
+367. Ren, Xiaoyi	CHN	F	19	1665	2159	493
+368. Galvan Cipriani, Viviana	ESP	F	11	1338	1832	493
+369. Balaian, Alina	RUS	F	23	1775	2269	493
+370. Saunina, Ludmila	RUS	F	63	1686	2179	492
+371. Mironenko, Galina	RUS	F	10	1300	1792	492
+372. Mammadova, Gulnar	AZE	F	24	1823	2314	490
+373. Madl, Ildiko	HUN	F	46	1870	2361	490
+374. Skripchenko, Almira	FRA	F	39	1950	2441	490
+375. Utiatskaja, Irina	RUS	F	19	1665	2156	490
+376. Tsatsalashvili, Keti	GEO	F	23	1775	2266	490
+377. Ivanova, Simoneta	BUL	F	18	1630	2121	490
+378. Baraeva, Marina	RUS	F	20	1698	2189	490
+379. Okuyaz, Duru	TUR	F	13	1406	1896	489
+380. Ostry, Irina	KGZ	F	65	1705	2195	489
+381. Turova, Irina	RUS	F	36	1929	2419	489
+382. Schnegg, Anna-Lena	AUT	F	17	1590	2080	489
+383. Karavade, Eesha	IND	F	28	1919	2409	489
+384. Stanciu, Andreea-Briana	ROU	F	15	1513	2003	489
+385. Harshini A	IND	F	14	1459	1948	488
+386. Tejaswini, Sagar	IND	F	15	1513	2002	488
+387. Palmero Martinez, Rachel	CUB	F	18	1630	2119	488
+388. Ros Alonso, Joana	ESP	F	12	1361	1849	487
+389. Petrochenko, Maria	RUS	F	14	1459	1947	487
+390. Majoros, Rozsa	HUN	F	11	1338	1826	487
+391. Grigoryan, Arpine	ARM	F	14	1459	1946	486
+392. Berezina, Mariya	RUS	F	16	1549	2035	485
+393. Resmyatova, Antonina	RUS	F	16	1549	2035	485
+394. Simon, Lili	HUN	F	15	1513	1999	485
+395. Matiukova, Uliana	RUS	F	16	1549	2034	484
+396. Ivanenko, Olga I.	UKR	F	21	1736	2221	484
+397. Fiadosenka, Rahneda	BLR	F	17	1590	2075	484
+398. Martinez Mesa, Chaneli	CUB	F	13	1406	1890	483
+399. Mona, Khaled	EGY	F	21	1736	2220	483
+400. Foisor, Cristina-Adela	ROU	F	48	1862	2346	483
+401. Sanchez Ones, Yeny	CUB	F	18	1630	2114	483
+402. Juhasz, Barbara	HUN	F	20	1698	2182	483
+403. Ivanova, Karina	RUS	F	19	1665	2148	482
+404. Marikova, Jana	CZE	F	19	1665	2148	482
+405. Ryjanova, Julia	RUS	F	41	1905	2387	481
+406. Nazarova, Anastasia	FIN	F	14	1459	1941	481
+407. Krasteva, Beloslava	BUL	F	11	1338	1820	481
+408. Kulkarni Bhakti	IND	F	23	1775	2257	481
+409. Aciu, Malina-Andreea	ROU	F	13	1406	1887	480
+410. Auvray, Honorine	FRA	F	17	1590	2071	480
+411. Borisova, Ekaterina	RUS	F	15	1513	1994	480
+412. Radivon, Arina	RUS	F	15	1513	1994	480
+413. Sedina, Elena	ITA	F	47	1841	2322	480
+414. Wisniowska, Klaudia	POL	F	20	1698	2179	480
+415. Dominguez, Laura Lucia	COL	F	16	1549	2029	479
+416. Alinasab, Mobina	IRI	F	15	1513	1993	479
+417. Kolmychek, Evelina	RUS	F	15	1513	1993	479
+418. Butuc, Maria	RUS	F	22	1744	2223	479
+419. Majdan-Gajewska, Joanna	POL	F	27	1899	2378	478
+420. Ohme, Melanie	GER	F	25	1822	2301	478
+421. Rajlich, Iweta	POL	F	34	1910	2389	478
+422. Quek, Shi Ning Kristine	AUS	F	16	1549	2028	478
+423. Koroleva, Evgeniya	RUS	F	13	1406	1884	477
+424. Nosacheva, Mariya	RUS	F	14	1459	1937	477
+425. Koridze, Lile	GEO	F	14	1459	1937	477
+426. Rozman, Monika	SLO	F	15	1513	1991	477
+427. Marquez Marvizon, Alejandra	ESP	F	16	1549	2025	475
+428. Sakorenko, Adriana	RUS	F	14	1459	1935	475
+429. Garcia Porlan, Beatriz	ESP	F	17	1590	2066	475
+430. Guseva, Marina	RUS	F	29	1936	2411	474
+431. Gevorgyan, Maria	ARM	F	21	1736	2211	474
+432. Arpita, Mukherjee	IND	F	14	1459	1934	474
+433. Akopova, Anna	RUS	F	19	1665	2140	474
+434. Martinez, Ayelen	ARG	F	22	1744	2218	474
+435. Olsarova, Karolina	CZE	F	22	1744	2218	474
+436. Elisabeth, Christine	INA	F	13	1406	1880	473
+437. Kanakova, Natalie	CZE	F	16	1549	2023	473
+438. Shafigullina, Zarina	RUS	F	14	1459	1933	473
+439. Timergazi, Layla	NZL	F	14	1459	1933	473
+440. Yildiz, Betul Cemre	TUR	F	26	1874	2348	473
+441. Wafa, Shrook	EGY	F	18	1630	2104	473
+442. Qiu, Mengjie	CHN	F	20	1698	2172	473
+443. Enkhtuul, Altan-Ulzii	MGL	F	21	1736	2209	472
+444. Antunez Munoz, Ines	ESP	F	15	1513	1986	472
+445. Divya Deshmukh	IND	F	10	1300	1772	472
+446. Cervantes Landeiro, Thalia	USA	F	13	1406	1878	471
+447. Vega Gutierrez, Sabrina	ESP	F	28	1919	2391	471
+448. Chekmareva, Liya	RUS	F	17	1590	2062	471
+449. Guillo Longares, Cecilia	ESP	F	11	1338	1809	470
+450. Waechter, Nathalie	GER	F	15	1513	1984	470
+451. Szczepkowska-Horowska, Karina	POL	F	28	1919	2390	470
+452. Beydullayeva, Govhar	AZE	F	12	1361	1831	469
+453. Polterauer, Chiara	AUT	F	15	1513	1983	469
+454. Giles, Yasmin	ENG	F	16	1549	2018	468
+455. Olsarova, Tereza	CZE	F	24	1823	2292	468
+456. Yuan, Yuanling	CAN	F	21	1736	2205	468
+457. Limanovska, Elizabete	LAT	F	15	1513	1982	468
+458. Kisteneva, Liza	RUS	F	17	1590	2059	468
+459. Rodriguez Dominguez, Melissa	CUB	F	16	1549	2017	467
+460. Zhu, Chen	QAT	F	39	1950	2418	467
+461. Gholami Orimi, Anahita	IRI	F	17	1590	2058	467
+462. Bezkorovaina, Mariia	UKR	F	18	1630	2098	467
+463. Pavlidou, Ekaterini	GRE	F	22	1744	2211	467
+464. Nakhbayeva, Guliskhan	KAZ	F	24	1823	2290	466
+465. Soumya, Swaminathan	IND	F	26	1874	2341	466
+466. Milutinovic, Stefana	SRB	F	19	1665	2132	466
+467. Kalinina, Olga	UKR	F	26	1874	2341	466
+468. Lahav, Michal	ISR	F	16	1549	2015	465
+469. Caglar, Sila	TUR	F	11	1338	1804	465
+470. Kusenkova, Natallia	BLR	F	20	1698	2164	465
+471. Georgescu, Lena	SUI	F	16	1549	2014	464
+472. Afraoui, Anaelle	FRA	F	16	1549	2014	464
+473. Khazieva, Elza	RUS	F	19	1665	2130	464
+474. Mantilla Gras, Geydis De la C.	CUB	F	15	1513	1978	464
+475. Videnova, Iva	BUL	F	28	1919	2384	464
+476. Choladze, Mariam	GEO	F	18	1630	2095	464
+477. Reyes Perez, Lis Daniela	CUB	F	12	1361	1825	463
+478. Lehaci, Miruna-Daria	ROU	F	11	1338	1802	463
+479. Arribas Robaina, Maritza	CUB	F	44	1836	2300	463
+480. Hashemi, Seyede Fatemeh	IRI	F	14	1459	1922	462
+481. Safranska, Anda	FRA	F	55	1796	2259	462
+482. Zotova, Anastasia	RUS	F	13	1406	1868	461
+483. Matus, Nastassja A	USA	F	10	1300	1761	461
+484. Berdnyk, Mariia	UKR	F	12	1361	1822	460
+485. Montilla Reyes, Jorcerys	VEN	F	20	1698	2159	460
+486. Hakimifard, Ghazal	IRI	F	21	1736	2196	459
+487. Nurdin, Tammi Nasuha	INA	F	19	1665	2125	459
+488. Li, Ruofan	SIN	F	37	1910	2370	459
+489. Fuskova, Martina	CZE	F	17	1590	2050	459
+490. Klinova, Masha	ISR	F	47	1841	2300	458
+491. Real Pereyra, Diana Carime	MEX	F	20	1698	2157	458
+492. Ordaz Valdes, Lisandra Teresa	CUB	F	27	1899	2357	457
+493. Zhang, Yuxuan	CHN	F	13	1406	1864	457
+494. Biliak, Viktoria	UKR	F	9	1261	1719	457
+495. Ananya, Suresh	IND	F	15	1513	1971	457
+496. Ruchieva, Natalia	UKR	F	55	1796	2254	457
+497. Kovanova, Baira	RUS	F	28	1919	2376	456
+498. Beshukova, Alina	RUS	F	13	1406	1862	455
+499. Liu,Youyin	CHN	F	12	1361	1817	455
+500. Guskova, Alina	RUS	F	15	1513	1969	455
+501. Feng, Maggie	USA	F	15	1513	1969	455
+502. Lach, Aleksandra	POL	F	20	1698	2154	455
+503. Tammert, Iamze	GER	F	44	1836	2292	455
+504. Avilova, Diana	RUS	F	15	1513	1967	453
+505. Makhno, Maria	RUS	F	15	1513	1967	453
+506. Gonzalez Torres, Roxana	CUB	F	16	1549	2002	452
+507. Cai Youyang	CHN	F	11	1338	1791	452
+508. Lasya.g	IND	F	18	1630	2083	452
+509. Sankova, Stella	SVK	F	13	1406	1857	450
+510. Liu, Joanna	USA	F	13	1406	1857	450
+511. Gresova, Zuzana	CZE	F	13	1406	1857	450
+512. Gaponenko, Inna	UKR	F	39	1950	2401	450
+513. Jausas Lopez, Andrea	ESP	F	14	1459	1910	450
+514. Lujan, Carolina	ARG	F	30	1927	2378	450
+515. Santeramo, Alessia	ITA	F	17	1590	2041	450
+516. Dolgaeva, Evgenia	RUS	F	16	1549	1999	449
+517. Stoeri, Laura	SUI	F	19	1665	2115	449
+518. Hereklioglu, Sude	TUR	F	13	1406	1855	448
+519. Tania, Sachdev	IND	F	29	1936	2385	448
+520. Levicheva, Ekaterina	RUS	F	12	1361	1810	448
+521. Cosma, Elena-Luminita	ROU	F	43	1866	2315	448
+522. Houska, Jovanka	ENG	F	35	1923	2372	448
+523. Salcedo, Jackeline	COL	F	17	1590	2039	448
+524. Gevorgyan, Irina	UZB	F	25	1822	2270	447
+525. Popova, Irina	RUS	F	12	1361	1809	447
+526. Alfonso Ruisanchez, Laritza	CUB	F	14	1459	1907	447
+527. Stanciu, Ioana-Georgiana	ROU	F	17	1590	2038	447
+528. Stockova, Zuzana	SVK	F	38	1942	2389	447
+529. Bulatova, Kamaliya	RUS	F	12	1361	1808	446
+530. Botsari, Anna-Maria	GRE	F	43	1866	2313	446
+531. Maksimovic, Masa	BIH	F	14	1459	1906	446
+532. Khatmullina, Dilara	RUS	F	17	1590	2037	446
+533. Ning, Chunhong	CHN	F	47	1841	2288	446
+534. Galunova, Tsveta	BUL	F	20	1698	2145	446
+535. Budnikova, Varvara	RUS	F	13	1406	1852	445
+536. Shakhmatova, Kseniya	RUS	F	13	1406	1852	445
+537. Repkova, Eva	SVK	F	40	1872	2317	444
+538. Yuan, Beline	FRA	F	11	1338	1783	444
+539. Hiebler, Laura	AUT	F	18	1630	2075	444
+540. Miladinovic, Lena	SRB	F	22	1744	2188	444
+541. Zakharova, Oksana	RUS	F	13	1406	1850	443
+542. Shumeyko, Anna	UKR	F	13	1406	1850	443
+543. Ostojic, Katarina	SRB	F	14	1459	1903	443
+544. Monpeurt, Cyrielle	FRA	F	20	1698	2142	443
+545. Andrade Sandoval, Bianca	ESP	F	12	1361	1804	442
+546. Kononenko, Tatiana	UKR	F	37	1910	2353	442
+547. Pastuszko, Kinga	POL	F	18	1630	2073	442
+548. Chirivi C, Jenny Astrid	COL	F	25	1822	2264	441
+549. Sanati, Charlotte	GER	F	14	1459	1901	441
+550. Asadi, Motahare	IRI	F	11	1338	1780	441
+551. L'Ami, Alina	ROU	F	30	1927	2369	441
+552. Cosman, Andreea-Marioara	ROU	F	18	1630	2072	441
+553. Baekelant, Eva	BEL	F	20	1698	2140	441
+554. Prudnikova, Svetlana	SRB	F	48	1862	2304	441
+555. Glebova, Anastasia	RUS	F	13	1406	1847	440
+556. Petrukhina, Irina	RUS	F	21	1736	2177	440
+557. Rollot, Florence	FRA	F	14	1459	1900	440
+558. Gomes, Mary Ann	IND	F	26	1874	2315	440
+559. Dobrynina, Aleksandra	RUS	F	19	1665	2106	440
+560. Doroshenko, Diana	RUS	F	23	1775	2216	440
+561. Chkhan, Viktoria	RUS	F	21	1736	2176	439
+562. Machlik, Monika	NOR	F	18	1630	2070	439
+563. Pourkashiyan, Atousa	IRI	F	27	1899	2338	438
+564. Atalik, Ekaterina	TUR	F	33	1945	2384	438
+565. Khalafova, Narmin	AZE	F	21	1736	2175	438
+566. Represa Perez, Mireya	ESP	F	14	1459	1898	438
+567. Salazar, Aura Cristina	COL	F	20	1698	2137	438
+568. Saranya, J	IND	F	20	1698	2137	438
+569. Sviridova, Vlada	RUS	F	20	1698	2137	438
+570. Vasilevich, Tatjana	UKR	F	38	1942	2380	438
+571. Bellin, Jana M	ENG	F	68	1670	2108	437
+572. Milosevic, Jovana	SRB	F	19	1665	2103	437
+573. Hakimifard, Raana	IRI	F	19	1665	2103	437
+574. Stojanovic, Andjelija	SRB	F	28	1919	2357	437
+575. Matveeva, Olga	RUS	F	23	1775	2213	437
+576. Travkina, Anastasia	RUS	F	23	1775	2213	437
+577. Zherebtsova, Alexandra	RUS	F	22	1744	2181	437
+578. Keen, Cosima	ENG	F	16	1549	1986	436
+579. Azman Hisham, Nur Najiha	MAS	F	16	1549	1986	436
+580. Amura, Claudia	ARG	F	45	1846	2283	436
+581. Porat, Maya	ISR	F	24	1823	2260	436
+582. Zhylkaidarova, Sholpan	KAZ	F	21	1736	2173	436
+583. Nandhidhaa, PV	IND	F	19	1665	2102	436
+584. Virkud, Apurva	USA	F	17	1590	2027	436
+585. Sarycheva, Anastasia	RUS	F	17	1590	2027	436
+586. Leks, Maria	POL	F	20	1698	2135	436
+587. Bukhteeva, Viktoria	RUS	F	22	1744	2180	436
+588. Guichard, Pauline	FRA	F	27	1899	2335	435
+589. Bojicic, Andjela	SRB	F	14	1459	1895	435
+590. Hohlova, Anna	RUS	F	9	1261	1697	435
+591. Mayrhuber, Nikola	AUT	F	15	1513	1949	435
+592. Janzelj, Lara	SLO	F	18	1630	2066	435
+593. Pribylova, Sofie	CZE	F	13	1406	1841	434
+594. Tereshechkina, Maya	RUS	F	19	1665	2100	434
+595. Kosheparova, Tatiana	RUS	F	15	1513	1948	434
+596. Li,Xinyu	CHN	F	13	1406	1840	433
+597. Librelato, Kathie Goulart	BRA	F	17	1590	2024	433
+598. Malatsilava, Volha	BLR	F	17	1590	2024	433
+599. Ferkova, Dominika	SVK	F	13	1406	1839	432
+600. Zimina, Olga	ITA	F	33	1945	2378	432
+601. Nastase, Andreea-Cristina	ROU	F	14	1459	1892	432
+602. Litvinenko, Ekaterina	RUS	F	17	1590	2023	432
+603. Priyanka, K	IND	F	14	1459	1891	431
+604. Bilunova, Rimma I	RUS	F	75	1696	2128	431
+605. Mungunzul, Bat-Erdene	MGL	F	10	1300	1731	431
+606. Asgarizadeh, Minoo	IRI	F	21	1736	2167	430
+607. Vijayalakshmi, Subbaraman	IND	F	36	1929	2360	430
+608. Kaliadzich, Maryia	BLR	F	19	1665	2096	430
+609. Strutinskaia, Galina	RUS	F	58	1797	2227	429
+610. Del Rosario Silva, Dexnisi	CUB	F	14	1459	1889	429
+611. Karelina, Viktoriya	RUS	F	11	1338	1768	429
+612. Ning, Kaiyu	CHN	F	11	1338	1768	429
+613. Montufar Berrios, Lesly Viviane	BRA	F	15	1513	1943	429
+614. Rjanova, Valery	RUS	F	22	1744	2173	429
+615. Hercog, Nusa	SLO	F	12	1361	1790	428
+616. Labrada Bacallao, Grisel	CUB	F	14	1459	1888	428
+617. Galas, Bernadette	PHI	F	19	1665	2094	428
+618. Mahalakshmi, M	IND	F	17	1590	2019	428
+619. Gara, Ticia	HUN	F	31	1942	2370	427
+620. Devyaterikova, Aleksandra	RUS	F	15	1513	1941	427
+621. Martin Perez, Laura	ESP	F	18	1630	2058	427
+622. Lomineishvili, Maia	GEO	F	38	1942	2369	427
+623. Hamedi Nia, Vesal	IRI	F	13	1406	1833	426
+624. Miller, Rachel	JAM	F	15	1513	1940	426
+625. Chuprova, Irina	RUS	F	18	1630	2057	426
+626. Gvanceladze, Anna	RUS	F	22	1744	2170	426
+627. Ozturk, Kubra	TUR	F	24	1823	2249	425
+628. Malinicheva, Lidia	RUS	F	68	1670	2096	425
+629. Suito Nakasone, Catherine	ARG	F	14	1459	1885	425
+630. Gelip, Ioana	ROU	F	20	1698	2124	425
+631. Ghosh Samriddhaa	IND	F	13	1406	1831	424
+632. Andrenko, Irina	UKR	F	24	1823	2248	424
+633. Agrest, Inna	SWE	F	24	1823	2248	424
+634. Cherepanova, Evita	RUS	F	9	1261	1686	424
+635. Alekseeva, Nariya	RUS	F	15	1513	1938	424
+636. Ghosh, Hiya	USA	F	12	1361	1785	423
+637. Grigoryeva, Olga A.	RUS	F	21	1736	2160	423
+638. Voiska, Margarita	BUL	F	52	1892	2316	423
+639. Khukhashvili, Sopiko	GEO	F	30	1927	2351	423
+640. Golubenko, Valentina	CRO	F	25	1822	2245	422
+641. Vajda, Szidonia	HUN	F	36	1929	2352	422
+642. Altshul, Limor	ISR	F	17	1590	2013	422
+643. Avetisyan, Mariam	ARM	F	15	1513	1936	422
+644. Tan, Li Ting	MAS	F	17	1590	2013	422
+645. Kuznetsova, Darya	RUS	F	15	1513	1936	422
+646. Reuter, Elisa	GER	F	10	1300	1722	422
+647. Miturova, Magdalena	CZE	F	22	1744	2166	422
+648. Kovalenko, Kleopatra	RUS	F	12	1361	1783	421
+649. Perera Borrego, Mariela	ESP	F	21	1736	2158	421
+650. Pujari, Rucha	IND	F	21	1736	2158	421
+651. Pavlova, Kseniia	RUS	F	19	1665	2087	421
+652. Umudova, Nargiz	AZE	F	26	1874	2296	421
+653. Starr, Nava	CAN	F	66	1706	2127	420
+654. Mamontova, Anastasia	RUS	F	16	1549	1970	420
+655. Olle, Rebeka Sara	HUN	F	12	1361	1782	420
+656. Bagheri, Bita	IRI	F	21	1736	2157	420
+657. Venzant Batista, Marcia Camila	CUB	F	14	1459	1880	420
+658. Kazemzadeh, Asal	IRI	F	11	1338	1759	420
+659. Basto, Suely	BOL	F	15	1513	1934	420
+660. Kamalidenova, Meruert	KAZ	F	10	1300	1720	420
+661. Obada, Ema	ROU	F	10	1300	1720	420
+662. Krikunova, Olesya	RUS	F	12	1361	1781	419
+663. Hernandez Machado, Patricia M.	CUB	F	12	1361	1781	419
+664. Nie, Xin	CHN	F	18	1630	2050	419
+665. Petrova, Olga	RUS	F	22	1744	2163	419
+666. Beluska, Tereza	CZE	F	16	1549	1968	418
+667. Singgih, Diajeng Theresa	INA	F	11	1338	1757	418
+668. Newrkla, Katharina	AUT	F	23	1775	2194	418
+669. Chiang, Sarah	USA	F	18	1630	2049	418
+670. Zeliantsova, Kseniya	BLR	F	10	1300	1718	418
+671. Nesterenko, Polina	RUS	F	12	1361	1779	417
+672. Monroy G., Nataly A.	BOL	F	15	1513	1931	417
+673. Ding, Kimberly	USA	F	16	1549	1966	416
+674. Reinecke, Katharina	GER	F	14	1459	1876	416
+675. Erdos, Boglarka	HUN	F	23	1775	2192	416
+676. Li, Zhuoling	CHN	F	17	1590	2007	416
+677. Ortin Blanco, Ainhoa	ESP	F	14	1459	1875	415
+678. Raghavi, N.	IND	F	26	1874	2290	415
+679. Zvereva, Margarita	RUS	F	9	1261	1677	415
+680. Shadrina, Tatiana	RUS	F	41	1905	2320	414
+681. Tejeda Ortega, Danae	CUB	F	15	1513	1928	414
+682. Arvai, Eszter	HUN	F	17	1590	2005	414
+683. Mendoza, Shania Mae	PHI	F	17	1590	2005	414
+684. Bochis, Julia	GER	F	22	1744	2158	414
+685. Anudari, Enkhtuvshin	MGL	F	12	1361	1774	412
+686. Moses, Selina	GER	F	15	1513	1926	412
+687. Salahidou, Reveka	GRE	F	17	1590	2003	412
+688. Rakic, Teodora	SRB	F	17	1590	2003	412
+689. Gritsayeva, Oksana	RUS	F	35	1923	2336	412
+690. Svetlichnaia, Alena	UKR	F	15	1513	1926	412
+691. Schaefer, Annabelle	GER	F	18	1630	2043	412
+692. Vujnovic, Patricija	CRO	F	20	1698	2111	412
+693. Ivekovic, Tihana	CRO	F	20	1698	2111	412
+694. Bezgodova, Maria	RUS	F	22	1744	2156	412
+695. Ciuksyte, Dagne	ENG	F	38	1942	2354	412
+696. Malicka, Maria	POL	F	12	1361	1773	411
+697. Zozulia, Anna	BEL	F	35	1923	2335	411
+698. Eric, Jovana	SRB	F	23	1775	2187	411
+699. Sudakova, Irina	RUS	F	33	1945	2356	410
+700. Skafar, Darya	RUS	F	16	1549	1960	410
+701. Aksenova, Maria	RUS	F	14	1459	1870	410
+702. Antipova, Anastasia	RUS	F	17	1590	2001	410
+703. Franciskovic, Borka	CRO	F	27	1899	2309	409
+704. Feliciano Ebert, Vanessa	BRA	F	25	1822	2232	409
+705. Theissl Pokorna, Regina	AUT	F	33	1945	2355	409
+706. Kochetkova, Julia	SVK	F	34	1910	2320	409
+707. Sorokina, Tamara	RUS	F	66	1706	2116	409
+708. Smagina, Sofya	RUS	F	12	1361	1771	409
+709. Martynova, Anastasiya	RUS	F	16	1549	1959	409
+710. Fischer, Julie	FRA	F	19	1665	2075	409
+711. Fesselier, Melissa	GER	F	17	1590	2000	409
+712. Rudolf, Anna	HUN	F	28	1919	2329	409
+713. Li, Marissa	USA	F	13	1406	1815	408
+714. Collas, Silvia	FRA	F	41	1905	2314	408
+715. Terao, Juliana Sayumi	BRA	F	24	1823	2232	408
+716. Guniaeva, Olga	ESP	F	15	1513	1922	408
+717. Haszon, Kamilla Sara	HUN	F	18	1630	2039	408
+718. Kostitsina, Liubov	RUS	F	18	1630	2039	408
+719. Carow, Annelen	GER	F	22	1744	2152	408
+720. Henderson de La Fuente, Andrea	ESP	F	14	1459	1867	407
+721. Nieto Rego, Ana	ESP	F	11	1338	1746	407
+722. Gonzalez Estrada, Chrissye L.	CUB	F	16	1549	1956	406
+723. Stavitskaya, Vlada	UKR	F	14	1459	1866	406
+724. Piwowarczyk, Julia	POL	F	14	1459	1866	406
+725. Fuentes Godoy, Lilia Ivonne	MEX	F	17	1590	1997	406
+726. Dvornitskaja, Elena	UKR	F	17	1590	1997	406
+727. Hincu, Olga	MDA	F	18	1630	2037	406
+728. Medvegy, Nora Dr.	HUN	F	38	1942	2348	406
+729. Levitan, Ronit	ISR	F	11	1338	1744	405
+730. Dziodzio, Angelika	POL	F	19	1665	2071	405
+731. Castillo Coca, Mairebis	CUB	F	23	1775	2181	405
+732. Sidamonidze, Anastasia	GEO	F	13	1406	1811	404
+733. Diantika, Metalia Widya	INA	F	14	1459	1864	404
+734. Sotnikova, Tatiana	RUS	F	14	1459	1864	404
+735. Goossens, Hanne	BEL	F	23	1775	2180	404
+736. Pustovidko, Anastasia	RUS	F	18	1630	2035	404
+737. Vo, Thi Kim Phung	VIE	F	22	1744	2148	404
+738. Nasyrova, Ekaterina	RUS	F	10	1300	1704	404
+739. Lengyel, Andrea	HUN	F	13	1406	1810	403
+740. Misanovic, Vesna	BIH	F	51	1878	2282	403
+741. Varga, Klara	HUN	F	21	1736	2140	403
+742. Chelushkina, Irina	SRB	F	54	1867	2271	403
+743. Tamir Saruul	MGL	F	12	1361	1764	402
+744. Nilssen, Ellen Fredericia	DEN	F	14	1459	1862	402
+745. Li, Yilin	CAN	F	15	1513	1916	402
+746. Katanova, Marina	RUS	F	17	1590	1993	402
+747. Zsiltzova-Lisenko, Lubov	UKR	F	59	1824	2227	402
+748. Ratsma, Rosa	NED	F	19	1665	2067	401
+749. Usoltseva, Polina	UKR	F	20	1698	2100	401
+750. Esadze, Tamar	GEO	F	12	1361	1762	400
+751. Toporkova, Sofia	ISR	F	16	1549	1950	400
+752. Murawko, Katarzyna	POL	F	18	1630	2031	400
+753. Song, Yuxin	CHN	F	10	1300	1700	400
+754. Kvachko, Anastasiya	RUS	F	13	1406	1806	399
+755. Weis, Olga	GER	F	16	1549	1949	399
+756. Harazinska, Magdalena	POL	F	12	1361	1761	399
+757. Mosquera Cayon, Danet	CUB	F	21	1736	2136	399
+758. Congiu, Mathilde	FRA	F	26	1874	2274	399
+759. Sazonova, Anastasia	RUS	F	19	1665	2065	399
+760. Pham, Le Thao Nguyen	VIE	F	28	1919	2319	399
+761. Sziva, Erika	NED	F	48	1862	2262	399
+762. Bucur, Denisa-Andreea	ROU	F	13	1406	1805	398
+763. Skinke, Katrina	LAT	F	24	1823	2222	398
+764. Azali, Tannaz	IRI	F	14	1459	1858	398
+765. Skomorokhina, Ekaterina	RUS	F	14	1459	1858	398
+766. Gomez Camacho, Micaela	ARG	F	18	1630	2029	398
+767. Nikolova, Adriana	BUL	F	27	1899	2297	397
+768. Serrano Leiva, Ana	ESP	F	16	1549	1947	397
+769. Esaulova, Marfa	RUS	F	14	1459	1857	397
+770. Zhemchuzhina, Elizaveta	RUS	F	14	1459	1857	397
+771. Rodriguez Guerra, Melissa	CUB	F	15	1513	1911	397
+772. Yakubbaeva, Nilufar	UZB	F	15	1513	1911	397
+773. Rovira Contreras, Tairu Manuela	VEN	F	20	1698	2096	397
+774. Filippova, Margarita	RUS	F	12	1361	1758	396
+775. Obregon Garcia, Roxangel	CUB	F	12	1361	1758	396
+776. Forgas Moreno, Yaniela	CUB	F	23	1775	2172	396
+777. Alvarado Arcila, Marvia Josefina	VEN	F	15	1513	1910	396
+778. Bea, Boglarka	HUN	F	20	1698	2095	396
+779. Kuchava, Ana	GEO	F	20	1698	2095	396
+780. Fierro Baquero, Martha L.	ECU	F	38	1942	2338	396
+781. Novosadova, Kristyna	CZE	F	25	1822	2218	395
+782. Mahdian, Anousha	IRI	F	12	1361	1757	395
+783. Abbasova, Sadagat	AZE	F	12	1361	1757	395
+784. Hong, Xing	CHN	F	17	1590	1986	395
+785. Cusmuliuc, Diana-Elena	ROU	F	17	1590	1986	395
+786. Purgar, Ivona	CRO	F	22	1744	2139	395
+787. Hu, Yu A.	CHN	F	16	1549	1944	394
+788. Shestakova, Ekaterina	RUS	F	11	1338	1733	394
+789. Semenova, Elena	RUS	F	23	1775	2170	394
+790. Soler Guerra, Jennys Dailin	CUB	F	15	1513	1908	394
+791. Nomindalai Tumurbaatar	MGL	F	13	1406	1800	393
+792. Kairbekova, Amina	KAZ	F	9	1261	1655	393
+793. Ovezdurdiyeva, Jemal	TKM	F	17	1590	1984	393
+794. Lampman, Becca	USA	F	18	1630	2024	393
+795. Milliet, Sophie	FRA	F	32	1971	2365	393
+796. Martianova, Yana	RUS	F	10	1300	1693	393
+797. Llaudy Pupo, Lisandra	CUB	F	27	1899	2292	392
+798. Yan, Tianqi	CHN	F	13	1406	1799	392
+799. Djidjeli, Sarah	FRA	F	12	1361	1754	392
+800. Fronda, Jan Jodilyn	PHI	F	21	1736	2129	392
+801. Ni, Viktorija	USA	F	24	1823	2216	392
+802. Lee, Megan	USA	F	19	1665	2058	392
+803. Roque Sola, Gisela	MEX	F	17	1590	1983	392
+804. Gueci, Laura	ITA	F	18	1630	2023	392
+805. Yang, Vicki	USA	F	13	1406	1798	391
+806. Abrahamyan, Tatev	USA	F	27	1899	2291	391
+807. Pina Vega, Sulennis	CUB	F	34	1910	2302	391
+808. Chernyshova, Natalia	RUS	F	21	1736	2128	391
+809. Trippold, Denise	AUT	F	17	1590	1982	391
+810. Melamed, Tatjana	GER	F	41	1905	2296	390
+811. Muniz Guevara, Amanda Maria	CUB	F	13	1406	1797	390
+812. Fernandez, Maria Florencia	ARG	F	24	1823	2214	390
+813. Vorobyova, Valeriya	RUS	F	14	1459	1850	390
+814. Hilmi, Parveen	IND	F	15	1513	1904	390
+815. Pavlova, Nataliy	RUS	F	18	1630	2021	390
+816. Horvath, Julia	HUN	F	55	1796	2187	390
+817. Zakharova, Viktoriya	RUS	F	18	1630	2021	390
+818. Adamowicz, Katarzyna	POL	F	22	1744	2134	390
+819. Ivkovic, Aleksandra	SRB	F	16	1549	1939	389
+820. Marczuk, Anna	POL	F	16	1549	1939	389
+821. Gansvind, Valeriya I.	EST	F	50	1857	2247	389
+822. Gong, Qianyun	SIN	F	30	1927	2317	389
+823. Smirnova, Elena I.	RUS	F	59	1824	2214	389
+824. Bogdanova, Natalya	RUS	F	13	1406	1795	388
+825. Caballero Quijano, Mitzy Mishell	PER	F	14	1459	1848	388
+826. Shamatava, Ana	GEO	F	19	1665	2054	388
+827. Cheremnova, Tamara	RUS	F	26	1874	2263	388
+828. Duarte, Carolina Tavares	BRA	F	15	1513	1902	388
+829. Hoiberg, Nina	DEN	F	59	1824	2213	388
+830. Krilova, Marina	RUS	F	69	1730	2118	387
+831. Ambartsumova, Karina	RUS	F	26	1874	2262	387
+832. Eesha Ajay Sarda	IND	F	11	1338	1726	387
+833. Winterholler, Christina	GER	F	19	1665	2053	387
+834. Azhar, Puteri Rifqah Fahada	MAS	F	15	1513	1901	387
+835. Baryshnikova, Natalija	RUS	F	17	1590	1978	387
+836. Dadello, Aleksandra	POL	F	17	1590	1978	387
+837. Aseeva, Marina	RUS	F	55	1796	2184	387
+838. Acosta, Florencia	ARG	F	12	1361	1748	386
+839. Garcia Vicente, Nieves	ESP	F	60	1784	2171	386
+840. Blazeka, Mihaela	CRO	F	15	1513	1900	386
+841. Barcza, Lora	HUN	F	10	1300	1686	386
+842. Rosenhain, Rachela	GER	F	13	1406	1792	385
+843. Tamarozi,Isabelle	BRA	F	16	1549	1935	385
+844. Calzetta Ruiz, Monica	ESP	F	43	1866	2252	385
+845. Poetsch, Leonore	GER	F	14	1459	1845	385
+846. Bocharova, Ulyana	RUS	F	16	1549	1934	384
+847. Calderin Rubio, Nayira	CUB	F	19	1665	2050	384
+848. Mirza, Diana	IRL	F	15	1513	1898	384
+849. Demeter, Dorina	HUN	F	10	1300	1684	384
+850. Zinatullina, Adelya	RUS	F	13	1406	1790	383
+851. Zawadzka, Beata	POL	F	29	1936	2320	383
+852. Levushkina, Elena	GER	F	31	1942	2326	383
+853. Ciocan, Ariana-Roxana	ROU	F	8	1208	1592	383
+854. Van Foreest, Machteld	NED	F	8	1208	1592	383
+855. Coman, Emilia-Florentina	ROU	F	14	1459	1843	383
+856. Foisor, Sabina-Francesca	USA	F	26	1874	2258	383
+857. Belova, Olga	RUS	F	19	1665	2049	383
+858. Yakimenko, Viktoria	RUS	F	17	1590	1974	383
+859. Stashis, Anna	BLR	F	15	1513	1897	383
+860. Fernandez Rivero, Karla July	CUB	F	18	1630	2014	383
+861. Vanagaite, Giedre	LTU	F	18	1630	2014	383
+862. Fonte Sanchez, Paula	CUB	F	18	1630	2014	383
+863. Ovod, Evgenija	RUS	F	33	1945	2328	382
+864. Shakirova, Renata	RUS	F	16	1549	1932	382
+865. Richtrova, Eliska	CZE	F	56	1834	2217	382
+866. Voronova, Tatiana	LAT	F	60	1784	2167	382
+867. Davletbayeva, Madina	KAZ	F	26	1874	2257	382
+868. Leonardi, Caterina	SLO	F	19	1665	2048	382
+869. Broly, Mathilde	FRA	F	15	1513	1896	382
+870. Goletiani, Rusudan	USA	F	35	1923	2306	382
+871. Shi,Leqin	CHN	F	15	1513	1896	382
+872. Roklicer, Heike	CRO	F	17	1590	1973	382
+873. Toma, Katarzyna	POL	F	30	1927	2310	382
+874. Worek, Joanna	POL	F	29	1936	2318	381
+875. Pham, Bich Ngoc	VIE	F	25	1822	2204	381
+876. Belenok, Nataliya	RUS	F	16	1549	1931	381
+877. Malachowski, Margrit	GER	F	62	1755	2137	381
+878. Moreno Corona, Nayelis Lazara	CUB	F	17	1590	1972	381
+879. Matnadze, Ana	ESP	F	32	1971	2353	381
+880. Li, Xueyi	CHN	F	22	1744	2125	381
+881. Mukhina, Jana	RUS	F	16	1549	1930	380
+882. Nadzamova, Sofia	SVK	F	14	1459	1840	380
+883. Granados Ortiz, Maria Jose	NCA	F	14	1459	1840	380
+884. Podgornova, Anna	RUS	F	12	1361	1741	379
+885. Anghel, Maria	ROU	F	11	1338	1718	379
+886. Leolko, Ludmila	RUS	F	18	1630	2010	379
+887. Tomilova, Elena	RUS	F	29	1936	2315	378
+888. Patino Garcia, Corals	VEN	F	16	1549	1928	378
+889. Chandreyee, Hajra	IND	F	16	1549	1928	378
+890. Tran, Le Dan Thuy	VIE	F	19	1665	2044	378
+891. Xu, Yuze	CHN	F	11	1338	1717	378
+892. Le, Hoang Tran Chau	VIE	F	23	1775	2154	378
+893. Endress, Anna	GER	F	22	1744	2122	378
+894. Garmash, Aliona	RUS	F	13	1406	1784	377
+895. Rogule, Laura	LAT	F	27	1899	2277	377
+896. Sapale Saloni	IND	F	16	1549	1927	377
+897. Zaritovskaja, Margarita	UKR	F	11	1338	1716	377
+898. Vasilevich, Irina	RUS	F	30	1927	2305	377
+899. Zajtzeva, Viktoria	RUS	F	15	1513	1891	377
+900. Priyamvada Karamcheti	IND	F	15	1513	1891	377
+901. Collado Barbas, Laura	ESP	F	22	1744	2121	377
+902. Bellahcene, Meriem	FRA	F	13	1406	1783	376
+903. Asatryan, Sona	ARM	F	16	1549	1926	376
+904. Dylag, Emilia	POL	F	11	1338	1715	376
+905. Manakova, Maria	SRB	F	41	1905	2281	375
+906. Schepetkova, Margarita	RUS	F	27	1899	2275	375
+907. Severiukhina, Zoja	RUS	F	25	1822	2198	375
+908. Srdanovic, Jovana	SRB	F	12	1361	1737	375
+909. Lysenko, Viktoria	RUS	F	16	1549	1925	375
+910. Aflalo, Sophie	FRA	F	20	1698	2074	375
+911. Batkovskyte, Dominyka	LTU	F	22	1744	2119	375
+912. Parhomenko, Margarita	LAT	F	16	1549	1924	374
+913. Imperor, Amelie	FRA	F	14	1459	1834	374
+914. Visanescu, Daria-Ioana	ROU	F	19	1665	2040	374
+915. Thomas, Anysia	FRA	F	19	1665	2040	374
+916. Motycakova, Monika	SVK	F	23	1775	2150	374
+917. Lezhepekova, Veronika	RUS	F	20	1698	2073	374
+918. Exler, Veronika	AUT	F	25	1822	2196	373
+919. Nadernia, Nikta	IRI	F	12	1361	1735	373
+920. Duessler, Stefanie	GER	F	20	1698	2072	373
+921. Bommini Mounika Akshaya	IND	F	12	1361	1734	372
+922. Xu, Huahua	CHN	F	21	1736	2109	372
+923. Samadashvili, Martha	USA	F	11	1338	1711	372
+924. Ochneva, Inga	RUS	F	17	1590	1963	372
+925. Alijanzadeh, Mohadeseh	IRI	F	17	1590	1963	372
+926. Vangsgaard, Freja	DEN	F	17	1590	1963	372
+927. Gundogan, Sinem Cagla	TUR	F	15	1513	1886	372
+928. Bartel, Marta	POL	F	27	1899	2271	371
+929. Babayan, Armine	ARM	F	25	1822	2194	371
+930. Lakshmi C	IND	F	12	1361	1733	371
+931. Bukina, Polina	RUS	F	12	1361	1733	371
+932. Eryshkanova, Anastasiya	RUS	F	21	1736	2108	371
+933. Mostacero Velarde, Isabella	PER	F	14	1459	1831	371
+934. Ramirez, Heimy Polgar	COL	F	23	1775	2147	371
+935. Prakapuk, Vera	BLR	F	15	1513	1885	371
+936. Porozhnyak, Maya	RUS	F	17	1590	1962	371
+937. Cibickova, Zuzana	SVK	F	27	1899	2270	370
+938. Lanchava, Tea	NED	F	41	1905	2276	370
+939. Kursova, Maria	ARM	F	29	1936	2307	370
+940. Tsifanskaya, Ludmila A	ISR	F	66	1706	2077	370
+941. Leconte, Maria	FRA	F	45	1846	2217	370
+942. Ismayil, Malak	AZE	F	11	1338	1709	370
+943. Mamedjarova, Turkan	AZE	F	26	1874	2245	370
+944. Mikadze, Miranda	GEO	F	26	1874	2245	370
+945. Kong, Suh Young	KOR	F	9	1261	1632	370
+946. Barbaeva, Irina	RUS	F	15	1513	1884	370
+947. Besso, Guadalupe	ARG	F	17	1590	1961	370
+948. Gomez Barrera, Javiera Belen	CHI	F	13	1406	1776	369
+949. Dauletova, Gulmira	KAZ	F	27	1899	2269	369
+950. Belic, Jordanka	SRB	F	51	1878	2248	369
+951. Stsepkina, Yauheniya	BLR	F	12	1361	1731	369
+952. Jussupow, Ekaterina	GER	F	24	1823	2193	369
+953. Gombocz, Zsofia	HUN	F	12	1361	1730	368
+954. Nemec, Hana	SLO	F	16	1549	1918	368
+955. Sinitsina, Anastassia	EST	F	11	1338	1707	368
+956. Menzi, Nezihe Ezgi	TUR	F	17	1590	1959	368
+957. Busuioc, Alexandra	AUT	F	15	1513	1882	368
+958. Czaplewska, Klara	POL	F	18	1630	1999	368
+959. Otgonsuvd Batsaikhan	MGL	F	13	1406	1774	367
+960. Kozachenko, Sofia	UKR	F	13	1406	1774	367
+961. Fretel, Liza	FRA	F	16	1549	1917	367
+962. Melekhina, Alisa	USA	F	24	1823	2191	367
+963. Moradi, Kimia	NOR	F	19	1665	2033	367
+964. Atabayeva, Ogulgerek	TKM	F	18	1630	1998	367
+965. Koskela, Niina	NOR	F	44	1836	2204	367
+966. Kiseleva, Arina	RUS	F	18	1630	1998	367
+967. Assaubayeva, Diana	KAZ	F	18	1630	1998	367
+968. Bakshi, Rutuja	IND	F	16	1549	1916	366
+969. Tarini Goyal	IND	F	14	1459	1826	366
+970. Albi Bachini Conti, Silvia	ITA	F	14	1459	1826	366
+971. Bidhar, Rutumbara	IND	F	14	1459	1826	366
+972. Toshali, V	IND	F	14	1459	1826	366
+973. Lakos, Nikoletta	HUN	F	37	1910	2277	366
+974. Gutkovich, Polina	RUS	F	12	1361	1727	365
+975. Ilyuchyk, Yana	BLR	F	14	1459	1825	365
+976. Oliveira, Maria Ines	POR	F	19	1665	2031	365
+977. Ustich, Ekaterina	RUS	F	18	1630	1996	365
+978. Fong Montejo, Maria De Los A.	CUB	F	13	1406	1771	364
+979. Arutyunova, Diana	UKR	F	27	1899	2264	364
+980. Vescovi, Katherine Lemos	BRA	F	16	1549	1914	364
+981. Spiridonova, Yana	RUS	F	14	1459	1824	364
+982. Gillis Onieva, Celia	ESP	F	14	1459	1824	364
+983. Bilic, Marijana	SRB	F	11	1338	1703	364
+984. Pachon, Adriana	COL	F	19	1665	2030	364
+985. Solis Chimoy, Blanca	PER	F	15	1513	1878	364
+986. Hernandez, Lara	FRA	F	18	1630	1995	364
+987. De Jong-Muhren, Bianca	NED	F	29	1936	2300	363
+988. Mader, Manuela	GER	F	25	1822	2186	363
+989. Wang, Xiaohui	CHN	F	25	1822	2186	363
+990. Sade, Defne	TUR	F	12	1361	1725	363
+991. Wen,Yili	CHN	F	11	1338	1702	363
+992. Liguo, Victoria	ARG	F	11	1338	1702	363
+993. Hoang, Thi Bao Tram	VIE	F	28	1919	2283	363
+994. Scarpa, Silvia	ITA	F	15	1513	1877	363
+995. Kirchei, Viktoriia	RUS	F	10	1300	1663	363
+996. Iljushina, Olga	RUS	F	34	1910	2273	362
+997. Stsepkina, Katsiaryna	BLR	F	16	1549	1912	362
+998. Ankudinova, Yelena	KAZ	F	53	1853	2216	362
+999. Hoare, Amy B	ENG	F	19	1665	2028	362
+1000. Katyshkina, Anastasia	RUS	F	19	1665	2028	362

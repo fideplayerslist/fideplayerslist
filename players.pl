@@ -227,9 +227,9 @@ enter command: );
 	
 	if($command=~/sd/i)
 	{
-		young_talents(1,100,'std_dev',50);
+		young_talents(1,100,'std_dev',1000);
 	}
-	
+
 	if($command=~/ot/i)
 	{
 		young_talents(60,100,'old',100);
