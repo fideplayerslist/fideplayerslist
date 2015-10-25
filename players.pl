@@ -94,7 +94,7 @@ enter command: );
 	
 		my $fields={};
 		
-		my @field_list=qw(flag country sex);
+		my @field_list=qw(flag country sex birthday);
 		
 		my $cnt=0;
 	
