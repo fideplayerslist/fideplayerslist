@@ -8,7 +8,36 @@ my $reference_year=2015;
 
 my @listed_fields=get_listed_fields();
 
+my $terms=read_terms();
+
+my $current_term='';
+
 my $command='';
+
+sub read_terms
+{
+	my $terms={};
+	open(TERMS,"terms.txt");
+	map
+	{ 
+		chomp($_);
+		my @terms=split /\t/,$_;
+		my $name=$terms[0];
+		if($name ne '')
+		{
+			$terms->{$name}=$terms[1];
+		}
+	} <TERMS>;
+	close(TERMS);
+	return $terms;
+}
+
+sub list_terms
+{
+	join("\n",map { "$_\t$terms->{$_}" } keys(%{$terms}));
+}
+
+my $result;
 
 while(!($command=~/x/i))
 {
@@ -33,6 +62,7 @@ as = age stats
 
 subsequent processing:
 
+v = values
 pr = proper records
 cs = country stats
 csa = country stats ( 20 - 40 )
@@ -46,11 +76,110 @@ ga = GM average ratings ( 20 - 40 )
 yp = young players ( 5 - 6 )
 pwg = players without gender
 
+d = define term
+l = list terms
+s [name] = search term
+ct = current term ( $current_term )
+
+$result
+
 enter command: );
 	$command=<>;
 	chomp($command);
 	
 	print "\n";
+	
+	if($command=~/^v$/i)
+	{
+	
+		my $fields={};
+		
+		my @field_list=qw(flag country sex);
+		
+		my $cnt=0;
+	
+		iterate(sub
+		{
+		
+			my ($record)=@_;
+			
+			map
+			{
+				$fields->{$_}->{$record->{$_}}++;
+			}
+			@field_list;
+			
+			$cnt++;
+			
+			if(($cnt%10000)==0)
+			{
+				print "$cnt processed\n";
+			}
+		
+		}
+		);
+		
+		my $stats='';
+		
+		foreach(keys(%{$fields}))
+		{
+		
+			my $key=$_;
+			
+			$stats.="$key\n";
+			my @values=keys(%{$fields->{$key}});
+			
+			@values=sort @values;
+			
+			$stats.=join("\n",map { "$_\t$fields->{$key}->{$_}" } @values)."\n";
+			
+		}
+		
+		save("fieldvalues",$stats,"field\tvalue");
+	
+	}
+	
+	if($command=~/^d$/i)
+	{
+	
+		print "name: ";my $name=<>;chomp($name);
+		print "term: ";my $term=<>;chomp($term);
+		
+		$terms->{$name}=$term;
+		
+		$result=list_terms();
+		
+		open(TERMS,">terms.txt");
+		print TERMS $result;
+		close(TERMS);
+		
+	}
+	
+	if($command=~/^l$/i)
+	{
+		$result=list_terms();
+	}
+	
+	if($command=~/^s ([A-Za-z0-9]+)$/i)
+	{
+		my $name=$1;
+		
+		iterate_filtered($name);
+	}
+	
+	if($command=~/^ct ([A-Za-z0-9]+)$/i)
+	{
+		my $name=$1;
+		
+		if($name eq 'p')
+		{
+			$current_term='';
+		}
+		else
+		{		
+			$current_term=$1;
+		}
+	}
 	
 	if($command=~/^s$/i)
 	{
@@ -523,7 +652,7 @@ sub country_stats
 		$country_stats->{$country}->{AVGRDIFF}=
 			(($country_stats->{$country}->{AVGRM} ne 'N/A')&&($country_stats->{$country}->{AVGRF} ne 'N/A'))?sprintf "%.1f",$country_stats->{$country}->{AVGRM}-$country_stats->{$country}->{AVGRF}:'N/A';
 		
-		if($country_stats->{$country}->{RTOT}>200)
+		if($country_stats->{$country}->{RTOT}>100)
 		{
 		
 			push(@filtered_countries,$_);
@@ -672,12 +801,90 @@ sub gm_average_ratings
 
 }
 
+sub iterate_filtered
+{
+
+	my $name=shift;
+	
+	my $term=$terms->{$name};
+	
+	mkdir "filtered";
+	
+	my $fcnt=0;
+	
+	open(FILTERED,">filtered/$name.txt");
+
+	open(PLAYERS,"players.txt");
+	
+	my $head=<PLAYERS>;
+	
+	chomp($head);
+	
+	print FILTERED "cnt\t$head\n";
+	
+	@listed_fields=split /\t/,$head;
+	
+	print "\nlisted fields in players.txt:\n\n",join("\t",@listed_fields),"\n\n";
+	
+	while(my $line=<PLAYERS>)
+	{
+	
+		chomp($line);
+		
+		my $record={};
+		
+		my @fields=split /\t/,$line;
+		
+		foreach(@listed_fields)
+		{
+		
+			my $key=$_;
+			
+			my $value=shift @fields;
+			
+			$record->{$key}=$value;
+		
+		}
+		
+		if($record->{birthday} ne '')
+		{
+			$record->{age}=$reference_year-$record->{birthday};
+		}
+		else
+		{
+			$record->{age}='';
+		}
+		
+		my $sex=$record->{sex};
+		my $rating=$record->{rating};
+		my $flag=$record->{flag};
+		
+		if(eval ($term))
+		{
+			print FILTERED "$fcnt\t$line\n";
+			
+			$fcnt++;
+			
+			if(($fcnt%100)==0)
+			{
+				print "$fcnt players found\n";
+			}
+		}
+	
+	}
+	
+	close(FILTERED);
+	
+	close(PLAYERS);
+
+}
+
 sub iterate
 {
 
 	my $sub=shift;
 
-	open(PLAYERS,"players.txt");
+	open(PLAYERS,$current_term eq ''?"players.txt":"filtered/$current_term.txt");
 	
 	my $head=<PLAYERS>;
 	

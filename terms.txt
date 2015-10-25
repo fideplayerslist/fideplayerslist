@@ -1,0 +1,8 @@
+rif	($sex eq 'F')&&($rating>0)&&($flag eq 'wi')
+raf	($sex eq 'F')&&($rating>0)&&($flag ne 'wi')
+a	(!($flag=~/i/))
+ra	(!($flag=~/i/))&&($rating>0)
+rim	($sex eq 'M')&&($rating>0)&&($flag eq 'i')
+im	($sex eq 'M')&&($flag eq 'i')
+if	($sex eq 'F')&&($flag eq 'wi')
+ram	($sex eq 'M')&&($rating>0)&&($flag ne 'i')

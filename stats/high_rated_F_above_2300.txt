@@ -201,9 +201,9 @@ rank	name	country	gender	birthday	rating	age	title
 200.	Fuchs, Judith 	GER	F	1990	2317	25	WIM
 201.	Gong, Qianyun 	SIN	F	1985	2317	30	WIM
 202.	Voiska, Margarita 	BUL	F	1963	2316	52	WGM
-203.	Demina, Julia 	RUS	F	1969	2316	46	WGM
-204.	Duisenova, Madina 	KAZ	F	1983	2315	32	WGM
-205.	Hojjatova, Aydan 	AZE	F	1999	2315	16	WFM
+203.	Hojjatova, Aydan 	AZE	F	1999	2316	16	WFM
+204.	Demina, Julia 	RUS	F	1969	2316	46	WGM
+205.	Duisenova, Madina 	KAZ	F	1983	2315	32	WGM
 206.	Tomilova, Elena 	RUS	F	1986	2315	29	WIM
 207.	Cosma, Elena-Luminita 	ROU	F	1972	2315	43	WGM
 208.	Blagojevic, Tijana 	MNE	F	1997	2315	18	WIM
