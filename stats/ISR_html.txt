@@ -1,0 +1,11 @@
+cnt	birthday	blitz_games	blitz_k	blitz_rating	country	fideid	flag	games	k	name	o_title	rapid_games	rapid_k	rapid_rating	rating	sex	title	w_title
+1	1994	0	20	2282	ISR	14100126	w	2	20	Shvayger, Yuliya		0	20	2303	2368	F	WIM	WIM
+2	1985				ISR	2806819	w	0	20	Gesser, Bella					2284	F	WGM	WGM
+3	1991	0	20	2180	ISR	2808072	w	0	20	Porat, Maya					2260	F	WIM	WIM
+4	1995	0	20	2282	ISR	2810964	w	0	20	Efroimski, Marsel		9	20	2195	2255	F	WIM	WIM
+5	1987				ISR	2807602	w	0	20	Vasiliev, Olga		0	20	2293	2217	F	WIM	WIM
+6	1985				ISR	2803216	w	0	20	Brusilovski, Lena		0	20	1973	1948	F		
+7	1994				ISR	2800306	w	0	20	Haitovich, Avital		0	20	1867	1929	F		
+8	1976				ISR	2817691	w	0	20	Mdivani, Maka		0	20	1742	1912	F		
+9	1979				ISR	2809680	w	0	20	Lian, Marina					1858	F		
+10	1988				ISR	2825309	w	0	40	Chakashvili, Lia					1638	F		

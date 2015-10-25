@@ -80,6 +80,7 @@ d = define term
 l = list terms
 s [name] = search term
 ct = current term ( $current_term )
+h [name] = htmlify term list
 
 $result
 
@@ -165,6 +166,13 @@ enter command: );
 		my $name=$1;
 		
 		iterate_filtered($name);
+	}
+	
+	if($command=~/^h ([A-Za-z0-9]+)$/i)
+	{
+		my $name=$1;
+		
+		htmlify($name);
 	}
 	
 	if($command=~/^ct ([A-Za-z0-9]+)$/i)
@@ -264,6 +272,47 @@ enter command: );
 	{
 		players_without_gender();
 	}
+	
+}
+
+sub htmlify
+{
+	my ($name)=@_;
+	
+	$current_term=$name;
+	
+	my $lines={};
+	
+	print "htmlifying $name\n";
+	
+	iterate(sub
+	{
+	
+		my ($record)=@_;
+		
+		my $line=$record->{line};
+		
+		$line=~s/^[^\t]*\t//;
+		
+		$lines->{$line}=$record->{rating};
+	
+	}
+	);
+	
+	my @keys=keys(%{$lines});
+	
+	@keys=sort
+	{
+		$lines->{$b}<=>$lines->{$a}
+	}
+	@keys;
+	
+	my $kcnt=0;
+	my $txt=join("\n",map { $kcnt++;"$kcnt\t$_"; } @keys);
+	
+	$result="$kcnt players htmlified";
+	
+	save("$name"."_html",$txt,join("\t",@listed_fields));
 	
 }
 
@@ -858,6 +907,8 @@ sub iterate_filtered
 		my $sex=$record->{sex};
 		my $rating=$record->{rating};
 		my $flag=$record->{flag};
+		my $country=$record->{country};
+		my $age=$record->{age};
 		
 		if(eval ($term))
 		{
@@ -876,6 +927,8 @@ sub iterate_filtered
 	close(FILTERED);
 	
 	close(PLAYERS);
+	
+	$result="search OK, $fcnt players found\n";
 
 }
 
