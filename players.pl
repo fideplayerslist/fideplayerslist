@@ -599,6 +599,11 @@ sub age_stats
 			{
 				$age_stats->{$record->{age}}->{"GM$record->{sex}"}++;
 			}
+			
+			if($record->{flag}=~/i/)
+			{
+				$age_stats->{$record->{age}}->{"I$record->{sex}"}++;
+			}
 		}
 	});
 	
@@ -610,13 +615,17 @@ sub age_stats
 		my $RM=$age_stats->{$i}->{RM};
 		my $AVGRM=averagef($age_stats->{$i}->{CRM},$RM);
 		my $GMM=$age_stats->{$i}->{GMM};
+		my $IM=$age_stats->{$i}->{IM};
+		my $PERCENTIM=percentf(ratio($IM,$RM));
 		my $RF=$age_stats->{$i}->{RF};
 		my $AVGRF=averagef($age_stats->{$i}->{CRF},$RF);
 		my $GMF=$age_stats->{$i}->{GMF};
+		my $IF=$age_stats->{$i}->{IF};
+		my $PERCENTIF=percentf(ratio($IF,$RF));
 		
 		my $age_field=($i%5==0?$i:'');
 		
-		my $item="$i\t$age_field\t$RM\t$AVGRM\t$RF\t$AVGRF\t$GMM\t$GMF";
+		my $item="$i\t$age_field\t$RM\t$AVGRM\t$RF\t$AVGRF\t$GMM\t$GMF\t$PERCENTIM\t$PERCENTIF";
 		
 		$age_stats_txt.="$item\n";
 	
@@ -624,7 +633,7 @@ sub age_stats
 	
 	print $age_stats_txt;
 	
-	save("age_stats",$age_stats_txt,"age\tage in 5 year steps\trated males\taverage rating males\trated females\taverage rating females\tmale GMs\tfemale GMs");
+	save("age_stats",$age_stats_txt,"age\tage in 5 year steps\trated males\taverage rating males\trated females\taverage rating females\tmale GMs\tfemale GMs\trated inactive males %\trated inactive females %");
 	
 }
 
