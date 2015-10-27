@@ -70,7 +70,7 @@ yt = young talents ( 10 - 30 )
 ot = old talents ( 60 - 100 )
 sd = standard deviation
 hm = high rated men ( >=2600 )
-hw = high rated women ( >=2300 )
+hw = high rated women ( >=2100 )
 h = high rated players ( >=2500 )
 ga = GM average ratings ( 20 - 40 )
 yp = young players ( 5 - 6 )
@@ -252,7 +252,7 @@ enter command: );
 	
 	if($command=~/hw/i)
 	{
-		high_rated_players("F",2300);
+		high_rated_players("F",2100);
 	}
 	
 	if($command=~/h$/i)
@@ -712,7 +712,7 @@ sub country_stats
 		$country_stats->{$country}->{AVGRDIFF}=
 			(($country_stats->{$country}->{AVGRM} ne 'N/A')&&($country_stats->{$country}->{AVGRF} ne 'N/A'))?sprintf "%.1f",$country_stats->{$country}->{AVGRM}-$country_stats->{$country}->{AVGRF}:'N/A';
 		
-		if($country_stats->{$country}->{RTOT}>100)
+		if(($country_stats->{$country}->{RF}>0)&&($country_stats->{$country}->{RM}>0))
 		{
 		
 			push(@filtered_countries,$_);

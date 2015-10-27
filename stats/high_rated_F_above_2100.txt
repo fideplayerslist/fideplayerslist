@@ -1,0 +1,1872 @@
+rank	name	country	gender	birthday	rating	age	title
+1.	Polgar, Judit 	HUN	F	1976	2675	39	GM
+2.	Hou, Yifan 	CHN	F	1994	2671	21	GM
+3.	Koneru, Humpy 	IND	F	1987	2578	28	GM
+4.	Polgar, Zsuzsa 	USA	F	1969	2577	46	GM
+5.	Xie, Jun 	CHN	F	1970	2574	45	GM
+6.	Dzagnidze, Nana 	GEO	F	1987	2573	28	GM
+7.	Muzychuk, Anna 	UKR	F	1990	2549	25	GM
+8.	Ju, Wenjun 	CHN	F	1991	2542	24	GM
+9.	Cmilyte, Viktorija 	LTU	F	1983	2534	32	GM
+10.	Gunina, Valentina 	RUS	F	1989	2529	26	GM
+11.	Muzychuk, Mariya 	UKR	F	1992	2528	23	GM
+12.	Kosteniuk, Alexandra 	RUS	F	1984	2525	31	GM
+13.	Zhao, Xue 	CHN	F	1985	2524	30	GM
+14.	Lagno, Kateryna 	RUS	F	1989	2523	26	GM
+15.	Harika, Dronavalli 	IND	F	1991	2516	24	GM
+16.	Cramling, Pia 	SWE	F	1963	2513	52	GM
+17.	Khotenashvili, Bela 	GEO	F	1988	2502	27	GM
+18.	Stefanova, Antoaneta 	BUL	F	1979	2500	36	GM
+19.	Chiburdanidze, Maia 	GEO	F	1961	2500	54	GM
+20.	Batsiashvili, Nino 	GEO	F	1987	2500	28	IM
+21.	Sebag, Marie 	FRA	F	1986	2496	29	GM
+22.	Tan, Zhongyi 	CHN	F	1991	2492	24	WGM
+23.	Ruan, Lufei 	CHN	F	1987	2491	28	WGM
+24.	Zhukova, Natalia 	UKR	F	1979	2485	36	GM
+25.	Wang, Lei 	CHN	F	1975	2484	40	WGM
+26.	Kosintseva, Nadezhda 	RUS	F	1985	2483	30	GM
+27.	Goryachkina, Aleksandra 	RUS	F	1998	2480	17	WGM
+28.	Zatonskih, Anna 	USA	F	1978	2475	37	IM
+29.	Kosintseva, Tatiana 	RUS	F	1986	2475	29	GM
+30.	Galliamova, Alisa 	RUS	F	1972	2475	43	IM
+31.	Ioseliani, Nana 	GEO	F	1962	2475	53	IM
+32.	Krush, Irina 	USA	F	1983	2475	32	GM
+33.	Danielian, Elina 	ARM	F	1978	2474	37	GM
+34.	Qin, Kanying 	CHN	F	1974	2466	41	WGM
+35.	Xu, Yuhua 	CHN	F	1976	2465	39	GM
+36.	Hoang, Thanh Trang 	HUN	F	1980	2464	35	GM
+37.	Girya, Olga 	RUS	F	1991	2464	24	WGM
+38.	Javakhishvili, Lela 	GEO	F	1984	2463	31	IM
+39.	Kovalevskaya, Ekaterina 	RUS	F	1974	2462	41	IM
+40.	Shen, Yang 	CHN	F	1989	2460	26	IM
+41.	Bodnaruk, Anastasia 	RUS	F	1992	2459	23	IM
+42.	Melia, Salome 	GEO	F	1987	2452	28	IM
+43.	Polgar, Sofia 	HUN	F	1974	2450	41	IM
+44.	Dembo, Yelena 	GRE	F	1983	2448	32	IM
+45.	Zawadzka, Jolanta 	POL	F	1987	2448	28	WGM
+46.	Korbut, Ekaterina 	RUS	F	1985	2448	30	IM
+47.	Munguntuul, Batkhuyag 	MGL	F	1987	2448	28	IM
+48.	Kashlinskaya, Alina 	RUS	F	1993	2448	22	IM
+49.	Paehtz, Elisabeth 	GER	F	1985	2447	30	IM
+50.	Pogonina, Natalija 	RUS	F	1985	2445	30	WGM
+51.	Mkrtchian, Lilit 	ARM	F	1982	2445	33	IM
+52.	Socko, Monika 	POL	F	1978	2443	37	GM
+53.	Moser, Eva 	AUT	F	1982	2442	33	IM
+54.	Skripchenko, Almira 	FRA	F	1976	2441	39	IM
+55.	Hunt, Harriet V 	ENG	F	1978	2439	37	IM
+56.	Huang, Qian 	CHN	F	1986	2438	29	WGM
+57.	Ding, Yixin 	CHN	F	1991	2435	24	WGM
+58.	Savina, Anastasia 	RUS	F	1992	2433	23	IM
+59.	Cori T., Deysi 	PER	F	1993	2431	22	WGM
+60.	Lei, Tingjie 	CHN	F	1997	2431	18	WGM
+61.	Guo, Qi 	CHN	F	1995	2427	20	IM
+62.	Khurtsidze, Nino 	GEO	F	1975	2426	40	IM
+63.	Ushenina, Anna 	UKR	F	1985	2426	30	GM
+64.	Nomin-Erdene, Davaademberel 	MGL	F	2000	2424	15	IM
+65.	Peptan, Corina-Isabela 	ROU	F	1978	2423	37	IM
+66.	Padmini, Rout 	IND	F	1994	2422	21	IM
+67.	Turova, Irina 	RUS	F	1979	2419	36	IM
+68.	Zhu, Chen 	QAT	F	1976	2418	39	GM
+69.	Alexandrova, Olga 	ESP	F	1978	2418	37	IM
+70.	Sukandar, Irine Kharisma 	INA	F	1992	2411	23	IM
+71.	Guseva, Marina 	RUS	F	1986	2411	29	IM
+72.	Karavade, Eesha 	IND	F	1987	2409	28	IM
+73.	Bojkovic, Natasa 	SRB	F	1971	2406	44	IM
+74.	Michna, Marta 	GER	F	1978	2406	37	WGM
+75.	Arabidze, Meri 	GEO	F	1994	2405	21	IM
+76.	Levitina, Irina S 	USA	F	1954	2405	61	WGM
+77.	Saduakassova, Dinara 	KAZ	F	1996	2402	19	WGM
+78.	Jackova, Jana 	CZE	F	1982	2402	33	IM
+79.	Ziaziulkina, Nastassia 	BLR	F	1995	2402	20	IM
+80.	Khademalsharieh, Sarasadat 	IRI	F	1997	2402	18	IM
+81.	Gaponenko, Inna 	UKR	F	1976	2401	39	IM
+82.	Ni, Shiqun 	CHN	F	1997	2399	18	WGM
+83.	Zhai, Mo 	CHN	F	1996	2397	19	WIM
+84.	Batchimeg, Tuvshintugs 	MGL	F	1986	2395	29	IM
+85.	Wang, Pin 	CHN	F	1974	2394	41	WGM
+86.	Zaiatz, Elena 	RUS	F	1969	2393	46	IM
+87.	Daulyte, Deimante 	LTU	F	1989	2392	26	IM
+88.	Vega Gutierrez, Sabrina 	ESP	F	1987	2391	28	IM
+89.	Szczepkowska-Horowska, Karina 	POL	F	1987	2390	28	WGM
+90.	Abdumalik, Zhansaya 	KAZ	F	2000	2390	15	WGM
+91.	Stockova, Zuzana 	SVK	F	1977	2389	38	IM
+92.	Zdebskaja, Natalia 	UKR	F	1986	2389	29	WGM
+93.	Rajlich, Iweta 	POL	F	1981	2389	34	IM
+94.	Ryjanova, Julia 	RUS	F	1974	2387	41	WGM
+95.	Maric, Alisa 	SRB	F	1970	2387	45	IM
+96.	Tania, Sachdev 	IND	F	1986	2385	29	IM
+97.	Haast, Anne 	NED	F	1993	2384	22	WGM
+98.	Videnova, Iva 	BUL	F	1987	2384	28	IM
+99.	Atalik, Ekaterina 	TUR	F	1982	2384	33	IM
+100.	Aulia, Medina Warda 	INA	F	1997	2383	18	WGM
+101.	Bulmaga, Irina 	ROU	F	1993	2381	22	IM
+102.	Vasilevich, Tatjana 	UKR	F	1977	2380	38	IM
+103.	Majdan-Gajewska, Joanna 	POL	F	1988	2378	27	WGM
+104.	Lujan, Carolina 	ARG	F	1985	2378	30	IM
+105.	Zimina, Olga 	ITA	F	1982	2378	33	IM
+106.	Zhang, Xiaowen 	CHN	F	1989	2377	26	WGM
+107.	Kovanova, Baira 	RUS	F	1987	2376	28	WGM
+108.	Peng, Zhaoqin 	NED	F	1968	2376	47	GM
+109.	Charochkina, Daria 	RUS	F	1990	2376	25	IM
+110.	Tsereteli, Tamar 	GEO	F	1985	2375	30	WGM
+111.	Matveeva, Svetlana 	RUS	F	1969	2375	46	IM
+112.	Houska, Jovanka 	ENG	F	1980	2372	35	IM
+113.	Li, Ruofan 	SIN	F	1978	2370	37	IM
+114.	Berend, Elvira 	LUX	F	1965	2370	50	WGM
+115.	Gara, Ticia 	HUN	F	1984	2370	31	WGM
+116.	Lomineishvili, Maia 	GEO	F	1977	2369	38	IM
+117.	L'Ami, Alina 	ROU	F	1985	2369	30	IM
+118.	Shvayger, Yuliya 	ISR	F	1994	2368	21	WIM
+119.	Guramishvili, Sopiko 	GEO	F	1991	2365	24	IM
+120.	Milliet, Sophie 	FRA	F	1983	2365	32	IM
+121.	Pustovoitova, Daria 	RUS	F	1994	2364	21	FM
+122.	Velikic, Adela 	SRB	F	1997	2363	18	
+123.	Schleining, Zoya 	GER	F	1961	2363	54	WGM
+124.	Arakhamia-Grant, Ketevan 	SCO	F	1968	2363	47	GM
+125.	Madl, Ildiko 	HUN	F	1969	2361	46	IM
+126.	Vijayalakshmi, Subbaraman 	IND	F	1979	2360	36	IM
+127.	Wang, Yu A. 	CHN	F	1982	2359	33	IM
+128.	Hejazipour, Mitra 	IRI	F	1993	2357	22	WGM
+129.	Ordaz Valdes, Lisandra Teresa 	CUB	F	1988	2357	27	WGM
+130.	Stojanovic, Andjelija 	SRB	F	1987	2357	28	WGM
+131.	Sudakova, Irina 	RUS	F	1982	2356	33	WGM
+132.	Derakhshani, Dorsa 	IRI	F	1998	2356	17	WIM
+133.	Theissl Pokorna, Regina 	AUT	F	1982	2355	33	WGM
+134.	Ciuksyte, Dagne 	ENG	F	1977	2354	38	IM
+135.	Matnadze, Ana 	ESP	F	1983	2353	32	IM
+136.	Kononenko, Tatiana 	UKR	F	1978	2353	37	IM
+137.	Zaitseva, Ludmila G. 	RUS	F	1956	2352	59	WGM
+138.	Vajda, Szidonia 	HUN	F	1979	2352	36	IM
+139.	Belenkaya, Dina 	RUS	F	1993	2352	22	WFM
+140.	Khukhashvili, Sopiko 	GEO	F	1985	2351	30	IM
+141.	Stepovaia, Tatiana 	RUS	F	1965	2351	50	WGM
+142.	Bivol, Alina 	RUS	F	1996	2350	19	WIM
+143.	Nutu-Gajic, Daniela 	AUS	F	1957	2350	58	WGM
+144.	Rakic, Marija 	SRB	F	1990	2349	25	WIM
+145.	Yildiz, Betul Cemre 	TUR	F	1989	2348	26	WGM
+146.	Wang, Jue 	CHN	F	1995	2348	20	WGM
+147.	Medvegy, Nora Dr. 	HUN	F	1977	2348	38	IM
+148.	Kachiani-Gersinska, Ketino 	GER	F	1971	2347	44	IM
+149.	Osmak, Iulija 	UKR	F	1998	2347	17	WFM
+150.	Purtseladze, Maka 	GEO	F	1988	2347	27	IM
+151.	Stock, Lara 	CRO	F	1992	2346	23	WGM
+152.	Foisor, Cristina-Adela 	ROU	F	1967	2346	48	IM
+153.	Schuurman, Petra 	NED	F	1968	2346	47	FM
+154.	Brustman, Agnieszka 	POL	F	1962	2344	53	WGM
+155.	Alexandria, Nana 	GEO	F	1949	2342	66	WGM
+156.	Mammadzada, Gunay 	AZE	F	2000	2342	15	WGM
+157.	Kalinina, Olga 	UKR	F	1989	2341	26	WGM
+158.	Soumya, Swaminathan 	IND	F	1989	2341	26	WGM
+159.	Paikidze, Nazi 	USA	F	1993	2340	22	IM
+160.	Pourkashiyan, Atousa 	IRI	F	1988	2338	27	WGM
+161.	Fierro Baquero, Martha L. 	ECU	F	1977	2338	38	IM
+162.	Vozovic, Oksana 	UKR	F	1985	2338	30	WGM
+163.	Malysheva, Polina 	RUS	F	1988	2336	27	WIM
+164.	Gritsayeva, Oksana 	RUS	F	1980	2336	35	WFM
+165.	Nemcova, Katerina 	USA	F	1990	2336	25	WGM
+166.	Grabics, Monika 	HUN	F	1976	2335	39	WGM
+167.	Zozulia, Anna 	BEL	F	1980	2335	35	IM
+168.	Guichard, Pauline 	FRA	F	1988	2335	27	WGM
+169.	Sergeyeva, Mariya 	KAZ	F	1983	2332	32	WGM
+170.	Havlikova, Kristyna 	CZE	F	1992	2330	23	WIM
+171.	Charkhalashvili, Inga 	GEO	F	1983	2329	32	WGM
+172.	Rudolf, Anna 	HUN	F	1987	2329	28	IM
+173.	Ovod, Evgenija 	RUS	F	1982	2328	33	IM
+174.	Zhou, Qiyu 	CAN	F	2000	2328	15	WIM
+175.	Hryhorenko, Nataliya 	UKR	F	1986	2327	29	WIM
+176.	Levushkina, Elena 	GER	F	1984	2326	31	WGM
+177.	Wang, Xuan 	CHN	F	1986	2326	29	
+178.	Litynska, Marta 	UKR	F	1949	2326	66	WGM
+179.	Shumiakina, Tatiana 	RUS	F	1965	2325	50	WGM
+180.	Sachs, Gulnara 	ENG	F	1963	2325	52	WIM
+181.	Struchkova, Svetlana 	UKR	F	1963	2325	52	WGM
+182.	Kulon, Klaudia 	POL	F	1992	2324	23	WGM
+183.	Kazimova, Narmin 	AZE	F	1993	2323	22	WGM
+184.	Grabuzova, Tatiana 	RUS	F	1967	2323	48	WGM
+185.	Shahade, Jennifer 	USA	F	1980	2322	35	WGM
+186.	Sedina, Elena 	ITA	F	1968	2322	47	IM
+187.	Xu, Yuanyuan 	CHN	F	1981	2322	34	WGM
+188.	Dworakowska, Joanna 	POL	F	1978	2322	37	IM
+189.	Zawadzka, Beata 	POL	F	1986	2320	29	WGM
+190.	Shadrina, Tatiana 	RUS	F	1974	2320	41	WGM
+191.	Kochetkova, Julia 	SVK	F	1981	2320	34	WGM
+192.	Abdulla, Khayala 	AZE	F	1993	2320	22	WGM
+193.	Karnaukhova, Elmira 	RUS	F	1985	2319	30	WGM
+194.	Pham, Le Thao Nguyen 	VIE	F	1987	2319	28	IM
+195.	Severina, Maria 	RUS	F	1995	2319	20	WIM
+196.	Worek, Joanna 	POL	F	1986	2318	29	WGM
+197.	Styazhkina, Anna 	RUS	F	1997	2318	18	WIM
+198.	Muminova, Nafisa 	UZB	F	1990	2318	25	WGM
+199.	Fuchs, Judith 	GER	F	1990	2317	25	WIM
+200.	Repkova, Eva 	SVK	F	1975	2317	40	IM
+201.	Gong, Qianyun 	SIN	F	1985	2317	30	WIM
+202.	Demina, Julia 	RUS	F	1969	2316	46	WGM
+203.	Voiska, Margarita 	BUL	F	1963	2316	52	WGM
+204.	Hojjatova, Aydan 	AZE	F	1999	2316	16	WFM
+205.	Gomes, Mary Ann 	IND	F	1989	2315	26	WGM
+206.	Tomilova, Elena 	RUS	F	1986	2315	29	WIM
+207.	Kostiuk, Tatiana 	UKR	F	1982	2315	33	WGM
+208.	Cosma, Elena-Luminita 	ROU	F	1972	2315	43	WGM
+209.	Blagojevic, Tijana 	MNE	F	1997	2315	18	WIM
+210.	Duisenova, Madina 	KAZ	F	1983	2315	32	WGM
+211.	Soloviova, Liza 	UKR	F	1993	2315	22	WGM
+212.	Mammadova, Gulnar 	AZE	F	1991	2314	24	WGM
+213.	Collas, Silvia 	FRA	F	1974	2314	41	IM
+214.	Vaishali R 	IND	F	2001	2314	14	WFM
+215.	Vasilkova, Svetlana 	RUS	F	1988	2314	27	WIM
+216.	Graf, Rena 	GER	F	1966	2314	49	WGM
+217.	Gvetadze, Sofio 	GEO	F	1983	2314	32	IM
+218.	Kadimova, Ilaha 	AZE	F	1975	2314	40	WGM
+219.	Botsari, Anna-Maria 	GRE	F	1972	2313	43	WGM
+220.	Darchia, Diana 	GEO	F	1977	2313	38	WGM
+221.	Sofieva, Ainur 	AZE	F	1970	2313	45	WGM
+222.	Amina, Battsooj 	MGL	F	2001	2313	14	
+223.	Gara, Anita 	HUN	F	1983	2312	32	IM
+224.	Akhsharumova, Anna M 	USA	F	1957	2310	58	WGM
+225.	Toma, Katarzyna 	POL	F	1985	2310	30	WGM
+226.	Kantane, Anna 	POL	F	1995	2310	20	WIM
+227.	Franciskovic, Borka 	CRO	F	1988	2309	27	WIM
+228.	Rodriguez Rueda, Paula Andrea 	COL	F	1996	2309	19	IM
+229.	Tsadzikidze, Natia 	GEO	F	1983	2308	32	WIM
+230.	Edzgveradze, Natalia 	GEO	F	1975	2307	40	WGM
+231.	Kursova, Maria 	ARM	F	1986	2307	29	WGM
+232.	Goletiani, Rusudan 	USA	F	1980	2306	35	IM
+233.	Janjghava, Natia 	GEO	F	1972	2306	43	WIM
+234.	Vasilevich, Irina 	RUS	F	1985	2305	30	IM
+235.	Prudnikova, Svetlana 	SRB	F	1967	2304	48	WGM
+236.	Krupkova, Petra 	CZE	F	1976	2303	39	WGM
+237.	Pina Vega, Sulennis 	CUB	F	1981	2302	34	WGM
+238.	Klink, Tamara 	GER	F	1967	2301	48	WGM
+239.	Ohme, Melanie 	GER	F	1990	2301	25	WGM
+240.	Arribas Robaina, Maritza 	CUB	F	1971	2300	44	WGM
+241.	De Jong-Muhren, Bianca 	NED	F	1986	2300	29	WGM
+242.	Klinova, Masha 	ISR	F	1968	2300	47	IM
+243.	Gaprindashvili, Nona 	GEO	F	1941	2299	74	GM
+244.	Borulya, Ekaterina Uriivna 	GER	F	1969	2299	46	WGM
+245.	Zigangirova, Sofya 	KAZ	F	1983	2299	32	WIM
+246.	Brunello, Marina 	ITA	F	1994	2298	21	FM
+247.	Galojan, Lilit 	ARM	F	1983	2298	32	IM
+248.	Dordzhieva, Dinara 	RUS	F	1999	2298	16	WIM
+249.	Nikolova, Adriana 	BUL	F	1988	2297	27	WGM
+250.	Azarova, Nadezhda 	BLR	F	1983	2296	32	WIM
+251.	Umudova, Nargiz 	AZE	F	1989	2296	26	WGM
+252.	Melamed, Tatjana 	GER	F	1974	2296	41	WGM
+253.	Khokhlova, Daria 	RUS	F	1999	2296	16	
+254.	Khomeriki, Nino 	GEO	F	1998	2295	17	WFM
+255.	Timofeeva, Ekaterina 	RUS	F	1989	2295	26	WIM
+256.	Gurieli, Nino 	GEO	F	1961	2295	54	IM
+257.	Vojinovic, Jovana 	SRB	F	1992	2295	23	WGM
+258.	Fataliyeva, Ulviyya 	AZE	F	1996	2294	19	WIM
+259.	Warakomska, Anna 	POL	F	1992	2292	23	WIM
+260.	Llaudy Pupo, Lisandra 	CUB	F	1988	2292	27	WIM
+261.	Tammert, Iamze 	GER	F	1971	2292	44	WIM
+262.	Olsarova, Tereza 	CZE	F	1991	2292	24	WGM
+263.	Osmanodja, Filiz 	GER	F	1996	2291	19	WIM
+264.	Abrahamyan, Tatev 	USA	F	1988	2291	27	WGM
+265.	Shved, Irina 	UKR	F	1970	2290	45	WIM
+266.	Schmidt, Jessica 	GER	F	1979	2290	36	WGM
+267.	Nakhbayeva, Guliskhan 	KAZ	F	1991	2290	24	WGM
+268.	Papp, Petra 	HUN	F	1993	2290	22	WGM
+269.	Raghavi, N. 	IND	F	1989	2290	26	WIM
+270.	Lopatskaya, Elena V. 	RUS	F	1976	2290	39	WIM
+271.	Keller-Hermann, Edith 	GER	F	1921	2290	94	WGM
+272.	Mikhaylova, Irina 	RUS	F	1963	2288	52	WGM
+273.	Ning, Chunhong 	CHN	F	1968	2288	47	WGM
+274.	Buksa, Nataliya 	UKR	F	1996	2287	19	WGM
+275.	Gu, Xiaobing 	CHN	F	1985	2286	30	WGM
+276.	Maisuradze, Nino 	FRA	F	1982	2286	33	WGM
+277.	Geldyeva, Mekhri 	TKM	F	1973	2285	42	WGM
+278.	Gu, Tianlu 	CHN	F	1997	2285	18	WIM
+279.	Chistiakova, Tamara 	RUS	F	1986	2285	29	WFM
+280.	Mashinskaya, Iulia 	RUS	F	1977	2285	38	IM
+281.	Gesser, Bella 	ISR	F	1985	2284	30	WGM
+282.	Amura, Claudia 	ARG	F	1970	2283	45	WGM
+283.	Sheremetieva, Marina 	MDA	F	1963	2283	52	WGM
+284.	Ubiennykh, Ekaterina 	RUS	F	1983	2283	32	WIM
+285.	Bykova, Anastasia 	RUS	F	1997	2283	18	WFM
+286.	Hoang, Thi Bao Tram 	VIE	F	1987	2283	28	WGM
+287.	Wagener, Anna 	LUX	F	1976	2282	39	WGM
+288.	Misanovic, Vesna 	BIH	F	1964	2282	51	WGM
+289.	Marrero Lopez, Yaniet 	CUB	F	1983	2281	32	WGM
+290.	Tqeshelashvili, Sopio 	GEO	F	1979	2281	36	WGM
+291.	Manakova, Maria 	SRB	F	1974	2281	41	WGM
+292.	Win Mon, Lwin 	MYA	F	1990	2281	25	
+293.	Manakov, Marina 	GER	F	1969	2280	46	WIM
+294.	Hernandez Moya, Yuleisy 	CUB	F	1992	2280	23	WIM
+295.	Korkina, Svetlana 	RUS	F	1971	2280	44	WIM
+296.	Sharevich, Anna 	USA	F	1985	2280	30	WGM
+297.	Klek, Hanna Marie 	GER	F	1995	2279	20	
+298.	Tsolakidou, Stavroula 	GRE	F	2000	2279	15	WIM
+299.	Stetsko, Lanita 	BLR	F	1993	2278	22	FM
+300.	Ivakhinova, Inna 	RUS	F	1989	2278	26	WGM
+301.	Goczo, Melinda 	HUN	F	1983	2278	32	WIM
+302.	Zhuravleva, Olga 	RUS	F	1984	2278	31	WIM
+303.	Trabert, Bettina 	GER	F	1969	2278	46	WGM
+304.	Rogule, Laura 	LAT	F	1988	2277	27	WGM
+305.	Lakos, Nikoletta 	HUN	F	1978	2277	37	WGM
+306.	Lanchava, Tea 	NED	F	1974	2276	41	IM
+307.	Burtasova, Anna 	RUS	F	1987	2276	28	WGM
+308.	Schepetkova, Margarita 	RUS	F	1988	2275	27	WIM
+309.	Borzenkova, Irina 	UKR	F	1976	2275	39	
+310.	Gershnik, Anna 	USA	F	1975	2275	40	WGM
+311.	Komiagina, Maria 	RUS	F	1984	2274	31	WIM
+312.	Schoene, Maria 	GER	F	1987	2274	28	WIM
+313.	Congiu, Mathilde 	FRA	F	1989	2274	26	WIM
+314.	Iljushina, Olga 	RUS	F	1981	2273	34	WGM
+315.	Lu, Xiaosha 	CHN	F	1973	2273	42	WIM
+316.	Calotescu, Ana-Cristina 	ROU	F	1983	2272	32	WGM
+317.	Bronnikova, Elizaveta 	RUS	F	1985	2272	30	WIM
+318.	Bartel, Marta 	POL	F	1988	2271	27	WGM
+319.	Dorofeeva, Anna 	RUS	F	1979	2271	36	WIM
+320.	Kozhakina, Alena V. 	RUS	F	1992	2271	23	WFM
+321.	Murashova, Ekaterina 	RUS	F	1987	2271	28	WIM
+322.	Chelushkina, Irina 	SRB	F	1961	2271	54	WGM
+323.	Kucherova, Lija 	RUS	F	1986	2271	29	WGM
+324.	Gevorgyan, Irina 	UZB	F	1990	2270	25	WIM
+325.	Hoang, Thi Nhu Y 	VIE	F	1993	2270	22	WIM
+326.	Navrotescu, Andreea-Cristiana 	FRA	F	1996	2270	19	WFM
+327.	Juergens, Vera 	GER	F	1969	2270	46	WGM
+328.	Pares Vives, Natalia 	ESP	F	1955	2270	60	FM
+329.	Cibickova, Zuzana 	SVK	F	1988	2270	27	WGM
+330.	Vaganian, Irina 	ARM	F	1963	2269	52	WIM
+331.	Balaian, Alina 	RUS	F	1992	2269	23	WIM
+332.	Mamedjarova, Zeinab 	AZE	F	1983	2269	32	WGM
+333.	Dauletova, Gulmira 	KAZ	F	1988	2269	27	WIM
+334.	Khlichkova, Tatiana 	RUS	F	1994	2268	21	WFM
+335.	Novikova, Anna 	RUS	F	1985	2268	30	WIM
+336.	Rohonyan, Katerina 	USA	F	1984	2267	31	WGM
+337.	Meier, Annemarie 	GER	F	1957	2267	58	
+338.	Babayeva, Fanara 	AZE	F	1972	2267	43	WFM
+339.	Fominykh, Maria 	RUS	F	1987	2267	28	WIM
+340.	Linares Napoles, Oleiny 	CUB	F	1983	2266	32	WGM
+341.	Mueller-Seps, Monika 	SUI	F	1986	2266	29	WGM
+342.	Tsatsalashvili, Keti 	GEO	F	1992	2266	23	WGM
+343.	Chumpitaz, Ann 	PER	F	1994	2265	21	WIM
+344.	Klovane, Astra 	LAT	F	1944	2265	71	
+345.	Boytsun, Olena 	UKR	F	1983	2264	32	WIM
+346.	Arutyunova, Diana 	UKR	F	1988	2264	27	WGM
+347.	Voicu-Jagodzinsky, Carmen 	ROU	F	1981	2264	34	WGM
+348.	Chirivi C, Jenny Astrid 	COL	F	1990	2264	25	WIM
+349.	Robles Garcia, Claudia 	ESP	F	1990	2263	25	WIM
+350.	Maric, Mirjana 	SRB	F	1970	2263	45	WGM
+351.	Cheremnova, Tamara 	RUS	F	1989	2263	26	WIM
+352.	Roschina, Tatiana 	RUS	F	1976	2262	39	WGM
+353.	Loktionova, Natalia 	RUS	F	1974	2262	41	WIM
+354.	Ambartsumova, Karina 	RUS	F	1989	2262	26	WGM
+355.	Schut, Lisa 	NED	F	1994	2262	21	WIM
+356.	Sziva, Erika 	NED	F	1967	2262	48	WGM
+357.	Mirzoeva, Elmira 	RUS	F	1981	2262	34	WGM
+358.	Grigoryeva, Natalya 	RUS	F	1982	2262	33	
+359.	Kryukova, Irina 	RUS	F	1968	2261	47	WGM
+360.	Lelekova, Olga 	RUS	F	1987	2261	28	WIM
+361.	Raeva, Elitsa 	BUL	F	1987	2261	28	WIM
+362.	Lalic, Susan K 	ENG	F	1965	2260	50	IM
+363.	Porat, Maya 	ISR	F	1991	2260	24	WIM
+364.	Kostyuk, Tatiana 	RUS	F	1979	2260	36	
+365.	Rubzova, Tatiana 	RUS	F	1962	2260	53	WGM
+366.	Ivanka, Maria 	HUN	F	1950	2260	65	WGM
+367.	Paramzina, Anastasya 	RUS	F	1998	2260	17	WFM
+368.	Kuleshova, Nadezhda N 	RUS	F	1985	2260	30	
+369.	Kurbonboeva, Sarvinoz 	UZB	F	1994	2260	21	WIM
+370.	Lidonova, Gulnara 	RUS	F	1973	2260	42	WFM
+371.	Ibragimova, Lilia 	RUS	F	1966	2260	49	
+372.	Karavaeva, Olga 	RUS	F	1977	2260	38	WIM
+373.	Meshcheriakova, Evgenia 	RUS	F	1985	2259	30	WGM
+374.	Miranda Llanes, Yerisbel 	CUB	F	1987	2259	28	WIM
+375.	Collazo Hidalgo-Gato, Niala 	ESP	F	1983	2259	32	WIM
+376.	Bayer, Dorota 	POL	F	1980	2259	35	WIM
+377.	Krivec, Jana 	SLO	F	1980	2259	35	WGM
+378.	Pitam, Ella 	ISR	F	1977	2259	38	WGM
+379.	Aranaz Murillo, Amalia 	ESP	F	1995	2259	20	WIM
+380.	Ivana Maria, Furtado 	IND	F	1999	2259	16	WIM
+381.	Safranska, Anda 	FRA	F	1960	2259	55	WGM
+382.	Ratcu, Tatiana 	BRA	F	1979	2259	36	WIM
+383.	An, Yangfeng 	CHN	F	1963	2259	52	WIM
+384.	Foisor, Sabina-Francesca 	USA	F	1989	2258	26	WGM
+385.	Shulepina, Kristina 	RUS	F	1987	2258	28	WIM
+386.	Drogovoz, Irina 	RUS	F	1999	2258	16	
+387.	Malina, Diana 	RUS	F	1977	2257	38	WFM
+388.	Tantsiura, Maria 	UKR	F	1996	2257	19	WIM
+389.	Kulkarni Bhakti 	IND	F	1992	2257	23	CM
+390.	Davletbayeva, Madina 	KAZ	F	1989	2257	26	WIM
+391.	Markovic, Gordana 	SRB	F	1951	2257	64	WIM
+392.	Felkai, Agnes 	HUN	F	1974	2257	41	
+393.	Popova, Natalija 	BLR	F	1976	2257	39	WIM
+394.	Olarasu, Gabriela 	ROU	F	1964	2256	51	WGM
+395.	Delgado Crespo, Mairelys 	ESP	F	1974	2256	41	WGM
+396.	Schneider, Veronika 	HUN	F	1987	2256	28	WGM
+397.	Corke, Anya S 	ENG	F	1990	2255	25	WGM
+398.	Kalinina, Vladislava 	UKR	F	1980	2255	35	WIM
+399.	Efroimski, Marsel 	ISR	F	1995	2255	20	WIM
+400.	Mohota, Nisha 	IND	F	1980	2255	35	IM
+401.	Dimitrijevic, Aleksandra 	BIH	F	1986	2254	29	WGM
+402.	Ruchieva, Natalia 	UKR	F	1960	2254	55	WGM
+403.	Le, Thanh Tu 	VIE	F	1985	2254	30	WGM
+404.	Delemarre, Isabel 	GER	F	1978	2254	37	WIM
+405.	Heinemann, Josefine 	GER	F	1998	2253	17	
+406.	Agrest, Svetlana 	SWE	F	1966	2253	49	WIM
+407.	Veroci, Zsuzsa 	HUN	F	1949	2253	66	WGM
+408.	Romanova, Inna 	BLR	F	1975	2253	40	WGM
+409.	Xiao, Yue 	CHN	F	1987	2252	28	
+410.	Gao, Zhiqian 	CHN	F	1973	2252	42	
+411.	Havanecz, Bianka 	HUN	F	1994	2252	21	WIM
+412.	Calzetta Ruiz, Monica 	ESP	F	1972	2252	43	WGM
+413.	Makarenko, Alexandra 	RUS	F	1996	2252	19	WFM
+414.	Andreieva, Olga A 	UKR	F	1937	2250	78	WIM
+415.	Paridar, Shadi 	IRI	F	1986	2250	29	WGM
+416.	Zhang, Jilin 	CHN	F	1986	2250	29	WGM
+417.	Sheldon, Ruth 	ENG	F	1980	2250	35	WIM
+418.	Needham, Teresa 	ENG	F	1965	2250	50	WIM
+419.	Savereide, Diane 	USA	F	1954	2250	61	WIM
+420.	Puljek-Salai, Zorica 	CRO	F	1965	2250	50	WIM
+421.	Nguyen, Thi Mai Hung 	VIE	F	1994	2249	21	WGM
+422.	Goncharova, Natalia Olegovna 	RUS	F	1961	2249	54	WFM
+423.	Petrova, Irina 	UKR	F	1993	2249	22	WIM
+424.	Ovchinnikova, Julia 	RUS	F	1965	2249	50	WIM
+425.	Kozlovskaya, Valentina 	RUS	F	1938	2249	77	WGM
+426.	Baciu, Diana 	MDA	F	1994	2249	21	WIM
+427.	Ozturk, Kubra 	TUR	F	1991	2249	24	WGM
+428.	Liu, Shilan 	CHN	F	1962	2249	53	WGM
+429.	Avramidou, Anastasia 	GRE	F	2000	2249	15	WFM
+430.	Djingarova, Emilia 	BUL	F	1978	2248	37	WGM
+431.	Belic, Jordanka 	SRB	F	1964	2248	51	WGM
+432.	Agrest, Inna 	SWE	F	1991	2248	24	WIM
+433.	Pratyusha, Bodda 	IND	F	1997	2248	18	WIM
+434.	Kazarian, Anna-Maja 	NED	F	2000	2248	15	WFM
+435.	Andrenko, Irina 	UKR	F	1991	2248	24	WIM
+436.	Kuharenko, Svetlana 	UKR	F	1984	2247	31	WIM
+437.	Dolzhykova, Kateryna 	UKR	F	1988	2247	27	WIM
+438.	Gansvind, Valeriya I. 	EST	F	1965	2247	50	WFM
+439.	Zhou, Guijue 	CHN	F	1985	2247	30	WIM
+440.	Chekhova-Kostina, Tatiana M 	RUS	F	1955	2246	60	WIM
+441.	Sandu, Mihaela 	ROU	F	1977	2246	38	WGM
+442.	Molchanova, Tatjana 	RUS	F	1980	2245	35	WGM
+443.	Alliulova, Dina 	RUS	F	1986	2245	29	
+444.	Golubenko, Valentina 	CRO	F	1990	2245	25	WGM
+445.	Vigoa Apecheche, Yanira 	CUB	F	1987	2245	28	WGM
+446.	Druzhinina, Olga 	RUS	F	1984	2245	31	
+447.	Mamedjarova, Turkan 	AZE	F	1989	2245	26	WGM
+448.	Rakhmangulova, Anastasiya 	UKR	F	1994	2245	21	WIM
+449.	Mikadze, Miranda 	GEO	F	1989	2245	26	WIM
+450.	Khasanova, Flyura 	KAZ	F	1964	2245	51	WGM
+451.	Guo, Jun 	CHN	F	1973	2244	42	WFM
+452.	Unuk, Laura 	SLO	F	1999	2244	16	WIM
+453.	Brcic, Milena 	SRB	F	1972	2244	43	
+454.	Szente Varga, Fruzsina 	HUN	F	1996	2244	19	
+455.	Matras-Clement, Agnieszka 	POL	F	1982	2244	33	WIM
+456.	Minogina, Tamara 	RUS	F	1959	2244	56	WIM
+457.	Vinuthna, N. 	IND	F	1987	2243	28	WIM
+458.	Hoolt, Sarah 	GER	F	1988	2242	27	WGM
+459.	Fatalibekova, Elena 	RUS	F	1947	2242	68	WGM
+460.	Michelle Catherina, P 	IND	F	1996	2242	19	WIM
+461.	Drozdova, Dina 	RUS	F	1988	2241	27	WIM
+462.	Na, Linna 	CHN	F	1987	2241	28	
+463.	Diakonova, Ekaterina 	RUS	F	1999	2241	16	
+464.	Erenska-Barlo, Hanna 	POL	F	1946	2241	69	WGM
+465.	Kamenskaja, Olga 	RUS	F	1971	2241	44	WFM
+466.	Li, Lu 	CHN	F	1981	2240	34	
+467.	Moskalyuk, Natalya 	RUS	F	1979	2240	36	WFM
+468.	Neroda, Alexandra 	RUS	F	1978	2240	37	WIM
+469.	Velikhanli, Firuza 	AZE	F	1970	2240	45	WGM
+470.	Foisor, Mihaela-Veronica 	ROU	F	1994	2240	21	WIM
+471.	Sheredina, Anna 	RUS	F	1976	2240	39	
+472.	Nicolas Zapata, Irene 	ESP	F	1997	2239	18	WIM
+473.	Danelia, Mariam 	GEO	F	1994	2239	21	WIM
+474.	Nguyen, Thi Thanh An 	VIE	F	1976	2239	39	WGM
+475.	Sarana-Hungeling, Oksana 	GER	F	1979	2238	36	WGM
+476.	Fatianova, Tatiana 	RUS	F	1984	2238	31	WGM
+477.	Duppel, Tina 	GER	F	1984	2238	31	WIM
+478.	Medic, Mirjana 	CRO	F	1964	2238	51	WGM
+479.	Naiditsch, Irina 	GER	F	1986	2237	29	
+480.	Paasikangas-Tella, Johanna 	FIN	F	1974	2237	41	FM
+481.	Li, Nan 	CHN	F	1987	2237	28	
+482.	Liu, Pei 	CHN	F	1988	2237	27	WIM
+483.	Frisk, Ellinor 	SWE	F	1986	2237	29	WIM
+484.	Kiss, Fernanda 	HUN	F	1979	2237	36	WIM
+485.	Uuriintuya, Uurtsaikh 	MGL	F	1998	2237	17	
+486.	Krupa, Monika 	POL	F	1977	2237	38	WGM
+487.	Hrabinska, Myroslava 	UKR	F	1984	2236	31	WGM
+488.	Dimitrova, Aleksandra 	RUS	F	2000	2235	15	WFM
+489.	Heintze, Marion 	GER	F	1954	2235	61	WIM
+490.	Chernova, Anastasia 	RUS	F	1989	2235	26	
+491.	Benderac, Ana 	SRB	F	1977	2235	38	WGM
+492.	Hahn, Anna 	USA	F	1976	2235	39	WIM
+493.	Srebrnic, Ana 	SLO	F	1984	2234	31	WGM
+494.	Moldovan, Corina 	ROU	F	1983	2234	32	WIM
+495.	Dolgova, Olga 	LAT	F	1987	2233	28	WIM
+496.	Kristol, Luba 	ISR	F	1944	2233	71	WIM
+497.	Bollengier, Andreea 	FRA	F	1975	2233	40	WIM
+498.	Kalaiyalahan, Akshaya 	ENG	F	2001	2233	14	
+499.	Zakurdjaeva, Irina 	RUS	F	1982	2232	33	WGM
+500.	Cherednichenko, Svetlana 	UKR	F	1984	2232	31	WGM
+501.	Ilchenko, Nadezhda 	RUS	F	1986	2232	29	WIM
+502.	Rause, Olita 	LAT	F	1962	2232	53	IM
+503.	Feliciano Ebert, Vanessa 	BRA	F	1990	2232	25	WIM
+504.	Akhmetshina, Alina 	RUS	F	1984	2232	31	WFM
+505.	Benmesbah, Natacha 	FRA	F	1989	2232	26	WIM
+506.	Terao, Juliana Sayumi 	BRA	F	1991	2232	24	WIM
+507.	Vlasova, Nataliya 	RUS	F	1980	2231	35	WIM
+508.	Rakitskaja, Mariya 	RUS	F	1972	2231	43	
+509.	Kopinits, Anna-Christina 	AUT	F	1985	2231	30	WIM
+510.	Tu, Haiqiong 	CHN	F	1975	2231	40	
+511.	Ibrahimova, Sabina 	AZE	F	1995	2231	20	WIM
+512.	Maslikova, Veronika 	SVK	F	1986	2231	29	WIM
+513.	Rivera, Ingris 	COL	F	1988	2231	27	WIM
+514.	Zuriel, Marisa 	ARG	F	1982	2231	33	WIM
+515.	Swati Ghate 	IND	F	1980	2230	35	WGM
+516.	Battsetseg, Tsagaan 	USA	F	1972	2230	43	WIM
+517.	Batceceg, Tuvshintogs 	MGL	F	1978	2230	37	WIM
+518.	Khusnutdinova, Luiza 	RUS	F	1983	2230	32	WIM
+519.	Lagvilava, Genrieta 	BLR	F	1969	2230	46	WGM
+520.	Camacho, Chardine Cheradee 	PHI	F	1994	2230	21	WIM
+521.	Dekusar, Maria 	UKR	F	1972	2230	43	WIM
+522.	Kirillova, Varvara 	RUS	F	1987	2229	28	WIM
+523.	Bayarmaa, Bayarjargal 	MGL	F	1995	2229	20	WFM
+524.	Ershova, Svetlana 	RUS	F	1964	2229	51	WIM
+525.	Kharashkina, Bairta 	RUS	F	1982	2229	33	WFM
+526.	Velazquez Garcia, Maria 	ECU	F	1984	2229	31	WFM
+527.	Gromova, Iulia 	RUS	F	1985	2229	30	WIM
+528.	Lomako, Anna 	RUS	F	1987	2229	28	WFM
+529.	Samusenko, Ramziya 	RUS	F	1959	2228	56	WFM
+530.	Ptacnikova, Lenka 	ISL	F	1976	2228	39	WGM
+531.	Sikorova, Olga 	CZE	F	1975	2228	40	WGM
+532.	Bensdorp-De Labaca, Marlies 	NED	F	1985	2228	30	WIM
+533.	Dabrowska, Krystyna 	POL	F	1973	2228	42	WGM
+534.	Strutinskaia, Galina 	RUS	F	1957	2227	58	WGM
+535.	Rudolph, Anna 	GER	F	1978	2227	37	WIM
+536.	Svistun, Olga 	RUS	F	1977	2227	38	WIM
+537.	Knyaginicheva, Irina 	RUS	F	1985	2227	30	WFM
+538.	Malgina, Tatiana 	RUS	F	1984	2227	31	WIM
+539.	Zsiltzova-Lisenko, Lubov 	UKR	F	1956	2227	59	WIM
+540.	Suslova, Alena 	RUS	F	1993	2227	22	WFM
+541.	Tarasova, Viktoriya 	RUS	F	1989	2226	26	WIM
+542.	Tomashevskaya, Lidia 	RUS	F	1995	2226	20	WIM
+543.	Kostiukova, Liubov 	UKR	F	1983	2226	32	IM
+544.	Petronic, Sanja 	SIN	F	1969	2226	46	WIM
+545.	Norina, Viktoria 	RUS	F	1967	2226	48	WFM
+546.	Bertholee, Mariska 	NED	F	1979	2226	36	WFM
+547.	Khurshudova, Lyudmila 	RUS	F	1946	2226	69	WIM
+548.	Saulina, Varvara 	RUS	F	1992	2226	23	WFM
+549.	Lymar, Irina 	UKR	F	1974	2225	41	WGM
+550.	Garcia Padron, M Del Pino 	ESP	F	1961	2225	54	
+551.	Sulistya, Maria Lucia Ratna 	INA	F	1975	2225	40	WIM
+552.	Khorovets-Aiedinova, Elmira 	BLR	F	1963	2225	52	WFM
+553.	Ionescu, Irina 	ROU	F	1973	2225	42	WGM
+554.	Fischdick, Gisela 	GER	F	1955	2225	60	WGM
+555.	Davidova, Elena 	RUS	F	1970	2225	45	WFM
+556.	Sihite, Chelsie Monica Ignesias 	INA	F	1995	2224	20	WIM
+557.	Mammadova, Narmin 	AZE	F	1999	2224	16	WCM
+558.	Jaracz, Barbara 	POL	F	1977	2224	38	WGM
+559.	Makarova, Natalia 	RUS	F	1982	2224	33	
+560.	Lickrastina, Agnese 	LAT	F	1972	2223	43	WIM
+561.	Sgircea, Silvia-Raluca 	ROU	F	1989	2223	26	WIM
+562.	Savushkina, Natalia 	RUS	F	1980	2223	35	WFM
+563.	Butuc, Maria 	RUS	F	1993	2223	22	WIM
+564.	Franco Valencia, Angela 	COL	F	1987	2223	28	WIM
+565.	Wang, Fang 	CHN	F	1989	2223	26	
+566.	Kryvoruchko, Vita 	UKR	F	1988	2222	27	WGM
+567.	Mukhortova, Elena 	RUS	F	1982	2222	33	
+568.	Imnadze, Nato 	GEO	F	1996	2222	19	WIM
+569.	Kubata, Viktoria 	UKR	F	1979	2222	36	WIM
+570.	Steinberg, Jana 	RUS	F	1972	2222	43	WFM
+571.	Skinke, Katrina 	LAT	F	1991	2222	24	WIM
+572.	Alexandrova, Varvara 	RUS	F	1985	2222	30	WFM
+573.	Ivanenko, Olga I. 	UKR	F	1994	2221	21	WFM
+574.	Grinfeld, Alla B 	USA	F	1953	2221	62	WGM
+575.	Velcheva, Maria 	BUL	F	1976	2221	39	WGM
+576.	Yu, Jennifer R 	USA	F	2002	2220	13	WFM
+577.	Mona, Khaled 	EGY	F	1994	2220	21	WGM
+578.	Levitan, Yuliya 	USA	F	1973	2220	42	WIM
+579.	Szymanska, Maria 	POL	F	1984	2220	31	WIM
+580.	Alekhina, Natalia V 	RUS	F	1954	2220	61	WGM
+581.	Lysova, Olga 	RUS	F	1980	2220	35	WIM
+582.	Gutsko, Anastasia 	UKR	F	1985	2219	30	WGM
+583.	Kornilova, Ekaterina 	RUS	F	1985	2219	30	WFM
+584.	Bilenko, Larisa 	RUS	F	1955	2219	60	
+585.	Novosadova, Kristyna 	CZE	F	1990	2218	25	
+586.	Martinez, Ayelen 	ARG	F	1993	2218	22	WIM
+587.	Botvinnik, Irina 	ISR	F	1961	2218	54	WFM
+588.	Straub, Natalia 	GER	F	1978	2218	37	WGM
+589.	Papadopoulou, Vera 	GRE	F	1986	2218	29	WIM
+590.	Timurova, Lilia 	RUS	F	1981	2218	34	WIM
+591.	Foudzi, Siti Zulaikha 	MAS	F	1988	2218	27	WIM
+592.	Olsarova, Karolina 	CZE	F	1993	2218	22	WIM
+593.	Saritha, M. Reddy 	IND	F	1972	2218	43	WIM
+594.	Zhao, Dindin 	CHN	F	1984	2217	31	
+595.	Vasiliev, Olga 	ISR	F	1987	2217	28	WIM
+596.	Xiao, Yiyi 	CHN	F	1996	2217	19	WFM
+597.	Richtrova, Eliska 	CZE	F	1959	2217	56	WGM
+598.	Monica, Putri Wigustira 	INA	F	1997	2217	18	WFM
+599.	Koneru, Chandra Hawsa 	IND	F	1988	2217	27	
+600.	Leconte, Maria 	FRA	F	1970	2217	45	WGM
+601.	Borsuk, Angela 	ISR	F	1967	2216	48	IM
+602.	Ankudinova, Yelena 	KAZ	F	1962	2216	53	WGM
+603.	Doroshenko, Diana 	RUS	F	1992	2216	23	WIM
+604.	Doluhanova, Evgeniya 	UKR	F	1984	2216	31	WGM
+605.	Ni, Viktorija 	USA	F	1991	2216	24	WIM
+606.	Belakovskaia, Anjelina 	USA	F	1969	2216	46	WGM
+607.	Fomichenko, Svetlana 	RUS	F	1976	2215	39	WGM
+608.	Khadilkar, Rohini 	IND	F	1963	2215	52	WIM
+609.	Nedeljkovic, Verica 	SRB	F	1929	2215	86	WGM
+610.	Vo, Hong Phuong 	VIE	F	1979	2215	36	WFM
+611.	Le, Kieu Thien Kim 	VIE	F	1981	2215	34	WIM
+612.	Zamanova, Natalija 	RUS	F	1968	2215	47	
+613.	Blimke-Deren, Dalia 	POL	F	1979	2214	36	WIM
+614.	Melnikova, Yana 	RUS	F	1984	2214	31	WGM
+615.	Zenyuk, Iryna 	USA	F	1986	2214	29	CM
+616.	Sirotkina, Nina 	RUS	F	1964	2214	51	WIM
+617.	Smirnova, Elena I. 	RUS	F	1956	2214	59	
+618.	Fernandez, Maria Florencia 	ARG	F	1991	2214	24	WIM
+619.	Tetenkina, Irina 	SWE	F	1978	2214	37	WIM
+620.	Kiseleva, Simona 	LTU	F	1987	2214	28	WIM
+621.	Sarquis, Maria Belen 	ARG	F	1988	2214	27	WIM
+622.	Travkina, Anastasia 	RUS	F	1992	2213	23	WFM
+623.	Kuang, Yinghui 	CHN	F	1979	2213	36	WIM
+624.	Matveeva, Olga 	RUS	F	1992	2213	23	WIM
+625.	Hoiberg, Nina 	DEN	F	1956	2213	59	WIM
+626.	Sluzhbina, Anastasiya 	UKR	F	1987	2213	28	WIM
+627.	Shou, Qin 	CHN	F	1989	2213	26	
+628.	Cedikova, Katerina 	CZE	F	1981	2212	34	WIM
+629.	Ostertag, Galina 	RUS	F	1984	2212	31	
+630.	Reizniece-Ozola, Dana 	LAT	F	1981	2212	34	WGM
+631.	Rodionova, Daria 	RUS	F	1998	2212	17	WFM
+632.	Efimova, Olga A. 	RUS	F	1985	2212	30	WFM
+633.	Gevorgyan, Maria 	ARM	F	1994	2211	21	WIM
+634.	Gorti, Akshita 	USA	F	2002	2211	13	FM
+635.	Wozniak, Mariola 	POL	F	1998	2211	17	WCM
+636.	Pavlidou, Ekaterini 	GRE	F	1993	2211	22	WIM
+637.	Zvereva, Marija 	RUS	F	1978	2211	37	WIM
+638.	Areshchenko, Kateryna 	UKR	F	1985	2211	30	WGM
+639.	Gagloshvili, Raissa 	RUS	F	1964	2210	51	WIM
+640.	Orlova, Elena O. 	RUS	F	1985	2210	30	
+641.	Starck, Ines 	GER	F	1963	2210	52	WFM
+642.	Heinatz, Dr. Gundula 	SUI	F	1969	2210	46	WIM
+643.	Zhang, Ying 	CHN	F	1988	2210	27	
+644.	Shukurova, Mehriban 	AZE	F	1984	2210	31	WIM
+645.	Sorokina, Natalia 	RUS	F	1969	2210	46	
+646.	Shumilina, Alexandra 	RUS	F	1986	2210	29	WIM
+647.	Laesson, Tuulikki 	EST	F	1969	2210	46	WIM
+648.	Zhurina, Elizaveta 	RUS	F	1978	2209	37	WIM
+649.	Semenova, Lidia K 	UKR	F	1951	2209	64	WGM
+650.	Turauskiene, Renata 	LTU	F	1969	2209	46	WIM
+651.	Enkhtuul, Altan-Ulzii 	MGL	F	1994	2209	21	WGM
+652.	Kiefhaber, Veronika 	GER	F	1976	2209	39	WIM
+653.	Hamdouchi, Adina-Maria 	FRA	F	1979	2209	36	WGM
+654.	Unruh, Sidonia 	GER	F	1977	2209	38	
+655.	Lin, Wen 	CHN	F	1987	2209	28	
+656.	Berdychevskaya, Natasha 	RUS	F	1984	2208	31	WFM
+657.	Khurtsilava, Inga 	GEO	F	1975	2208	40	WGM
+658.	Moshina, Cristina 	MDA	F	1982	2208	33	WIM
+659.	Azizova, Shafag 	AZE	F	1973	2207	42	WFM
+660.	Hernandez Estevez, Yudania 	ESP	F	1973	2207	42	WIM
+661.	Nebolsina, Vera 	RUS	F	1989	2207	26	WGM
+662.	Suleimanova, Ava 	UKR	F	1982	2207	33	WGM
+663.	Aginian, Nelly 	ARM	F	1981	2207	34	WGM
+664.	Eswaran, Ashritha 	USA	F	2000	2207	15	WIM
+665.	Greabca, Diana 	MDA	F	1983	2207	32	WIM
+666.	Ibragimova, Asyl 	RUS	F	1971	2207	44	WFM
+667.	Berzina, Ilze 	LAT	F	1984	2207	31	WGM
+668.	Baklanova, Tatiana 	UKR	F	1972	2207	43	WIM
+669.	Juncu, Margareta 	ROU	F	1950	2206	65	WGM
+670.	Kludacz, Magdalena 	POL	F	1976	2206	39	WIM
+671.	Xiong, Junyan 	CHN	F	1979	2206	36	
+672.	Liitiainen, Elia 	FIN	F	1984	2206	31	
+673.	Shapoval, Galina 	UKR	F	1986	2206	29	WIM
+674.	Andriasian, Siranush 	ARM	F	1986	2206	29	WIM
+675.	Baraeva, Irina 	RUS	F	1995	2206	20	WIM
+676.	Wiese-Jozwiak, Malgorzata 	POL	F	1961	2205	54	WIM
+677.	Sladkova, Tatiana 	RUS	F	1983	2205	32	
+678.	Saric, Kristina 	CRO	F	1986	2205	29	WIM
+679.	Polnarieva, Larisa 	RUS	F	1958	2205	57	WIM
+680.	Selionova, Natalia 	RUS	F	1975	2205	40	
+681.	Xiao, Hong 	CHN	F	1967	2205	48	
+682.	Stroe, Madalina 	FRA	F	1968	2205	47	WIM
+683.	Liang, Zhihua 	CHN	F	1970	2205	45	WIM
+684.	Yuan, Yuanling 	CAN	F	1994	2205	21	WIM
+685.	Fedorova, Olga 	RUS	F	1967	2205	48	
+686.	Roos, Kseniya 	GER	F	1984	2205	31	WIM
+687.	Son, Irina 	UKR	F	1962	2204	53	WFM
+688.	Koskela, Niina 	NOR	F	1971	2204	44	WGM
+689.	Pham, Bich Ngoc 	VIE	F	1990	2204	25	WIM
+690.	Genova, Lyubka 	BUL	F	1983	2204	32	WIM
+691.	Su, Yamin 	CHN	F	1974	2204	41	WFM
+692.	Mishina, Olga 	RUS	F	1985	2204	30	WFM
+693.	Ignacz, Maria 	HUN	F	1990	2204	25	WIM
+694.	Vasiesiu, Cristina-Valeria 	ROU	F	1976	2204	39	WIM
+695.	Frayna, Janelle Mae 	PHI	F	1997	2204	18	WIM
+696.	Karlovich, Anastazia 	UKR	F	1982	2204	33	WGM
+697.	Bogatyriova, Lidia 	UKR	F	1983	2204	32	
+698.	Sanchez Castillo, Sarai Carolina 	VEN	F	1981	2203	34	IM
+699.	Llaneza Vega, Patricia 	ESP	F	1979	2203	36	WIM
+700.	Fojudzka, Anna 	POL	F	1980	2203	35	WIM
+701.	Narva, Mai 	EST	F	1999	2203	16	WIM
+702.	Zayas Gonzalez, Laura Amalia 	CUB	F	1998	2202	17	WFM
+703.	Gubernatorova, Lyudmila 	RUS	F	1967	2202	48	
+704.	Xia, Yiyun 	CHN	F	1987	2202	28	
+705.	Stiri, Alexandra 	GRE	F	1984	2202	31	WIM
+706.	Hallaeva, Bahar 	TKM	F	1988	2202	27	WFM
+707.	Bondar, Tana 	BLR	F	1976	2202	39	WFM
+708.	Airapetian, Tatevik 	RUS	F	1989	2201	26	WIM
+709.	Kovpak, Anastasiya 	RUS	F	1984	2201	31	WIM
+710.	Alkhazashvili, Ololi 	GER	F	1976	2201	39	
+711.	Karpova, Lyudmila 	RUS	F	1991	2201	24	WIM
+712.	Chasovnikova, Eugenia 	RUS	F	1981	2201	34	WGM
+713.	Fomina, Tatyana 	EST	F	1954	2201	61	WGM
+714.	Tjolsen, Katrine 	NOR	F	1993	2201	22	WIM
+715.	Limareva, Anastasiya 	RUS	F	1991	2201	24	WFM
+716.	Ismailova, Lala 	AZE	F	1969	2200	46	WIM
+717.	Mayer, Stepanka 	GER	F	1949	2200	66	WIM
+718.	Kas-Fromm, Rita, Dr. 	GER	F	1956	2200	59	WIM
+719.	Razumova, Tatiana 	RUS	F	1971	2200	44	
+720.	Isgandarova, Khayala 	TUR	F	1988	2200	27	WIM
+721.	Svechnikova, Marina. 	RUS	F	1966	2200	49	WIM
+722.	Toth, Lili Dr. 	HUN	F	1986	2199	29	WIM
+723.	Kim, Aleksandra V. 	RUS	F	1989	2199	26	WIM
+724.	Ding, Linlin 	CHN	F	1981	2199	34	
+725.	Boric, Elena 	BIH	F	1963	2199	52	WIM
+726.	Ionescu, Viorica 	ROU	F	1960	2199	55	WIM
+727.	Semenova, Irina 	RUS	F	1968	2199	47	WGM
+728.	Liu, Xianglin 	CHN	F	1980	2199	35	
+729.	Castrillon Gomez, Melissa 	COL	F	1995	2199	20	WIM
+730.	Vakhania, Alexandra 	GEO	F	1986	2198	29	
+731.	Ghader Pour, Shayesteh 	IRI	F	1984	2198	31	WIM
+732.	Severiukhina, Zoja 	RUS	F	1990	2198	25	WGM
+733.	Shpanko, Nadiia 	UKR	F	2002	2198	13	WFM
+734.	Odeeva, Larisa 	TKM	F	1962	2198	53	WFM
+735.	Dragomirescu, Angela 	ROU	F	1973	2198	42	WIM
+736.	Luong, Minh Hue 	VIE	F	1986	2197	29	WFM
+737.	Gasiunas, Natalia 	UKR	F	1957	2197	58	
+738.	Borisova, Elizaveta 	RUS	F	1984	2197	31	WGM
+739.	Trujillo Delgado, Dafnae 	ESP	F	1983	2197	32	WIM
+740.	Kulovana, Eva 	CZE	F	1987	2197	28	WGM
+741.	Marjanovics, Annamaria 	HUN	F	2001	2197	14	WFM
+742.	Strizak, Natasa 	SRB	F	1973	2197	42	WFM
+743.	Campos Vila, Milena 	CUB	F	1974	2197	41	WIM
+744.	Hakimifard, Ghazal 	IRI	F	1994	2196	21	WIM
+745.	Prathiba, Yuvarajan 	IND	F	1983	2196	32	WIM
+746.	Gasik, Anna 	POL	F	1988	2196	27	WIM
+747.	Exler, Veronika 	AUT	F	1990	2196	25	WFM
+748.	Padurariu, Ioana Smaranda 	NED	F	1987	2196	28	WIM
+749.	Zaksaite, Salomeja 	LTU	F	1985	2196	30	WIM
+750.	Nguyen, Thuan Hoa 	VIE	F	1970	2196	45	WIM
+751.	Dushenok, Anna 	RUS	F	1984	2196	31	WIM
+752.	Jahn, Otilia 	GER	F	1968	2195	47	WIM
+753.	Ostry, Irina 	KGZ	F	1950	2195	65	WIM
+754.	Lutz, Anke 	GER	F	1970	2195	45	WIM
+755.	Tverskaya, Julia 	USA	F	1959	2195	56	WIM
+756.	Polihroniade, Elisabeta 	ROU	F	1935	2195	80	WGM
+757.	Epstein, Esther 	USA	F	1954	2195	61	WIM
+758.	Robbers, Natalia 	GER	F	1974	2195	41	
+759.	Cousin-Sauer, Claudia 	GER	F	1963	2195	52	
+760.	Maskova, Jana 	CZE	F	1964	2194	51	WIM
+761.	Milovic, Aleksandra 	MNE	F	1986	2194	29	WIM
+762.	Newrkla, Katharina 	AUT	F	1992	2194	23	WFM
+763.	Sorokina, Anastasia 	AUS	F	1980	2194	35	WIM
+764.	Vuksanovic, Sanja 	SRB	F	1967	2194	48	WGM
+765.	Babayan, Armine 	ARM	F	1990	2194	25	
+766.	Sahl, Sheila Barth 	NOR	F	1974	2194	41	WIM
+767.	Ortiz, Nadya Karolina 	COL	F	1986	2194	29	WGM
+768.	Pinchuk, Larisa 	UZB	F	1941	2194	74	
+769.	Song, Yi 	CHN	F	1979	2193	36	
+770.	Amed, Stephanie 	ARG	F	1990	2193	25	WIM
+771.	Janssen, Ingrid 	NED	F	1945	2193	70	
+772.	Amrayeva, Aytan 	AZE	F	1997	2193	18	WCM
+773.	Jussupow, Ekaterina 	GER	F	1991	2193	24	WFM
+774.	Erdos, Boglarka 	HUN	F	1992	2192	23	
+775.	Movileanu, Daniela 	ITA	F	1996	2192	19	WFM
+776.	Vrublevskaya, Olga 	RUS	F	1979	2192	36	WIM
+777.	Aksionova, Tatiana 	UKR	F	1984	2192	31	
+778.	Redko, Alyona 	UKR	F	1983	2192	32	WGM
+779.	Hagesather, Ellen 	NOR	F	1978	2192	37	WIM
+780.	Leks, Hanna 	POL	F	1989	2192	26	WIM
+781.	Hamelink, Desiree 	NED	F	1981	2192	34	WIM
+782.	Hernandez Alvarez, Tania Regla 	CRC	F	1963	2192	52	WIM
+783.	Sinitsina, Nina A. 	RUS	F	1979	2191	36	
+784.	Melekhina, Alisa 	USA	F	1991	2191	24	FM
+785.	Csonkics, Tunde 	HUN	F	1958	2191	57	WGM
+786.	Lupik, Marina 	RUS	F	1987	2190	28	WIM
+787.	Tsereteli, Mzia 	GEO	F	1957	2190	58	
+788.	Gazikova, Veronika 	SVK	F	1999	2190	16	WFM
+789.	Suliati, Annisa 	INA	F	1999	2190	16	WFM
+790.	Jakubiec, Edyta 	POL	F	1981	2190	34	WIM
+791.	Belavenets, Liudmila 	RUS	F	1940	2190	75	WIM
+792.	Lundina, Aelita 	RUS	F	1977	2190	38	WIM
+793.	Feibert, Petra 	GER	F	1958	2190	57	WIM
+794.	Karakashian, Narine 	ARM	F	1971	2190	44	WIM
+795.	Stjazhkina, Olga 	RUS	F	1970	2190	45	WGM
+796.	Shliahtich, Galina 	UKR	F	1973	2189	42	WIM
+797.	Buervenich, Silvia 	SWE	F	1974	2189	41	WIM
+798.	Baraeva, Marina 	RUS	F	1995	2189	20	WIM
+799.	Jelica, Mara 	CRO	F	1974	2189	41	WIM
+800.	Sharovatova, Anastasia 	RUS	F	1982	2189	33	WFM
+801.	Jascenko, Olga 	CZE	F	1974	2189	41	WIM
+802.	Kika, Dorota 	POL	F	1987	2188	28	WIM
+803.	Dolgih, Kristina 	RUS	F	1975	2188	40	WIM
+804.	Miladinovic, Lena 	SRB	F	1993	2188	22	WFM
+805.	Przezdziecka, Ewa 	POL	F	1988	2188	27	WFM
+806.	Vysochina, Nadezhda 	UKR	F	1973	2188	42	WIM
+807.	Khorava, Miranda 	GEO	F	1977	2188	38	WIM
+808.	Tokhirjonova, Gulrukhbegim 	UZB	F	1999	2188	16	WFM
+809.	Petrenko, Svetlana 	MDA	F	1974	2188	41	IM
+810.	Wang, Miao 	CHN	F	1969	2188	46	WFM
+811.	Jadvizhena, Nadezhda 	UKR	F	1979	2188	36	
+812.	Martinez, Aleidi Josefina 	VEN	F	1977	2188	38	WIM
+813.	Sabaeva, Irina 	RUS	F	1970	2187	45	
+814.	van Muenster, Kirsten 	GER	F	1976	2187	39	WFM
+815.	Eric, Jovana 	SRB	F	1992	2187	23	WIM
+816.	Parfenova, Olga 	RUS	F	1976	2187	39	WIM
+817.	Horvath, Julia 	HUN	F	1960	2187	55	WIM
+818.	Boidman, Marina 	GER	F	1957	2186	58	
+819.	Bannikova, Anastasia 	RUS	F	1987	2186	28	WFM
+820.	Mader, Manuela 	GER	F	1990	2186	25	WIM
+821.	Priya P. 	IND	F	1987	2186	28	WIM
+822.	Wang, Xiaohui 	CHN	F	1990	2186	25	WIM
+823.	Chernyak, Viktoria 	RUS	F	1997	2186	18	WFM
+824.	Maksimovic, Suzana 	SRB	F	1962	2186	53	WGM
+825.	Ulrich, Rachel J 	USA	F	2000	2186	15	WFM
+826.	Bashkite, Viktoria 	EST	F	1985	2186	30	WIM
+827.	Laakmann, Anni 	GER	F	1937	2185	78	WFM
+828.	Iltchouk, Elena 	UKR	F	1977	2185	38	WFM
+829.	Elina, Elena 	UKR	F	1949	2185	66	
+830.	Stupina, Elena 	RUS	F	1958	2185	57	WFM
+831.	Mlakar, Brigitte 	AUT	F	1977	2185	38	WFM
+832.	Gracheva, Elena 	RUS	F	1977	2185	38	
+833.	Panina, Irina 	RUS	F	1952	2185	63	
+834.	Iosif, Cristina 	ROU	F	1968	2185	47	WIM
+835.	Lomibao, Sheerie Joy 	PHI	F	1979	2185	36	WFM
+836.	Lissowska, Anna 	POL	F	1966	2185	49	WIM
+837.	Kinsigo, Mari 	EST	F	1946	2185	69	WFM
+838.	Eshchenko, Diana 	RUS	F	1955	2185	60	
+839.	Genova, Ruzhka 	BUL	F	1963	2185	52	WIM
+840.	Cuevas-Rodriguez, Maria Luisa 	ESP	F	1965	2185	50	WIM
+841.	Lematschko, Tatjana 	SUI	F	1948	2185	67	WGM
+842.	Paulet, Iozefina 	NED	F	1989	2184	26	WGM
+843.	Corrales Jimenez, Zenia 	CUB	F	1989	2184	26	WIM
+844.	Yu, Ting 	CHN	F	1982	2184	33	WIM
+845.	Macek, Vlasta 	CRO	F	1952	2184	63	WIM
+846.	Aseeva, Marina 	RUS	F	1960	2184	55	
+847.	Assaubayeva, Bibisara 	KAZ	F	2004	2183	11	WFM
+848.	Carvajal Gamoneda, Ana Luisa 	CUB	F	1962	2183	53	WIM
+849.	Jap Tjoen San, Linda 	NED	F	1977	2183	38	WIM
+850.	Flores Villalva, Gina 	ECU	F	1982	2183	33	WFM
+851.	Pham, Thi Thu Hien 	VIE	F	1990	2183	25	
+852.	Retno, Wijayanti 	INA	F	1999	2183	16	WFM
+853.	Polagaeva, Ksenia 	RUS	F	1988	2183	27	WFM
+854.	Dergileva, Larisa 	RUS	F	1975	2182	40	
+855.	Razuvajeva, Juli 	RUS	F	1974	2182	41	WIM
+856.	Kiolbasa, Oliwia 	POL	F	2000	2182	15	WFM
+857.	Stricova, Zuzana 	SVK	F	1985	2182	30	WFM
+858.	Juhasz, Barbara 	HUN	F	1995	2182	20	WFM
+859.	Bajarani, Kubra 	AZE	F	1974	2182	41	WFM
+860.	Shiber, Julia 	USA	F	1974	2182	41	WFM
+861.	Nguyen, Thi Tuong Van 	VIE	F	1978	2182	37	WIM
+862.	Castillo Coca, Mairebis 	CUB	F	1992	2181	23	WFM
+863.	Hess, Olena 	GER	F	1971	2181	44	WIM
+864.	Harshita Guddanti 	IND	F	2001	2181	14	
+865.	Bayramova, Zuleykha 	AZE	F	1982	2181	33	
+866.	Zherebtsova, Alexandra 	RUS	F	1993	2181	22	WFM
+867.	Baginskaite, Camilla 	USA	F	1967	2181	48	WGM
+868.	Kondou, Eva 	GRE	F	1965	2181	50	WIM
+869.	Terbe, Julianna 	HUN	F	1997	2181	18	WFM
+870.	Blagojevic, Katarina 	SRB	F	1943	2180	72	WIM
+871.	Malassagne, Isabelle 	FRA	F	1998	2180	17	WFM
+872.	Poletova, Marianna 	RUS	F	1964	2180	51	WFM
+873.	David Glaz, Ilana 	ISR	F	1961	2180	54	WIM
+874.	Choisy, Mathilde 	FRA	F	1988	2180	27	WFM
+875.	Sieber, Fiona 	GER	F	2000	2180	15	WFM
+876.	Bogdan, Lia 	CAN	F	1953	2180	62	WFM
+877.	Dergatschova, Anna 	GER	F	1969	2180	46	WIM
+878.	Bukhteeva, Viktoria 	RUS	F	1993	2180	22	WFM
+879.	Barchuk, Irina 	UKR	F	1997	2180	18	
+880.	Mai, Thi Thanh Huong 	VIE	F	1974	2180	41	WIM
+881.	Yordanova, Svetla 	BUL	F	1976	2180	39	WIM
+882.	Turapina, Irina 	BLR	F	1952	2180	63	
+883.	Smirnova, Ekaterina 	RUS	F	1996	2180	19	WFM
+884.	Goossens, Hanne 	BEL	F	1992	2180	23	WFM
+885.	Koren, Inna 	USA	F	1964	2180	51	WIM
+886.	Kuznetsova, Natalia 	RUS	F	1952	2180	63	WFM
+887.	Kereszturi, Sara 	HUN	F	1955	2180	60	WFM
+888.	Saunina, Ludmila 	RUS	F	1952	2179	63	WGM
+889.	Mednikova, Svetlana 	RUS	F	1956	2179	59	WGM
+890.	Wisniowska, Klaudia 	POL	F	1995	2179	20	WFM
+891.	Heredia Serrano, Carla 	ECU	F	1991	2179	24	WGM
+892.	Kozlova, Olga 	GER	F	1976	2178	39	WIM
+893.	Hoang, Thi Ut 	VIE	F	1978	2178	37	WFM
+894.	Schweitzer, Viktoriya 	FRA	F	1959	2178	56	WIM
+895.	Domany, Zsofia 	HUN	F	1988	2178	27	WIM
+896.	Zinkevich, Julia 	UKR	F	1984	2178	31	WIM
+897.	Berezina, Irina 	AUS	F	1965	2178	50	IM
+898.	Gal, Hanna Krisztina 	HUN	F	1998	2178	17	
+899.	Odisharia, Teona 	GEO	F	1986	2178	29	
+900.	Petrukhina, Irina 	RUS	F	1994	2177	21	WFM
+901.	Morales Mendoza, Luciana 	PER	F	1987	2177	28	WIM
+902.	Pushkova, Kseniya 	RUS	F	1986	2177	29	
+903.	Dang, Bich Ngoc 	VIE	F	1984	2176	31	WIM
+904.	Orsagova, Silvie 	CZE	F	1975	2176	40	WIM
+905.	Markantonaki, Haritomeni 	GRE	F	1987	2176	28	WFM
+906.	Teuschler, Barbara 	AUT	F	1984	2176	31	WFM
+907.	Moskalets, Svetlana 	UKR	F	1988	2176	27	WIM
+908.	Yanjindulam, Dulamsuren 	MGL	F	1988	2176	27	WIM
+909.	Xu, Tong 	CHN	F	1988	2176	27	WIM
+910.	Krestianova-Tsepeleva, Tatiana 	RUS	F	1975	2176	40	
+911.	Khegay, Anjela 	SIN	F	1976	2176	39	WIM
+912.	Nikolaeva, Alexandra 	RUS	F	1987	2176	28	WFM
+913.	Zhao, Lan 	CHN	F	1963	2176	52	WIM
+914.	Kozak, Magdalena 	POL	F	1988	2176	27	WIM
+915.	Kim, Tatiana 	KAZ	F	1988	2176	27	WFM
+916.	Chkhan, Viktoria 	RUS	F	1994	2176	21	WFM
+917.	Badalova, T. 	RUS	F	1953	2175	62	WFM
+918.	Mutchnik, Larisa 	UKR	F	1956	2175	59	WIM
+919.	Taigunova, Nadya 	UKR	F	1985	2175	30	
+920.	Wu, Mingqian 	CHN	F	1961	2175	54	WGM
+921.	Meleshko, Anna 	RUS	F	1989	2175	26	WIM
+922.	Sikora-Gizynska, Bozena 	POL	F	1960	2175	55	WIM
+923.	Kokanovic, Ksenija 	SRB	F	1972	2175	43	WFM
+924.	Khalafova, Narmin 	AZE	F	1994	2175	21	WIM
+925.	Canak, Marija 	SRB	F	1969	2175	46	
+926.	Kazarova, Irina 	RUS	F	1980	2175	35	WFM
+927.	Golubeva, Ljudmila 	RUS	F	1944	2175	71	WFM
+928.	Eynullaeva, Roza 	USA	F	1987	2175	28	WFM
+929.	Mrvova, Alena 	SVK	F	1978	2174	37	WIM
+930.	Tian, Tian 	CHN	F	1983	2174	32	WGM
+931.	Aghabekian, Liana 	ARM	F	1986	2174	29	WIM
+932.	Gladisheva, Tatjana 	RUS	F	1966	2174	49	WGM
+933.	Sun, Yinan 	CHN	F	1989	2174	26	
+934.	Bielicki, Birke 	GER	F	1975	2174	40	
+935.	Paolillo, Gaia 	ITA	F	1998	2174	17	WFM
+936.	Gaboyan, Susanna 	ARM	F	1996	2174	19	
+937.	Kasoshvili, Tsiala 	GEO	F	1963	2174	52	WIM
+938.	Karibaeva, Elvira 	RUS	F	1989	2174	26	WFM
+939.	Djukic, Sandra 	SRB	F	1988	2174	27	WIM
+940.	Zarkovic, Mila 	SRB	F	1996	2173	19	WIM
+941.	Zhylkaidarova, Sholpan 	KAZ	F	1994	2173	21	WFM
+942.	Rjanova, Valery 	RUS	F	1993	2173	22	WFM
+943.	Sloan, Julia Elizabeth 	USA	F	1978	2173	37	CM
+944.	Van Weersel, Arlette 	NED	F	1984	2173	31	WIM
+945.	Qiu, Mengjie 	CHN	F	1995	2172	20	WFM
+946.	Ulms, Sandra 	GER	F	1976	2172	39	
+947.	Czaeczine, Anne 	GER	F	1985	2172	30	WIM
+948.	Roca Rojas, Ana Flavia 	CUB	F	1996	2172	19	WFM
+949.	Japaridze, Marika 	GEO	F	1980	2172	35	WFM
+950.	Hairapetian, Anna 	ARM	F	1989	2172	26	WIM
+951.	Chandika Divyasree 	IND	F	1993	2172	22	WFM
+952.	Motsar, Irina 	UKR	F	1985	2172	30	WFM
+953.	Bajt, Indira 	SLO	F	1980	2172	35	WFM
+954.	Savitskaya, Ekaterina P. 	RUS	F	1977	2172	38	
+955.	Semina, Svetlana 	RUS	F	1959	2172	56	
+956.	Forgas Moreno, Yaniela 	CUB	F	1992	2172	23	WFM
+957.	Sakenova, Salima 	KAZ	F	1977	2172	38	WFM
+958.	Meenakshi Subbaraman 	IND	F	1981	2172	34	WGM
+959.	Franco Valencia, Beatriz Irene 	COL	F	1987	2172	28	WGM
+960.	Pkhakadze, Natia 	GEO	F	1984	2172	31	WFM
+961.	Matvienko, Larisa 	RUS	F	1978	2172	37	
+962.	Nemkova, Ljubov 	RUS	F	1987	2172	28	WFM
+963.	Shuvalova, Polina 	RUS	F	2001	2171	14	WFM
+964.	Zaichenko, Nadezhda 	RUS	F	1983	2171	32	WFM
+965.	Shah, Pallavi G. 	IND	F	1979	2171	36	WIM
+966.	Sochorova, Petra 	CZE	F	1978	2171	37	WIM
+967.	Garcia Vicente, Nieves 	ESP	F	1955	2171	60	WIM
+968.	Anufrienko, Daria 	RUS	F	1997	2171	18	WFM
+969.	Tarasova, Oksana 	USA	F	1975	2170	40	
+970.	Konopleva, Natalia 	RUS	F	1944	2170	71	WGM
+971.	Krjuchkova, Elena 	UZB	F	1969	2170	46	WGM
+972.	Richards, Heather S 	AUS	F	1983	2170	32	WIM
+973.	Aliyeva, Aygun 	AZE	F	1977	2170	38	WFM
+974.	Atbashieva, Guldjahan 	TKM	F	1968	2170	47	WFM
+975.	Kalantarian, Nune 	ARM	F	1972	2170	43	
+976.	Traistaru, Teodora 	ROU	F	1990	2170	25	WFM
+977.	Fornal, Agnieszka 	POL	F	1968	2170	47	WFM
+978.	Semenova, Elena 	RUS	F	1992	2170	23	WIM
+979.	Gvanceladze, Anna 	RUS	F	1993	2170	22	WFM
+980.	Bandziene, Rasa 	LTU	F	1961	2170	54	
+981.	Talanina, Lidia 	RUS	F	1976	2170	39	WFM
+982.	Nahi, A. Senaa 	IRQ	F	1966	2170	49	WFM
+983.	Jurkiewicz, Katarzyna 	POL	F	1982	2169	33	
+984.	Kaps, Darja 	SLO	F	1981	2169	34	WGM
+985.	Solovjova, Valentina 	RUS	F	1986	2169	29	WIM
+986.	Bogdanova, Olga 	UKR	F	1953	2169	62	
+987.	Lipskaya, Inna 	RUS	F	1979	2169	36	
+988.	Dumcheva, Julia 	RUS	F	1991	2169	24	WFM
+989.	Bayaraa, Zorigt 	MGL	F	1988	2168	27	WFM
+990.	Savtchenko, Viktoria 	RUS	F	1988	2168	27	WFM
+991.	Phan-Koshnitsky, Ngan 	AUS	F	1974	2168	41	WIM
+992.	Huda, Maryana 	UKR	F	1988	2168	27	WGM
+993.	Shkuro, Anastasia 	UKR	F	1986	2168	29	
+994.	Drljevic, Ljilja 	SRB	F	1984	2168	31	WIM
+995.	Gavasheli, Ana 	GEO	F	1987	2168	28	WIM
+996.	Potikhoshkina, Nadezhda 	RUS	F	1961	2167	54	
+997.	Asgarizadeh, Minoo 	IRI	F	1994	2167	21	WFM
+998.	Lazarevic, Milunka 	SRB	F	1932	2167	83	WGM
+999.	Voronova, Tatiana 	LAT	F	1955	2167	60	WIM
+1000.	Makogon, Natalya 	RUS	F	1975	2167	40	WFM
+1001.	Miturova, Magdalena 	CZE	F	1993	2166	22	WFM
+1002.	Nguyen, Thi Dung 	VIE	F	1982	2166	33	WFM
+1003.	Pintesku, Svetlana 	RUS	F	1969	2166	46	
+1004.	Gordyk, Lubov 	UKR	F	1976	2166	39	WFM
+1005.	Aronoff, Irene 	USA	F	1961	2165	54	WFM
+1006.	Richterova, Natasa 	CZE	F	1996	2165	19	WFM
+1007.	Fakhiridou, Ekaterini 	GRE	F	1964	2165	51	WIM
+1008.	Nguyen, Quynh Anh 	VIE	F	1988	2165	27	WIM
+1009.	Nguyen, Thu Giang 	AUS	F	1985	2165	30	WFM
+1010.	Tankut, Olga 	RUS	F	1985	2165	30	WFM
+1011.	Antova, Gabriela 	BUL	F	2002	2165	13	WFM
+1012.	Wang, Doudou 	CHN	F	1988	2165	27	WIM
+1013.	Fritzsch, Conny 	GER	F	1976	2165	39	
+1014.	Krzisnik-Bukic, Vera 	SLO	F	1949	2165	66	
+1015.	Nikolin, Zorica 	SRB	F	1961	2164	54	WIM
+1016.	Pan, Qian 	CHN	F	1980	2164	35	
+1017.	Timon Piote, Silvia 	ESP	F	1975	2164	40	WFM
+1018.	Kusenkova, Natallia 	BLR	F	1995	2164	20	
+1019.	Gutierrez Castillo, Paloma 	ESP	F	1985	2164	30	WIM
+1020.	Eckhardt, Claudia 	GER	F	1977	2164	38	
+1021.	Leite, Catarina 	POR	F	1983	2164	32	WIM
+1022.	Balajayeva, Khanim 	AZE	F	2001	2164	14	WFM
+1023.	Ciobanu, Camelia-Adriana 	ROU	F	1985	2163	30	WIM
+1024.	Petrova, Olga 	RUS	F	1993	2163	22	
+1025.	Manakova, Irina 	RUS	F	1988	2163	27	WFM
+1026.	Korenova, Martina 	CZE	F	1975	2163	40	WIM
+1027.	Mareckova, Martina 	CZE	F	1990	2163	25	WFM
+1028.	Garcia-Castany Musellas, Gal.la 	ESP	F	1997	2163	18	
+1029.	Nesterovskaya, Anzhelika 	UKR	F	1991	2163	24	WFM
+1030.	Mazurok, Jana 	UKR	F	1983	2162	32	
+1031.	Shamima, Akter Liza 	BAN	F	1989	2162	26	WIM
+1032.	Cardona Oramas, Liulia Maria 	FID	F	1983	2162	32	WFM
+1033.	Golubovich, Natalia 	RUS	F	1993	2162	22	
+1034.	Chen, Xiaoxaiao 	CHN	F	1985	2162	30	
+1035.	Ghozali, Anugrah Maria 	INA	F	2000	2161	15	WFM
+1036.	Lapina, Natalia 	UKR	F	1980	2161	35	
+1037.	Churova, Ivana 	CZE	F	1977	2161	38	WIM
+1038.	Sargac, Rajna 	CRO	F	1974	2161	41	WIM
+1039.	Grunina, Nina 	RUS	F	1985	2161	30	WFM
+1040.	Georgescu, Andreea-Lucia 	ROU	F	1976	2161	39	
+1041.	Agababean, Naira 	MDA	F	1951	2161	64	WGM
+1042.	Trofimova, Antonina 	RUS	F	1979	2160	36	WIM
+1043.	Otgonjargal, Sengeravdan 	MGL	F	1982	2160	33	WIM
+1044.	Tomasevic, Tanja 	SRB	F	1969	2160	46	WFM
+1045.	Vedenina, Oksana 	LAT	F	1979	2160	36	
+1046.	Grigoryeva, Olga A. 	RUS	F	1994	2160	21	WFM
+1047.	Bogachkova, Alena 	RUS	F	1997	2160	18	WFM
+1048.	Hegeler, Anja 	GER	F	1965	2160	50	WIM
+1049.	Nur Abidah, Shanti 	INA	F	2001	2160	14	WFM
+1050.	Budiarti, Farah Yumna 	INA	F	1997	2160	18	WFM
+1051.	Dolgikh, Irina 	RUS	F	1979	2160	36	
+1052.	Terbe, Zsuzsanna 	HUN	F	1997	2160	18	WFM
+1053.	Chlost, Marlena 	POL	F	1983	2160	32	WIM
+1054.	Montilla Reyes, Jorcerys 	VEN	F	1995	2159	20	WIM
+1055.	Lin, Ye 	CHN	F	1974	2159	41	WFM
+1056.	Ren, Xiaoyi 	CHN	F	1996	2159	19	
+1057.	Freitag, Julia 	RUS	F	1983	2159	32	WFM
+1058.	Bochis, Julia 	GER	F	1993	2158	22	WFM
+1059.	Shulga, Oksana 	KAZ	F	1977	2158	38	WFM
+1060.	Chekhova, Marina 	RUS	F	1987	2158	28	WFM
+1061.	Sui, Qilun 	CHN	F	1978	2158	37	
+1062.	Pujari, Rucha 	IND	F	1994	2158	21	WFM
+1063.	Dave, Dhyani 	IND	F	1991	2158	24	WIM
+1064.	Perera Borrego, Mariela 	ESP	F	1994	2158	21	WFM
+1065.	Kasparova, Tatiana 	BLR	F	1969	2158	46	WIM
+1066.	Lupu, Smaranda B. 	FRA	F	1967	2157	48	WIM
+1067.	Ivanovic, Jelena 	BIH	F	1979	2157	36	WFM
+1068.	Rysbayeva, Aigerim 	KAZ	F	1991	2157	24	WFM
+1069.	Volchek, Nastia 	BLR	F	1981	2157	34	
+1070.	Real Pereyra, Diana Carime 	MEX	F	1995	2157	20	WIM
+1071.	Bjerke, Silje 	NOR	F	1982	2157	33	WIM
+1072.	Shnaider, Julia 	RUS	F	1993	2157	22	
+1073.	Shulakova, Svetlana 	RUS	F	1977	2157	38	WFM
+1074.	Bagheri, Bita 	IRI	F	1994	2157	21	
+1075.	Hou, Yue 	CHN	F	1985	2157	30	
+1076.	Apostoae, Lacramioara-Liliana 	ROU	F	1980	2157	35	WFM
+1077.	Fofana, Mariam 	RUS	F	1987	2157	28	
+1078.	Hernandez Penna, Sabina 	ITA	F	1973	2156	42	WIM
+1079.	Averchenko, Ekaterina 	RUS	F	1986	2156	29	WFM
+1080.	Barkovskaya, Irina 	RUS	F	1984	2156	31	
+1081.	Vennela, T. 	IND	F	1988	2156	27	
+1082.	Konovalova, Olesia 	UKR	F	1979	2156	36	
+1083.	Stegantzeva, Irina 	RUS	F	1980	2156	35	
+1084.	Ambrosi, Eleonora 	ITA	F	1988	2156	27	WFM
+1085.	Cua, Sherily 	PHI	F	1987	2156	28	WFM
+1086.	Kloster, Svetlana 	GER	F	1962	2156	53	WFM
+1087.	Utiatskaja, Irina 	RUS	F	1996	2156	19	WFM
+1088.	Polokhova, Olga 	RUS	F	1973	2156	42	WFM
+1089.	Mosnegutu, Mariana 	ROU	F	1979	2156	36	WIM
+1090.	Bezgodova, Maria 	RUS	F	1993	2156	22	WIM
+1091.	Kuznetsova, Elena 	GER	F	1982	2156	33	
+1092.	Nikoladze, Sopio 	GEO	F	1973	2155	42	WIM
+1093.	Van Nies, Pauline 	NED	F	1989	2155	26	
+1094.	Lindri, Juni Wijayanti 	INA	F	1963	2155	52	WIM
+1095.	Ainutdinova, Yekaterina 	KAZ	F	1994	2155	21	WFM
+1096.	Kupeeva, Viktoria 	RUS	F	1983	2155	32	WFM
+1097.	Goldammer, Anne 	GER	F	1982	2155	33	
+1098.	Petrova-Kalmukova, Marlen 	BUL	F	1961	2155	54	
+1099.	Kulish, Oksana 	RUS	F	1976	2155	39	WFM
+1100.	Perez Rodriguez, Jennifer 	PAR	F	1987	2155	28	WIM
+1101.	Frizyuk, Natalia 	RUS	F	1982	2155	33	WFM
+1102.	Pilarska, Czeslawa 	POL	F	1966	2155	49	WIM
+1103.	Archakova, Galina 	BLR	F	1939	2155	76	
+1104.	Chirva, Svetlana 	RUS	F	1979	2155	36	WFM
+1105.	May Hsett Lwin 	MYA	F	1984	2155	31	
+1106.	Golubeva, Oksana 	RUS	F	1986	2154	29	WFM
+1107.	Weng, Annegret, Dr. 	GER	F	1975	2154	40	WFM
+1108.	Gorlin, Yelena 	USA	F	1984	2154	31	WFM
+1109.	Bellaiche, Elise 	FRA	F	1997	2154	18	WFM
+1110.	Bezdenezhnykh, Elena 	RUS	F	1976	2154	39	WFM
+1111.	Lach, Aleksandra 	POL	F	1995	2154	20	WIM
+1112.	Hortensius, Lisa 	NED	F	1991	2154	24	
+1113.	Le, Hoang Tran Chau 	VIE	F	1992	2154	23	WFM
+1114.	Pham, Thi Hai Yen 	VIE	F	1987	2154	28	
+1115.	Vega Gutierrez, Belinda 	ESP	F	1985	2154	30	WIM
+1116.	Hund, Barbara 	SUI	F	1959	2154	56	WGM
+1117.	Dultseva, Svetlana 	RUS	F	1986	2153	29	WFM
+1118.	Harmsen, Jessica 	NED	F	1966	2153	49	WIM
+1119.	Tsirulnik, Maritsa 	UKR	F	1991	2153	24	
+1120.	Stojanovic, Marija R 	MNE	F	1983	2153	32	WIM
+1121.	Chervonenko, Irina 	ISR	F	1974	2153	41	WFM
+1122.	Fakhretdinova, Margarita 	RUS	F	1989	2153	26	WFM
+1123.	Bosch Garcia, Jacqueline 	ECU	F	1979	2153	36	WFM
+1124.	Siebrecht, Raphaele 	FRA	F	1976	2152	39	
+1125.	Cherednichenko, Elena 	UKR	F	1985	2152	30	WIM
+1126.	Hu, Yi 	CHN	F	1987	2152	28	
+1127.	Carow, Annelen 	GER	F	1993	2152	22	WFM
+1128.	Tsai, Cindy 	USA	F	1985	2152	30	WIM
+1129.	Kaczorowska, Barbara 	POL	F	1960	2152	55	WIM
+1130.	Ljubarskaja, Ludmilla 	GER	F	1945	2151	70	
+1131.	Mouradian, Knarik 	LIB	F	1983	2151	32	WIM
+1132.	Abdukadurova, Mekhri 	TKM	F	1974	2151	41	WFM
+1133.	Van Amerongen, Marleen 	NED	F	1973	2151	42	
+1134.	Anisheva, Varvara 	RUS	F	1972	2151	43	WFM
+1135.	Alekseeva, Irina 	RUS	F	1999	2151	16	
+1136.	Ignatescu, Ruxandra 	ROU	F	1972	2151	43	WFM
+1137.	Steil-Antoni, Fiona 	LUX	F	1989	2150	26	WIM
+1138.	Jarulina, Dinara 	RUS	F	1987	2150	28	WFM
+1139.	Lysenko, Margarita 	RUS	F	1999	2150	16	
+1140.	Pudkova, Tatiana N 	RUS	F	1952	2150	63	
+1141.	Akopian, Ani 	RUS	F	1992	2150	23	WFM
+1142.	Paredes Bustamante, Paula Elizab 	PER	F	1997	2150	18	WFM
+1143.	Tohirjonova, Hulkar 	UZB	F	1991	2150	24	WFM
+1144.	Motycakova, Monika 	SVK	F	1992	2150	23	WFM
+1145.	Roizen, Nadejda 	ISR	F	1969	2150	46	WIM
+1146.	Zapata, Karen 	PER	F	1982	2150	33	WIM
+1147.	Kiran, Manisha Mohanty 	IND	F	1989	2150	26	WGM
+1148.	Harini, S. 	IND	F	1990	2150	25	
+1149.	Depool Malave, Tibaire Angelica 	VEN	F	1977	2150	38	WFM
+1150.	Vovinkina, Natalia 	ISR	F	1971	2150	44	
+1151.	De Vries, Sylvia 	NED	F	1969	2150	46	WIM
+1152.	Mololkina, Olga 	RUS	F	1985	2150	30	WFM
+1153.	Kopylov, Luba 	GER	F	1979	2150	36	WIM
+1154.	Kublashvili, Etery 	RUS	F	1989	2149	26	WFM
+1155.	Chiricuta, Iudita 	ROU	F	1957	2149	58	WIM
+1156.	Ramon Pita, Vivian 	CUB	F	1963	2149	52	WGM
+1157.	Vicary, Elizabeth 	USA	F	1975	2149	40	WFM
+1158.	Vovk, Oksana 	DEN	F	1982	2149	33	WIM
+1159.	Kostak, Tatiana 	UKR	F	1971	2149	44	WFM
+1160.	Verus, Biljana 	MKD	F	1964	2149	51	WFM
+1161.	Samokhina, Evgenia 	RUS	F	1992	2148	23	WFM
+1162.	Vo, Thi Kim Phung 	VIE	F	1993	2148	22	WIM
+1163.	Sizintseva, Elena 	RUS	F	1968	2148	47	WFM
+1164.	Martsynovskaya, Marina 	FRA	F	1973	2148	42	WIM
+1165.	Delorme, Laurie 	FRA	F	1984	2148	31	WIM
+1166.	Zukhba, Astanda 	RUS	F	1985	2148	30	
+1167.	Ivanova, Karina 	RUS	F	1996	2148	19	WFM
+1168.	Jackson, Sheila 	ENG	F	1957	2148	58	WGM
+1169.	Nimmy, A.G. 	IND	F	1986	2148	29	
+1170.	Marikova, Jana 	CZE	F	1996	2148	19	
+1171.	Stasiunaite, Lina 	LTU	F	1977	2148	38	WFM
+1172.	Micic, Snezana 	SRB	F	1966	2148	49	WFM
+1173.	Guadamuro Torrente, Anabel 	ESP	F	1991	2147	24	WFM
+1174.	Cerrato Torrijos, Maria 	ESP	F	1995	2147	20	WFM
+1175.	Golovkina, Olga 	RUS	F	1990	2147	25	WFM
+1176.	Medianikova, Nina 	RUS	F	1936	2147	79	WIM
+1177.	Ramirez, Heimy Polgar 	COL	F	1992	2147	23	WIM
+1178.	Khazhomia, Salome 	GEO	F	1991	2147	24	WFM
+1179.	Moingt, Anne 	FRA	F	1974	2147	41	WIM
+1180.	Cevallos Pesantez, Diana 	ECU	F	1986	2147	29	
+1181.	Stephan, Anna 	GER	F	1981	2147	34	
+1182.	Matjushina, Zoja 	UKR	F	1951	2147	64	
+1183.	Von Wantoch-Rekowski, Danijela 	SRB	F	1981	2147	34	WFM
+1184.	Doibani, Lilia 	MDA	F	1986	2146	29	WFM
+1185.	Figura, Ludmila 	RUS	F	1988	2146	27	WFM
+1186.	Kushka, Alena 	RUS	F	1993	2146	22	WFM
+1187.	Lumongdong, Lisa Karlina 	INA	F	1968	2146	47	WIM
+1188.	Zielinska, Jolanta 	POL	F	1973	2146	42	
+1189.	Nguyen, Ngan Binh 	VIE	F	1982	2146	33	
+1190.	Mancha Ramirez, Dobarly 	CUB	F	1979	2146	36	
+1191.	Ogloblina, Lidiya 	RUS	F	1961	2146	54	
+1192.	Pelech, Leslie 	USA	F	1970	2145	45	WFM
+1193.	Kudina, Irina 	RUS	F	1977	2145	38	WFM
+1194.	Heydarli, Aygun 	GEO	F	1984	2145	31	WFM
+1195.	Herrera, Laura 	ARG	F	1971	2145	44	WFM
+1196.	Galunova, Tsveta 	BUL	F	1995	2145	20	
+1197.	Chen, Jing 	CHN	F	1973	2145	42	WFM
+1198.	Makarycheva Ostrovskaya, M 	RUS	F	1953	2145	62	
+1199.	Radeva, Viktoria 	BUL	F	2001	2145	14	WFM
+1200.	Meskhi, Tamari 	GEO	F	1963	2145	52	
+1201.	Makhlaenko, Ekaterina 	RUS	F	1991	2145	24	WFM
+1202.	Plazaola, Maria De Los Angeles 	ARG	F	1986	2145	29	WIM
+1203.	Mammadova, Nargiz 	AZE	F	1983	2145	32	
+1204.	Wieland, Ilse 	GER	F	1957	2145	58	
+1205.	Strigunenko, Ksenia 	RUS	F	1983	2145	32	WFM
+1206.	Badelka, Olga 	BLR	F	2002	2145	13	
+1207.	Canela Gimenez, Teresa 	ESP	F	1959	2145	56	WIM
+1208.	Pokojska, Daria 	POL	F	1985	2145	30	
+1209.	Dudas, Eszter 	HUN	F	1991	2145	24	WIM
+1210.	Martynkova, Olena 	UKR	F	2000	2145	15	WFM
+1211.	Sarakauskiene, Zivile 	ENG	F	1978	2145	37	WIM
+1212.	Novkovic, Julia 	AUT	F	1972	2144	43	WFM
+1213.	Kinarsih, Alya Sekar 	INA	F	2001	2144	14	
+1214.	Kostrikina, Anna 	RUS	F	1986	2144	29	WFM
+1215.	Moskalets, Natalia 	UKR	F	1973	2144	42	WIM
+1216.	Lisovskaya, Alla 	RUS	F	1959	2144	56	WFM
+1217.	Melnichuk, Irina 	RUS	F	1959	2144	56	
+1218.	Haussernot, Cecile 	FRA	F	1998	2144	17	WFM
+1219.	Myslevskaya, Izabella 	RUS	F	1992	2144	23	WFM
+1220.	Salimova, Nurgyul 	BUL	F	2003	2144	12	WFM
+1221.	Fitriyani, Amanda Suci 	INA	F	2001	2144	14	
+1222.	Golubeva, Zinaida F. 	RUS	F	1950	2144	65	WFM
+1223.	Pobelyanskaia, Mariya 	RUS	F	1988	2144	27	WFM
+1224.	Benschop, Anne Marie 	NED	F	1969	2143	46	WIM
+1225.	Krasiuk, Kateryna 	UKR	F	1993	2143	22	WFM
+1226.	Sidorova, Elena 	RUS	F	1977	2143	38	WIM
+1227.	Rolles, Maria Julia 	ARG	F	1985	2143	30	WFM
+1228.	Luong, Phuong Hanh 	VIE	F	1983	2143	32	
+1229.	Mateus, Martha 	COL	F	1978	2143	37	WIM
+1230.	Dolzhikova, Olga 	NOR	F	1979	2143	36	WGM
+1231.	Zaichenko, Daria 	RUS	F	1991	2143	24	WFM
+1232.	Banasova, Katarina 	SVK	F	1984	2143	31	
+1233.	Berlin, Tatiana 	BLR	F	1977	2143	38	WIM
+1234.	Dvoretska, Olena 	UKR	F	1986	2142	29	WIM
+1235.	Alimova, Olga 	RUS	F	1987	2142	28	WFM
+1236.	Sanodelkina, Irina 	RUS	F	1976	2142	39	
+1237.	Zhevakina, Anastasiya 	RUS	F	1983	2142	32	
+1238.	Podlugnaja, Zoia 	RUS	F	1984	2142	31	WFM
+1239.	Amelina, Ekaterina 	RUS	F	1985	2142	30	WFM
+1240.	Nadig, Kruttika 	IND	F	1988	2142	27	WGM
+1241.	Monpeurt, Cyrielle 	FRA	F	1995	2142	20	WFM
+1242.	Berke, Ana 	CRO	F	1988	2141	27	WIM
+1243.	Ivanova, Anna 	RUS	F	1989	2141	26	
+1244.	De Blecourt, Sandra 	DEN	F	1978	2141	37	WFM
+1245.	Kats, Alena 	USA	F	1995	2141	20	WIM
+1246.	Vrbova, Niki 	SVK	F	1983	2141	32	WFM
+1247.	Shishkova, Olga 	RUS	F	1971	2141	44	WFM
+1248.	Marcetic, Marija 	SRB	F	1975	2141	40	WIM
+1249.	Kiseeva, Katerina 	MDA	F	1983	2141	32	
+1250.	Baloglanova, Leila 	UKR	F	1980	2141	35	
+1251.	Elsina, Natalia 	RUS	F	1971	2140	44	
+1252.	Palao, Maricela 	COL	F	1965	2140	50	WIM
+1253.	Milosavljevic, Ruzica 	SRB	F	1946	2140	69	
+1254.	Abolina, Liga 	LAT	F	1976	2140	39	
+1255.	Jicman, Ligia-Letitia 	ROU	F	1956	2140	59	WIM
+1256.	Bochnickova, Andrea 	SVK	F	1977	2140	38	
+1257.	Lnenickova, Gabriela 	CZE	F	1979	2140	36	WIM
+1258.	Varga, Melinda 	HUN	F	1997	2140	18	
+1259.	Kuznetsova, Olga 	RUS	F	1975	2140	40	
+1260.	Van Arkel-de Greef, Heleen 	NED	F	1965	2140	50	WIM
+1261.	Kuczewska, Izabela 	POL	F	1964	2140	51	
+1262.	Akopova, Anna 	RUS	F	1996	2140	19	WFM
+1263.	Litmanowicz, Miroslawa 	POL	F	1928	2140	87	WIM
+1264.	Varga, Klara 	HUN	F	1994	2140	21	WIM
+1265.	Pachulia, Tamar 	GEO	F	1976	2140	39	
+1266.	Imanbayeva, Aigul 	KAZ	F	1986	2140	29	WFM
+1267.	Morosova, Tatiana V 	UKR	F	1943	2140	72	
+1268.	Baekelant, Eva 	BEL	F	1995	2140	20	WFM
+1269.	Ruszin, Anna 	HUN	F	1990	2139	25	
+1270.	Purgar, Ivona 	CRO	F	1993	2139	22	WFM
+1271.	Afanasieva, Oksana 	RUS	F	1980	2139	35	WFM
+1272.	Bakustina, Rimma 	RUS	F	1966	2139	49	WFM
+1273.	Petrova, Yulia 	RUS	F	1987	2139	28	
+1274.	Lendvai-Wells, Noemi 	HUN	F	1975	2139	40	
+1275.	Hrescak, Ivana 	SLO	F	2000	2139	15	
+1276.	Aketayeva, Dana 	KAZ	F	1986	2139	29	WIM
+1277.	Hansen, Evgenia 	DEN	F	1968	2139	47	WIM
+1278.	Bondarenko, Marina 	UKR	F	1991	2139	24	
+1279.	Avdeenko, Tatiana 	RUS	F	1987	2138	28	WFM
+1280.	Tereladze, Sopiko 	GEO	F	1972	2138	43	WIM
+1281.	Vine, Elzbieta 	POL	F	1985	2138	30	
+1282.	Ghukasyan, Siranush 	ARM	F	1998	2138	17	
+1283.	Tuitebayeva, Dinara 	KAZ	F	1986	2138	29	WIM
+1284.	Baranchikova, Tatiana 	RUS	F	1984	2138	31	WFM
+1285.	Karapetyan, Annik 	RUS	F	1989	2138	26	WFM
+1286.	Sukhareva, Evgeniya 	RUS	F	1987	2138	28	
+1287.	Yang, Ning 	CHN	F	1978	2138	37	WFM
+1288.	Antipova, Anastasya 	RUS	F	1986	2138	29	WFM
+1289.	Morkunaite, Egle 	LTU	F	1981	2138	34	
+1290.	Reutova, Lyudmila 	RUS	F	1951	2137	64	WFM
+1291.	Pychova, Nela 	CZE	F	1999	2137	16	WFM
+1292.	Grau Carreras, Monica 	ESP	F	1984	2137	31	WFM
+1293.	Vidonyak, Nellya 	GER	F	1971	2137	44	WIM
+1294.	Malachowski, Margrit 	GER	F	1953	2137	62	WFM
+1295.	Miranda Rodriguez, Tania 	CUB	F	1988	2137	27	WFM
+1296.	Sviridova, Vlada 	RUS	F	1995	2137	20	WFM
+1297.	Chau, Thi Ngoc Giao 	VIE	F	1981	2137	34	
+1298.	Makropoulou, Marina 	GRE	F	1960	2137	55	WGM
+1299.	Leveikina, Jevgenija 	GER	F	1979	2137	36	WFM
+1300.	Demina, Marya 	RUS	F	1989	2137	26	WFM
+1301.	Caoili, Arianne 	AUS	F	1986	2137	29	WIM
+1302.	Salazar, Aura Cristina 	COL	F	1995	2137	20	WIM
+1303.	Amonatova, Irina 	RUS	F	1978	2137	37	
+1304.	Mora, Virginie 	FRA	F	1976	2137	39	WFM
+1305.	Saranya, J 	IND	F	1995	2137	20	WFM
+1306.	Korchagina, Viktoria 	RUS	F	1992	2136	23	WFM
+1307.	Zakharova, Alexandra 	RUS	F	1986	2136	29	WFM
+1308.	Mosquera Cayon, Danet 	CUB	F	1994	2136	21	WFM
+1309.	Lkhamsuren, Uuganbayar 	MGL	F	1991	2136	24	WIM
+1310.	Malykh, Natalia 	RUS	F	1967	2136	48	WFM
+1311.	Tabrina, Anna 	RUS	F	1982	2136	33	WFM
+1312.	Pavlenko, Ksenia 	RUS	F	1999	2136	16	WFM
+1313.	Shmirina, Evgenija 	GER	F	1989	2136	26	WIM
+1314.	Rosandic, Albina 	CRO	F	1974	2136	41	
+1315.	Vasic, Milena 	SRB	F	1985	2136	30	WFM
+1316.	Crotto, Rachel 	USA	F	1958	2135	57	WIM
+1317.	Tichelman, Ineke 	NED	F	1973	2135	42	
+1318.	Sternina, Vera E 	RUS	F	1946	2135	69	
+1319.	Alexanian, Nelli 	RUS	F	1974	2135	41	WIM
+1320.	Engels, Natia 	GEO	F	1978	2135	37	WFM
+1321.	Vashurina, Aleksandra 	RUS	F	1987	2135	28	WFM
+1322.	Jakus, Katalin 	HUN	F	1969	2135	46	WFM
+1323.	Grigorova, Irina 	RUS	F	1966	2135	49	WIM
+1324.	Farajova, Farida 	AZE	F	1985	2135	30	
+1325.	Khanova, Elena 	RUS	F	1967	2135	48	WFM
+1326.	Grosch, Maria 	HUN	F	1954	2135	61	WIM
+1327.	Leks, Maria 	POL	F	1995	2135	20	WCM
+1328.	Vogel, Heike 	GER	F	1974	2134	41	WFM
+1329.	Fleites Marti, Yuleikys 	CUB	F	1978	2134	37	WIM
+1330.	Gunawan, Sasti Angel 	INA	F	2002	2134	13	WFM
+1331.	Lingur, Zalina 	RUS	F	1998	2134	17	WFM
+1332.	Artamonova, Irina 	RUS	F	1957	2134	58	
+1333.	Sowmya, H. 	IND	F	1990	2134	25	
+1334.	Adamowicz, Katarzyna 	POL	F	1993	2134	22	WFM
+1335.	Groberman, Elina 	USA	F	1983	2134	32	WIM
+1336.	Shaydullina, Sandugach 	RUS	F	1981	2134	34	WGM
+1337.	Goehler, Antje 	GER	F	1967	2134	48	WIM
+1338.	Perena, Catherine 	PHI	F	1985	2134	30	WIM
+1339.	Gavrilova, Anastasia 	SUI	F	1990	2133	25	WFM
+1340.	Volynets, Marina 	RUS	F	1985	2133	30	WFM
+1341.	Kabanova, Ekaterina 	RUS	F	1982	2133	33	WFM
+1342.	Ionica, Iulia-Ionela 	ROU	F	1980	2133	35	WGM
+1343.	Frometa Escriba, Daylenis 	CUB	F	1982	2133	33	WFM
+1344.	Badalo Gonzalez, Tania 	CUB	F	1974	2133	41	WFM
+1345.	Mikliaeva, Darja S. 	RUS	F	1982	2133	33	
+1346.	Makovetskaya, Elena 	UKR	F	1982	2133	33	
+1347.	Melashvili, Ketevan 	GEO	F	1960	2133	55	
+1348.	Schaefer, Anke 	GER	F	1971	2133	44	WFM
+1349.	Csomor, Bea 	HUN	F	1977	2132	38	
+1350.	Li, Xilu 	CHN	F	1986	2132	29	
+1351.	Khamrakulova, Iroda 	UZB	F	1981	2132	34	
+1352.	Catala Matienzo, Ivette 	CUB	F	1986	2132	29	WFM
+1353.	Protopopova, Tatjana 	RUS	F	1987	2132	28	WFM
+1354.	Kuzheleva, Oksana 	RUS	F	1973	2132	42	WFM
+1355.	Kharmunova, Nadezhda 	RUS	F	1989	2132	26	WIM
+1356.	Milutinovic, Stefana 	SRB	F	1996	2132	19	WFM
+1357.	Skomorokhina, Tatyana 	RUS	F	1975	2131	40	WFM
+1358.	Derli, Olga 	RUS	F	1985	2131	30	WIM
+1359.	Grigorian, Arusiak 	ARM	F	1977	2131	38	WFM
+1360.	Wagner-Michel, Annett 	GER	F	1955	2131	60	WIM
+1361.	Roumegous, Marina 	FRA	F	1964	2131	51	WIM
+1362.	Forgo, Eva 	HUN	F	1966	2131	49	WIM
+1363.	Vidruska, Renate 	LAT	F	1984	2131	31	WFM
+1364.	Zhuravleva, Mariya 	RUS	F	1989	2131	26	
+1365.	Abukarova, Madina 	RUS	F	1998	2131	17	WFM
+1366.	Kalinina, Larisa 	UKR	F	1962	2131	53	WIM
+1367.	Heidaripourghazvini, Masoumeh 	GEO	F	1979	2131	36	
+1368.	Lestari, Baiq Vina 	INA	F	1986	2131	29	WFM
+1369.	Aliaga Fernandez, Ingrid Y 	PER	F	1991	2131	24	WFM
+1370.	Kazora, Anastasiya 	RUS	F	1988	2131	27	
+1371.	Ramya, Krishna I. 	USA	F	1991	2131	24	WFM
+1372.	Parnali, S Dharia 	IND	F	1997	2130	18	WIM
+1373.	Kovaleva, Irina 	RUS	F	1976	2130	39	
+1374.	Titareva, Tatiana 	LAT	F	1986	2130	29	
+1375.	Bazhina, Olga 	RUS	F	1979	2130	36	
+1376.	Sorokina, Viktoria 	UKR	F	1984	2130	31	
+1377.	Horvath, Miklosne 	HUN	F	1967	2130	48	WFM
+1378.	Castellano, Christine 	PHI	F	1983	2130	32	
+1379.	Krannich, Annette 	GER	F	1981	2130	34	
+1380.	Gonzalez Ochoa, Yoana 	CUB	F	1992	2130	23	WFM
+1381.	Khazieva, Elza 	RUS	F	1996	2130	19	WFM
+1382.	Kibrik, Tatyana 	USA	F	1971	2130	44	
+1383.	Shperber, Irina 	RUS	F	1983	2130	32	WFM
+1384.	Lomakina, Galja 	RUS	F	1974	2130	41	WIM
+1385.	Erneste, Inguna 	LAT	F	1966	2130	49	WGM
+1386.	Zahn, Alina 	GER	F	1998	2130	17	WFM
+1387.	Zikeli, Saskia 	GER	F	1990	2129	25	
+1388.	Sliwicka, Alicja 	POL	F	2001	2129	14	WFM
+1389.	Suleymanova, Makhrug 	AZE	F	1979	2129	36	
+1390.	Ross, Laura R 	USA	F	1988	2129	27	WFM
+1391.	Kalashnikova, Nadezhda 	RUS	F	1943	2129	72	WFM
+1392.	Helm, Leonie 	GER	F	1984	2129	31	
+1393.	Onischuk, Nastja 	UKR	F	1980	2129	35	WFM
+1394.	Borovik, Irina 	RUS	F	1980	2129	35	
+1395.	Bos-Swiecik, Iwona 	NED	F	1958	2129	57	WIM
+1396.	Tidman, Sophie E 	ENG	F	1984	2129	31	WFM
+1397.	Avanesyan, Ani 	ARM	F	1984	2129	31	
+1398.	Fronda, Jan Jodilyn 	PHI	F	1994	2129	21	WIM
+1399.	Majigsuren, Dovdon 	MGL	F	1976	2129	39	WFM
+1400.	Homiakova, Ekaterina 	BLR	F	1991	2129	24	WFM
+1401.	Salakhova, Gulnara 	RUS	F	1969	2129	46	WIM
+1402.	Antonova, Evgenia 	UKR	F	1985	2129	30	WFM
+1403.	Vargas, Gabriela 	PAR	F	1988	2129	27	WFM
+1404.	Kubikova, Alena 	CZE	F	1988	2128	27	WFM
+1405.	Bluhm, Sonja Maria 	GER	F	1998	2128	17	WFM
+1406.	Chernyshova, Natalia 	RUS	F	1994	2128	21	
+1407.	Gomez-Cabrero Lopez., Maria 	ESP	F	1981	2128	34	WFM
+1408.	Figueroa Filian, Janina 	ECU	F	1986	2128	29	
+1409.	Kolmakova, Maria 	RUS	F	1984	2128	31	WFM
+1410.	Aliverdieva, Afet 	RUS	F	1973	2128	42	WFM
+1411.	Bilunova, Rimma I 	RUS	F	1940	2128	75	WIM
+1412.	Ivkovic, Staka 	SRB	F	1959	2128	56	WFM
+1413.	Santoya Gonzalez, Clara Maria 	CUB	F	1981	2128	34	WFM
+1414.	Kliueva, Tatiana 	UKR	F	1981	2128	34	
+1415.	Bogumil, Tatiana 	RUS	F	1958	2128	57	WFM
+1416.	Skorobogatova, Marina 	RUS	F	1998	2128	17	
+1417.	Verevotchkina, Elena 	RUS	F	1976	2127	39	WFM
+1418.	Len, Irina 	ISR	F	1960	2127	55	WFM
+1419.	Starr, Nava 	CAN	F	1949	2127	66	WIM
+1420.	Baptista, Ana Filipa 	POR	F	1990	2127	25	WFM
+1421.	Guzkowska-Nurkiewicz, Magdalena 	POL	F	1975	2127	40	WIM
+1422.	Zabolotnaya, Mariya 	RUS	F	1976	2127	39	
+1423.	Koroljova, Valerija 	RUS	F	1981	2127	34	
+1424.	Anokhina, Valentina 	BLR	F	1951	2127	64	WFM
+1425.	Baymuratova, Sevara 	UZB	F	1990	2127	25	WIM
+1426.	Skurygina, Yevgeniya 	KAZ	F	1992	2127	23	WFM
+1427.	Rajcsanyi, Zita 	HUN	F	1973	2127	42	
+1428.	Izoria, Ana 	GEO	F	1985	2127	30	WFM
+1429.	Uskova, Tatyana 	KAZ	F	1985	2126	30	WFM
+1430.	Gocheva, Rumiana 	BUL	F	1957	2126	58	WIM
+1431.	Grigorian, L. 	UKR	F	1979	2126	36	
+1432.	Keerthi, B.S. 	IND	F	1982	2126	33	
+1433.	Anokhina, Svetlana 	BLR	F	1972	2126	43	WFM
+1434.	Hernandez Bonilla, Amelia 	VEN	F	1971	2126	44	WFM
+1435.	Danilyuk, Olga 	KAZ	F	1990	2126	25	WFM
+1436.	Alterman-Borulia, Luba 	ISR	F	1969	2126	46	
+1437.	Muslimova, Aida 	KAZ	F	1939	2126	76	
+1438.	Buckley, Melanie H 	ENG	F	1982	2126	33	
+1439.	Johansson, Viktoria 	SWE	F	1974	2126	41	WIM
+1440.	Lysiak-Poltorak, Magdalena 	POL	F	1982	2126	33	WFM
+1441.	Romero Echeverria, Abigail 	ECU	F	1991	2126	24	WIM
+1442.	Chen, Yilang 	CHN	F	1970	2126	45	WFM
+1443.	Nurdin, Tammi Nasuha 	INA	F	1996	2125	19	WFM
+1444.	Daechert, Regina 	GER	F	1976	2125	39	
+1445.	Odnorozhenko, Kateryna 	UKR	F	1986	2125	29	WIM
+1446.	Senchichin, Jarina 	UKR	F	1969	2125	46	WFM
+1447.	Pacheco, Silvana 	PER	F	1981	2125	34	WFM
+1448.	Filipovic, Biljana 	SRB	F	1971	2125	44	
+1449.	Xia, Xiangchen 	CHN	F	1997	2125	18	
+1450.	Gontcharova, Olga 	RUS	F	1982	2125	33	WFM
+1451.	Melashvili, Nino 	GEO	F	1961	2125	54	WIM
+1452.	Ahrens, Manuela 	GER	F	1977	2125	38	
+1453.	Strassmann, Swantje 	GER	F	1977	2125	38	
+1454.	Dimova, Desislava 	BUL	F	1980	2125	35	
+1455.	Zaporozhchenko, Anna 	RUS	F	1979	2125	36	
+1456.	Breitkopf, Maria-Magda 	NED	F	1987	2125	28	
+1457.	Amado Rolan, Irene 	ESP	F	1965	2125	50	WFM
+1458.	Olhovaja, Elena 	RUS	F	1984	2125	31	
+1459.	Stoisavljevic, Sava 	SRB	F	1974	2125	41	WFM
+1460.	Greeff, Melissa 	RSA	F	1994	2125	21	WGM
+1461.	Mendez Alfaro, Yaquelin Yenia 	FID	F	1980	2125	35	WFM
+1462.	Turkova, Olga 	RUS	F	1982	2125	33	
+1463.	Perez Muniz, Teresa Alicia 	ESP	F	1970	2125	45	
+1464.	Gruszka, Danuta 	POL	F	1970	2125	45	WFM
+1465.	Bengtsson, Siv 	SWE	F	1963	2125	52	
+1466.	Pilardeau, Gaelle 	FRA	F	1978	2125	37	WFM
+1467.	Li, Xueyi 	CHN	F	1993	2125	22	
+1468.	Balajayeva, Zamina 	AZE	F	1973	2125	42	WFM
+1469.	Sperdokli, Elli 	GRE	F	1982	2124	33	WFM
+1470.	Timoscenkova, Viera 	SVK	F	1950	2124	65	WFM
+1471.	Volchek, Anastasia 	RUS	F	1981	2124	34	
+1472.	Luchsheva, Anastasia 	RUS	F	1994	2124	21	WFM
+1473.	Maksimova, Alisa 	RUS	F	1993	2124	22	WFM
+1474.	Gelip, Ioana 	ROU	F	1995	2124	20	
+1475.	Mamontova, Irina 	RUS	F	1983	2124	32	WFM
+1476.	Peshkova, Tatiana 	RUS	F	1978	2124	37	
+1477.	Hernandez Reyes, Venus 	CUB	F	1982	2124	33	WFM
+1478.	Mokal, Amruta Sunil 	IND	F	1986	2124	29	
+1479.	Xue, Minyinjie 	CHN	F	1988	2124	27	
+1480.	Duarte, Tatiana Peres 	BRA	F	1978	2124	37	WIM
+1481.	Rapcsak, Andrea 	HUN	F	1981	2124	34	
+1482.	Jussupow, Nadejda 	GER	F	1970	2124	45	WFM
+1483.	Kunte, Mrunalini 	IND	F	1973	2124	42	WIM
+1484.	Danilova, Irina 	RUS	F	1955	2123	60	
+1485.	Sazonova, Elena N. 	RUS	F	1959	2123	56	WIM
+1486.	Feoktisova, Galina 	RUS	F	1941	2123	74	
+1487.	Sagalchik, Olga 	USA	F	1967	2123	48	WFM
+1488.	Sandzhieva, Elina 	RUS	F	1992	2123	23	WFM
+1489.	Mokhova, Kristina 	RUS	F	1985	2123	30	WFM
+1490.	Burdova, Ksenia 	RUS	F	1983	2123	32	WFM
+1491.	Vrtiakova, Anna 	SVK	F	2000	2123	15	
+1492.	Kakunina, Anna 	RUS	F	1982	2123	33	
+1493.	Domarkaite, Laima 	LTU	F	1970	2122	45	WFM
+1494.	Dikova, Anna 	RUS	F	1987	2122	28	
+1495.	Valdes Martin, Marta Elena 	CUB	F	1956	2122	59	WFM
+1496.	Huang, Zhiyan 	CHN	F	1986	2122	29	
+1497.	Kolotilina, Liudmila 	ESP	F	1983	2122	32	
+1498.	Kolganova, Natalia 	RUS	F	1984	2122	31	WFM
+1499.	Prudnikova, Ekaterina 	RUS	F	1988	2122	27	WFM
+1500.	Endress, Anna 	GER	F	1993	2122	22	WFM
+1501.	Du, Fengling 	CHN	F	1967	2122	48	
+1502.	Kolodyi, Anna 	UKR	F	1986	2122	29	
+1503.	Ankhchimeg, Bayanmunkh 	MGL	F	1983	2121	32	WIM
+1504.	Clopes Llahi, Judit 	ESP	F	1991	2121	24	WFM
+1505.	Bogdanova, Alexandra 	RUS	F	1985	2121	30	WFM
+1506.	Shamsieva, Albina 	RUS	F	1986	2121	29	
+1507.	Neilson, Nino 	GEO	F	1985	2121	30	WFM
+1508.	Kozireva, Ksenia 	RUS	F	1990	2121	25	
+1509.	Zainetdinova, Svetlana 	EST	F	1962	2121	53	WFM
+1510.	Cabrera Ladron de Guevara, Mayra 	CUB	F	1991	2121	24	WFM
+1511.	Ivanova, Simoneta 	BUL	F	1997	2121	18	WFM
+1512.	Sadkiewicz, Joanna 	GER	F	1966	2121	49	WIM
+1513.	Injac, Teodora 	SRB	F	2000	2121	15	WFM
+1514.	Khvostova, Irina 	RUS	F	1981	2121	34	WFM
+1515.	Potapova, Margarita 	RUS	F	2000	2121	15	WFM
+1516.	Kuular, Valeria 	RUS	F	1984	2121	31	WFM
+1517.	Kouvatsou, Maria 	GRE	F	1979	2121	36	WGM
+1518.	Legenko, Ksenia 	RUS	F	1992	2121	23	WFM
+1519.	Dmitrieva, Yulia 	RUS	F	1983	2121	32	
+1520.	Ismailova, Aytaj 	AZE	F	1987	2121	28	WFM
+1521.	Ivanisevic, Dusica 	SRB	F	1958	2121	57	WIM
+1522.	Andreeva, Olga 	RUS	F	1964	2121	51	WFM
+1523.	Collado Barbas, Laura 	ESP	F	1993	2121	22	WFM
+1524.	Aiupova, Evgenia 	RUS	F	1986	2121	29	WFM
+1525.	Istrati, Viorica 	ROU	F	1983	2121	32	WFM
+1526.	Cisse, Janett 	GER	F	1977	2120	38	
+1527.	Shabanova, Svetlana 	RUS	F	1979	2120	36	
+1528.	Unni, Vasanti 	IND	F	1961	2120	54	WIM
+1529.	Sanchez, Gina 	USA	F	1973	2120	42	
+1530.	Grineva, Marianna 	UKR	F	1991	2120	24	
+1531.	Abramchuk, Klavdia 	UKR	F	1982	2120	33	
+1532.	Umpfenbach, Carolin 	GER	F	1983	2120	32	
+1533.	Khadilkar, Jayshree 	IND	F	1962	2120	53	WIM
+1534.	Weichert-Joerger, Hannelore 	GER	F	1942	2120	73	
+1535.	Plachkinova, Tatjana 	BUL	F	1981	2120	34	WIM
+1536.	Singh, Sushma 	IND	F	1975	2120	40	
+1537.	Vasova, Maria 	BUL	F	1998	2120	17	
+1538.	Malashenko, Alyona 	RUS	F	1978	2120	37	
+1539.	Shperber, Frida 	RUS	F	1979	2120	36	WFM
+1540.	Chmiel, Dominika 	POL	F	1983	2120	32	
+1541.	Rodriguez Vinuesa, Azahara 	ESP	F	1982	2120	33	
+1542.	Nikolaeva, Ulyana 	RUS	F	1986	2120	29	WFM
+1543.	Karolyi, Lajosne 	HUN	F	1932	2120	83	
+1544.	Dahl, Ingrid 	NOR	F	1964	2120	51	WIM
+1545.	Myat Thiri Aung Kyaw 	MYA	F	1993	2120	22	WFM
+1546.	Reszka, Malgorzata 	POL	F	1983	2120	32	
+1547.	Ramseier, Jana S. 	SUI	F	1969	2120	46	WFM
+1548.	Papp, Judit 	HUN	F	1984	2120	31	
+1549.	Abdusattorova, Bakhora 	UZB	F	1999	2120	16	WFM
+1550.	Gerelmaa, Ulziybat 	MGL	F	1971	2120	44	
+1551.	Mylnikova, Olga 	RUS	F	2000	2119	15	WFM
+1552.	Palmero Martinez, Rachel 	CUB	F	1997	2119	18	WFM
+1553.	Akseno, Marina 	RUS	F	1977	2119	38	
+1554.	Altunian, Karine 	ARM	F	1983	2119	32	
+1555.	Samokrutova, Olga 	RUS	F	1979	2119	36	WFM
+1556.	Zhorzholiani, Meri 	GEO	F	1990	2119	25	WFM
+1557.	Samani, Shraddha 	IND	F	1985	2119	30	
+1558.	Zykina, Nadezhda 	RUS	F	1956	2119	59	WFM
+1559.	Yakovich, Yuliya 	RUS	F	1990	2119	25	WFM
+1560.	Kuzmina, Natalia 	RUS	F	1986	2119	29	
+1561.	Pham, Ngoc Thanh 	VIE	F	1971	2119	44	WFM
+1562.	Erdenieva, Oyuna 	RUS	F	2001	2119	14	
+1563.	Han Wong, Irene Estefania 	VEN	F	1988	2119	27	WIM
+1564.	Batkovskyte, Dominyka 	LTU	F	1993	2119	22	
+1565.	Orozco, Lina Yomayra 	COL	F	1992	2118	23	WIM
+1566.	Herrera, Milena 	COL	F	1989	2118	26	WIM
+1567.	Zharkova, Ekaterina 	RUS	F	1989	2118	26	WFM
+1568.	Badanina, Olga 	RUS	F	1987	2118	28	WFM
+1569.	Khorsheva, Alexandra 	UKR	F	1988	2118	27	WFM
+1570.	Krilova, Marina 	RUS	F	1946	2118	69	WFM
+1571.	Jahn, Constanze 	GER	F	1963	2118	52	WIM
+1572.	Deur Saric, Zrinka 	CRO	F	1991	2118	24	WFM
+1573.	Samigullina, Diana 	RUS	F	1995	2118	20	WFM
+1574.	Eretova, Jana 	CZE	F	1973	2118	42	
+1575.	Demina, Oksana 	RUS	F	1991	2118	24	WFM
+1576.	Merkulova, Irina 	UKR	F	1989	2118	26	
+1577.	Gervais, Claire 	FRA	F	1976	2118	39	WIM
+1578.	Hlgatian, Goar 	ARM	F	1975	2118	40	WIM
+1579.	Bachina, Anna 	RUS	F	1988	2118	27	
+1580.	Hausmann, Ilka 	GER	F	1976	2117	39	
+1581.	Korneeva, Irina 	RUS	F	1983	2117	32	
+1582.	Yuan, Ye 	CHN	F	2000	2117	15	
+1583.	Khropova, Larisa 	RUS	F	1955	2117	60	WFM
+1584.	Bykovtsev, Agata 	USA	F	1999	2117	16	WIM
+1585.	Borriss, Claudia 	GER	F	1977	2117	38	WFM
+1586.	Wu, Yun 	CHN	F	1987	2117	28	
+1587.	Safira, Shahnaz 	IND	F	1977	2117	38	WFM
+1588.	Romanova, Ekaterina 	UKR	F	1982	2117	33	
+1589.	Rybak, Agnieszka 	POL	F	1975	2117	40	WFM
+1590.	Maslova, Polina 	RUS	F	1999	2117	16	WFM
+1591.	Sorokina, Tamara 	RUS	F	1949	2116	66	WIM
+1592.	Marshall, Abby 	USA	F	1991	2116	24	WFM
+1593.	Zizlova, Sofia 	RUS	F	1994	2116	21	
+1594.	Tetradze, N. 	RUS	F	1969	2116	46	
+1595.	Mokshanova, Elizaveta 	RUS	F	1998	2116	17	WFM
+1596.	Hallerova, Eva 	CZE	F	1975	2116	40	
+1597.	Bardina, Olga 	BLR	F	1983	2116	32	
+1598.	Kunze, Kerstin 	GER	F	1971	2116	44	WIM
+1599.	Karchevska, Lesia 	UKR	F	1988	2116	27	
+1600.	Khoudgarian, Natalia 	CAN	F	1973	2116	42	WIM
+1601.	Saheli, Nath 	IND	F	1989	2116	26	WFM
+1602.	Reyes Fonseca, Ammi Sarai 	CUB	F	2002	2116	13	
+1603.	Tsurtsumia, Natia 	GEO	F	1982	2116	33	
+1604.	Bogza, Oana 	ROU	F	1981	2116	34	WFM
+1605.	Sabirova, Olga 	UZB	F	1966	2116	49	WIM
+1606.	Avdeeva, Veronika 	RUS	F	1988	2116	27	WFM
+1607.	Hoang, My Thu Giang 	VIE	F	1977	2116	38	
+1608.	Rieseler, Caroline 	GER	F	1971	2116	44	WFM
+1609.	Jushchenko, Varvara 	RUS	F	1986	2116	29	
+1610.	Sofrevska-Andonova, Lidija 	MKD	F	1961	2115	54	WFM
+1611.	Phan, Nguyen Mai Chi 	VIE	F	1994	2115	21	WCM
+1612.	Keetman, Maaike 	NED	F	1999	2115	16	
+1613.	Yakimenko, Anastasia 	RUS	F	1998	2115	17	
+1614.	Chaichenko, Natalia 	RUS	F	1978	2115	37	WFM
+1615.	Dadikina, Anna 	LAT	F	1975	2115	40	
+1616.	Ionita, Mariana 	ROU	F	1962	2115	53	WFM
+1617.	Krumova, Velichka 	BUL	F	1942	2115	73	
+1618.	Machalova, Maria 	SVK	F	1984	2115	31	WFM
+1619.	Apresyan, Lusine 	ARM	F	1986	2115	29	
+1620.	Aladjova, Katrin 	AUS	F	1971	2115	44	WFM
+1621.	Savushkina, Evgenia 	BLR	F	1988	2115	27	
+1622.	Khaziyeva, Dinara 	CAN	F	1986	2115	29	WIM
+1623.	Kemeny-Svensson, Ingrid 	SWE	F	1947	2115	68	
+1624.	Heron, Heidi D 	ENG	F	1973	2115	42	
+1625.	Toth, Sarolta 	HUN	F	1990	2115	25	WFM
+1626.	Stanowska, Magdalena 	POL	F	1976	2115	39	
+1627.	Untila, Stela 	MDA	F	1988	2115	27	WFM
+1628.	Zugaj, Zvijezdana 	SLO	F	1976	2115	39	
+1629.	Wang, Xinyue 	CHN	F	1990	2115	25	
+1630.	Stoeri, Laura 	SUI	F	1996	2115	19	WFM
+1631.	Vazirova, Karina 	RUS	F	1990	2115	25	WIM
+1632.	Savant, Riya 	IND	F	2000	2115	15	WFM
+1633.	Guenther, Anetta 	GER	F	1973	2115	42	
+1634.	Virnik, Elena 	GER	F	1980	2115	35	
+1635.	Konakanchi, Ninad 	IND	F	1984	2115	31	
+1636.	Rodriguez Aguilar, Inmaculada 	ESP	F	1963	2115	52	
+1637.	Rainer, Vlasta 	CRO	F	1958	2115	57	
+1638.	Lastovina, Tatiana 	RUS	F	1986	2115	29	WFM
+1639.	Radocaj, Radmila 	CRO	F	1965	2115	50	
+1640.	Tolkachova, Vitalina 	UKR	F	1977	2114	38	
+1641.	Sanchez Ones, Yeny 	CUB	F	1997	2114	18	WIM
+1642.	Grechko, Svetlana 	BLR	F	1987	2114	28	
+1643.	Goltseva, Ekaterina 	RUS	F	2002	2114	13	WFM
+1644.	Cai, Jiaying 	CHN	F	1992	2114	23	
+1645.	Pershina, Elena 	RUS	F	1991	2114	24	WFM
+1646.	Middelveld, Martine 	NED	F	1989	2114	26	
+1647.	Frenklakh, Jennie 	USA	F	1980	2114	35	WFM
+1648.	Roca Mendoza, Yurien 	CUB	F	1979	2114	36	WFM
+1649.	Ignat, Diana 	FRA	F	1975	2114	40	
+1650.	Tabakova, Ina 	BUL	F	1976	2113	39	
+1651.	Marinello, Beatriz M. 	USA	F	1964	2113	51	WIM
+1652.	Pelletier, Katherine 	USA	F	1989	2113	26	WFM
+1653.	Andjelic, Milena 	SRB	F	1987	2113	28	
+1654.	Ildzhirinova, Saglara 	RUS	F	1992	2113	23	WFM
+1655.	Emelianova, Maria 	RUS	F	1987	2113	28	WFM
+1656.	Zhong, Yan 	CHN	F	1981	2113	34	
+1657.	Robaina Marrero, Yamile 	CUB	F	1983	2113	32	WFM
+1658.	Wuts, Helene 	NED	F	1974	2113	41	WFM
+1659.	Garcia Martin, Marta 	ESP	F	2000	2113	15	WFM
+1660.	Samokhina, Sofia 	RUS	F	1990	2113	25	WFM
+1661.	Darbinyan, Nune 	ARM	F	1990	2113	25	
+1662.	Kuzevanova, Evgenia 	RUS	F	1989	2113	26	WIM
+1663.	Homiakova, Elena 	BLR	F	1992	2113	23	WFM
+1664.	Burchardt, Brigitte 	GER	F	1954	2113	61	WIM
+1665.	Samusevich, Lada 	RUS	F	1981	2112	34	
+1666.	Roessler, Ulrike 	GER	F	1977	2112	38	WIM
+1667.	Flear, Christine 	FRA	F	1967	2112	48	WIM
+1668.	Yu, Hualing 	CHN	F	1992	2112	23	
+1669.	Kavalenia, Anastasia 	RUS	F	1981	2112	34	WFM
+1670.	Amelang, Astrid 	GER	F	1968	2112	47	
+1671.	Winkelmann, Elena 	GER	F	1991	2112	24	
+1672.	Aghayeva, Shahana 	AZE	F	1985	2112	30	
+1673.	Ushakova, Irina 	RUS	F	1962	2112	53	WFM
+1674.	Zhidkikh, Darja 	RUS	F	1987	2112	28	
+1675.	Sukhareva, Olga 	RUS	F	1984	2112	31	WFM
+1676.	Eidelson, Rakhil 	BLR	F	1958	2112	57	WGM
+1677.	Kadek, Iin Dwijayanti 	INA	F	1987	2112	28	WFM
+1678.	Aliyeva, Gunay 	GEO	F	1982	2112	33	WFM
+1679.	Epitashvili, Ketevan 	GEO	F	1984	2112	31	
+1680.	Gruic, Jadranka 	SRB	F	1971	2112	44	
+1681.	Rodrigo Yanguas, Maria 	ESP	F	1990	2111	25	WFM
+1682.	Zielinska, Malgorzata 	POL	F	1982	2111	33	
+1683.	Fandino Reyes, Roquelina 	CUB	F	1968	2111	47	WIM
+1684.	Ivekovic, Tihana 	CRO	F	1995	2111	20	WFM
+1685.	Turebayeva, Alfiya 	KAZ	F	1971	2111	44	WIM
+1686.	Mihalevica, Diana 	LAT	F	1985	2111	30	
+1687.	Majboroda, Evgenija 	UKR	F	1987	2111	28	WIM
+1688.	Shickova, Nastja 	RUS	F	1983	2111	32	
+1689.	Sreeparna, Chakraborty 	IND	F	1977	2111	38	
+1690.	Naiditsch, Jevgenija 	GER	F	1987	2111	28	
+1691.	Yakushenkova, Guzel 	RUS	F	1962	2111	53	WFM
+1692.	Citra, Dewi Ardhiani Anastasia 	INA	F	1994	2111	21	WFM
+1693.	Vujnovic, Patricija 	CRO	F	1995	2111	20	
+1694.	Kozak, Svetlana 	UKR	F	1972	2110	43	
+1695.	Rogozenco, Teodora 	GER	F	2000	2110	15	
+1696.	Siekanska, Izabela 	POL	F	1966	2110	49	
+1697.	Zrazhevskaya, Natalia 	UKR	F	1966	2110	49	
+1698.	Valentova, Eva 	CZE	F	1973	2110	42	
+1699.	Radanska, Violeta 	BUL	F	1973	2110	42	
+1700.	Gueci, Tea 	ITA	F	1999	2110	16	WFM
+1701.	Von der Weth, Carola 	GER	F	1959	2110	56	WFM
+1702.	Ivanova, Tatiana 	RUS	F	1989	2110	26	WFM
+1703.	Dimovski, Aleksandra 	BIH	F	1985	2110	30	
+1704.	Korniyuk, Mariya 	UKR	F	1992	2110	23	WFM
+1705.	Stomatova, Victoria 	RUS	F	1986	2110	29	WFM
+1706.	Omutnykh-Gubatenko, Natalia 	UKR	F	1975	2110	40	WFM
+1707.	Nikolaeva, Darya 	RUS	F	1988	2110	27	
+1708.	Panova, Natalija 	RUS	F	1978	2110	37	
+1709.	Kovaleva, Olga 	RUS	F	1970	2110	45	WFM
+1710.	West, Vanessa A. 	USA	F	1988	2110	27	
+1711.	Spirina, Natalia 	RUS	F	1979	2109	36	WFM
+1712.	Labedz, Patrycja 	POL	F	1992	2109	23	WFM
+1713.	Puzanenko, Oksana 	RUS	F	1983	2109	32	
+1714.	Tuominen, Tanja 	FIN	F	1979	2109	36	WIM
+1715.	Wang, Yu 	CHN	F	1994	2109	21	
+1716.	Pascual Palomo, Lucia 	ESP	F	1988	2109	27	WFM
+1717.	Sahakyan, Nona 	ARM	F	1981	2109	34	
+1718.	Miguez Rodriguez, Damarka G. 	CUB	F	1982	2109	33	WFM
+1719.	Mokriak, Liudmila 	UKR	F	1984	2109	31	WIM
+1720.	Xu, Huahua 	CHN	F	1994	2109	21	WIM
+1721.	Barantseva, Svetlana 	UKR	F	1973	2109	42	WFM
+1722.	Mai, Iris 	GER	F	1962	2109	53	WIM
+1723.	Lakshmi, Sahiti P. 	IND	F	1993	2108	22	WIM
+1724.	Hasanova, Turkan 	AZE	F	1992	2108	23	WFM
+1725.	Babic, Marijana 	SRB	F	1984	2108	31	WIM
+1726.	Antonenko, Valeria 	RUS	F	1987	2108	28	WFM
+1727.	Eryshkanova, Anastasiya 	RUS	F	1994	2108	21	WFM
+1728.	Bellin, Jana M 	ENG	F	1947	2108	68	WGM
+1729.	Qveliashvili, Tinatin 	GEO	F	1981	2108	34	
+1730.	Hummatova, Samaya 	GEO	F	1986	2108	29	
+1731.	Belaya, Nastasya 	RUS	F	1980	2108	35	
+1732.	Devulder, Armine 	FRA	F	1972	2108	43	
+1733.	Titorenko, Natalia I 	RUS	F	1951	2108	64	WIM
+1734.	Schroecker, Maria-Luise 	AUT	F	1976	2108	39	WFM
+1735.	Vifleemskaia, Svetlana 	RUS	F	1974	2108	41	WFM
+1736.	Meleshko, Tatiana 	RUS	F	1989	2108	26	WFM
+1737.	Moylan, Laura 	AUS	F	1983	2108	32	WIM
+1738.	Bogatko, Tana 	BLR	F	1964	2108	51	WFM
+1739.	Paidla, Kaja J. 	EST	F	1966	2107	49	
+1740.	Yakupova, Aysyla 	RUS	F	1990	2107	25	
+1741.	Jilemnicka, Jana 	CZE	F	1980	2107	35	
+1742.	Hani, Wardah 	INA	F	1999	2107	16	WFM
+1743.	Etcheverry, Maria Emilia 	ARG	F	1976	2107	39	
+1744.	Lazo, Xenia 	MDA	F	1989	2107	26	WFM
+1745.	Shevkoplias, Svetlana 	RUS	F	1988	2107	27	WFM
+1746.	Alegria Cruz, Deborah 	CUB	F	1997	2107	18	WFM
+1747.	Son, Olga 	UZB	F	1983	2107	32	WFM
+1748.	Tarleva, Vira 	UKR	F	1987	2107	28	WFM
+1749.	Batyte, Daiva 	LTU	F	1980	2107	35	WFM
+1750.	Egorova, Viktoriya 	RUS	F	1986	2107	29	WFM
+1751.	Smokina, Karolina 	MDA	F	1977	2107	38	WGM
+1752.	Flores Villalva, Ninfa 	ECU	F	1981	2107	34	
+1753.	Pedko, Olga S 	RUS	F	1943	2107	72	
+1754.	Topel, Zehra 	TUR	F	1987	2106	28	WIM
+1755.	Wiesner, Paula 	GER	F	1999	2106	16	
+1756.	Millan Cordero, Dania 	CUB	F	1975	2106	40	WFM
+1757.	Villegas, Sandra 	ARG	F	1972	2106	43	WFM
+1758.	Sarai, Slavica 	AUS	F	1967	2106	48	WFM
+1759.	Shabarina, Evgenia 	RUS	F	1989	2106	26	WFM
+1760.	Ramirez Vasquez, Denisse 	ECU	F	1982	2106	33	WFM
+1761.	Kasturi, M 	IND	F	1987	2106	28	WIM
+1762.	De Kleuver, Esther 	NED	F	1968	2106	47	WIM
+1763.	Dobrynina, Aleksandra 	RUS	F	1996	2106	19	WFM
+1764.	Medunova, Vera 	CZE	F	1965	2106	50	WIM
+1765.	Hamrakulova, Yulduz 	UZB	F	1989	2106	26	WIM
+1766.	Gorczyca, Aleksandra 	POL	F	1983	2106	32	
+1767.	Eriksson, Ingela S. 	AUS	F	1974	2106	41	
+1768.	Forbes, Cathy 	ENG	F	1968	2106	47	WIM
+1769.	Hudaikulieva, Nasiba 	TKM	F	1985	2106	30	WFM
+1770.	Zepeda, Lorena 	ESA	F	1984	2106	31	WIM
+1771.	Lezcano Suarez, Yusimir 	CUB	F	1974	2106	41	
+1772.	Umanskaja, Elvira 	RUS	F	1970	2106	45	WFM
+1773.	Ushakova, Natalia 	RUS	F	1980	2105	35	WFM
+1774.	Mezioud, Amina 	ALG	F	1988	2105	27	WIM
+1775.	Frey, Alisa 	GER	F	1992	2105	23	WFM
+1776.	Miljkovic, Jovana 	SRB	F	1999	2105	16	WFM
+1777.	Smiechowska, Joanna 	POL	F	1972	2105	43	
+1778.	Varshini, V 	IND	F	1998	2105	17	WFM
+1779.	Badut, Ana-Maria 	ROU	F	1983	2105	32	WFM
+1780.	Peltanova, Zuzana 	CZE	F	1972	2105	43	
+1781.	Bandera Castro, Yainoris 	CUB	F	1974	2105	41	WFM
+1782.	Mamantov, Margarita 	ISR	F	1957	2105	58	
+1783.	Ursuleac, Nicoleta-Viorica 	ROU	F	1969	2105	46	WFM
+1784.	Rybarska, Janina 	POL	F	1926	2105	89	
+1785.	Pernici, Barbara 	ITA	F	1956	2105	59	WFM
+1786.	Szromba, Edyta 	POL	F	1985	2105	30	WFM
+1787.	Grigorian, Marine 	RUS	F	1992	2105	23	WFM
+1788.	Candea, Coralia-Irina 	ROU	F	1967	2105	48	WFM
+1789.	Chilingirova, Pavlina 	BUL	F	1955	2105	60	WIM
+1790.	Yu, Moqi 	CHN	F	1992	2105	23	
+1791.	Koen, Maja 	BUL	F	1973	2105	42	WIM
+1792.	Mereklishvili, Tsira 	GEO	F	1969	2105	46	
+1793.	Smirnova, Anastasia 	RUS	F	1990	2105	25	WFM
+1794.	Irzhanova, Victoriya 	KAZ	F	1972	2105	43	WFM
+1795.	Eretova, Kveta 	CZE	F	1926	2104	89	WGM
+1796.	Korytina, Natalia 	KAZ	F	1989	2104	26	WFM
+1797.	Ushakiva, Yekaterina 	RUS	F	1981	2104	34	
+1798.	Verko, Tatiana 	KAZ	F	1989	2104	26	WFM
+1799.	Wafa, Shrook 	EGY	F	1997	2104	18	WGM
+1800.	Semenova, Inna 	RUS	F	1968	2104	47	WFM
+1801.	Panella, Fiammetta 	ITA	F	1988	2104	27	WFM
+1802.	Khusnutdinova, Alsu 	RUS	F	1998	2103	17	WFM
+1803.	Kirsanova, Ekaterina 	RUS	F	1987	2103	28	WFM
+1804.	Churun, Polina 	BLR	F	1982	2103	33	WFM
+1805.	Atkins, Rita 	ENG	F	1969	2103	46	WIM
+1806.	Sychyova, Olga 	RUS	F	1981	2103	34	WFM
+1807.	Zadorina, Nadezhda 	RUS	F	1957	2103	58	WFM
+1808.	Mosionzhik, Bronia 	RUS	F	1941	2103	74	WFM
+1809.	Monnisha G K 	IND	F	1998	2103	17	WIM
+1810.	Ataeva, Ilona 	RUS	F	1989	2103	26	
+1811.	Kudriashova, Irina 	RUS	F	1980	2103	35	WFM
+1812.	Schulte, Stefanie 	GER	F	1984	2103	31	
+1813.	Demidowicz, Maria 	POL	F	1991	2103	24	
+1814.	Timme, Karin, Dr. 	GER	F	1964	2103	51	
+1815.	Hakimifard, Raana 	IRI	F	1996	2103	19	
+1816.	Drozdova, Elena 	RUS	F	1989	2103	26	WFM
+1817.	Manicuta, Monica 	ROU	F	1985	2103	30	
+1818.	Milosevic, Jovana 	SRB	F	1996	2103	19	WFM
+1819.	Belamaric, Tanja 	CRO	F	1946	2103	69	WIM
+1820.	Korchenkova, Irina 	RUS	F	1991	2103	24	WFM
+1821.	Kalmykova, Anastasia 	RUS	F	1994	2103	21	WFM
+1822.	Pazo Santana, Susana 	CUB	F	1988	2102	27	WFM
+1823.	Andronic, Iulia 	MDA	F	1985	2102	30	
+1824.	Kovanova, Mariya 	KAZ	F	1988	2102	27	WFM
+1825.	Andriana, Anca 	ROU	F	1979	2102	36	WFM
+1826.	Papadopoulou, Triantafilia 	GRE	F	1976	2102	39	
+1827.	Mar, Karmen 	SLO	F	1987	2102	28	WIM
+1828.	Matsko, Marina 	UKR	F	1973	2102	42	
+1829.	Melikishvili, Tamar 	GEO	F	1987	2102	28	WFM
+1830.	Batrak, Alexandra 	RUS	F	1998	2102	17	WFM
+1831.	Van Run, Rieke 	NED	F	1985	2102	30	
+1832.	Nandhidhaa, PV 	IND	F	1996	2102	19	WIM
+1833.	Grujic, Danijela 	SRB	F	1974	2102	41	
+1834.	Grebenschikova, Natalya 	RUS	F	1984	2102	31	
+1835.	Tsalughelashvili, Lile 	GEO	F	1979	2102	36	WFM
+1836.	Miloradovic, Jelena 	SRB	F	1978	2102	37	WFM
+1837.	Protopopova, Anastasiya 	RUS	F	2000	2102	15	WFM
+1838.	Barpiyeva, Gulsana 	KAZ	F	1977	2102	38	WFM
+1839.	Olijnyk, Olena 	UKR	F	1983	2102	32	
+1840.	Hagesather, Nina 	NOR	F	1978	2102	37	
+1841.	Grandjean-Steiner, Maria 	SUI	F	1959	2102	56	WFM
+1842.	Pirklova, Hana 	CZE	F	1982	2101	33	
+1843.	Yarullina, Alina 	RUS	F	1991	2101	24	WFM
+1844.	Torounova, Elena 	RUS	F	1970	2101	45	WFM
+1845.	Khalafian, Erna 	ARM	F	1957	2101	58	
+1846.	Marin, Irina-Luiza 	ROU	F	1970	2101	45	WIM
+1847.	Van Parreren, Hanneke 	NED	F	1953	2101	62	WFM
+1848.	Cancio-Bello Ayes, Flavia 	CUB	F	1993	2101	22	WFM
+1849.	Varniene, Rita 	LTU	F	1973	2101	42	
+1850.	Cua, Shercila 	PHI	F	1984	2101	31	WFM
+1851.	Suess, Annegret 	GER	F	1977	2101	38	
+1852.	Portnjegina, Yana 	RUS	F	1978	2101	37	
+1853.	Chukhrova, Nataliya 	RUS	F	1975	2101	40	WFM
+1854.	Huseynova, Nigar 	AZE	F	1985	2101	30	
+1855.	Konovalova, Vera 	UKR	F	1990	2101	25	
+1856.	Ratner, Anna 	UKR	F	1971	2100	44	
+1857.	Steinbacher, Claudia 	GER	F	1970	2100	45	WIM
+1858.	Harsanyi, Kinga 	HUN	F	1988	2100	27	WFM
+1859.	Richmond, Jane 	WLS	F	1961	2100	54	WFM
+1860.	Petrenko, Margarita 	RUS	F	1947	2100	68	WFM
+1861.	Delaney, Ann Teresa 	IRL	F	1962	2100	53	
+1862.	Drewes, Mariette 	NED	F	1967	2100	48	WFM
+1863.	Deriabina, Svetlana 	RUS	F	1978	2100	37	WFM
+1864.	Turczynowicz, Jolanta 	POL	F	1973	2100	42	
+1865.	Gasparian, Narine 	ARM	F	1982	2100	33	WIM
+1866.	Salazar, Adriana 	COL	F	1963	2100	52	WIM
+1867.	Hobusch, Cornelia 	GER	F	1960	2100	55	
+1868.	Tereshechkina, Maya 	RUS	F	1996	2100	19	WFM
+1869.	Usoltseva, Polina 	UKR	F	1995	2100	20	
+1870.	Skacelova, Libuse 	CZE	F	1958	2100	57	WFM
+1871.	Efremova, Yulia 	UKR	F	1987	2100	28	WIM
