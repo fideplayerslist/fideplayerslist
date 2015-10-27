@@ -76,6 +76,8 @@ ga = GM average ratings ( 20 - 40 )
 yp = young players ( 5 - 6 )
 pwg = players without gender
 
+search
+
 d = define term
 l = list terms
 s [name] = search term
