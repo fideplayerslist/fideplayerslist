@@ -166,21 +166,6 @@ sub graph
 			draw_box($x,$yF,$red);
 		}
 	}
-
-    # make the background transparent and interlaced
-    #$im->transparent($white);
-    #$im->interlaced('true');
-
-    # Put a black frame around the picture
-    #$im->rectangle(0,0,99,99,$black);
-
-    # Draw a blue oval
-    #$im->arc(50,50,95,75,0,360,$blue);
-
-    # And fill it with red
-    #$im->fill(50,50,$red);
-	
-	#$im->string(gdSmallFont,2,10,"Peachy Keen",$blue);
 	
 	open(OUT,">chart.png");
 
