@@ -141,7 +141,7 @@ sub graph
 
 	my @data=read_data("age_stats");
 
-    draw_axis(0,0,"Inactivity rate of FIDE players in the function of age","age","inactivity %",[["male",$blue],["female",$red]]);
+    draw_axis(0,0,"Inactivity rate of rated FIDE players in the function of age","age","inactivity %",[["male",$blue],["female",$red]]);
 	
 	foreach(@data)
 	{
