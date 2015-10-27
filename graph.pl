@@ -96,7 +96,7 @@ sub draw_axis
 	
 	$im->rectangle($MARGIN-$AXISEXCESS,$scry,$MARGIN+$WIDTH+$AXISEXCESS,$scry,$black);
 	
-	$im->string(gdLargeFont,$MARGIN*1.5,$MARGIN/2,$title,$black);
+	$im->string(gdLargeFont,$MARGIN*0.5,$MARGIN/2,$title,$black);
 	$im->string(gdLargeFont,$MARGIN+$WIDTH/2,$MARGIN+$HEIGHT+$MARGIN/2,$xtitle,$black);
 	$im->stringUp(gdLargeFont,$MARGIN/2-15,$MARGIN+$HEIGHT/2+40,$ytitle,$black);
 	
@@ -172,13 +172,21 @@ sub graph_hw
 	$MINY=8;
 	$MAXY=23;
 
-    draw_axis(0,8,"Participation rate in top female players countries","rank","female participation %",[["participation",$red]],10,5);
+    draw_axis(0,8,"Female participation among rated players in countries of top ranked female players","rank","female participation %",[["participation",$red],["linear trend",$blue]],10,5);
 	
 	my $cnt=0;
 	
 	my $cpar=0;
 	
 	my $chunk=25;
+	
+	my $Sx=0;
+	my $Sy=0;
+	my $Sxx=0;
+	my $Sxy=0;
+	my $Syy=0;
+	
+	my $n=0;
 	
 	foreach(@hw)
 	{
@@ -197,6 +205,12 @@ sub graph_hw
 		
 			$par=$cpar/$chunk;
 			
+			$Sx+=$rank;
+			$Sy+=$par;
+			$Sxx+=$rank*$rank;
+			$Sxy+=$rank*$par;
+			$Syy+=$par*$par;
+			
 			$cpar=0;
 		
 			#print "$rank $record->{name} $par\n";
@@ -207,9 +221,27 @@ sub graph_hw
 			draw_box($x,$y,$red,5);
 			
 			$cnt=0;
+			
+			$n++;
 		
 		}
 	}
+	
+	my $Beta=($n*$Sxy-$Sx*$Sy)/(($n*$Sxx)-($Sx*$Sx));
+	
+	my $Alpha=($Sy/$n)-($Beta*$Sx/$n);
+	
+	my $x0=calc_scr($WIDTH,$MINX,$MAXX,$MINX);
+	my $y0=calc_scr($HEIGHT,$MAXY,$MINY,$Alpha+$MINX*$Beta);
+	
+	my $x1=calc_scr($WIDTH,$MINX,$MAXX,$MAXX);
+	my $y1=calc_scr($HEIGHT,$MAXY,$MINY,$Alpha+$MAXX*$Beta);
+	
+	print "Sx $Sx\nSy $Sy\nSxx $Sxx\nSyy $Syy\nSxy $Sxy\nn $n\nAlpha $Alpha\nBeta $Beta\n";
+	
+	$im->setThickness(5);
+	$im->line($x0,$y0,$x1,$y1,$blue);
+	$im->setThickness(1);
 	
 	save_image("high_ranked_participation");
 
