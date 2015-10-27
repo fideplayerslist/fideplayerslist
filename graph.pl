@@ -27,7 +27,8 @@ my $red = $im->colorAllocate(255,0,0);
 my $blue = $im->colorAllocate(0,0,255);
 
 graph_inactivity();
-graph_hw();
+graph_hw("high_ranked_participation");
+graph_hw("high_ranked_participation_w");
 
 sub read_data
 {
@@ -155,6 +156,8 @@ sub save_image
 sub graph_hw
 {
 
+	my ($name)=@_;
+
 	my @hw=read_data("high_rated_F_above_2100");
 	
 	my @data=read_data("country_stats_1_100");
@@ -165,7 +168,11 @@ sub graph_hw
 	{
 		my $record=$_;
 		
-		$pars->{$record->{country}}=$record->{'female % of rated players'};
+		$pars->{$record->{country}}=$record->{
+		$name=~/_w$/?
+		'female % of all players':
+		'female % of rated players'
+		};
 	}
 	
 	$MAXX=@hw-1;
@@ -237,13 +244,15 @@ sub graph_hw
 	my $x1=calc_scr($WIDTH,$MINX,$MAXX,$MAXX);
 	my $y1=calc_scr($HEIGHT,$MAXY,$MINY,$Alpha+$MAXX*$Beta);
 	
-	print "Sx $Sx\nSy $Sy\nSxx $Sxx\nSyy $Syy\nSxy $Sxy\nn $n\nAlpha $Alpha\nBeta $Beta\n";
+	#print "Sx $Sx\nSy $Sy\nSxx $Sxx\nSyy $Syy\nSxy $Sxy\nn $n\nAlpha $Alpha\nBeta $Beta\n";
 	
 	$im->setThickness(5);
 	$im->line($x0,$y0,$x1,$y1,$blue);
 	$im->setThickness(1);
 	
-	save_image("high_ranked_participation");
+	$im->string(gdLargeFont,$MARGIN*2,$MARGIN*1.5,"beta $Beta",$blue);
+	
+	save_image($name);
 
 }
 
