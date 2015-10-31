@@ -5,12 +5,12 @@ state="idle"
 current_key=""
 current_value=""
 fields=[]
+outf=None
 
 def start_element(name, attrs):
 	global state
 	global current_key
 	global current_value
-	global fields
 	if name=="player":
 		state="player"
 	elif state=="player":
@@ -22,6 +22,7 @@ def end_element(name):
 	global current_value
 	global fields
 	global cnt
+	global outf
 	if state=="player":
 		if name=="player":
 			state="idle"
@@ -43,24 +44,28 @@ def char_data(data):
 	if state=="player" and not current_key=="":
 		current_value=data
 
-p = xml.parsers.expat.ParserCreate()
+def process_xml():
+	global outf
+	p = xml.parsers.expat.ParserCreate()
 
-p.StartElementHandler = start_element
-p.EndElementHandler = end_element
-p.CharacterDataHandler = char_data
+	fh=open("players_list_xml.xml")
 
-fh=open("players_list_xml.xml")
+	outf=open("players.txt","w")
+	
+	p.StartElementHandler = start_element
+	p.EndElementHandler = end_element
+	p.CharacterDataHandler = char_data
 
-outf=open("players.txt","w")
+	line=True
 
-line=True
+	while((cnt<100000) and line):
 
-while((cnt<1000000) and line):
+		line=fh.readline().rstrip()
 
-	line=fh.readline().rstrip()
+		p.Parse(line)
 
-	p.Parse(line)
+	outf.close()
 
-outf.close()
-
-fh.close()
+	fh.close()
+	
+process_xml();
