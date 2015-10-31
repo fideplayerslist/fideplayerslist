@@ -1,4 +1,6 @@
 import xml.parsers.expat
+from tkinter import *
+import time
 
 cnt=0
 state="idle"
@@ -6,6 +8,14 @@ current_key=""
 current_value=""
 fields=[]
 outf=None
+status_label=None
+last_update=time.time()
+
+def update(message):
+	global cnt
+	global status_label
+	status_label.config(text=message)
+	status_label.update()
 
 def start_element(name, attrs):
 	global state
@@ -23,6 +33,8 @@ def end_element(name):
 	global fields
 	global cnt
 	global outf
+	global status_label
+	global last_update
 	if state=="player":
 		if name=="player":
 			state="idle"
@@ -30,8 +42,10 @@ def end_element(name):
 			print(line,file=outf)
 			fields=[]
 			cnt+=1
-			if((cnt%10000)==0):
-				print(cnt,"players processed")
+			t=time.time()
+			if (t-last_update)>=1:
+				update("Processed records: "+str(cnt))
+				last_update=t
 		else:
 			fields.append(current_value)
 			current_key=""
@@ -46,6 +60,7 @@ def char_data(data):
 
 def process_xml():
 	global outf
+	global cnt
 	p = xml.parsers.expat.ParserCreate()
 
 	fh=open("players_list_xml.xml")
@@ -58,7 +73,7 @@ def process_xml():
 
 	line=True
 
-	while((cnt<100000) and line):
+	while((cnt<1000000) and line):
 
 		line=fh.readline().rstrip()
 
@@ -67,5 +82,16 @@ def process_xml():
 	outf.close()
 
 	fh.close()
+	update("Processing done, "+str(cnt)+" records processed")
 	
-process_xml();
+# mainloop
+	
+root=Tk()
+
+status_label=Label(root)
+status_label.pack()
+
+process_xml_button = Button(root, text='Process XML', width=25, command=process_xml)
+process_xml_button.pack()
+
+root.mainloop()
