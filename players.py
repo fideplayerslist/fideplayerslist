@@ -129,10 +129,10 @@ def process_xml():
 	process_xml_go();
 	outf.close()
 	
-def getkey(key):
-		if not key=="":
-			return key
-		return "NA"
+def getkey(record,key):
+		if not key in record:
+			return "NA"
+		return record[key] if not record[key]=="" else "NA"
 	
 def iterate_players_txt():
 	global cnt
@@ -142,7 +142,7 @@ def iterate_players_txt():
 	headers=fh.readline().rstrip().split("\t")
 	line=True
 	cnt=0
-	collected=("country","birthday")
+	collected=("country","birthday","flag")
 	collections={}
 	phase="Iterating players.txt"
 	for key in collected:
@@ -154,28 +154,35 @@ def iterate_players_txt():
 			cnt+=1
 			record=dict(zip(headers,fields))
 			for key in collected:
-				subkey=getkey(record[key])
-				if subkey in collections[key]:
-					collections[key][subkey].append(line)
+				subkey=getkey(record,key)
+				if "rating" in record:
+					touple=(int(record["rating"]),line) if not record["rating"]=="" else (0,line)
 				else:
-					collections[key][subkey]=[line]
+					touple=(0,line)
+				if subkey in collections[key]:
+					collections[key][subkey].append(touple)
+				else:
+					collections[key][subkey]=[touple]
 			t=time.time()
 			if (t-last_update)>=1:
 				update("Processed records: "+str(cnt))
 				last_update=t
+	update("Iterating players.txt, scan ok, "+str(cnt)+" records processed")
 	for key in collected:
 		mkdir(key)
 		for subkey in collections[key]:
 			print("Generating "+key+" : "+subkey)
 			outf=open(key+"/"+subkey+".txt","w")
-			print("\n".join(collections[key][subkey]),file=outf)
+			print("\t".join(headers),file=outf)
+			l=list(map(lambda x:x[1],sorted(collections[key][subkey],key=lambda x:x[0],reverse=True)))
+			print("\n".join(l),file=outf)
 			outf.close()
 			outf=open(key+"/"+subkey+".html","w")
 			print("<table border=1><tr><td>"+"</td><td>".join(headers)+"</td></tr><tr>",file=outf)
-			print("</tr><tr>".join(map(lambda x:("<td>"+"</td><td>".join(x.split("\t"))+"</td>"),collections[key][subkey])),file=outf)
+			print("</tr><tr>".join(map(lambda x:("<td>"+"</td><td>".join(x.split("\t"))+"</td>"),l)),file=outf)
 			print("</tr></table>",file=outf)
 			outf.close()
-	update("Iterating players.txt done , "+str(cnt)+" records processed")
+	update("Iterating players.txt, done , "+str(cnt)+" records processed")
 	
 # mainloop
 	
