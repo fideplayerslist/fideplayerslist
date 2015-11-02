@@ -2,6 +2,7 @@ import xml.parsers.expat
 from tkinter import *
 import time
 import os
+from os import walk
 
 cnt=0
 state="idle"
@@ -14,6 +15,7 @@ last_update=time.time()
 key_counts={}
 phase=0
 sorted_keys=[]
+collected=("country","birthday","flag")
 
 def update(message):
 	global cnt
@@ -137,6 +139,7 @@ def getkey(record,key):
 addnocnt=0
 def iterate_players_txt():
 	global addnocnt
+	global collected
 	def addno(line):
 		global addnocnt
 		addnocnt+=1
@@ -149,7 +152,6 @@ def iterate_players_txt():
 	headers=headersline.split("\t")
 	line=True
 	cnt=0
-	collected=("country","birthday","flag")
 	collections={}
 	phase="Iterating players.txt"
 	for key in collected:
@@ -193,6 +195,17 @@ def iterate_players_txt():
 			outf.close()
 	update("Iterating players.txt, done , "+str(cnt)+" records processed")
 	
+def create_stats():
+	global collected
+	print("Creating stats")
+	for key in collected:
+		print("Listing",key)
+		f=[]
+		for(dirpath,dirnames,filenames) in walk(key):
+			f.extend(filenames)
+			break
+		print(f)
+	
 # mainloop
 	
 root=Tk()
@@ -205,5 +218,8 @@ process_xml_button.pack()
 
 iterate_txt_button = Button(root, text='Inerate players.txt', width=100, command=iterate_players_txt)
 iterate_txt_button.pack()
+
+create_stats_button = Button(root, text='Create stats', width=100, command=create_stats)
+create_stats_button.pack()
 
 root.mainloop()
