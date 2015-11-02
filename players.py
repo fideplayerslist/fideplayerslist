@@ -134,12 +134,19 @@ def getkey(record,key):
 			return "NA"
 		return record[key] if not record[key]=="" else "NA"
 	
+addnocnt=0
 def iterate_players_txt():
+	global addnocnt
+	def addno(line):
+		global addnocnt
+		addnocnt+=1
+		return str(addnocnt)+"\t"+line
 	global cnt
 	global last_update
 	global phase
 	fh=open("players.txt")
-	headers=fh.readline().rstrip().split("\t")
+	headersline=fh.readline().rstrip()
+	headers=headersline.split("\t")
 	line=True
 	cnt=0
 	collected=("country","birthday","flag")
@@ -149,8 +156,8 @@ def iterate_players_txt():
 		collections[key]={}
 	while((cnt<1000000) and line):
 		line=fh.readline().rstrip()
-		fields=line.split("\t")
 		if(line):
+			fields=line.split("\t")
 			cnt+=1
 			record=dict(zip(headers,fields))
 			for key in collected:
@@ -173,12 +180,14 @@ def iterate_players_txt():
 		for subkey in collections[key]:
 			print("Generating "+key+" : "+subkey)
 			outf=open(key+"/"+subkey+".txt","w")
-			print("\t".join(headers),file=outf)
+			print("no\t"+"\t".join(headers),file=outf)
 			l=list(map(lambda x:x[1],sorted(collections[key][subkey],key=lambda x:x[0],reverse=True)))
+			addnocnt=0
+			l=list(map(addno,l))
 			print("\n".join(l),file=outf)
 			outf.close()
 			outf=open(key+"/"+subkey+".html","w")
-			print("<table border=1><tr><td>"+"</td><td>".join(headers)+"</td></tr><tr>",file=outf)
+			print("<table border=1><tr><td>no</td><td>"+"</td><td>".join(headers)+"</td></tr><tr>",file=outf)
 			print("</tr><tr>".join(map(lambda x:("<td>"+"</td><td>".join(x.split("\t"))+"</td>"),l)),file=outf)
 			print("</tr></table>",file=outf)
 			outf.close()
