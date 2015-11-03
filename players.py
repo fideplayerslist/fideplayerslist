@@ -92,10 +92,9 @@ def process_xml_go():
 	line=True
 
 	while((cnt<1000000) and line):
-
 		line=fh.readline().rstrip()
-
-		p.Parse(line)
+		if line:
+			p.Parse(line)
 
 	fh.close()
 	update("Processing done, "+str(cnt)+" records processed")
@@ -205,6 +204,11 @@ def create_stats():
 			f.extend(filenames)
 			break
 		print(f)
+		
+def startup():
+	process_xml()
+	iterate_players_txt()
+	create_stats()
 	
 # mainloop
 	
@@ -212,6 +216,9 @@ root=Tk()
 
 status_label=Label(root)
 status_label.pack()
+
+startup_button = Button(root, text='STARTUP', width=100, command=startup)
+startup_button.pack()
 
 process_xml_button = Button(root, text='Process XML', width=100, command=process_xml)
 process_xml_button.pack()
