@@ -131,10 +131,10 @@ def process_xml():
 	outf.close()
 	
 def getkey(record,key):
-		if not key in record:
-			return "NA"
-		return record[key] if not record[key]=="" else "NA"
-	
+	if not key in record:
+		return "NA"
+	return record[key] if not record[key]=="" else "NA"
+		
 addnocnt=0
 def iterate_players_txt():
 	global addnocnt
@@ -194,8 +194,66 @@ def iterate_players_txt():
 			outf.close()
 	update("Iterating players.txt, done , "+str(cnt)+" records processed")
 	
+def average(counter,denominator):
+	if denominator==0:
+		return "NA"
+	return "{0:.2f}".format(counter/denominator)
+	
+def create_stats_file(path,name):
+	print("Creating stats ",path,name)
+	fh=open(path+"/"+name+".txt")
+	line=fh.readline()
+	if not line:
+		print("File empty, no stats created")
+		return
+	headers=line.rstrip().split("\t")
+	linecnt=0
+	stats={"ALL":0,"MF":0,"M":0,"F":0,"RALL":0,"RMF":0,"RM":0,"RF":0,"CRALL":0,"CRMF":0,"CRM":0,"CRF":0,"AVGRALL":0,"AVGRMF":0,"AVGRM":0,"AVGRF":0}
+	while(line):
+		line=fh.readline()
+		if line:
+			linecnt+=1
+			fields=line.rstrip().split("\t")
+			record=dict(zip(headers,fields))
+			rating_s=getkey(record,"rating")
+			stats["ALL"]+=1
+			sex=getkey(record,"sex")
+			if sex in ("M","F"):
+				stats["MF"]+=1
+				stats[sex]+=1
+			if not rating_s=="NA":
+				rating=int(rating_s)
+				stats["CRALL"]+=rating
+				stats["RALL"]+=1
+				if sex in ("M","F"):
+					stats["CR"+sex]+=rating
+					stats["R"+sex]+=1
+					stats["CRMF"]+=rating
+					stats["RMF"]+=1
+					
+	stats["AVGRALL"]=average(stats["CRALL"],stats["RALL"])
+	stats["AVGRMF"]=average(stats["CRMF"],stats["RMF"])
+	stats["AVGRM"]=average(stats["CRM"],stats["RM"])
+	stats["AVGRF"]=average(stats["CRF"],stats["RF"])
+	stats["PARF"]=average(100*stats["F"],stats["MF"])
+	stats["PARFR"]=average(100*stats["RF"],stats["RMF"])
+					
+	outf=open(path+"/"+name+".stats.txt","w")
+	outfh=open(path+"/"+name+".stats.html","w")
+	print("<table border=1 cellpadding=5 cellspacing=5>",file=outfh)
+	for key in sorted(stats.keys()):
+		print(key+"\t"+str(stats[key]),file=outf)
+		print("<tr><td>"+key+"</td><td>"+str(stats[key])+"</tr>",file=outfh)
+	print("</table>",file=outfh)
+	outfh.close()
+	outf.close()
+			
+	
 def create_stats():
 	global collected
+	global status_label
+	status_label.config(text="Creating stats")
+	status_label.update()
 	print("Creating stats")
 	for key in collected:
 		print("Listing",key)
@@ -203,7 +261,14 @@ def create_stats():
 		for(dirpath,dirnames,filenames) in walk(key):
 			f.extend(filenames)
 			break
-		print(f)
+		for name in f:
+			parts=name.split(".")
+			if len(parts)==2 and parts[1]=="txt":
+				name=parts[0]
+				create_stats_file(key,name)
+				
+	status_label.config(text="Creating stats, done")
+	status_label.update()
 		
 def startup():
 	process_xml()
