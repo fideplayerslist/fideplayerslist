@@ -20,27 +20,29 @@ collected=("country","birthday","flag")
 CHART_HEIGHT=300
 CHART_WIDTH=600
 TITLE_Y_WIDTH=30
-SCALE_Y_WIDTH=60
+SCALE_Y_WIDTH=30
 SCALE_X_HEIGHT=30
 TITLE_X_HEIGHT=30
 TITLE_HEIGHT=50
 SCALE_FONT_SIZE=12
 TITLE_FONT_SIZE=14
 LEGEND_WIDTH=250
+DASHFILL="#afaf00"
 
 FONT="Times New Roman"
-TITLE_FONT="Courier New"
+TITLE_FONT="Times New Roman"
 
 MIN_X=0
 MAX_X=100
-STEP_X=20
+STEP_X=10
 MIN_Y=0
 MAX_Y=100
-STEP_Y=20
+STEP_Y=10
 TITLE_X="Title X"
 TITLE_Y="Title Y"
 TITLE="Chart Title"
 SUBTITLE="Subtitle"
+LEGEND="Data1:#ff0000\tData2:#0000ff"
 
 root=Tk()
 
@@ -392,7 +394,44 @@ def create_stats_by_key():
 	status_label.config(text="Creating stats by key, done")
 	status_label.update()
 	
+def parse_txt(path):
+	fh=open(path)
+	line=fh.readline()
+	headers=line.rstrip().split("\t")
+	records=[]
+	while(line):
+		line=fh.readline()
+		if(line):
+			fields=line.rstrip().split("\t")
+			record=dict(zip(headers,fields))
+			records.append(record)
+	return records
+	
+def extract(records,key,value,func):
+	keyvaluepairs=[]
+	for record in records:
+		keyvaluepair=(func(record[key]),float(record[value]) if record[value]!="NA" else 0)
+		keyvaluepairs.append(keyvaluepair)
+	return keyvaluepairs
+	
+def draw_rect(x,y,color,size):
+	cx=(x-MIN_X)*FACTOR_X
+	cy=CHART_HEIGHT-(y-MIN_Y)*FACTOR_Y
+	chart_canvas.create_rectangle(cx+5,cy-size,cx+5+2*size,cy+size,fill=color)
+	
 def draw_chart():
+	global FACTOR_X,FACTOR_Y
+	
+	records=parse_txt("keystats/birthday.txt")
+	XYS=extract(records,"birthday","PARF",lambda x:2015-float(x) if not x=="NA" else 0)
+	XYSR=extract(records,"birthday","PARFR",lambda x:2015-float(x) if not x=="NA" else 0)
+	MAX_Y=60
+	TITLE="Female participation"
+	SUBTITLE="in the function of age"
+	TITLE_X="Age"
+	TITLE_Y="Female %"
+	LEGEND="Among all players:#ff0000\tAmong rated players:#0000ff"
+
 	RANGE_X=MAX_X-MIN_X
 	FACTOR_X=CHART_WIDTH/RANGE_X
 	RANGE_Y=MAX_Y-MIN_Y
@@ -403,15 +442,40 @@ def draw_chart():
 	while(x<MAX_X):
 		cx=FACTOR_X*x
 		scale_x_canvas.create_text(cx+5,5,text=str(x),anchor="nw",font=(FONT,SCALE_FONT_SIZE))
+		chart_canvas.create_line(cx,15,cx,CHART_HEIGHT-1,dash=[5,5],fill=DASHFILL)
 		x+=STEP_X
 	y=MIN_Y
 	while(y<MAX_Y):
 		cy=FACTOR_Y*y
-		scale_y_canvas.create_text(5,CHART_HEIGHT-(cy+5),text=str(y),anchor="sw",font=(FONT,SCALE_FONT_SIZE))
+		scale_y_canvas.create_text(5,CHART_HEIGHT-(cy+15),text=str(y),anchor="nw",font=(FONT,SCALE_FONT_SIZE))
+		chart_canvas.create_line(0,cy,CHART_WIDTH-15,cy,dash=[5,5],fill=DASHFILL)
 		y+=STEP_Y
-	title_canvas.create_text((CHART_WIDTH-len(TITLE)*TITLE_FONT_SIZE)/2,2,text=TITLE+"\n "+SUBTITLE,anchor="nw",font=(TITLE_FONT,TITLE_FONT_SIZE))
+	title_canvas.create_text((CHART_WIDTH-len(TITLE)*int(TITLE_FONT_SIZE*1.2))/2,2,text=TITLE+"\n "+SUBTITLE,anchor="nw",font=(TITLE_FONT,int(TITLE_FONT_SIZE*1.2)))
 	title_x_canvas.create_text((CHART_WIDTH-len(TITLE_X)*TITLE_FONT_SIZE)/2,2,text=TITLE_X,anchor="nw",font=(TITLE_FONT,TITLE_FONT_SIZE))
 	title_y_canvas.create_text(2,(CHART_HEIGHT-len(TITLE_Y)*TITLE_FONT_SIZE)/2,text="\n".join(TITLE_Y),anchor="nw",font=(TITLE_FONT,TITLE_FONT_SIZE))
+	
+	legend_cnt=0
+	legends=LEGEND.split("\t")
+	for legend in legends:
+		parts=legend.split(":")
+		legendtext=parts[0]
+		legendcolor=parts[1]
+		cy=legend_cnt*40+5
+		legend_canvas.create_rectangle(5,cy,15,cy+10,fill=legendcolor)
+		legend_canvas.create_text(30,cy-5,text=legendtext,anchor="nw",font=(TITLE_FONT,TITLE_FONT_SIZE))
+		legend_cnt+=1
+	
+	for xy in XYS:
+		x=xy[0]
+		y=xy[1]
+		if x>=MIN_X and x<=MAX_X and not y==0:
+			draw_rect(x,y,"#ff0000",5)
+			
+	for xy in XYSR:
+		x=xy[0]
+		y=xy[1]
+		if x>=MIN_X and x<=MAX_X and not y==0:
+			draw_rect(x,y,"#0000ff",3)
 	
 # mainloop
 
