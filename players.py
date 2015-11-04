@@ -17,6 +17,55 @@ phase=0
 sorted_keys=[]
 collected=("country","birthday","flag")
 
+CHART_HEIGHT=300
+CHART_WIDTH=600
+TITLE_Y_WIDTH=30
+SCALE_Y_WIDTH=60
+SCALE_X_HEIGHT=30
+TITLE_X_HEIGHT=30
+TITLE_HEIGHT=50
+SCALE_FONT_SIZE=12
+TITLE_FONT_SIZE=14
+LEGEND_WIDTH=250
+
+FONT="Times New Roman"
+TITLE_FONT="Courier New"
+
+MIN_X=0
+MAX_X=100
+STEP_X=20
+MIN_Y=0
+MAX_Y=100
+STEP_Y=20
+TITLE_X="Title X"
+TITLE_Y="Title Y"
+TITLE="Chart Title"
+SUBTITLE="Subtitle"
+
+root=Tk()
+
+root.geometry("+10+10")
+
+PADX=5
+PADY=5
+
+chart_frame=Frame(root,padx=2*PADX,pady=2*PADY)
+
+title_canvas=Canvas(chart_frame,width=CHART_WIDTH,height=TITLE_HEIGHT)
+title_canvas.grid(row=0,column=2,padx=PADX,pady=PADY)
+scale_x_canvas=Canvas(chart_frame,width=CHART_WIDTH,height=SCALE_X_HEIGHT)
+scale_x_canvas.grid(row=2,column=2,padx=PADX,pady=PADY)
+title_x_canvas=Canvas(chart_frame,width=CHART_WIDTH,height=TITLE_X_HEIGHT)
+title_x_canvas.grid(row=3,column=2,padx=PADX,pady=PADY)
+title_y_canvas=Canvas(chart_frame,width=TITLE_Y_WIDTH,height=CHART_HEIGHT)
+title_y_canvas.grid(row=1,column=0,padx=PADX,pady=PADY)
+scale_y_canvas=Canvas(chart_frame,width=SCALE_Y_WIDTH,height=CHART_HEIGHT)
+scale_y_canvas.grid(row=1,column=1,padx=PADX,pady=PADY)
+chart_canvas=Canvas(chart_frame,width=CHART_WIDTH,height=CHART_HEIGHT)
+chart_canvas.grid(row=1,column=2,padx=PADX,pady=PADY)
+legend_canvas=Canvas(chart_frame,width=LEGEND_WIDTH,height=CHART_HEIGHT)
+legend_canvas.grid(row=1,column=3,padx=PADX,pady=PADY)
+
 def update(message):
 	global cnt
 	global status_label
@@ -343,11 +392,28 @@ def create_stats_by_key():
 	status_label.config(text="Creating stats by key, done")
 	status_label.update()
 	
-# mainloop
+def draw_chart():
+	RANGE_X=MAX_X-MIN_X
+	FACTOR_X=CHART_WIDTH/RANGE_X
+	RANGE_Y=MAX_Y-MIN_Y
+	FACTOR_Y=CHART_HEIGHT/RANGE_Y
+	x=MIN_X
+	chart_canvas.create_line(0,CHART_HEIGHT-1,CHART_WIDTH-10,CHART_HEIGHT-1)
+	chart_canvas.create_line(2,10,2,CHART_HEIGHT-1)
+	while(x<MAX_X):
+		cx=FACTOR_X*x
+		scale_x_canvas.create_text(cx+5,5,text=str(x),anchor="nw",font=(FONT,SCALE_FONT_SIZE))
+		x+=STEP_X
+	y=MIN_Y
+	while(y<MAX_Y):
+		cy=FACTOR_Y*y
+		scale_y_canvas.create_text(5,CHART_HEIGHT-(cy+5),text=str(y),anchor="sw",font=(FONT,SCALE_FONT_SIZE))
+		y+=STEP_Y
+	title_canvas.create_text((CHART_WIDTH-len(TITLE)*TITLE_FONT_SIZE)/2,2,text=TITLE+"\n "+SUBTITLE,anchor="nw",font=(TITLE_FONT,TITLE_FONT_SIZE))
+	title_x_canvas.create_text((CHART_WIDTH-len(TITLE_X)*TITLE_FONT_SIZE)/2,2,text=TITLE_X,anchor="nw",font=(TITLE_FONT,TITLE_FONT_SIZE))
+	title_y_canvas.create_text(2,(CHART_HEIGHT-len(TITLE_Y)*TITLE_FONT_SIZE)/2,text="\n".join(TITLE_Y),anchor="nw",font=(TITLE_FONT,TITLE_FONT_SIZE))
 	
-root=Tk()
-
-root.geometry("+30+30")
+# mainloop
 
 status_label=Label(root)
 status_label.pack()
@@ -367,7 +433,9 @@ create_stats_button.pack()
 create_stats_by_key_button = Button(root, text='Create stats by key', width=100, command=create_stats_by_key)
 create_stats_by_key_button.pack()
 
-canvas=Canvas(root,width=600,height=400)
-canvas.pack()
+draw_chart_button = Button(root, text='Draw chart', width=100, command=draw_chart)
+draw_chart_button.pack()
+
+chart_frame.pack()
 
 root.mainloop()
