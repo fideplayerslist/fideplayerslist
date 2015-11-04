@@ -241,9 +241,11 @@ def create_stats_file(path,name):
 	outf=open(path+"/"+name+".stats.txt","w")
 	outfh=open(path+"/"+name+".stats.html","w")
 	print("<table border=1 cellpadding=5 cellspacing=5>",file=outfh)
+	linecnt=0
 	for key in sorted(stats.keys()):
 		print(key+"\t"+str(stats[key]),file=outf)
-		print("<tr><td>"+key+"</td><td>"+str(stats[key])+"</tr>",file=outfh)
+		linecnt+=1
+		print("<tr><td>"+str(linecnt)+"</td><td>"+key+"</td><td>"+str(stats[key])+"</tr>",file=outfh)
 	print("</table>",file=outfh)
 	outfh.close()
 	outf.close()
@@ -274,6 +276,71 @@ def startup():
 	process_xml()
 	iterate_players_txt()
 	create_stats()
+
+stats_header=[]
+def create_stats_by_key_file(key,name):
+	global stats_header
+	print("File",name)
+	array=[]
+	fh=open(key+"/"+name+".stats.txt")
+	stats_header=[]
+	line=True
+	while(line):
+		line=fh.readline()
+		if line:
+			fields=line.rstrip().split("\t")
+			array.append(fields[1])
+			stats_header.append(fields[0])
+	fh.close()
+	return array
+	
+def create_stats_by_key():
+	global collected
+	global stats_header
+	status_label.config(text="Creating stats by key")
+	status_label.update()
+	
+	mkdir("keystats")
+	
+	for key in collected:
+		print("Creating stats for key",key)
+		lines=[]
+		f=[]
+		for(dirpath,dirnames,filenames) in walk(key):
+			f.extend(filenames)
+			break
+		for name in f:
+			parts=name.split(".")
+			if len(parts)==3 and parts[1]=="stats" and parts[2]=="txt":
+				name=parts[0]
+				array=create_stats_by_key_file(key,name)
+				arraye=[name]
+				arraye.extend(array)
+				lines.append(arraye)
+				
+		if key=="country":
+			lines.sort(key=lambda x:0.0 if x[14]=="NA" else float(x[14]),reverse=True)
+		elif key=="birthday":
+			lines.sort(key=lambda x:0 if x[0]=="NA" else int(x[0]),reverse=True)
+			
+		stats_headere=[key]
+		stats_headere.extend(stats_header)
+		
+		linese=[stats_headere]
+		linese.extend(lines)
+		
+		outf=open("keystats/"+key+".txt","w")
+		outfh=open("keystats/"+key+".html","w")
+		print("<table border=1>",file=outfh)
+		for line in linese:
+			print("\t".join(line),file=outf)
+			print("<tr><td>"+"</td><td>".join(line)+"</td></tr>",file=outfh)
+		print("</table>",file=outfh)
+		outfh.close()
+		outf.close()
+	
+	status_label.config(text="Creating stats by key, done")
+	status_label.update()
 	
 # mainloop
 	
@@ -293,5 +360,8 @@ iterate_txt_button.pack()
 
 create_stats_button = Button(root, text='Create stats', width=100, command=create_stats)
 create_stats_button.pack()
+
+create_stats_by_key_button = Button(root, text='Create stats by key', width=100, command=create_stats_by_key)
+create_stats_by_key_button.pack()
 
 root.mainloop()
