@@ -276,6 +276,7 @@ def startup():
 	process_xml()
 	iterate_players_txt()
 	create_stats()
+	create_stats_by_key()
 
 stats_header=[]
 def create_stats_by_key_file(key,name):
