@@ -347,6 +347,8 @@ def create_stats_by_key():
 	
 root=Tk()
 
+root.geometry("+30+30")
+
 status_label=Label(root)
 status_label.pack()
 
@@ -364,5 +366,8 @@ create_stats_button.pack()
 
 create_stats_by_key_button = Button(root, text='Create stats by key', width=100, command=create_stats_by_key)
 create_stats_by_key_button.pack()
+
+canvas=Canvas(root,width=600,height=400)
+canvas.pack()
 
 root.mainloop()
