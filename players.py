@@ -41,6 +41,9 @@ TITLE_FONT="Times New Roman"
 
 root=Tk()
 
+select_chart_combo_variable=StringVar(root)
+select_chart_combo_variable.set("Select chart")
+
 root.geometry("+10+10")
 
 PADX=5
@@ -541,6 +544,10 @@ def draw_par_chart():
 	
 	draw_chart()
 	
+def select_chart_combo_selected(arg):
+	if arg=="Female participation in function of age":
+		draw_par_chart()
+	
 # mainloop
 
 status_label=Label(root)
@@ -563,6 +570,11 @@ create_stats_by_key_button.pack()
 
 draw_chart_button = Button(root, text='Draw participation chart', width=100, command=draw_par_chart)
 draw_chart_button.pack()
+
+options=["Select chart","Female participation in function of age"]
+select_chart_combo = OptionMenu(root,select_chart_combo_variable,*options,command=select_chart_combo_selected)
+select_chart_combo.pack()
+
 
 chart_frame.pack()
 
