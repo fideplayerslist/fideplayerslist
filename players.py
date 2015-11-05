@@ -305,7 +305,7 @@ def create_stats_file(path,name):
 	stats["AVGRM"]=average(stats["CRM"],stats["RM"])
 	stats["AVGRF"]=average(stats["CRF"],stats["RF"])
 	if (not stats["AVGRM"]=="NA") and (not stats["AVGRF"]=="NA"):
-		stats["AVGRDIFF"]=float(stats["AVGRM"])-float(stats["AVGRF"])
+		stats["AVGRDIFF"]="{0:.2f}".format(float(stats["AVGRM"])-float(stats["AVGRF"]))
 	else:
 		stats["AVGRDIFF"]="NA"
 	stats["PARF"]=average(100*stats["F"],stats["MF"])
