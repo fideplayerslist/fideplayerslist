@@ -4,6 +4,8 @@ import time
 import os
 from os import walk
 
+# global variables
+
 cnt=0
 state="idle"
 current_key=""
@@ -17,6 +19,10 @@ phase=0
 sorted_keys=[]
 collected=("country","birthday","flag")
 
+# end global variables
+
+# chart format
+
 CHART_HEIGHT=300
 CHART_WIDTH=600
 TITLE_Y_WIDTH=30
@@ -28,21 +34,10 @@ SCALE_FONT_SIZE=12
 TITLE_FONT_SIZE=14
 LEGEND_WIDTH=250
 DASHFILL="#afaf00"
-
 FONT="Times New Roman"
 TITLE_FONT="Times New Roman"
 
-MIN_X=0
-MAX_X=100
-STEP_X=10
-MIN_Y=0
-MAX_Y=100
-STEP_Y=10
-TITLE_X="Title X"
-TITLE_Y="Title Y"
-TITLE="Chart Title"
-SUBTITLE="Subtitle"
-LEGEND="Data1:#ff0000\tData2:#0000ff"
+# end chart format
 
 root=Tk()
 
@@ -408,30 +403,47 @@ def parse_txt(path):
 	return records
 	
 def extract(records,key,value,func):
+	global MIN_X,MAX_X
 	keyvaluepairs=[]
 	for record in records:
-		keyvaluepair=(func(record[key]),float(record[value]) if record[value]!="NA" else 0)
-		keyvaluepairs.append(keyvaluepair)
+		if not record[key]=="NA" and not record[value]=="NA":
+			x=func(record[key])
+			y=float(record[value])
+			if x>=MIN_X and x<=MAX_X:
+				keyvaluepair=(x,y)
+				keyvaluepairs.append(keyvaluepair)
 	return keyvaluepairs
 	
 def draw_rect(x,y,color,size):
 	cx=(x-MIN_X)*FACTOR_X
 	cy=CHART_HEIGHT-(y-MIN_Y)*FACTOR_Y
 	chart_canvas.create_rectangle(cx+5,cy-size,cx+5+2*size,cy+size,fill=color)
+
+def calc_linear(XYS):
+	Sx=0
+	Sy=0
+	Sxx=0
+	Sxy=0
+	Syy=0
+	n=0
+	for xy in XYS:
+		x=xy[0]
+		y=xy[1]
+		Sx+=x
+		Sy+=y
+		Sxx+=x*x
+		Sxy+=x*y
+		Syy+=y*y
+		n+=1
+		
+	Beta=(n*Sxy-Sx*Sy)/((n*Sxx)-(Sx*Sx))
+	Alpha=(Sy/n)-(Beta*Sx/n)
+	
+	return (Alpha,Beta)
 	
 def draw_chart():
-	global FACTOR_X,FACTOR_Y
+	global LXYS,MIN_X,MAX_X,MIN_Y,MAX_Y,STEP_X,STEP_Y,TITLE,SUBTITLE,TITLE_X,TITLE_Y,LEGEND,RANGE_X,RANGE_Y,FACTOR_X,FACTOR_Y
 	
-	records=parse_txt("keystats/birthday.txt")
-	XYS=extract(records,"birthday","PARF",lambda x:2015-float(x) if not x=="NA" else 0)
-	XYSR=extract(records,"birthday","PARFR",lambda x:2015-float(x) if not x=="NA" else 0)
-	MAX_Y=60
-	TITLE="Female participation"
-	SUBTITLE="in the function of age"
-	TITLE_X="Age"
-	TITLE_Y="Female %"
-	LEGEND="Among all players:#ff0000\tAmong rated players:#0000ff"
-
 	RANGE_X=MAX_X-MIN_X
 	FACTOR_X=CHART_WIDTH/RANGE_X
 	RANGE_Y=MAX_Y-MIN_Y
@@ -439,43 +451,95 @@ def draw_chart():
 	x=MIN_X
 	chart_canvas.create_line(0,CHART_HEIGHT-1,CHART_WIDTH-10,CHART_HEIGHT-1)
 	chart_canvas.create_line(2,10,2,CHART_HEIGHT-1)
+	
 	while(x<MAX_X):
 		cx=FACTOR_X*x
 		scale_x_canvas.create_text(cx+5,5,text=str(x),anchor="nw",font=(FONT,SCALE_FONT_SIZE))
 		chart_canvas.create_line(cx,15,cx,CHART_HEIGHT-1,dash=[5,5],fill=DASHFILL)
 		x+=STEP_X
+		
 	y=MIN_Y
+	
 	while(y<MAX_Y):
 		cy=FACTOR_Y*y
 		scale_y_canvas.create_text(5,CHART_HEIGHT-(cy+15),text=str(y),anchor="nw",font=(FONT,SCALE_FONT_SIZE))
 		chart_canvas.create_line(0,cy,CHART_WIDTH-15,cy,dash=[5,5],fill=DASHFILL)
 		y+=STEP_Y
+		
 	title_canvas.create_text((CHART_WIDTH-len(TITLE)*int(TITLE_FONT_SIZE*1.2))/2,2,text=TITLE+"\n "+SUBTITLE,anchor="nw",font=(TITLE_FONT,int(TITLE_FONT_SIZE*1.2)))
 	title_x_canvas.create_text((CHART_WIDTH-len(TITLE_X)*TITLE_FONT_SIZE)/2,2,text=TITLE_X,anchor="nw",font=(TITLE_FONT,TITLE_FONT_SIZE))
 	title_y_canvas.create_text(2,(CHART_HEIGHT-len(TITLE_Y)*TITLE_FONT_SIZE)/2,text="\n".join(TITLE_Y),anchor="nw",font=(TITLE_FONT,TITLE_FONT_SIZE))
 	
 	legend_cnt=0
 	legends=LEGEND.split("\t")
+	legendcolors=[]
+	legendtexts=[]
+	dolinears=[]
 	for legend in legends:
 		parts=legend.split(":")
 		legendtext=parts[0]
 		legendcolor=parts[1]
+		dolinear_part=parts[2]
+		dolinear=True if dolinear_part=="t" else False
+		legendcolors.append(legendcolor)
+		legendtexts.append(legendtext)
+		dolinears.append(dolinear)
 		cy=legend_cnt*40+5
 		legend_canvas.create_rectangle(5,cy,15,cy+10,fill=legendcolor)
 		legend_canvas.create_text(30,cy-5,text=legendtext,anchor="nw",font=(TITLE_FONT,TITLE_FONT_SIZE))
 		legend_cnt+=1
 	
-	for xy in XYS:
-		x=xy[0]
-		y=xy[1]
-		if x>=MIN_X and x<=MAX_X and not y==0:
-			draw_rect(x,y,"#ff0000",5)
-			
-	for xy in XYSR:
-		x=xy[0]
-		y=xy[1]
-		if x>=MIN_X and x<=MAX_X and not y==0:
-			draw_rect(x,y,"#0000ff",3)
+	linear_cnt=0
+	for legend in legends:
+		if dolinears[linear_cnt]:
+			cy=legend_cnt*40+5
+			legend_canvas.create_rectangle(5,cy+3,30,cy+7,fill=legendcolors[linear_cnt])
+			legend_canvas.create_text(40,cy-5,text=legendtexts[linear_cnt]+" linear",anchor="nw",font=(TITLE_FONT,TITLE_FONT_SIZE))
+		linear_cnt+=1
+		legend_cnt+=1
+		
+	xysi=0
+	for XYS in LXYS:
+		alphabeta=calc_linear(XYS)
+		Alpha=alphabeta[0]
+		Beta=alphabeta[1]
+		color=legendcolors[xysi]
+		for xy in XYS:
+			x=xy[0]
+			y=xy[1]
+			if x>=MIN_X and x<=MAX_X:
+				draw_rect(x,y,color,5)
+		if dolinears[xysi]:
+			cx0=0
+			cx1=CHART_WIDTH
+			cy0=CHART_HEIGHT-(Alpha+MIN_X*Beta)*FACTOR_X
+			cy1=CHART_HEIGHT-(Alpha+MAX_X*Beta)*FACTOR_X
+			chart_canvas.create_line(cx0,cy0,cx1,cy1,width=5,fill=color)
+		xysi+=1
+		
+def draw_par_chart():
+	global LXYS,MIN_X,MAX_X,MIN_Y,MAX_Y,STEP_X,STEP_Y,TITLE,SUBTITLE,TITLE_X,TITLE_Y,LEGEND,RANGE_X,RANGE_Y,FACTOR_X,FACTOR_Y
+		
+	MIN_X=0
+	MAX_X=100
+	STEP_X=10
+	MIN_Y=0
+	MAX_Y=60
+	STEP_Y=10
+	TITLE="Female participation"
+	SUBTITLE="in the function of age"
+	TITLE_X="Age"
+	TITLE_Y="Female %"
+	LEGEND="Among all players:#ff0000:t\tAmong rated players:#0000ff:t"
+	
+	records=parse_txt("keystats/birthday.txt")
+	
+	LXYS=(
+		extract(records,"birthday","PARF",lambda x:2015-float(x)),
+		extract(records,"birthday","PARFR",lambda x:2015-float(x))
+		)
+	
+	draw_chart()
 	
 # mainloop
 
@@ -497,7 +561,7 @@ create_stats_button.pack()
 create_stats_by_key_button = Button(root, text='Create stats by key', width=100, command=create_stats_by_key)
 create_stats_by_key_button.pack()
 
-draw_chart_button = Button(root, text='Draw chart', width=100, command=draw_chart)
+draw_chart_button = Button(root, text='Draw participation chart', width=100, command=draw_par_chart)
 draw_chart_button.pack()
 
 chart_frame.pack()
