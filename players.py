@@ -26,7 +26,7 @@ collected=("country","birthday","flag")
 CHART_HEIGHT=300
 CHART_WIDTH=600
 TITLE_Y_WIDTH=30
-SCALE_Y_WIDTH=30
+SCALE_Y_WIDTH=40
 SCALE_X_HEIGHT=30
 TITLE_X_HEIGHT=30
 TITLE_HEIGHT=50
@@ -257,7 +257,27 @@ def create_stats_file(path,name):
 		return
 	headers=line.rstrip().split("\t")
 	linecnt=0
-	stats={"ALL":0,"MF":0,"M":0,"F":0,"RALL":0,"RMF":0,"RM":0,"RF":0,"CRALL":0,"CRMF":0,"CRM":0,"CRF":0,"AVGRALL":0,"AVGRMF":0,"AVGRM":0,"AVGRF":0}
+	
+	stats={
+		"ALL":0,
+		"MF":0,
+		"M":0,
+		"F":0,
+		"RALL":0,
+		"RMF":0,
+		"RM":0,
+		"RF":0,
+		"CRALL":0,
+		"CRMF":0,
+		"CRM":0,
+		"CRF":0,
+		"AVGRALL":0,
+		"AVGRMF":0,
+		"AVGRM":0,
+		"AVGRF":0,
+		"AVGRDIFF":0
+		}
+		
 	while(line):
 		line=fh.readline()
 		if line:
@@ -284,6 +304,10 @@ def create_stats_file(path,name):
 	stats["AVGRMF"]=average(stats["CRMF"],stats["RMF"])
 	stats["AVGRM"]=average(stats["CRM"],stats["RM"])
 	stats["AVGRF"]=average(stats["CRF"],stats["RF"])
+	if (not stats["AVGRM"]=="NA") and (not stats["AVGRF"]=="NA"):
+		stats["AVGRDIFF"]=float(stats["AVGRM"])-float(stats["AVGRF"])
+	else:
+		stats["AVGRDIFF"]="NA"
 	stats["PARF"]=average(100*stats["F"],stats["MF"])
 	stats["PARFR"]=average(100*stats["RF"],stats["RMF"])
 					
@@ -327,26 +351,21 @@ def startup():
 	create_stats()
 	create_stats_by_key()
 
-stats_header=[]
 def create_stats_by_key_file(key,name):
-	global stats_header
 	print("File",name)
-	array=[]
+	record={}
 	fh=open(key+"/"+name+".stats.txt")
-	stats_header=[]
 	line=True
 	while(line):
 		line=fh.readline()
 		if line:
 			fields=line.rstrip().split("\t")
-			array.append(fields[1])
-			stats_header.append(fields[0])
+			record[fields[0]]=fields[1]
 	fh.close()
-	return array
+	return record
 	
 def create_stats_by_key():
 	global collected
-	global stats_header
 	status_label.config(text="Creating stats by key")
 	status_label.update()
 	
@@ -363,21 +382,24 @@ def create_stats_by_key():
 			parts=name.split(".")
 			if len(parts)==3 and parts[1]=="stats" and parts[2]=="txt":
 				name=parts[0]
-				array=create_stats_by_key_file(key,name)
-				arraye=[name]
-				arraye.extend(array)
-				lines.append(arraye)
+				record=create_stats_by_key_file(key,name)
+				lines.append((name,record))
 				
 		if key=="country":
-			lines.sort(key=lambda x:0.0 if x[14]=="NA" else float(x[14]),reverse=True)
+			lines.sort(key=lambda x:0.0 if x[1]["PARFR"]=="NA" else float(x[1]["PARFR"]),reverse=True)
 		elif key=="birthday":
 			lines.sort(key=lambda x:0 if x[0]=="NA" else int(x[0]),reverse=True)
 			
 		stats_headere=[key]
-		stats_headere.extend(stats_header)
+		sorted_keys=sorted(record.keys())
+		stats_headere.extend(sorted_keys)
 		
 		linese=[stats_headere]
-		linese.extend(lines)
+		for line in lines:
+			array=[line[0]]
+			for rkey in sorted_keys:
+				array.append(line[1][rkey])
+			linese.append(array)
 		
 		outf=open("keystats/"+key+".txt","w")
 		outfh=open("keystats/"+key+".html","w")
@@ -405,7 +427,7 @@ def parse_txt(path):
 			records.append(record)
 	return records
 	
-def extract(records,key,value,func):
+def extract(records,key,value,func,cond):
 	global MIN_X,MAX_X
 	keyvaluepairs=[]
 	for record in records:
@@ -414,7 +436,8 @@ def extract(records,key,value,func):
 			y=float(record[value])
 			if x>=MIN_X and x<=MAX_X:
 				keyvaluepair=(x,y)
-				keyvaluepairs.append(keyvaluepair)
+				if(cond(record)):
+					keyvaluepairs.append(keyvaluepair)
 	return keyvaluepairs
 	
 def draw_rect(x,y,color,size):
@@ -447,6 +470,13 @@ def calc_linear(XYS):
 def draw_chart():
 	global LXYS,MIN_X,MAX_X,MIN_Y,MAX_Y,STEP_X,STEP_Y,TITLE,SUBTITLE,TITLE_X,TITLE_Y,LEGEND,RANGE_X,RANGE_Y,FACTOR_X,FACTOR_Y
 	
+	title_canvas.delete("all")
+	title_x_canvas.delete("all")
+	scale_x_canvas.delete("all")
+	title_y_canvas.delete("all")
+	scale_y_canvas.delete("all")
+	chart_canvas.delete("all")
+	
 	RANGE_X=MAX_X-MIN_X
 	FACTOR_X=CHART_WIDTH/RANGE_X
 	RANGE_Y=MAX_Y-MIN_Y
@@ -456,7 +486,7 @@ def draw_chart():
 	chart_canvas.create_line(2,10,2,CHART_HEIGHT-1)
 	
 	while(x<MAX_X):
-		cx=FACTOR_X*x
+		cx=FACTOR_X*(x-MIN_X)
 		scale_x_canvas.create_text(cx+5,5,text=str(x),anchor="nw",font=(FONT,SCALE_FONT_SIZE))
 		chart_canvas.create_line(cx,15,cx,CHART_HEIGHT-1,dash=[5,5],fill=DASHFILL)
 		x+=STEP_X
@@ -464,7 +494,7 @@ def draw_chart():
 	y=MIN_Y
 	
 	while(y<MAX_Y):
-		cy=FACTOR_Y*y
+		cy=FACTOR_Y*(y-MIN_Y)
 		scale_y_canvas.create_text(5,CHART_HEIGHT-(cy+15),text=str(y),anchor="nw",font=(FONT,SCALE_FONT_SIZE))
 		chart_canvas.create_line(0,cy,CHART_WIDTH-15,cy,dash=[5,5],fill=DASHFILL)
 		y+=STEP_Y
@@ -503,9 +533,6 @@ def draw_chart():
 		
 	xysi=0
 	for XYS in LXYS:
-		alphabeta=calc_linear(XYS)
-		Alpha=alphabeta[0]
-		Beta=alphabeta[1]
 		color=legendcolors[xysi]
 		for xy in XYS:
 			x=xy[0]
@@ -513,10 +540,13 @@ def draw_chart():
 			if x>=MIN_X and x<=MAX_X:
 				draw_rect(x,y,color,5)
 		if dolinears[xysi]:
+			alphabeta=calc_linear(XYS)
+			Alpha=alphabeta[0]
+			Beta=alphabeta[1]
 			cx0=0
 			cx1=CHART_WIDTH
-			cy0=CHART_HEIGHT-(Alpha+MIN_X*Beta)*FACTOR_X
-			cy1=CHART_HEIGHT-(Alpha+MAX_X*Beta)*FACTOR_X
+			cy0=CHART_HEIGHT-(Alpha+MIN_X*Beta-MIN_Y)*FACTOR_Y
+			cy1=CHART_HEIGHT-(Alpha+MAX_X*Beta-MIN_Y)*FACTOR_Y
 			chart_canvas.create_line(cx0,cy0,cx1,cy1,width=5,fill=color)
 		xysi+=1
 		
@@ -538,8 +568,32 @@ def draw_par_chart():
 	records=parse_txt("keystats/birthday.txt")
 	
 	LXYS=(
-		extract(records,"birthday","PARF",lambda x:2015-float(x)),
-		extract(records,"birthday","PARFR",lambda x:2015-float(x))
+		extract(records,"birthday","PARF",lambda x:2015-float(x),lambda x:True),
+		extract(records,"birthday","PARFR",lambda x:2015-float(x),lambda x:True)
+		)
+	
+	draw_chart()
+	
+def draw_rpar_chart():
+	global LXYS,MIN_X,MAX_X,MIN_Y,MAX_Y,STEP_X,STEP_Y,TITLE,SUBTITLE,TITLE_X,TITLE_Y,LEGEND,RANGE_X,RANGE_Y,FACTOR_X,FACTOR_Y
+		
+	MIN_X=0
+	MAX_X=45
+	STEP_X=5
+	MIN_Y=-100
+	MAX_Y=500
+	STEP_Y=50
+	TITLE="Rating difference"
+	SUBTITLE="in the function of participation"
+	TITLE_X="Participation"
+	TITLE_Y="Rating"
+	LEGEND="Among all players:#ff0000:t\tAmong rated players:#0000ff:t"
+	
+	records=parse_txt("keystats/country.txt")
+		
+	LXYS=(
+		extract(records,"PARF","AVGRDIFF",lambda x:float(x),lambda x:False if x["RMF"]=="NA" else int(x["RMF"])>200),
+		extract(records,"PARFR","AVGRDIFF",lambda x:float(x),lambda x:False if x["RMF"]=="NA" else int(x["RMF"])>200)
 		)
 	
 	draw_chart()
@@ -547,6 +601,8 @@ def draw_par_chart():
 def select_chart_combo_selected(arg):
 	if arg=="Female participation in function of age":
 		draw_par_chart()
+	if arg=="Rating difference in function of female participation":
+		draw_rpar_chart()
 	
 # mainloop
 
@@ -568,10 +624,7 @@ create_stats_button.pack()
 create_stats_by_key_button = Button(root, text='Create stats by key', width=100, command=create_stats_by_key)
 create_stats_by_key_button.pack()
 
-draw_chart_button = Button(root, text='Draw participation chart', width=100, command=draw_par_chart)
-draw_chart_button.pack()
-
-options=["Select chart","Female participation in function of age"]
+options=["Select chart","Female participation in function of age","Rating difference in function of female participation"]
 select_chart_combo = OptionMenu(root,select_chart_combo_variable,*options,command=select_chart_combo_selected)
 select_chart_combo.pack()
 
