@@ -638,12 +638,40 @@ def draw_rpar_chart():
 	
 	draw_chart()
 	
+def draw_apar_chart():
+	global LXYS,MIN_X,MAX_X,MIN_Y,MAX_Y,STEP_X,STEP_Y,TITLE,SUBTITLE,TITLE_X,TITLE_Y,LEGEND,RANGE_X,RANGE_Y,FACTOR_X,FACTOR_Y
+		
+	MIN_X=0
+	MAX_X=45
+	STEP_X=5
+	MIN_Y=1000
+	MAX_Y=2400
+	STEP_Y=200
+	TITLE="Female average rating"
+	SUBTITLE="in the function of participation"
+	TITLE_X="Participation"
+	TITLE_Y="Rating"
+	LEGEND="Among all players:#ff0000:t\tAmong rated players:#0000ff:t"
+	
+	filter=select_filter_variable.get()
+	
+	records=parse_txt("keystats/country"+filter+".txt")
+		
+	LXYS=(
+		extract(records,"PARF","AVGRF",lambda x:float(x),lambda x:False if x["RMF"]=="NA" else int(x["RMF"])>50),
+		extract(records,"PARFR","AVGRF",lambda x:float(x),lambda x:False if x["RMF"]=="NA" else int(x["RMF"])>50)
+		)
+	
+	draw_chart()
+	
 def select_chart_combo_selected(arg):
 	arg=select_chart_combo_variable.get()
 	if arg=="Female participation in function of age":
 		draw_par_chart()
 	if arg=="Rating difference in function of female participation":
 		draw_rpar_chart()
+	if arg=="Female average rating in the function of participation":
+		draw_apar_chart()
 	
 # mainloop
 
@@ -668,8 +696,14 @@ create_stats_by_key_button.pack()
 options_frame=Frame(root,padx=2*PADX,pady=2*PADY)
 options_frame.pack()
 
-options=["Select chart","Female participation in function of age","Rating difference in function of female participation"]
-select_chart_combo = OptionMenu(options_frame,select_chart_combo_variable,*options,command=select_chart_combo_selected)
+charts=[
+	"Select chart",
+	"Female participation in function of age",
+	"Rating difference in function of female participation",
+	"Female average rating in the function of participation"
+	]
+	
+select_chart_combo = OptionMenu(options_frame,select_chart_combo_variable,*charts,command=select_chart_combo_selected)
 select_chart_combo.grid(row=0,column=0)
 
 select_filter_combo = OptionMenu(options_frame,select_filter_variable,*filters,command=select_chart_combo_selected)
