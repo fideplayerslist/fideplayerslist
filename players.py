@@ -22,12 +22,18 @@ sorted_keys=[]
 collected=("country","birthday","flag")
 
 filters=("","m","a","ma")
+filters_nice={
+	"":"among all players",
+	"m":"among middle age players",
+	"a":"among active players",
+	"ma":"among middle age active players"
+	}
 
 # end global variables
 
 # chart format
 
-CHART_HEIGHT=300
+CHART_HEIGHT=350
 CHART_WIDTH=600
 TITLE_Y_WIDTH=30
 SCALE_Y_WIDTH=40
@@ -50,6 +56,9 @@ select_chart_combo_variable.set("Select chart")
 
 select_filter_variable=StringVar(root)
 select_filter_variable.set("")
+
+select_limit_variable=StringVar(root)
+select_limit_variable.set("0")
 
 root.geometry("+10+10")
 
@@ -512,6 +521,7 @@ def draw_chart():
 	title_y_canvas.delete("all")
 	scale_y_canvas.delete("all")
 	chart_canvas.delete("all")
+	legend_canvas.delete("all")
 	
 	RANGE_X=MAX_X-MIN_X
 	FACTOR_X=CHART_WIDTH/RANGE_X
@@ -535,9 +545,9 @@ def draw_chart():
 		chart_canvas.create_line(0,cy,CHART_WIDTH-15,cy,dash=[5,5],fill=DASHFILL)
 		y+=STEP_Y
 		
-	title_canvas.create_text((CHART_WIDTH-len(TITLE)*int(TITLE_FONT_SIZE*1.2))/2,2,text=TITLE+"\n "+SUBTITLE,anchor="nw",font=(TITLE_FONT,int(TITLE_FONT_SIZE*1.2)))
+	title_canvas.create_text((CHART_WIDTH-len(TITLE)*int(TITLE_FONT_SIZE*0.8))/2,2,text=TITLE+"\n "+SUBTITLE,anchor="nw",font=(TITLE_FONT,int(TITLE_FONT_SIZE*1.2)))
 	title_x_canvas.create_text((CHART_WIDTH-len(TITLE_X)*TITLE_FONT_SIZE)/2,2,text=TITLE_X,anchor="nw",font=(TITLE_FONT,TITLE_FONT_SIZE))
-	title_y_canvas.create_text(2,(CHART_HEIGHT-len(TITLE_Y)*TITLE_FONT_SIZE)/2,text="\n".join(TITLE_Y),anchor="nw",font=(TITLE_FONT,TITLE_FONT_SIZE))
+	title_y_canvas.create_text(2,(CHART_HEIGHT-len(TITLE_Y)*TITLE_FONT_SIZE*1.3)/2,text="\n".join(TITLE_Y),anchor="nw",font=(TITLE_FONT,TITLE_FONT_SIZE))
 	
 	legend_cnt=0
 	legends=LEGEND.split("\t")
@@ -569,6 +579,7 @@ def draw_chart():
 		
 	xysi=0
 	for XYS in LXYS:
+		print("series",xysi,"size",len(XYS))
 		color=legendcolors[xysi]
 		for xy in XYS:
 			x=xy[0]
@@ -595,13 +606,14 @@ def draw_par_chart():
 	MIN_Y=0
 	MAX_Y=60
 	STEP_Y=10
-	TITLE="Female participation"
-	SUBTITLE="in the function of age"
+	TITLE="Female participation in the function of age"
 	TITLE_X="Age"
 	TITLE_Y="Female %"
 	LEGEND="Among all players:#ff0000:t\tAmong rated players:#0000ff:t"
 	
 	filter=select_filter_variable.get()
+	
+	SUBTITLE=filters_nice[filter]
 	
 	records=parse_txt("keystats/birthday"+filter+".txt")
 	
@@ -621,20 +633,22 @@ def draw_rpar_chart():
 	MIN_Y=-100
 	MAX_Y=500
 	STEP_Y=50
-	TITLE="Rating difference"
-	SUBTITLE="in the function of participation"
-	TITLE_X="Participation"
-	TITLE_Y="Rating"
-	LEGEND="Among all players:#ff0000:t\tAmong rated players:#0000ff:t"
+	TITLE="Rating difference in the function of participatiom"
+	TITLE_X="Participation %"
+	TITLE_Y="Rating diff"
+	LEGEND="Rating difference:#0000ff:t"
 	
 	filter=select_filter_variable.get()
 	
 	records=parse_txt("keystats/country"+filter+".txt")
+	
+	limit=int(select_limit_variable.get())
+	
+	SUBTITLE=filters_nice[filter]+" , more than "+str(limit)+" rated players"
 		
-	LXYS=(
-		extract(records,"PARF","AVGRDIFF",lambda x:float(x),lambda x:False if x["RMF"]=="NA" else int(x["RMF"])>200),
-		extract(records,"PARFR","AVGRDIFF",lambda x:float(x),lambda x:False if x["RMF"]=="NA" else int(x["RMF"])>200)
-		)
+	LXYS=[
+		extract(records,"PARFR","AVGRDIFF",lambda x:float(x),lambda x:False if x["RMF"]=="NA" else int(x["RMF"])>limit)
+		]
 	
 	draw_chart()
 	
@@ -647,20 +661,22 @@ def draw_apar_chart():
 	MIN_Y=1000
 	MAX_Y=2400
 	STEP_Y=200
-	TITLE="Female average rating"
-	SUBTITLE="in the function of participation"
-	TITLE_X="Participation"
+	TITLE="Female average rating in the function of participation"
+	TITLE_X="Participation %"
 	TITLE_Y="Rating"
-	LEGEND="Among all players:#ff0000:t\tAmong rated players:#0000ff:t"
+	LEGEND="Female average rating:#0000ff:t"
 	
 	filter=select_filter_variable.get()
 	
 	records=parse_txt("keystats/country"+filter+".txt")
+	
+	limit=int(select_limit_variable.get())
+	
+	SUBTITLE=filters_nice[filter]+" , more than "+str(limit)+" rated players"
 		
-	LXYS=(
-		extract(records,"PARF","AVGRF",lambda x:float(x),lambda x:False if x["RMF"]=="NA" else int(x["RMF"])>50),
-		extract(records,"PARFR","AVGRF",lambda x:float(x),lambda x:False if x["RMF"]=="NA" else int(x["RMF"])>50)
-		)
+	LXYS=[
+		extract(records,"PARFR","AVGRF",lambda x:float(x),lambda x:False if x["RMF"]=="NA" else int(x["RMF"])>limit)
+		]
 	
 	draw_chart()
 	
@@ -676,22 +692,27 @@ def select_chart_combo_selected(arg):
 # mainloop
 
 status_label=Label(root)
-status_label.pack()
+status_label.pack(padx=2*PADX,pady=2*PADY)
 
-startup_button = Button(root, text='STARTUP', width=100, command=startup)
-startup_button.pack()
+buttons_frame=Frame(root)
+buttons_frame.pack()
 
-process_xml_button = Button(root, text='Process XML', width=100, command=process_xml)
-process_xml_button.pack()
+BUTTON_WIDTH=20
 
-iterate_txt_button = Button(root, text='Inerate players.txt', width=100, command=iterate_players_txt)
-iterate_txt_button.pack()
+startup_button = Button(buttons_frame, text='STARTUP' , width=BUTTON_WIDTH, command=startup)
+startup_button.grid(row=0,column=0, padx=PADX)
 
-create_stats_button = Button(root, text='Create stats', width=100, command=create_stats)
-create_stats_button.pack()
+process_xml_button = Button(buttons_frame, text='Process XML', width=BUTTON_WIDTH, command=process_xml)
+process_xml_button.grid(row=0,column=1, padx=PADX)
 
-create_stats_by_key_button = Button(root, text='Create stats by key', width=100, command=create_stats_by_key)
-create_stats_by_key_button.pack()
+iterate_txt_button = Button(buttons_frame, text='Inerate players.txt', width=BUTTON_WIDTH, command=iterate_players_txt)
+iterate_txt_button.grid(row=0,column=2, padx=PADX)
+
+create_stats_button = Button(buttons_frame, text='Create stats', width=BUTTON_WIDTH, command=create_stats)
+create_stats_button.grid(row=0,column=3, padx=PADX)
+
+create_stats_by_key_button = Button(buttons_frame, text='Create stats by key', width=BUTTON_WIDTH, command=create_stats_by_key)
+create_stats_by_key_button.grid(row=0,column=4, padx=PADX)
 
 options_frame=Frame(root,padx=2*PADX,pady=2*PADY)
 options_frame.pack()
@@ -709,6 +730,10 @@ select_chart_combo.grid(row=0,column=0)
 select_filter_combo = OptionMenu(options_frame,select_filter_variable,*filters,command=select_chart_combo_selected)
 select_filter_combo.grid(row=0,column=1)
 
+limits=["0","10","20","30","40","50","100","150","200","250","300","350","400","450","500","600","700","800","900","1000"]
+
+select_limit_combo = OptionMenu(options_frame,select_limit_variable,*limits,command=select_chart_combo_selected)
+select_limit_combo.grid(row=0,column=2)
 
 chart_frame.pack()
 
