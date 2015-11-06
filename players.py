@@ -6,6 +6,8 @@ from os import walk
 
 # global variables
 
+REFERENCE_YEAR=2015
+
 cnt=0
 state="idle"
 current_key=""
@@ -18,6 +20,8 @@ key_counts={}
 phase=0
 sorted_keys=[]
 collected=("country","birthday","flag")
+
+filters=("","m","a","ma")
 
 # end global variables
 
@@ -248,8 +252,8 @@ def average(counter,denominator):
 		return "NA"
 	return "{0:.2f}".format(counter/denominator)
 	
-def create_stats_file(path,name):
-	print("Creating stats ",path,name)
+def create_stats_file(path,name,filter):
+	print("Creating stats ",path,name,filter)
 	fh=open(path+"/"+name+".txt")
 	line=fh.readline()
 	if not line:
@@ -284,21 +288,41 @@ def create_stats_file(path,name):
 			linecnt+=1
 			fields=line.rstrip().split("\t")
 			record=dict(zip(headers,fields))
-			rating_s=getkey(record,"rating")
-			stats["ALL"]+=1
-			sex=getkey(record,"sex")
-			if sex in ("M","F"):
-				stats["MF"]+=1
-				stats[sex]+=1
-			if not rating_s=="NA":
-				rating=int(rating_s)
-				stats["CRALL"]+=rating
-				stats["RALL"]+=1
+			
+			active="i" not in getkey(record,"flag")
+			
+			middleage=False
+			birthday=getkey(record,"birthday")
+			if not birthday=="NA":
+				age=REFERENCE_YEAR-int(birthday)
+				if age>=20 and age<=40:
+					middleage=True
+					
+			cond=True
+			
+			if "a" in filter and not active:
+				cond=False
+				
+			if "m" in filter and not middleage:
+				cond=False
+				
+			if cond:
+			
+				rating_s=getkey(record,"rating")
+				stats["ALL"]+=1
+				sex=getkey(record,"sex")
 				if sex in ("M","F"):
-					stats["CR"+sex]+=rating
-					stats["R"+sex]+=1
-					stats["CRMF"]+=rating
-					stats["RMF"]+=1
+					stats["MF"]+=1
+					stats[sex]+=1
+				if not rating_s=="NA":
+					rating=int(rating_s)
+					stats["CRALL"]+=rating
+					stats["RALL"]+=1
+					if sex in ("M","F"):
+						stats["CR"+sex]+=rating
+						stats["R"+sex]+=1
+						stats["CRMF"]+=rating
+						stats["RMF"]+=1
 					
 	stats["AVGRALL"]=average(stats["CRALL"],stats["RALL"])
 	stats["AVGRMF"]=average(stats["CRMF"],stats["RMF"])
@@ -311,8 +335,8 @@ def create_stats_file(path,name):
 	stats["PARF"]=average(100*stats["F"],stats["MF"])
 	stats["PARFR"]=average(100*stats["RF"],stats["RMF"])
 					
-	outf=open(path+"/"+name+".stats.txt","w")
-	outfh=open(path+"/"+name+".stats.html","w")
+	outf=open(path+"/"+name+".stats"+filter+".txt","w")
+	outfh=open(path+"/"+name+".stats"+filter+".html","w")
 	print("<table border=1 cellpadding=5 cellspacing=5>",file=outfh)
 	linecnt=0
 	for key in sorted(stats.keys()):
@@ -340,7 +364,9 @@ def create_stats():
 			parts=name.split(".")
 			if len(parts)==2 and parts[1]=="txt":
 				name=parts[0]
-				create_stats_file(key,name)
+				
+				for filter in filters:				
+					create_stats_file(key,name,filter)
 				
 	status_label.config(text="Creating stats, done")
 	status_label.update()
@@ -351,10 +377,10 @@ def startup():
 	create_stats()
 	create_stats_by_key()
 
-def create_stats_by_key_file(key,name):
-	print("File",name)
+def create_stats_by_key_file(key,name,filter):
+	print("File",name,filter)
 	record={}
-	fh=open(key+"/"+name+".stats.txt")
+	fh=open(key+"/"+name+".stats"+filter+".txt")
 	line=True
 	while(line):
 		line=fh.readline()
@@ -366,50 +392,57 @@ def create_stats_by_key_file(key,name):
 	
 def create_stats_by_key():
 	global collected
-	status_label.config(text="Creating stats by key")
-	status_label.update()
 	
-	mkdir("keystats")
+	for filter in filters:
 	
-	for key in collected:
-		print("Creating stats for key",key)
-		lines=[]
-		f=[]
-		for(dirpath,dirnames,filenames) in walk(key):
-			f.extend(filenames)
-			break
-		for name in f:
-			parts=name.split(".")
-			if len(parts)==3 and parts[1]=="stats" and parts[2]=="txt":
-				name=parts[0]
-				record=create_stats_by_key_file(key,name)
-				lines.append((name,record))
+		status_label.config(text="Creating stats by key with filter "+filter)
+		status_label.update()
+		
+		mkdir("keystats")
+		
+		for key in collected:
+			print("Creating stats for key",key)
+			lines=[]
+			f=[]
+			for(dirpath,dirnames,filenames) in walk(key):
+				f.extend(filenames)
+				break
+			for name in f:
+				parts=name.split(".")
+				if len(parts)==3 and parts[1]=="stats" and parts[2]=="txt":
+					name=parts[0]
+					
+					################
+					record=create_stats_by_key_file(key,name,filter)
+					################
+					
+					lines.append((name,record))
+					
+			if key=="country":
+				lines.sort(key=lambda x:0.0 if x[1]["PARFR"]=="NA" else float(x[1]["PARFR"]),reverse=True)
+			elif key=="birthday":
+				lines.sort(key=lambda x:0 if x[0]=="NA" else int(x[0]),reverse=True)
 				
-		if key=="country":
-			lines.sort(key=lambda x:0.0 if x[1]["PARFR"]=="NA" else float(x[1]["PARFR"]),reverse=True)
-		elif key=="birthday":
-			lines.sort(key=lambda x:0 if x[0]=="NA" else int(x[0]),reverse=True)
+			stats_headere=[key]
+			sorted_keys=sorted(record.keys())
+			stats_headere.extend(sorted_keys)
 			
-		stats_headere=[key]
-		sorted_keys=sorted(record.keys())
-		stats_headere.extend(sorted_keys)
-		
-		linese=[stats_headere]
-		for line in lines:
-			array=[line[0]]
-			for rkey in sorted_keys:
-				array.append(line[1][rkey])
-			linese.append(array)
-		
-		outf=open("keystats/"+key+".txt","w")
-		outfh=open("keystats/"+key+".html","w")
-		print("<table border=1>",file=outfh)
-		for line in linese:
-			print("\t".join(line),file=outf)
-			print("<tr><td>"+"</td><td>".join(line)+"</td></tr>",file=outfh)
-		print("</table>",file=outfh)
-		outfh.close()
-		outf.close()
+			linese=[stats_headere]
+			for line in lines:
+				array=[line[0]]
+				for rkey in sorted_keys:
+					array.append(line[1][rkey])
+				linese.append(array)
+			
+			outf=open("keystats/"+key+filter+".txt","w")
+			outfh=open("keystats/"+key+filter+".html","w")
+			print("<table border=1>",file=outfh)
+			for line in linese:
+				print("\t".join(line),file=outf)
+				print("<tr><td>"+"</td><td>".join(line)+"</td></tr>",file=outfh)
+			print("</table>",file=outfh)
+			outfh.close()
+			outf.close()
 	
 	status_label.config(text="Creating stats by key, done")
 	status_label.update()
@@ -568,8 +601,8 @@ def draw_par_chart():
 	records=parse_txt("keystats/birthday.txt")
 	
 	LXYS=(
-		extract(records,"birthday","PARF",lambda x:2015-float(x),lambda x:True),
-		extract(records,"birthday","PARFR",lambda x:2015-float(x),lambda x:True)
+		extract(records,"birthday","PARF",lambda x:REFERENCE_YEAR-float(x),lambda x:True),
+		extract(records,"birthday","PARFR",lambda x:REFERENCE_YEAR-float(x),lambda x:True)
 		)
 	
 	draw_chart()
