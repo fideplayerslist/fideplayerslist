@@ -48,6 +48,9 @@ root=Tk()
 select_chart_combo_variable=StringVar(root)
 select_chart_combo_variable.set("Select chart")
 
+select_filter_variable=StringVar(root)
+select_filter_variable.set("")
+
 root.geometry("+10+10")
 
 PADX=5
@@ -598,7 +601,9 @@ def draw_par_chart():
 	TITLE_Y="Female %"
 	LEGEND="Among all players:#ff0000:t\tAmong rated players:#0000ff:t"
 	
-	records=parse_txt("keystats/birthday.txt")
+	filter=select_filter_variable.get()
+	
+	records=parse_txt("keystats/birthday"+filter+".txt")
 	
 	LXYS=(
 		extract(records,"birthday","PARF",lambda x:REFERENCE_YEAR-float(x),lambda x:True),
@@ -622,7 +627,9 @@ def draw_rpar_chart():
 	TITLE_Y="Rating"
 	LEGEND="Among all players:#ff0000:t\tAmong rated players:#0000ff:t"
 	
-	records=parse_txt("keystats/country.txt")
+	filter=select_filter_variable.get()
+	
+	records=parse_txt("keystats/country"+filter+".txt")
 		
 	LXYS=(
 		extract(records,"PARF","AVGRDIFF",lambda x:float(x),lambda x:False if x["RMF"]=="NA" else int(x["RMF"])>200),
@@ -632,6 +639,7 @@ def draw_rpar_chart():
 	draw_chart()
 	
 def select_chart_combo_selected(arg):
+	arg=select_chart_combo_variable.get()
 	if arg=="Female participation in function of age":
 		draw_par_chart()
 	if arg=="Rating difference in function of female participation":
@@ -657,9 +665,15 @@ create_stats_button.pack()
 create_stats_by_key_button = Button(root, text='Create stats by key', width=100, command=create_stats_by_key)
 create_stats_by_key_button.pack()
 
+options_frame=Frame(root,padx=2*PADX,pady=2*PADY)
+options_frame.pack()
+
 options=["Select chart","Female participation in function of age","Rating difference in function of female participation"]
-select_chart_combo = OptionMenu(root,select_chart_combo_variable,*options,command=select_chart_combo_selected)
-select_chart_combo.pack()
+select_chart_combo = OptionMenu(options_frame,select_chart_combo_variable,*options,command=select_chart_combo_selected)
+select_chart_combo.grid(row=0,column=0)
+
+select_filter_combo = OptionMenu(options_frame,select_filter_variable,*filters,command=select_chart_combo_selected)
+select_filter_combo.grid(row=0,column=1)
 
 
 chart_frame.pack()
