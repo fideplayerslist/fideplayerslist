@@ -28,6 +28,13 @@ filters_nice={
 	"a":"among active players",
 	"ma":"among middle age active players"
 	}
+	
+charts=[
+	"Select chart",
+	"Female participation in function of age",
+	"Rating difference in function of female participation",
+	"Female average rating in the function of participation"
+	]
 
 # end global variables
 
@@ -688,7 +695,20 @@ def select_chart_combo_selected(arg):
 		draw_rpar_chart()
 	if arg=="Female average rating in the function of participation":
 		draw_apar_chart()
-	
+		
+def do_movie():
+	for chart in charts[2:]:
+		select_chart_combo_variable.set(chart)
+		for filter in filters:
+			select_filter_variable.set(filter)
+			for limit in limits:
+				select_limit_variable.set(limit)
+				select_chart_combo_selected("")
+				root.update()
+				t=time.time()
+				while((time.time()-t)<1):
+					t=t
+				
 # mainloop
 
 status_label=Label(root)
@@ -714,15 +734,11 @@ create_stats_button.grid(row=0,column=3, padx=PADX)
 create_stats_by_key_button = Button(buttons_frame, text='Create stats by key', width=BUTTON_WIDTH, command=create_stats_by_key)
 create_stats_by_key_button.grid(row=0,column=4, padx=PADX)
 
+movie_button = Button(buttons_frame, text='Movie', width=BUTTON_WIDTH, command=do_movie)
+movie_button.grid(row=0,column=5, padx=PADX)
+
 options_frame=Frame(root,padx=2*PADX,pady=2*PADY)
 options_frame.pack()
-
-charts=[
-	"Select chart",
-	"Female participation in function of age",
-	"Rating difference in function of female participation",
-	"Female average rating in the function of participation"
-	]
 	
 select_chart_combo = OptionMenu(options_frame,select_chart_combo_variable,*charts,command=select_chart_combo_selected)
 select_chart_combo.grid(row=0,column=0)
