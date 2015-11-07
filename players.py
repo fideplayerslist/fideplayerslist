@@ -41,7 +41,8 @@ charts=[
 	
 other_stats=[
 	"Other stats",
-	"Rating for age"
+	"Rating for age",
+	"Highest ranked women"
 	]
 
 # end global variables
@@ -277,6 +278,19 @@ def iterate_players_txt():
 			outf.close()
 	update("Iterating players.txt, done , "+str(cnt)+" records processed")
 	
+def list_core_txts(path):
+	f=[]
+	for(dirpath,dirnames,filenames) in walk(path):
+		f.extend(filenames)
+		break
+	names=[]
+	for name in f:
+		parts=name.split(".")
+		if len(parts)==2 and parts[1]=="txt":
+			name=parts[0]
+			names.append(name)
+	return names
+	
 def average(counter,denominator):
 	if denominator==0:
 		return "NA"
@@ -488,7 +502,20 @@ def parse_txt(path):
 			fields=line.rstrip().split("\t")
 			record=dict(zip(headers,fields))
 			records.append(record)
+	fh.close()
 	return records
+	
+def read_stat(path):
+	fh=open(path)
+	line=fh.readline()
+	record={}
+	while(line):
+		line=fh.readline()
+		if(line):
+			fields=line.rstrip().split("\t")
+			record[fields[0]]=fields[1]
+	fh.close()
+	return record
 	
 def extract(records,key,value,func,cond):
 	global MIN_X,MAX_X
@@ -763,12 +790,47 @@ def rating_for_age():
 	print("\n".join(lines),file=outf)
 	outf.close()
 	htmlify("otherstats","ratingforage")
-				
+	
+def highest_ranked_women():
+	names=list_core_txts("country")
+	country_list=[]
+	for name in names:
+		print("processing country",name)
+		stats=read_stat("country/"+name+".statsa.txt")
+		players=parse_txt("country/"+name+".txt")
+		rank=1
+		for player in players:
+			if "sex" in player and "flag" in player and "rating" in player:
+				if not "i" in player["flag"] and (not player["rating"]=="NA") and (not player["rating"]==""):
+					if player["sex"]=="F":
+						if (not stats["RM"]=="NA") and (not stats["RF"]=="NA"):
+							if int(stats["RMF"])>100:
+								RMF=int(stats["RMF"])
+								relrank="{0:.2f}".format(100-rank/RMF*100)
+								country_list.append((name,rank,relrank,player,stats))
+						break
+					rank+=1
+	country_list.sort(key=lambda x:float(x[2]),reverse=True)
+	outf=open("otherstats/highestrankedwomen.txt","w")
+	print("no\tcountry\trank in country\tpercentile in country\tname\trating\tactive rated players\tfemale % of rated active players",file=outf)
+	no=0
+	for country_touple in country_list:
+		name=country_touple[0]
+		rank=country_touple[1]
+		relrank=country_touple[2]
+		player=country_touple[3]
+		country=country_touple[4]
+		no+=1
+		print(str(no)+"\t"+name+"\t"+str(rank)+"\t"+str(relrank)+"\t"+player["name"]+"\t"+player["rating"]+"\t"+country["RMF"]+"\t"+country["PARFR"],file=outf)
+	outf.close()
+	htmlify("otherstats","highestrankedwomen")
 		
 def select_other_stats_combo_selected(arg):
 	mkdir("otherstats")
 	if arg=="Rating for age":
 		rating_for_age()
+	if arg=="Highest ranked women":
+		highest_ranked_women()
 		
 def do_movie():
 	for chart in charts[2:]:
