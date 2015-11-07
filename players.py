@@ -8,6 +8,9 @@ from os import walk
 
 REFERENCE_YEAR=2015
 
+MIN_AGE=1
+MAX_AGE=100
+
 cnt=0
 state="idle"
 current_key=""
@@ -34,6 +37,11 @@ charts=[
 	"Female participation in function of age",
 	"Rating difference in function of female participation",
 	"Female average rating in the function of participation"
+	]
+	
+other_stats=[
+	"Other stats",
+	"Rating for age"
 	]
 
 # end global variables
@@ -66,6 +74,9 @@ select_filter_variable.set("")
 
 select_limit_variable=StringVar(root)
 select_limit_variable.set("0")
+
+select_other_stats_variable=StringVar(root)
+select_other_stats_variable.set("Other stats")
 
 root.geometry("+10+10")
 
@@ -696,6 +707,69 @@ def select_chart_combo_selected(arg):
 	if arg=="Female average rating in the function of participation":
 		draw_apar_chart()
 		
+def get_age_stats():
+	records=parse_txt("keystats/birthday.txt")
+	age_stats={}
+	for record in records:
+		if not record["birthday"]=="NA":
+			birthday=int(record["birthday"])
+			age=REFERENCE_YEAR-birthday
+			if age>=MIN_AGE and age<=MAX_AGE:
+				age_stats[age]=record
+	return age_stats
+	
+def htmlify(path,name):
+	fh=open(path+"/"+name+".txt")
+	line=fh.readline()
+	outf=open(path+"/"+name+".html","w")
+	print("<table border=1>",file=outf)
+	while(line):
+		print("<tr><td>"+"</td><td>".join(line.rstrip().split("\t"))+"</td></tr>",file=outf)
+		line=fh.readline()
+	print("</table>",file=outf)		
+	outf.close()
+	
+def rating_for_age():
+	age_stats=get_age_stats()
+	players=[]
+	for age in range(MIN_AGE,MAX_AGE+1):
+		birthday=REFERENCE_YEAR-age
+		path="birthday/"+str(birthday)+".txt"
+		if(os.path.isfile(path)):
+			print("proessing age ",age)
+			records=parse_txt(path)
+			EXPRM_str=getkey(age_stats[age],"AVGRM")
+			EXPRF_str=getkey(age_stats[age],"AVGRF")
+			for record in records:
+				if "rating" in record and "flag" in record:
+					if not record["rating"]=="NA" and not record["rating"]=="" and "sex" in record and not "i" in record["flag"]:
+						sex=record["sex"]
+						if sex in ("M","F"):
+							rating=int(record["rating"])
+							EXPR_str=EXPRM_str if sex=="M" else EXPRF_str
+							EXPR=float(EXPR_str)
+							rating_diff=rating-EXPR
+							record["EXPR"]=EXPR
+							record["age"]=age
+							record["rating_diff"]="{0:.2f}".format(rating_diff)
+							players.append((rating_diff,record))
+	players.sort(key=lambda x:x[0],reverse=True)
+	lines=["rank\tname\tcountry\tage\tgender\texpected rating\tactual rating\trating surplus"]
+	for i in range(0,100):
+		record=players[i][1]
+		line=str(i+1)+"\t"+record["name"]+"\t"+record["country"]+"\t"+str(record["age"])+"\t"+record["sex"]+"\t"+str(record["EXPR"])+"\t"+record["rating"]+"\t"+record["rating_diff"]
+		lines.append(line)
+	outf=open("otherstats/ratingforage.txt","w")
+	print("\n".join(lines),file=outf)
+	outf.close()
+	htmlify("otherstats","ratingforage")
+				
+		
+def select_other_stats_combo_selected(arg):
+	mkdir("otherstats")
+	if arg=="Rating for age":
+		rating_for_age()
+		
 def do_movie():
 	for chart in charts[2:]:
 		select_chart_combo_variable.set(chart)
@@ -750,6 +824,9 @@ limits=["0","10","20","30","40","50","100","150","200","250","300","350","400","
 
 select_limit_combo = OptionMenu(options_frame,select_limit_variable,*limits,command=select_chart_combo_selected)
 select_limit_combo.grid(row=0,column=2)
+
+select_other_stats_combo = OptionMenu(options_frame,select_other_stats_variable,*other_stats,command=select_other_stats_combo_selected)
+select_other_stats_combo.grid(row=0,column=3)
 
 chart_frame.pack()
 
