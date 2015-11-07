@@ -19,7 +19,7 @@ last_update=time.time()
 key_counts={}
 phase=0
 sorted_keys=[]
-collected=("country","birthday","flag")
+collected=("country","birthday","flag","title")
 
 filters=("","m","a","ma")
 filters_nice={
@@ -640,7 +640,7 @@ def draw_rpar_chart():
 	MIN_Y=-100
 	MAX_Y=500
 	STEP_Y=50
-	TITLE="Rating difference in the function of participatiom"
+	TITLE="Rating difference in the function of participation"
 	TITLE_X="Participation %"
 	TITLE_Y="Rating diff"
 	LEGEND="Rating difference:#0000ff:t"
