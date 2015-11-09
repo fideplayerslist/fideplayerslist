@@ -298,7 +298,8 @@ def average(counter,denominator):
 	
 def create_stats_file(path,name,filter):
 	print("Creating stats ",path,name,filter)
-	fh=open(path+"/"+name+".txt")
+	sep="/" if not path=="" else ""
+	fh=open(path+sep+name+".txt")
 	line=fh.readline()
 	if not line:
 		print("File empty, no stats created")
@@ -379,8 +380,8 @@ def create_stats_file(path,name,filter):
 	stats["PARF"]=average(100*stats["F"],stats["MF"])
 	stats["PARFR"]=average(100*stats["RF"],stats["RMF"])
 					
-	outf=open(path+"/"+name+".stats"+filter+".txt","w")
-	outfh=open(path+"/"+name+".stats"+filter+".html","w")
+	outf=open(path+sep+name+".stats"+filter+".txt","w")
+	outfh=open(path+sep+name+".stats"+filter+".html","w")
 	print("<table border=1 cellpadding=5 cellspacing=5>",file=outfh)
 	linecnt=0
 	for key in sorted(stats.keys()):
@@ -446,6 +447,7 @@ def create_stats_by_key():
 		
 		for key in collected:
 			print("Creating stats for key",key)
+			
 			lines=[]
 			f=[]
 			for(dirpath,dirnames,filenames) in walk(key):
@@ -487,6 +489,9 @@ def create_stats_by_key():
 			print("</table>",file=outfh)
 			outfh.close()
 			outf.close()
+			
+	for filter in filters:
+		create_stats_file("","players",filter)
 	
 	status_label.config(text="Creating stats by key, done")
 	status_label.update()
