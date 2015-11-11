@@ -1,8 +1,11 @@
 import javafx.application.Application
 import javafx.scene.Scene
-import javafx.scene.layout.StackPane
+import javafx.scene.layout._
 import javafx.stage.Stage
-import javafx.scene.control.Label
+import javafx.scene.control._
+import javafx.scene.input._
+import javafx.event._
+
 
 import scala.io.Source
 import scala.xml.pull._
@@ -66,13 +69,22 @@ class PlayersClass extends Application {
 	{
 		primaryStage.setTitle("FIDE Players")
 
-		val root = new StackPane
-		root.getChildren.add(new Label("FIDE players"))
+		val root = new FlowPane
+		
+		val startButton=new Button("Process XML")
+		
+		startButton.setOnAction(new EventHandler[ActionEvent]{
+			override def handle(e: ActionEvent)
+			{
+				process()
+			}
+		});
+		
+		root.getChildren.add(startButton)
 
 		primaryStage.setScene(new Scene(root, 300, 300))
 		primaryStage.show()
-		
-		process()
+
 	}
 	
 }
