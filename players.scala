@@ -31,7 +31,6 @@ class PlayersClass extends Application {
 						case EvElemStart(_, label, _, _) =>
 						
 							println("Element index: " + cnt)
-							cnt=cnt+1
 							
 							println("Start element: " + label)
 							loop(label :: currNode)
@@ -39,6 +38,8 @@ class PlayersClass extends Application {
 						case EvElemEnd(_, label) =>
 						
 							println("End element: " + label)
+							
+							cnt=cnt+1
 							
 							loop(currNode.tail)
 						
@@ -54,6 +55,7 @@ class PlayersClass extends Application {
 			}
 	
 			loop(List.empty)
+			
 		}
 
 		parse(xml)
