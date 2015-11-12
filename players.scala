@@ -38,6 +38,12 @@ class PlayersClass extends Application {
 		}})
 	}
 	
+	def infoBox(titleBar:  String,infoMessage: String)
+	{
+		javax.swing.JOptionPane.showMessageDialog(null, infoMessage, titleBar, javax.swing.JOptionPane.INFORMATION_MESSAGE);
+		println(titleBar+". "+infoMessage)
+	}
+	
 	def create_modal()
 	{
 		infoLabel=new Label("")
@@ -83,6 +89,7 @@ class PlayersClass extends Application {
 				{
 					xml.next match
 					{
+					
 						case EvElemStart(_, label, _, _) =>
 						
 							current_tag=label
@@ -118,13 +125,16 @@ class PlayersClass extends Application {
 								current_value=text
 							}
 						
-						case _ => //loop(currNode)
+						case _ => 
+						
+						
+						
 					}
 				}
 				
 				if(interrupted)
 				{
-					println("Warning: Processing interrupted.")
+					infoBox("Warning","Processing interrupted.")
 				}
 				
 			}
