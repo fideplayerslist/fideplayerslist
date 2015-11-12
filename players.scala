@@ -13,9 +13,12 @@ import java.lang.System
 import scala.io.Source
 import scala.xml.pull._
 
+import scala.collection.immutable.ListMap
+
 class PlayersClass extends Application {
 
 	var infoLabel=new Label("")
+	var infoTextArea=new TextArea()
 	var root=new FlowPane()
 	var modal_root=new FlowPane()
 	var modal_stage=new Stage()
@@ -38,6 +41,13 @@ class PlayersClass extends Application {
 		}})
 	}
 	
+	def update_textarea(info: String)
+	{
+		Platform.runLater(new Runnable{def run{
+			infoTextArea.setText(info)
+		}})
+	}
+	
 	def infoBox(titleBar:  String,infoMessage: String)
 	{
 		javax.swing.JOptionPane.showMessageDialog(null, infoMessage, titleBar, javax.swing.JOptionPane.INFORMATION_MESSAGE);
@@ -47,15 +57,39 @@ class PlayersClass extends Application {
 	def create_modal()
 	{
 		infoLabel=new Label("")
+		infoTextArea=new TextArea()
+		infoTextArea.setMinWidth(300);
+		infoTextArea.setMinHeight(500);
+		infoTextArea.setStyle("-fx-display-caret:false;-fx-font-size:16px")
 		modal_root=new FlowPane()
 		modal_root.setPadding(new Insets(10, 10, 10, 10))
 		modal_root.setStyle("-fx-font-size:18px;")
 		modal_stage=new Stage()
 		modal_stage.initModality(Modality.APPLICATION_MODAL)
 		modal_root.getChildren().add(infoLabel)
-		val modal_scene=new Scene(modal_root,800,50)
+		modal_root.getChildren().add(infoTextArea)
+		val modal_scene=new Scene(modal_root,800,550)
 		modal_stage.setScene(modal_scene)
 		modal_stage.showAndWait()
+	}
+	
+	var keycounts:Map[String,Int]=Map[String,Int]()
+	
+	def keycounts_info():String=
+	{
+		var keycounts_info=""
+		var i=0
+		
+		keycounts=ListMap(keycounts.toSeq.sortWith(_._1 < _._1):_*)
+		
+		for ((k,v) <- keycounts)
+		{
+			val missing=cnt-v
+			keycounts_info+=i+" "+k+" "+v+(if(missing>0) " ( missing "+ missing +" )" else "")+"\n"
+			i=i+1
+		}
+		
+		return keycounts_info
 	}
 
 	def process()
@@ -67,6 +101,7 @@ class PlayersClass extends Application {
 		abs_t0=System.nanoTime()
 		
 		cnt=0
+		
 		
 		def parse(xml: XMLEventReader)
 		{
@@ -98,22 +133,40 @@ class PlayersClass extends Application {
 						
 							if(label=="player")
 							{
+							
+								cnt=cnt+1
+							
 								writer.write(current_line.mkString("\t")+"\n")
+								
 								current_tag=""
+								
 								current_line=Array[String]()
+								
 								current_value=""
+								
 								val t=System.nanoTime()
+								
 								if(t-t0>5e8)
 								{
 									t0=t
 									val info="Processed: " + cnt + "."
+									
 									update(info)
+									
+									update_textarea(keycounts_info())
+									
 								}
-								cnt=cnt+1
+								
 							}
 							else
 							{
 								current_line=current_line:+(current_value)
+								
+								if(current_value!="")
+								{
+									keycounts+=(current_tag->(keycounts.getOrElse(current_tag,0)+1))
+								}
+								
 								current_tag=""
 								current_value=""
 							}
@@ -151,6 +204,8 @@ class PlayersClass extends Application {
 		parse(xml)
 		
 		update("Done. A total of "+cnt+" records processed.")
+		
+		update_textarea(keycounts_info())
 		
 	}
 	
