@@ -19,8 +19,8 @@ class PlayersClass extends Application {
 
 	var infoLabel=new Label("")
 	var infoTextArea=new TextArea()
-	var root=new FlowPane()
-	var modal_root=new FlowPane()
+	var root=new VBox()
+	var modal_root=new VBox()
 	var modal_stage=new Stage()
 
 	val MAXCNT=1000000
@@ -61,7 +61,7 @@ class PlayersClass extends Application {
 		infoTextArea.setMinWidth(300);
 		infoTextArea.setMinHeight(500);
 		infoTextArea.setStyle("-fx-display-caret:false;-fx-font-size:16px")
-		modal_root=new FlowPane()
+		modal_root=new VBox()
 		modal_root.setPadding(new Insets(10, 10, 10, 10))
 		modal_root.setStyle("-fx-font-size:18px;")
 		modal_stage=new Stage()
@@ -74,8 +74,9 @@ class PlayersClass extends Application {
 	}
 	
 	var keycounts:Map[String,Int]=Map[String,Int]()
+	var content_length=0
 	
-	def keycounts_info():String=
+	def keycounts_info(sep: String):String=
 	{
 		var keycounts_info=""
 		var i=0
@@ -85,13 +86,34 @@ class PlayersClass extends Application {
 		for ((k,v) <- keycounts)
 		{
 			val missing=cnt-v
-			keycounts_info+=i+" "+k+" "+v+(if(missing>0) " ( missing "+ missing +" )" else "")+"\n"
+			keycounts_info+=i+sep+k+sep+v+sep+(if(missing>0) "missing"+sep+missing else sep)+"\n"
 			i=i+1
 		}
 		
 		return keycounts_info
 	}
-
+	
+	def save_txt(name: String,content: String)
+	{
+		val writer=new PrintWriter(new File(name))
+		writer.write(content)
+		writer.close()
+	}
+	
+	def record_to_ordered_array(record: Map[String,String],ordered_keys: Array[String]):Array[String]=
+	{
+		var line:Array[String]=Array[String]()
+		
+		for(key<-ordered_keys)
+		{
+			var field=""
+			if(record.contains(key)) field=record(key)
+			line=line:+(field)
+		}
+		
+		return line
+	}
+	
 	def process()
 	{
 	
@@ -102,6 +124,7 @@ class PlayersClass extends Application {
 		
 		cnt=0
 		
+		content_length=0
 		
 		def parse(xml: XMLEventReader)
 		{
@@ -110,11 +133,21 @@ class PlayersClass extends Application {
 			
 			var current_tag=""
 			var current_value=""
-			var current_line:Array[String]=Array[String]()
+			var current_line:Map[String,String]=Map[String,String]()
+			var ordered_keys:Array[String]=Array[String]()
 			
-			if(phase==1)
+			if(phase==2)
 			{
 				writer=new PrintWriter(new File("players.txt"))
+				
+				for(line <- Source.fromFile("keycounts.txt").getLines())
+				{
+					val name=line.split("\t")(1)
+					
+					ordered_keys=ordered_keys:+(name)
+				}
+				
+				writer.write(ordered_keys.mkString("\t")+"\n")
 			}
 		
 			def loop()
@@ -136,11 +169,18 @@ class PlayersClass extends Application {
 							
 								cnt=cnt+1
 							
-								writer.write(current_line.mkString("\t")+"\n")
+								if(phase==2)
+								{
+									val linestr=record_to_ordered_array(current_line,ordered_keys).mkString("\t")+"\n"
+									
+									content_length=content_length+linestr.length
+									
+									writer.write(linestr)
+									
+									current_line=Map[String,String]()
+								}
 								
 								current_tag=""
-								
-								current_line=Array[String]()
 								
 								current_value=""
 								
@@ -148,23 +188,45 @@ class PlayersClass extends Application {
 								
 								if(t-t0>5e8)
 								{
+								
 									t0=t
-									val info="Processed: " + cnt + "."
+									
+									val info="Phase %d , processed: %d.".format(phase,cnt)
 									
 									update(info)
 									
-									update_textarea(keycounts_info())
+									if(phase==1)
+									{
+									
+										update_textarea(keycounts_info(" "))
+									
+									}
+									
+									if(phase==2)
+									{
+									
+										update_textarea("Written to players.txt %d characters.".format(content_length))
+									
+									}
+									
 									
 								}
 								
 							}
 							else
 							{
-								current_line=current_line:+(current_value)
-								
-								if(current_value!="")
+							
+								if(phase==1)
 								{
-									keycounts+=(current_tag->(keycounts.getOrElse(current_tag,0)+1))
+									if(current_value!="")
+									{
+										keycounts+=(current_tag->(keycounts.getOrElse(current_tag,0)+1))
+									}
+								}
+							
+								if(phase==2)
+								{
+									current_line+=(current_tag->current_value)
 								}
 								
 								current_tag=""
@@ -203,9 +265,19 @@ class PlayersClass extends Application {
 
 		parse(xml)
 		
-		update("Done. A total of "+cnt+" records processed.")
+		update("Phase %d done. A total of %d records processed."format(phase,cnt))
 		
-		update_textarea(keycounts_info())
+		if(phase==1)
+		{
+			update_textarea(keycounts_info(" "))
+		
+			save_txt("keycounts.txt",keycounts_info("\t"))
+		}
+		
+		if(phase==2)
+		{
+			update_textarea("Written to players.txt %d characters.".format(content_length))
+		}
 		
 	}
 	
@@ -221,21 +293,57 @@ class PlayersClass extends Application {
 		create_modal()
 		interrupted=true
 	}
+	
+	def startup_thread()
+	{
+		interrupted=false
+		val t=new Thread(new Runnable{def run{
+			phase=1
+			process()
+			if(interrupted) return
+			phase=2
+			process()
+			if(interrupted) return
+		}})
+		t.start
+		create_modal()
+		interrupted=true
+	}
 
 	override def start(primaryStage: Stage)
 	{
 		primaryStage.setTitle("FIDE Players")
 		
-		val startButton=new Button("Process XML")
+		val startButton0=new Button("STARTUP")
+		val startButton1=new Button("Process XML - Phase 1 - count keys")
+		val startButton2=new Button("Process XML - Phase 2 - create players.txt")
 		
-		startButton.setOnAction(new EventHandler[ActionEvent]{
+		startButton1.setOnAction(new EventHandler[ActionEvent]{
 			override def handle(e: ActionEvent)
 			{
+				phase=1
 				process_thread()
 			}
 		});
 		
-		root.getChildren.add(startButton)
+		startButton2.setOnAction(new EventHandler[ActionEvent]{
+			override def handle(e: ActionEvent)
+			{
+				phase=2
+				process_thread()
+			}
+		});
+		
+		startButton0.setOnAction(new EventHandler[ActionEvent]{
+			override def handle(e: ActionEvent)
+			{
+				startup_thread()
+			}
+		});
+		
+		root.getChildren.add(startButton0)
+		root.getChildren.add(startButton1)
+		root.getChildren.add(startButton2)
 
 		primaryStage.setScene(new Scene(root, 300, 300))
 		primaryStage.show()
