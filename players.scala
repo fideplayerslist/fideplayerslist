@@ -23,7 +23,8 @@ class PlayersClass extends Application {
 	var modal_root=new VBox()
 	var modal_stage=new Stage()
 
-	val MAXCNT=1000000
+	val 
+	MAXCNT=1000000
 	
 	var cnt=0
 
@@ -76,7 +77,16 @@ class PlayersClass extends Application {
 		modal_stage.showAndWait()
 	}
 	
-	var keycounts:Map[String,Int]=Map[String,Int]()
+	type IntHash=Map[String,Int]
+	def IntHash()=Map[String,Int]()
+	
+	var keycounts:IntHash=IntHash()
+	
+	type IntHash2=Map[String,IntHash]
+	def IntHash2()=Map[String,IntHash]()
+	
+	var keyfreqs:IntHash2=IntHash2()
+	
 	var content_length=0
 	
 	def keycounts_info(sep: String):String=
@@ -94,6 +104,23 @@ class PlayersClass extends Application {
 		}
 		
 		return keycounts_info
+	}
+	
+	def serializeIntHash(ih: IntHash):String=
+	{
+		var ser=""
+		for((k,v)<-ih)
+		{
+			ser=ser+k+"\t"+v+"\n"
+		}
+		return ser
+	}
+	
+	def sortedSerializeIntHash(ih: IntHash):String=
+	{
+		val ih_sorted=ListMap(ih.toSeq.sortWith(_._1 < _._1):_*)
+		
+		return serializeIntHash(ih_sorted)
 	}
 	
 	def save_txt(name: String,content: String)
@@ -229,6 +256,13 @@ class PlayersClass extends Application {
 									if(current_value!="")
 									{
 										keycounts+=(current_tag->(keycounts.getOrElse(current_tag,0)+1))
+										
+										if(current_tag!="name")
+										{
+											var keyfreq=keyfreqs.getOrElse(current_tag,IntHash())										
+											keyfreq+=(current_value->(keyfreq.getOrElse(current_value,0)+1))
+											keyfreqs+=(current_tag->keyfreq)
+										}
 									}
 								}
 							
@@ -280,6 +314,11 @@ class PlayersClass extends Application {
 			update_textarea(keycounts_info(" "))
 		
 			save_txt("keycounts.txt",keycounts_info("\t"))
+			
+			for((tag,keyfreq)<-keyfreqs)
+			{
+				save_txt("keyfreqs/"+tag+".txt",sortedSerializeIntHash(keyfreq))
+			}
 		}
 		
 		if(phase==2)
