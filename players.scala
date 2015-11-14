@@ -31,6 +31,9 @@ class PlayersClass extends Application {
 	
 	var abs_t0=0.0
 	
+	def mkdirs(path: List[String]) = // return true if path was created
+		path.tail.foldLeft(new File(path.head)){(a,b) => a.mkdir; new File(a,b)}.mkdir
+	
 	def update(info: String)
 	{
 		val elapsed=(System.nanoTime()-abs_t0)/1e9
@@ -135,6 +138,11 @@ class PlayersClass extends Application {
 			var current_value=""
 			var current_line:Map[String,String]=Map[String,String]()
 			var ordered_keys:Array[String]=Array[String]()
+			
+			if(phase==1)
+			{
+				mkdirs(List("keyfreqs"))
+			}
 			
 			if(phase==2)
 			{
