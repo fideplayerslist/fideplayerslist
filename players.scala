@@ -659,11 +659,44 @@ class PlayersClass extends Application {
 		collect_keys()
 		if(interrupted) return
 	}
+	
+	def clear_all_files()
+	{
+		val paths=Array("players.txt","keycounts.txt")
+		var dirs=Array("keyfreqs","keystats")
+		for(key<-collected_keys)
+		{
+			dirs=dirs:+key
+			dirs=dirs:+(key+"stats")
+		}
+		
+		updateRaw("Deleting files.")
+		
+		for(path<-paths)
+		{
+			update_textarea("Deleting "+path)
+			val f=new File(path)
+			if(f.exists) f.delete
+		}
+		
+		updateRaw("Deleting directories.")
+		
+		for(path<-dirs)
+		{
+			update_textarea("Deleting "+path)
+			deleteFilesInDir(path)
+			val f=new File(path)
+			if(f.exists) f.delete
+		}
+		
+		updateRaw("Deleting files done.")
+	}
 
 	override def start(primaryStage: Stage)
 	{
 		primaryStage.setTitle("FIDE Players")
 		
+		val startButtonR=new Button("DELETE ALL FILES")
 		val startButton0=new Button("STARTUP")
 		val startButton1=new Button("Process XML - Phase 1 - count keys")
 		val startButton2=new Button("Process XML - Phase 2 - create players.txt")
@@ -671,6 +704,13 @@ class PlayersClass extends Application {
 		val startButton4=new Button("Create stats")
 		val startButton5=new Button("Key stats")
 		val testButton=new Button("Test")
+		
+		startButtonR.setOnAction(new EventHandler[ActionEvent]{
+			override def handle(e: ActionEvent)
+			{
+				do_thread(clear_all_files)
+			}
+		});
 		
 		startButton0.setOnAction(new EventHandler[ActionEvent]{
 			override def handle(e: ActionEvent)
@@ -723,6 +763,7 @@ class PlayersClass extends Application {
 			}
 		});
 		
+		root.getChildren.add(startButtonR)
 		root.getChildren.add(startButton0)
 		root.getChildren.add(startButton1)
 		root.getChildren.add(startButton2)
