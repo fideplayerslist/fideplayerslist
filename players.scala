@@ -263,7 +263,7 @@ class PlayersClass extends Application {
 		return line
 	}
 	
-	def process()
+	def process():Boolean =
 	{
 	
 		val xml = new XMLEventReader(Source.fromFile("players_list_xml.xml"))
@@ -275,8 +275,8 @@ class PlayersClass extends Application {
 		
 		content_length=0
 		
+		updateRaw("Process XML - Phase %d".format(phase))
 		update_textarea("")
-		updateRaw("")
 		
 		def parse(xml: XMLEventReader)
 		{
@@ -410,11 +410,6 @@ class PlayersClass extends Application {
 					}
 				}
 				
-				if(interrupted)
-				{
-					infoBox("Warning","Processing interrupted.")
-				}
-				
 			}
 	
 			loop()
@@ -427,6 +422,8 @@ class PlayersClass extends Application {
 		}
 
 		parse(xml)
+		
+		if(interrupted) return true
 
 		if(phase==1)
 		{
@@ -455,6 +452,8 @@ class PlayersClass extends Application {
 		
 		update("Phase %d done. A total of %d records processed.".format(phase,cnt))
 		
+		return false
+		
 	}
 	
 	var interrupted=false
@@ -464,13 +463,17 @@ class PlayersClass extends Application {
 		interrupted=false
 		val t=new Thread(new Runnable{def run{
 			callback()
+			if(interrupted)
+			{
+				infoBox("Warning","Processing interrupted.")
+			}
 		}})
 		t.start
 		create_modal()
 		interrupted=true
 	}
 	
-	def key_stats()
+	def key_stats():Boolean =
 	{
 	
 		mkdir("keystats")
@@ -486,6 +489,9 @@ class PlayersClass extends Application {
 			
 			for(subkey_filename<-getListOfFileNames(statsdir))
 			{
+			
+				if(interrupted) return true
+			
 				val subkey=subkey_filename.split("\\.")(0)
 				
 				update_textarea("Key stats: "+subkey)
@@ -509,9 +515,12 @@ class PlayersClass extends Application {
 		}
 		
 		updateRaw("Key stats done.")
+		
+		return false
+		
 	}
 	
-	def create_stats()
+	def create_stats():Boolean =
 	{
 		for(key<-collected_keys)
 		{
@@ -524,59 +533,61 @@ class PlayersClass extends Application {
 			for(subkey_filename<-getListOfFileNames(key))
 			{
 				val subkey=subkey_filename.split("\\.")(0)
+			
+				update_textarea("Creating stats: "+subkey)
 				
-				//if(subkey!="")
+				var ALL=0
+				var M=0
+				var F=0
+				var MF=0
+				
+				val fpath=key+"/"+subkey+".txt"
+				val lines=Source.fromFile(fpath).getLines().toArray
+		
+				val headers=strip(lines.head).split("\t");
+				
+				for(line<-lines.tail)
 				{
-			
-					update_textarea("Creating stats: "+subkey)
-					
-					var ALL=0
-					var M=0
-					var F=0
-					var MF=0
-					
-					val fpath=key+"/"+subkey+".txt"
-					val lines=Source.fromFile(fpath).getLines().toArray
-			
-					val headers=strip(lines.head).split("\t");
-					
-					for(line<-lines.tail)
-					{
-						ALL=ALL+1
-					
-						val record=(headers zip strip(line).split("\t")).toMap
 				
-						if(record.contains("sex"))
+					if(interrupted) return true
+				
+					ALL=ALL+1
+				
+					val record=(headers zip strip(line).split("\t")).toMap
+			
+					if(record.contains("sex"))
+					{
+						if(record("sex")=="M")
 						{
-							if(record("sex")=="M")
-							{
-								M=M+1
-								MF=MF+1
-							}
-							if(record("sex")=="F")
-							{
-								F=F+1
-								MF=MF+1
-							}
+							M=M+1
+							MF=MF+1
+						}
+						if(record("sex")=="F")
+						{
+							F=F+1
+							MF=MF+1
 						}
 					}
 					
-					val PARF=PERCENT(F,MF)
-					
-					val content="key\tvalue\n"+"M\t"+M+"\n"+"F\t"+F+"\n"+"MF\t"+MF+"\n"+"PARF\t"+PARF+"\n"
-					
-					save_txt(statsdir+"/"+subkey+".txt",content)
-				
 				}
+				
+				val PARF=PERCENT(F,MF)
+				
+				val content="key\tvalue\n"+"M\t"+M+"\n"+"F\t"+F+"\n"+"MF\t"+MF+"\n"+"PARF\t"+PARF+"\n"
+				
+				save_txt(statsdir+"/"+subkey+".txt",content)
+			
 			}
 			
 		}
 		
 		updateRaw("Create stats done.")
 		
+		return false
+		
 	}
 	
-	def collect_keys()
+	def collect_keys():Boolean =
 	{
 		var t0=System.nanoTime()
 		abs_t0=System.nanoTime()
@@ -593,11 +604,14 @@ class PlayersClass extends Application {
 		var headers=Array[String]()
 		var hline=""
 		
+		updateRaw("Collect keys.")
 		update_textarea("")
-		updateRaw("")
 		
 		for(line <- Source.fromFile("players.txt").getLines())
 		{
+		
+			if(interrupted) return true
+			
 			val fields=strip(line).split("\t")
 			if(first)
 			{
@@ -646,24 +660,45 @@ class PlayersClass extends Application {
 		}
 		
 		updateRaw("Collecting keys done.")
+		
+		return false
+		
 	}
 	
-	def startup_thread_func()
+	def startup_thread_func():Boolean=
 	{
+	
+		delete_all_files()
+		if(interrupted) return true
+	
 		phase=1
 		process()
-		if(interrupted) return
+		if(interrupted) return true
+		
 		phase=2
 		process()
-		if(interrupted) return
+		if(interrupted) return true
+		
 		collect_keys()
-		if(interrupted) return
+		if(interrupted) return true
+		
+		create_stats()
+		if(interrupted) return true
+		
+		key_stats()
+		if(interrupted) return true
+		
+		return false
+		
 	}
 	
-	def delete_all_files()
+	def delete_all_files():Boolean =
 	{
+	
 		val paths=Array("players.txt","keycounts.txt")
+		
 		var dirs=Array("keyfreqs","keystats")
+		
 		for(key<-collected_keys)
 		{
 			dirs=dirs:+key
@@ -690,6 +725,8 @@ class PlayersClass extends Application {
 		}
 		
 		updateRaw("Deleting files done.")
+		
+		return false
 	}
 
 	override def start(primaryStage: Stage)
