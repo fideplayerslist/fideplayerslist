@@ -253,6 +253,7 @@ class PlayersClass extends Application {
 			if(phase==1)
 			{
 				mkdirs(List("keyfreqs"))
+				deleteFilesInDir("keyfreqs")
 			}
 			
 			if(phase==2)
@@ -330,7 +331,7 @@ class PlayersClass extends Application {
 								}
 								
 							}
-							else
+							else if(current_tag!="")
 							{
 							
 								if(phase==1)
@@ -338,13 +339,13 @@ class PlayersClass extends Application {
 									if(current_value!="")
 									{
 										keycounts+=(current_tag->(keycounts.getOrElse(current_tag,0)+1))
+									}
 										
-										if((current_tag!="name")&&(current_tag!="fideid"))
-										{
-											var keyfreq=keyfreqs.getOrElse(current_tag,IntHash())										
-											keyfreq+=(current_value->(keyfreq.getOrElse(current_value,0)+1))
-											keyfreqs+=(current_tag->keyfreq)
-										}
+									if((current_tag!="name")&&(current_tag!="fideid"))
+									{
+										var keyfreq=keyfreqs.getOrElse(current_tag,IntHash())										
+										keyfreq+=(current_value->(keyfreq.getOrElse(current_value,0)+1))
+										keyfreqs+=(current_tag->keyfreq)
 									}
 								}
 							
@@ -445,7 +446,7 @@ class PlayersClass extends Application {
 			{
 				val subkey=subkey_filename.split("\\.")(0)
 				
-				if(subkey!="")
+				//if(subkey!="")
 				{
 			
 					update_textarea("Creating stats: "+subkey)
@@ -483,7 +484,7 @@ class PlayersClass extends Application {
 					
 					val PARF=PERCENT(F,MF)
 					
-					val content="M\t"+M+"\n"+"F\t"+F+"\n"+"MF\t"+MF+"\n"+"PARF\t"+PARF+"\n"
+					val content="key\tvalue\n"+"M\t"+M+"\n"+"F\t"+F+"\n"+"MF\t"+MF+"\n"+"PARF\t"+PARF+"\n"
 					
 					save_txt(statsdir+"/"+subkey+".txt",content)
 				
