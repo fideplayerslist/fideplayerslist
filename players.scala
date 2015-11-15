@@ -660,7 +660,7 @@ class PlayersClass extends Application {
 		if(interrupted) return
 	}
 	
-	def clear_all_files()
+	def delete_all_files()
 	{
 		val paths=Array("players.txt","keycounts.txt")
 		var dirs=Array("keyfreqs","keystats")
@@ -708,7 +708,7 @@ class PlayersClass extends Application {
 		startButtonR.setOnAction(new EventHandler[ActionEvent]{
 			override def handle(e: ActionEvent)
 			{
-				do_thread(clear_all_files)
+				do_thread(delete_all_files)
 			}
 		});
 		
