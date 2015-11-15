@@ -516,20 +516,32 @@ class PlayersClass extends Application {
 				lines=lines:+(linearray)
 			}
 			
-			var sortindex=keystat_indices("PARF")
-			if(key=="birthday") sortindex=0
+			def create_by_sortindex(sortindex: Int, bywhat: String)
+			{
+				lines=lines.sortWith((leftE,rightE) => myToFloat(leftE(sortindex)) > myToFloat(rightE(sortindex)))
+				
+				var content=key+"\t"+keystat_fields.mkString("\t")+"\n"
+				
+				content=content+(for(line<-lines) yield (line.mkString("\t")+"\n")).mkString("")
+				
+				val tpath="keystats/"+key+"."+bywhat+".txt"
+				
+				save_txt(tpath,content)
+				
+				htmlify(tpath)
+			}
 			
-			lines=lines.sortWith((leftE,rightE) => myToFloat(leftE(sortindex)) > myToFloat(rightE(sortindex)))
+			if(key=="birthday") create_by_sortindex(0,"by"+key)
+			create_by_sortindex(keystat_indices("PARF"),"byparf")
+			create_by_sortindex(keystat_indices("PARFR"),"byparfr")
+			create_by_sortindex(keystat_indices("AVGRF"),"byavgrf")
+			create_by_sortindex(keystat_indices("AVGRM"),"byavgrm")
+			create_by_sortindex(keystat_indices("AVGR"),"byavgr")
+			create_by_sortindex(keystat_indices("ALL"),"byall")
+			create_by_sortindex(keystat_indices("R"),"byrated")
+			create_by_sortindex(keystat_indices("RM"),"byratedm")
+			create_by_sortindex(keystat_indices("RF"),"byratedf")
 			
-			var content=key+"\t"+keystat_fields.mkString("\t")+"\n"
-			
-			content=content+(for(line<-lines) yield (line.mkString("\t")+"\n")).mkString("")
-			
-			val tpath="keystats/"+key+".txt"
-			
-			save_txt(tpath,content)
-			
-			htmlify(tpath)
 		}
 		
 		updateRaw("Key stats done.")
