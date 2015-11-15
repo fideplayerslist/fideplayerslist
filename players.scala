@@ -34,6 +34,33 @@ class PlayersClass extends Application {
 	
 	val collected_keys=Array("birthday","country","flag","sex","title")
 	
+	def htmlify(path: String)
+	{
+		val hpath=path.replaceAll("\\.txt$",".html")
+		val lines=parseTxtSmartA(path)
+		
+		var html="<table border=1>"
+		
+		for(line<-lines)
+		{
+			html=html+"<tr><td>"+line.mkString("</td><td>")+"</td></tr>"
+		}
+		
+		html=html+"</table>"
+		
+		save_txt(hpath,html)
+	}
+	
+	def myToFloat(what: String):Float =
+	{
+		if(what=="NA")
+		{
+			println("NA\n")
+			return 0
+		}
+		what.split(",").mkString.toFloat/100
+	}
+	
 	def PERCENT(counter: Int, denominator: Int): String=
 	{
 		if(denominator==0) return "NA"
@@ -152,6 +179,17 @@ class PlayersClass extends Application {
 	
 	type RecordList=Array[Record]
 	def RecordList()=Array[Record]()
+	
+	type ArrayList=Array[Array[String]]
+	def ArrayList()=Array[Array[String]]()
+	
+	def parseTxtSmartA(path: String):ArrayList=
+	{
+		val lines=Source.fromFile(path).getLines().toArray
+		
+		for(line<-lines) yield
+			strip(line).split("\t")
+	}
 	
 	def parseTxtSmart(path: String):RecordList=
 	{
@@ -432,6 +470,47 @@ class PlayersClass extends Application {
 		interrupted=true
 	}
 	
+	def key_stats()
+	{
+	
+		mkdir("keystats")
+		deleteFilesInDir("keystats")
+		
+		for(key<-collected_keys)
+		{
+			updateRaw("Key stats for "+key+".")
+			
+			val statsdir=key+"stats"
+			
+			var lines=Array[Array[String]]()
+			
+			for(subkey_filename<-getListOfFileNames(statsdir))
+			{
+				val subkey=subkey_filename.split("\\.")(0)
+				
+				update_textarea("Key stats: "+subkey)
+				
+				var linearray:Array[String]=(for(record<-parseTxtSmart(statsdir+"/"+subkey_filename)) yield record("value")).toArray
+				linearray=subkey+:linearray
+				lines=lines:+(linearray)
+			}
+			
+			lines=lines.sortWith((leftE,rightE) => myToFloat(leftE(4)) > myToFloat(rightE(4)))
+			
+			var content=key+"\tM\tF\tMF\tPARF\n"
+			
+			content=content+(for(line<-lines) yield (line.mkString("\t")+"\n")).mkString("")
+			
+			val tpath="keystats/"+key+".txt"
+			
+			save_txt(tpath,content)
+			
+			htmlify(tpath)
+		}
+		
+		updateRaw("Key stats done.")
+	}
+	
 	def create_stats()
 	{
 		for(key<-collected_keys)
@@ -590,6 +669,7 @@ class PlayersClass extends Application {
 		val startButton2=new Button("Process XML - Phase 2 - create players.txt")
 		val startButton3=new Button("Collect keys from players.txt")
 		val startButton4=new Button("Create stats")
+		val startButton5=new Button("Key stats")
 		val testButton=new Button("Test")
 		
 		startButton0.setOnAction(new EventHandler[ActionEvent]{
@@ -629,6 +709,13 @@ class PlayersClass extends Application {
 			}
 		});
 		
+		startButton5.setOnAction(new EventHandler[ActionEvent]{
+			override def handle(e: ActionEvent)
+			{
+				do_thread(key_stats)
+			}
+		});
+		
 		testButton.setOnAction(new EventHandler[ActionEvent]{
 			override def handle(e: ActionEvent)
 			{
@@ -641,6 +728,7 @@ class PlayersClass extends Application {
 		root.getChildren.add(startButton2)
 		root.getChildren.add(startButton3)
 		root.getChildren.add(startButton4)
+		root.getChildren.add(startButton5)
 		root.getChildren.add(testButton)
 
 		primaryStage.setScene(new Scene(root, 300, 300))
