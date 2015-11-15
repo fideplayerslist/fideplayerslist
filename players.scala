@@ -34,6 +34,9 @@ class PlayersClass extends Application {
 	
 	val collected_keys=Array("birthday","country","flag","sex","title")
 	
+	val keystat_fields=Array("ALL","MF","M","F","PARF")
+	val keystat_indices=(keystat_fields zip (1 to keystat_fields.length)).toMap
+	
 	def htmlify(path: String)
 	{
 		val hpath=path.replaceAll("\\.txt$",".html")
@@ -53,15 +56,21 @@ class PlayersClass extends Application {
 	
 	def myToFloat(what: String):Float =
 	{
-		if(what=="NA")
+		if((what=="NA")||(what==""))
 		{
-			println("NA\n")
 			return 0
 		}
-		what.split(",").mkString.toFloat/100
+		val whats=what.replaceAll("^0+","")
+		val floatmatch=""",[0-9]{2}$""".r.unanchored
+		whats match
+			{
+				case floatmatch(_*) => return whats.split(",").mkString.toFloat/100
+				case _ =>
+			}
+		whats.toFloat
 	}
 	
-	def PERCENT(counter: Int, denominator: Int): String=
+	def PERCENT(counter: Float, denominator: Float): String =
 	{
 		if(denominator==0) return "NA"
 		"%.2f".format(counter/denominator.toFloat*100f)
@@ -501,9 +510,12 @@ class PlayersClass extends Application {
 				lines=lines:+(linearray)
 			}
 			
-			lines=lines.sortWith((leftE,rightE) => myToFloat(leftE(4)) > myToFloat(rightE(4)))
+			var sortindex=keystat_indices("PARF")
+			if(key=="birthday") sortindex=0
 			
-			var content=key+"\tM\tF\tMF\tPARF\n"
+			lines=lines.sortWith((leftE,rightE) => myToFloat(leftE(sortindex)) > myToFloat(rightE(sortindex)))
+			
+			var content=key+"\t"+keystat_fields.mkString("\t")+"\n"
 			
 			content=content+(for(line<-lines) yield (line.mkString("\t")+"\n")).mkString("")
 			
@@ -536,10 +548,7 @@ class PlayersClass extends Application {
 			
 				update_textarea("Creating stats: "+subkey)
 				
-				var ALL=0
-				var M=0
-				var F=0
-				var MF=0
+				var counts=Map[String,String]("ALL"->"0","M"->"0","F"->"0","MF"->"0")
 				
 				val fpath=key+"/"+subkey+".txt"
 				val lines=Source.fromFile(fpath).getLines().toArray
@@ -551,7 +560,7 @@ class PlayersClass extends Application {
 				
 					if(interrupted) return true
 				
-					ALL=ALL+1
+					counts+=("ALL"->"%d".format((counts("ALL").toInt+1)))
 				
 					val record=(headers zip strip(line).split("\t")).toMap
 			
@@ -559,21 +568,25 @@ class PlayersClass extends Application {
 					{
 						if(record("sex")=="M")
 						{
-							M=M+1
-							MF=MF+1
+							counts+=("M"->"%d".format((counts("M").toInt+1)))
+							counts+=("MF"->"%d".format((counts("MF").toInt+1)))
 						}
 						if(record("sex")=="F")
 						{
-							F=F+1
-							MF=MF+1
+							counts+=("F"->"%d".format((counts("F").toInt+1)))
+							counts+=("MF"->"%d".format((counts("MF").toInt+1)))
 						}
 					}
 					
 				}
 				
-				val PARF=PERCENT(F,MF)
+				counts+=("PARF"->PERCENT(counts("F").toInt,counts("MF").toInt))
 				
-				val content="key\tvalue\n"+"M\t"+M+"\n"+"F\t"+F+"\n"+"MF\t"+MF+"\n"+"PARF\t"+PARF+"\n"
+				var content="key\tvalue\n"
+				for(field<-keystat_fields)
+				{
+					content=content+field+"\t"+counts(field)+"\n"
+				}
 				
 				save_txt(statsdir+"/"+subkey+".txt",content)
 			
