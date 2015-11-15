@@ -32,8 +32,13 @@ class PlayersClass extends Application {
 	
 	var abs_t0=0.0
 	
+	val collected_keys=Array("birthday","country","flag","sex","title")
+	
 	def mkdirs(path: List[String]) = // return true if path was created
 		path.tail.foldLeft(new File(path.head)){(a,b) => a.mkdir; new File(a,b)}.mkdir
+		
+	def mkdir(path: String) = // create single dir
+		mkdirs(List(path))
 		
 	def updateRaw(info: String)
 	{
@@ -53,6 +58,7 @@ class PlayersClass extends Application {
 	def update_textarea(info: String)
 	{
 		Platform.runLater(new Runnable{def run{
+			println(info)
 			infoTextArea.setText(info)
 		}})
 	}
@@ -194,6 +200,9 @@ class PlayersClass extends Application {
 		
 		content_length=0
 		
+		update_textarea("")
+		updateRaw("")
+		
 		def parse(xml: XMLEventReader)
 		{
 			
@@ -262,7 +271,7 @@ class PlayersClass extends Application {
 								
 									t0=t
 									
-									val info="Phase %d , processed: %d.".format(phase,cnt)
+									val info="Process XML - Phase %d. Processed records: %d.".format(phase,cnt)
 									
 									update(info)
 									
@@ -374,31 +383,85 @@ class PlayersClass extends Application {
 	
 	var interrupted=false
 	
-	def process_thread()
+	def do_thread(callback: () => Unit)
 	{
 		interrupted=false
 		val t=new Thread(new Runnable{def run{
-			process()
+			callback()
 		}})
 		t.start
 		create_modal()
 		interrupted=true
 	}
 	
-	def startup_thread()
+	def collect_keys()
 	{
-		interrupted=false
-		val t=new Thread(new Runnable{def run{
-			phase=1
-			process()
-			if(interrupted) return
-			phase=2
-			process()
-			if(interrupted) return
-		}})
-		t.start
-		create_modal()
-		interrupted=true
+		var t0=System.nanoTime()
+		abs_t0=System.nanoTime()
+	
+		for(key<-collected_keys)
+		{
+			mkdir(key)
+		}
+		
+		cnt=0
+		
+		var first=true
+		var headers=Array[String]()
+		
+		update_textarea("")
+		updateRaw("")
+		
+		for(line <- Source.fromFile("players.txt").getLines())
+		{
+			val fields=strip(line).split("\t")
+			if(first)
+			{
+				headers=fields
+				first=false
+			}
+			else
+			{
+			
+				val record:Record=(headers zip fields).toMap
+				cnt=cnt+1
+				
+				val t=System.nanoTime()
+
+				if(t-t0>5e8)
+				{
+					t0=t
+					update("Collect keys. Processed records: "+cnt+".")
+				}
+				
+				for(key<-collected_keys)
+				{
+					if(record.contains(key))
+					{
+						val fw = new FileWriter(key+"/"+record(key)+".txt", true)
+						try
+						{
+							fw.write(strip(line)+"\n")
+						}
+						finally fw.close() 
+					}
+				}
+			}
+		}
+		
+		updateRaw("Done.")
+	}
+	
+	def startup_thread_func()
+	{
+		phase=1
+		process()
+		if(interrupted) return
+		phase=2
+		process()
+		if(interrupted) return
+		collect_keys()
+		if(interrupted) return
 	}
 
 	override def start(primaryStage: Stage)
@@ -408,13 +471,21 @@ class PlayersClass extends Application {
 		val startButton0=new Button("STARTUP")
 		val startButton1=new Button("Process XML - Phase 1 - count keys")
 		val startButton2=new Button("Process XML - Phase 2 - create players.txt")
+		val startButton3=new Button("Collect keys from players.txt")
 		val testButton=new Button("Test")
+		
+		startButton0.setOnAction(new EventHandler[ActionEvent]{
+			override def handle(e: ActionEvent)
+			{
+				do_thread(startup_thread_func)
+			}
+		});
 		
 		startButton1.setOnAction(new EventHandler[ActionEvent]{
 			override def handle(e: ActionEvent)
 			{
 				phase=1
-				process_thread()
+				do_thread(process)
 			}
 		});
 		
@@ -422,14 +493,14 @@ class PlayersClass extends Application {
 			override def handle(e: ActionEvent)
 			{
 				phase=2
-				process_thread()
+				do_thread(process)
 			}
 		});
 		
-		startButton0.setOnAction(new EventHandler[ActionEvent]{
+		startButton3.setOnAction(new EventHandler[ActionEvent]{
 			override def handle(e: ActionEvent)
 			{
-				startup_thread()
+				do_thread(collect_keys)
 			}
 		});
 		
@@ -437,16 +508,13 @@ class PlayersClass extends Application {
 			override def handle(e: ActionEvent)
 			{
 				//runtest
-				for(record<-parseTxt("keycounts.txt"))
-				{
-					println(record)
-				}
 			}
 		});
 		
 		root.getChildren.add(startButton0)
 		root.getChildren.add(startButton1)
 		root.getChildren.add(startButton2)
+		root.getChildren.add(startButton3)
 		root.getChildren.add(testButton)
 
 		primaryStage.setScene(new Scene(root, 300, 300))
