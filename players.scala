@@ -34,15 +34,20 @@ class PlayersClass extends Application {
 	
 	def mkdirs(path: List[String]) = // return true if path was created
 		path.tail.foldLeft(new File(path.head)){(a,b) => a.mkdir; new File(a,b)}.mkdir
+		
+	def updateRaw(info: String)
+	{
+		println(info)
+		Platform.runLater(new Runnable{def run{
+			infoLabel.setText(info)
+		}})
+	}
 	
 	def update(info: String)
 	{
 		val elapsed=(System.nanoTime()-abs_t0)/1e9
 		val info_updated=info+" Elapsed %.0f sec , speed %.2f records / sec.".format(elapsed,cnt/elapsed)
-		println(info_updated)
-		Platform.runLater(new Runnable{def run{
-			infoLabel.setText(info_updated)
-		}})
+		updateRaw(info_updated)
 	}
 	
 	def update_textarea(info: String)
@@ -91,7 +96,7 @@ class PlayersClass extends Application {
 	
 	def keycounts_info(sep: String):String=
 	{
-		var keycounts_info=""
+		var keycounts_info="index"+sep+"key"+sep+"count"+sep+"status"+sep+"number of missing"+"\n"
 		var i=0
 		
 		keycounts=ListMap(keycounts.toSeq.sortWith(_._1 < _._1):_*)
@@ -99,16 +104,49 @@ class PlayersClass extends Application {
 		for ((k,v) <- keycounts)
 		{
 			val missing=cnt-v
-			keycounts_info+=i+sep+k+sep+v+sep+(if(missing>0) "missing"+sep+missing else sep)+"\n"
+			keycounts_info+=i+sep+k+sep+v+sep+(if(missing>0) "missing"+sep+missing else "complete"+sep)+"\n"
 			i=i+1
 		}
 		
 		return keycounts_info
 	}
 	
+	def strip(content: String):String=
+		content.replaceAll("[\r\n]","")
+		
+	type Record=Map[String,String]
+	def Record()=Map[String,String]()
+	
+	type RecordList=Array[Record]
+	def RecordList()=Array[Record]()
+	
+	def parseTxt(path: String):RecordList=
+	{
+		var first=true
+		var headers=Array[String]()
+		
+		var recordlist=RecordList()
+		
+		for(line <- Source.fromFile(path).getLines())
+		{
+			val fields=strip(line).split("\t")
+			if(first)
+			{
+				headers=fields
+				first=false
+			}
+			else
+			{
+				val record:Record=(headers zip fields).toMap
+				recordlist=recordlist:+record
+			}
+		}
+		recordlist
+	}
+	
 	def serializeIntHash(ih: IntHash):String=
 	{
-		var ser=""
+		var ser="key\tcount\n"
 		for((k,v)<-ih)
 		{
 			ser=ser+k+"\t"+v+"\n"
@@ -175,11 +213,9 @@ class PlayersClass extends Application {
 			{
 				writer=new PrintWriter(new File("players.txt"))
 				
-				for(line <- Source.fromFile("keycounts.txt").getLines())
+				for(record <- parseTxt("keycounts.txt"))
 				{
-					val name=line.split("\t")(1)
-					
-					ordered_keys=ordered_keys:+(name)
+					ordered_keys=ordered_keys:+(record("key"))
 				}
 				
 				writer.write(ordered_keys.mkString("\t")+"\n")
@@ -257,7 +293,7 @@ class PlayersClass extends Application {
 									{
 										keycounts+=(current_tag->(keycounts.getOrElse(current_tag,0)+1))
 										
-										if(current_tag!="name")
+										if((current_tag!="name")&&(current_tag!="fideid"))
 										{
 											var keyfreq=keyfreqs.getOrElse(current_tag,IntHash())										
 											keyfreq+=(current_value->(keyfreq.getOrElse(current_value,0)+1))
@@ -306,18 +342,24 @@ class PlayersClass extends Application {
 		}
 
 		parse(xml)
-		
-		update("Phase %d done. A total of %d records processed."format(phase,cnt))
-		
+
 		if(phase==1)
 		{
+			updateRaw("Phase 1 - saving keyfreqs")
+		
 			update_textarea(keycounts_info(" "))
 		
 			save_txt("keycounts.txt",keycounts_info("\t"))
 			
+			var sinfo=""
+			
 			for((tag,keyfreq)<-keyfreqs)
 			{
+				sinfo=sinfo+"Saving "+tag+" ... "
+				update_textarea(sinfo)
 				save_txt("keyfreqs/"+tag+".txt",sortedSerializeIntHash(keyfreq))
+				sinfo=sinfo+"Done.\n"
+				update_textarea(sinfo)
 			}
 		}
 		
@@ -325,6 +367,8 @@ class PlayersClass extends Application {
 		{
 			update_textarea("Written to players.txt %d characters.".format(content_length))
 		}
+		
+		update("Phase %d done. A total of %d records processed.".format(phase,cnt))
 		
 	}
 	
@@ -364,6 +408,7 @@ class PlayersClass extends Application {
 		val startButton0=new Button("STARTUP")
 		val startButton1=new Button("Process XML - Phase 1 - count keys")
 		val startButton2=new Button("Process XML - Phase 2 - create players.txt")
+		val testButton=new Button("Test")
 		
 		startButton1.setOnAction(new EventHandler[ActionEvent]{
 			override def handle(e: ActionEvent)
@@ -388,9 +433,21 @@ class PlayersClass extends Application {
 			}
 		});
 		
+		testButton.setOnAction(new EventHandler[ActionEvent]{
+			override def handle(e: ActionEvent)
+			{
+				//runtest
+				for(record<-parseTxt("keycounts.txt"))
+				{
+					println(record)
+				}
+			}
+		});
+		
 		root.getChildren.add(startButton0)
 		root.getChildren.add(startButton1)
 		root.getChildren.add(startButton2)
+		root.getChildren.add(testButton)
 
 		primaryStage.setScene(new Scene(root, 300, 300))
 		primaryStage.show()
@@ -404,7 +461,5 @@ object Players
 	def main(args: Array[String])
 	{
 		Application.launch(classOf[PlayersClass], args: _*)
-		/*val p=new PlayersClass()
-		p.process()*/
 	}
 }
