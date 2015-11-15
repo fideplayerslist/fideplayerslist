@@ -34,6 +34,33 @@ class PlayersClass extends Application {
 	
 	val collected_keys=Array("birthday","country","flag","sex","title")
 	
+	def PERCENT(counter: Int, denominator: Int): String=
+	{
+		if(denominator==0) return "NA"
+		"%.2f".format(counter/denominator.toFloat*100f)
+	}
+	
+	def getListOfFiles(dir: String):List[File] =
+	{
+		val d = new File(dir)
+		if (d.exists && d.isDirectory)
+		{
+			d.listFiles.filter(_.isFile).toList
+		}
+		else
+		{
+			List[File]()
+		}
+	}
+	
+	def getListOfFileNames(dir: String):List[String] =
+		for(f<-getListOfFiles(dir)) yield f.getName
+		
+	def deleteFilesInDir(dir: String)
+	{
+		for(f<-getListOfFiles(dir)) f.delete
+	}
+	
 	def mkdirs(path: List[String]) = // return true if path was created
 		path.tail.foldLeft(new File(path.head)){(a,b) => a.mkdir; new File(a,b)}.mkdir
 		
@@ -125,6 +152,16 @@ class PlayersClass extends Application {
 	
 	type RecordList=Array[Record]
 	def RecordList()=Array[Record]()
+	
+	def parseTxtSmart(path: String):RecordList=
+	{
+		val lines=Source.fromFile(path).getLines().toArray
+		
+		val headers=strip(lines.head).split("\t");
+		
+		for(line<-lines.tail) yield
+			(headers zip strip(line).split("\t")).toMap
+	}
 	
 	def parseTxt(path: String):RecordList=
 	{
@@ -367,7 +404,7 @@ class PlayersClass extends Application {
 				sinfo=sinfo+"Saving "+tag+" ... "
 				update_textarea(sinfo)
 				save_txt("keyfreqs/"+tag+".txt",sortedSerializeIntHash(keyfreq))
-				sinfo=sinfo+"Done.\n"
+				sinfo=sinfo+"Saving keyfreqs done.\n"
 				update_textarea(sinfo)
 			}
 		}
@@ -394,6 +431,71 @@ class PlayersClass extends Application {
 		interrupted=true
 	}
 	
+	def create_stats()
+	{
+		for(key<-collected_keys)
+		{
+			updateRaw("Creating stats for "+key+".")
+		
+			val statsdir=key+"stats"
+			mkdir(statsdir)
+			deleteFilesInDir(statsdir)
+			
+			for(subkey_filename<-getListOfFileNames(key))
+			{
+				val subkey=subkey_filename.split("\\.")(0)
+				
+				if(subkey!="")
+				{
+			
+					update_textarea("Creating stats: "+subkey)
+					
+					var ALL=0
+					var M=0
+					var F=0
+					var MF=0
+					
+					val fpath=key+"/"+subkey+".txt"
+					val lines=Source.fromFile(fpath).getLines().toArray
+			
+					val headers=strip(lines.head).split("\t");
+					
+					for(line<-lines.tail)
+					{
+						ALL=ALL+1
+					
+						val record=(headers zip strip(line).split("\t")).toMap
+				
+						if(record.contains("sex"))
+						{
+							if(record("sex")=="M")
+							{
+								M=M+1
+								MF=MF+1
+							}
+							if(record("sex")=="F")
+							{
+								F=F+1
+								MF=MF+1
+							}
+						}
+					}
+					
+					val PARF=PERCENT(F,MF)
+					
+					val content="M\t"+M+"\n"+"F\t"+F+"\n"+"MF\t"+MF+"\n"+"PARF\t"+PARF+"\n"
+					
+					save_txt(statsdir+"/"+subkey+".txt",content)
+				
+				}
+			}
+			
+		}
+		
+		updateRaw("Create stats done.")
+		
+	}
+	
 	def collect_keys()
 	{
 		var t0=System.nanoTime()
@@ -402,12 +504,14 @@ class PlayersClass extends Application {
 		for(key<-collected_keys)
 		{
 			mkdir(key)
+			deleteFilesInDir(key)
 		}
 		
 		cnt=0
 		
 		var first=true
 		var headers=Array[String]()
+		var hline=""
 		
 		update_textarea("")
 		updateRaw("")
@@ -418,6 +522,7 @@ class PlayersClass extends Application {
 			if(first)
 			{
 				headers=fields
+				hline=headers.mkString("\t")+"\n"
 				first=false
 			}
 			else
@@ -438,18 +543,29 @@ class PlayersClass extends Application {
 				{
 					if(record.contains(key))
 					{
-						val fw = new FileWriter(key+"/"+record(key)+".txt", true)
-						try
+						val path=key+"/"+record(key)+".txt"
+						val cline=strip(line)+"\n"
+						
+						if(new File(path).exists)
 						{
-							fw.write(strip(line)+"\n")
+							val fw = new FileWriter(path, true)
+							try
+							{
+								fw.write(cline)
+							}
+							finally fw.close() 
 						}
-						finally fw.close() 
+						else
+						{
+							save_txt(path,hline+cline)
+						}
+						
 					}
 				}
 			}
 		}
 		
-		updateRaw("Done.")
+		updateRaw("Collecting keys done.")
 	}
 	
 	def startup_thread_func()
@@ -472,6 +588,7 @@ class PlayersClass extends Application {
 		val startButton1=new Button("Process XML - Phase 1 - count keys")
 		val startButton2=new Button("Process XML - Phase 2 - create players.txt")
 		val startButton3=new Button("Collect keys from players.txt")
+		val startButton4=new Button("Create stats")
 		val testButton=new Button("Test")
 		
 		startButton0.setOnAction(new EventHandler[ActionEvent]{
@@ -504,6 +621,13 @@ class PlayersClass extends Application {
 			}
 		});
 		
+		startButton4.setOnAction(new EventHandler[ActionEvent]{
+			override def handle(e: ActionEvent)
+			{
+				do_thread(create_stats)
+			}
+		});
+		
 		testButton.setOnAction(new EventHandler[ActionEvent]{
 			override def handle(e: ActionEvent)
 			{
@@ -515,6 +639,7 @@ class PlayersClass extends Application {
 		root.getChildren.add(startButton1)
 		root.getChildren.add(startButton2)
 		root.getChildren.add(startButton3)
+		root.getChildren.add(startButton4)
 		root.getChildren.add(testButton)
 
 		primaryStage.setScene(new Scene(root, 300, 300))
