@@ -34,7 +34,7 @@ class PlayersClass extends Application {
 	
 	val collected_keys=Array("birthday","country","flag","sex","title")
 	
-	val keystat_fields=Array("ALL","MF","M","F","PARF")
+	val keystat_fields=Array("ALL","MF","M","F","PARF","RM","RF","RMF","R","PARFR","AVGRM","AVGRF","AVGRMF","AVGR")
 	val keystat_indices=(keystat_fields zip (1 to keystat_fields.length)).toMap
 	
 	def htmlify(path: String)
@@ -56,9 +56,9 @@ class PlayersClass extends Application {
 	
 	def myToFloat(what: String):Float =
 	{
-		if((what=="NA")||(what==""))
+		if((what=="NA")||(what=="")||(what=="0"))
 		{
-			return 0
+			return 0.toFloat
 		}
 		val whats=what.replaceAll("^0+","")
 		val floatmatch=""",[0-9]{2}$""".r.unanchored
@@ -74,6 +74,12 @@ class PlayersClass extends Application {
 	{
 		if(denominator==0) return "NA"
 		"%.2f".format(counter/denominator.toFloat*100f)
+	}
+	
+	def AVERAGE(counter: Float, denominator: Float): String =
+	{
+		if(denominator==0) return "NA"
+		"%.2f".format(counter/denominator.toFloat)
 	}
 	
 	def getListOfFiles(dir: String):List[File] =
@@ -548,7 +554,7 @@ class PlayersClass extends Application {
 			
 				update_textarea("Creating stats: "+subkey)
 				
-				var counts=Map[String,String]("ALL"->"0","M"->"0","F"->"0","MF"->"0")
+				var counts=Map[String,String]("ALL"->"0","M"->"0","F"->"0","MF"->"0","RM"->"0","CRM"->"0","RF"->"0","CRF"->"0","R"->"0","CR"->"0","RMF"->"0","CRMF"->"0")
 				
 				val fpath=key+"/"+subkey+".txt"
 				val lines=Source.fromFile(fpath).getLines().toArray
@@ -578,9 +584,42 @@ class PlayersClass extends Application {
 						}
 					}
 					
+					if(record.contains("rating"))
+					{
+						val rating=myToFloat(record("rating")).toInt
+						
+						if(rating>0)
+						{
+							counts+=("R"->"%d".format((counts("R").toInt+1)))
+							counts+=("CR"->"%d".format((counts("CR").toInt+rating)))
+							if(record.contains("sex"))
+							{
+								if(record("sex")=="M")
+								{
+									counts+=("RM"->"%d".format((counts("RM").toInt+1)))
+									counts+=("RMF"->"%d".format((counts("RMF").toInt+1)))
+									counts+=("CRM"->"%d".format((counts("CRM").toInt+rating)))
+									counts+=("CRMF"->"%d".format((counts("CRMF").toInt+rating)))
+								}
+								if(record("sex")=="F")
+								{
+									counts+=("RF"->"%d".format((counts("RF").toInt+1)))
+									counts+=("RMF"->"%d".format((counts("RMF").toInt+1)))
+									counts+=("CRF"->"%d".format((counts("CRF").toInt+rating)))
+									counts+=("CRMF"->"%d".format((counts("CRMF").toInt+rating)))
+								}
+							}
+						}
+					}
 				}
 				
 				counts+=("PARF"->PERCENT(counts("F").toInt,counts("MF").toInt))
+				counts+=("AVGR"->AVERAGE(counts("CR").toInt,counts("R").toInt))
+				counts+=("AVGRM"->AVERAGE(counts("CRM").toInt,counts("RM").toInt))
+				counts+=("AVGRF"->AVERAGE(counts("CRF").toInt,counts("RF").toInt))
+				counts+=("AVGRMF"->AVERAGE(counts("CRMF").toInt,counts("RMF").toInt))
+				
+				counts+=("PARFR"->PERCENT(counts("RF").toInt,counts("RMF").toInt))
 				
 				var content="key\tvalue\n"
 				for(field<-keystat_fields)
