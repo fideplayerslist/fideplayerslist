@@ -1,4 +1,5 @@
 import javafx.application._
+import javafx.application._
 import javafx.stage._
 import javafx.scene._
 import javafx.scene.layout._
@@ -21,6 +22,10 @@ import scala.collection.immutable.ListMap
 class PlayersClass extends Application {
 
 	val REFERENCE_YEAR=2015
+	
+	val FILTERS=List("x","m","a","ma")
+	val MINNUMPS=List("0","50","100","200","300","400","500","750","1000")
+	val TRANSLATE_FILTERS=Map("x"->"none","m"->"middle age","a"->"active","ma"->"middle age, active")
 
 	def isValidFloat(what: String):Boolean =
 	{
@@ -116,21 +121,24 @@ class PlayersClass extends Application {
 				var XYS=Map[Float,Float]()
 				for(record<-parseTxtSmart(path))
 				{
-					if(record.contains(xkey)&&record.contains(ykey))
+					if(record.contains(xkey)&&record.contains(ykey)&&record.contains("RMF"))
 					{
-						val X=record(xkey)
-						val Y=record(ykey)
-						if(isValidFloat(X)&&isValidFloat(Y))
+						if(record("RMF").toInt>currentminnump.toInt)
 						{
-							val XVAL:Float=xfunc(myToFloat(X))
-							val YVAL:Float=yfuncs(i)(myToFloat(Y))
-							if(okxfunc(XVAL)&&okyfuncs(i)(YVAL))
+							val X=record(xkey)
+							val Y=record(ykey)
+							if(isValidFloat(X)&&isValidFloat(Y))
 							{
-								XYS+=(XVAL->YVAL)
-								if(XVAL>MAXX) MAXX=XVAL
-								if(XVAL<MINX) MINX=XVAL
-								if(YVAL>MAXY) MAXY=YVAL
-								if(YVAL<MINY) MINY=YVAL
+								val XVAL:Float=xfunc(myToFloat(X))
+								val YVAL:Float=yfuncs(i)(myToFloat(Y))
+								if(okxfunc(XVAL)&&okyfuncs(i)(YVAL))
+								{
+									XYS+=(XVAL->YVAL)
+									if(XVAL>MAXX) MAXX=XVAL
+									if(XVAL<MINX) MINX=XVAL
+									if(YVAL>MAXY) MAXY=YVAL
+									if(YVAL<MINY) MINY=YVAL
+								}
 							}
 						}
 					}
@@ -796,53 +804,58 @@ class PlayersClass extends Application {
 		mkdir("keystats")
 		deleteFilesInDir("keystats")
 		
-		for(key<-collected_keys)
+		for(filter<-FILTERS)
 		{
-			updateRaw("Key stats for "+key+".")
-			
-			val statsdir=key+"stats"
-			
-			var lines=Array[Array[String]]()
-			
-			for(subkey_filename<-getListOfFileNames(statsdir))
+		
+			for(key<-collected_keys)
 			{
-			
-				if(interrupted) return true
-			
-				val subkey=subkey_filename.split("\\.")(0)
+				updateRaw("Key stats for "+key+". Filter - "+filter)
 				
-				update_textarea("Key stats: "+subkey)
+				val statsdir=key+"stats"+filter
 				
-				var linearray:Array[String]=(for(record<-parseTxtSmart(statsdir+"/"+subkey_filename)) yield record("value")).toArray
-				linearray=subkey+:linearray
-				lines=lines:+(linearray)
+				var lines=Array[Array[String]]()
+				
+				for(subkey_filename<-getListOfFileNames(statsdir))
+				{
+				
+					if(interrupted) return true
+				
+					val subkey=subkey_filename.split("\\.")(0)
+					
+					update_textarea("Key stats: "+subkey)
+					
+					var linearray:Array[String]=(for(record<-parseTxtSmart(statsdir+"/"+subkey_filename)) yield record("value")).toArray
+					linearray=subkey+:linearray
+					lines=lines:+(linearray)
+				}
+				
+				def create_by_sortindex(sortindex: Int, bywhat: String)
+				{
+					lines=lines.sortWith((leftE,rightE) => myToFloat(leftE(sortindex)) > myToFloat(rightE(sortindex)))
+					
+					var content=key+"\t"+keystat_fields.mkString("\t")+"\n"
+					
+					content=content+(for(line<-lines) yield (line.mkString("\t")+"\n")).mkString("")
+					
+					val tpath="keystats/"+key+"."+bywhat+filter+".txt"
+					
+					save_txt(tpath,content)
+					
+					htmlify(tpath)
+				}
+				
+				if(key=="birthday") create_by_sortindex(0,"by"+key)
+				create_by_sortindex(keystat_indices("PARF"),"byparf")
+				create_by_sortindex(keystat_indices("PARFR"),"byparfr")
+				create_by_sortindex(keystat_indices("AVGRF"),"byavgrf")
+				create_by_sortindex(keystat_indices("AVGRM"),"byavgrm")
+				create_by_sortindex(keystat_indices("AVGR"),"byavgr")
+				create_by_sortindex(keystat_indices("ALL"),"byall")
+				create_by_sortindex(keystat_indices("R"),"byrated")
+				create_by_sortindex(keystat_indices("RM"),"byratedm")
+				create_by_sortindex(keystat_indices("RF"),"byratedf")
+				
 			}
-			
-			def create_by_sortindex(sortindex: Int, bywhat: String)
-			{
-				lines=lines.sortWith((leftE,rightE) => myToFloat(leftE(sortindex)) > myToFloat(rightE(sortindex)))
-				
-				var content=key+"\t"+keystat_fields.mkString("\t")+"\n"
-				
-				content=content+(for(line<-lines) yield (line.mkString("\t")+"\n")).mkString("")
-				
-				val tpath="keystats/"+key+"."+bywhat+".txt"
-				
-				save_txt(tpath,content)
-				
-				htmlify(tpath)
-			}
-			
-			if(key=="birthday") create_by_sortindex(0,"by"+key)
-			create_by_sortindex(keystat_indices("PARF"),"byparf")
-			create_by_sortindex(keystat_indices("PARFR"),"byparfr")
-			create_by_sortindex(keystat_indices("AVGRF"),"byavgrf")
-			create_by_sortindex(keystat_indices("AVGRM"),"byavgrm")
-			create_by_sortindex(keystat_indices("AVGR"),"byavgr")
-			create_by_sortindex(keystat_indices("ALL"),"byall")
-			create_by_sortindex(keystat_indices("R"),"byrated")
-			create_by_sortindex(keystat_indices("RM"),"byratedm")
-			create_by_sortindex(keystat_indices("RF"),"byratedf")
 			
 		}
 		
@@ -854,95 +867,135 @@ class PlayersClass extends Application {
 	
 	def create_stats():Boolean =
 	{
-		for(key<-collected_keys)
+	
+		for(filter<-FILTERS)
 		{
-			updateRaw("Creating stats for "+key+".")
 		
-			val statsdir=key+"stats"
-			mkdir(statsdir)
-			deleteFilesInDir(statsdir)
-			
-			for(subkey_filename<-getListOfFileNames(key))
+			for(key<-collected_keys)
 			{
-				val subkey=subkey_filename.split("\\.")(0)
-			
-				update_textarea("Creating stats: "+subkey)
+				updateRaw("Creating stats for "+key+". Filter - "+TRANSLATE_FILTERS(filter)+".")
 				
-				var counts=Map[String,String]("ALL"->"0","M"->"0","F"->"0","MF"->"0","RM"->"0","CRM"->"0","RF"->"0","CRF"->"0","R"->"0","CR"->"0","RMF"->"0","CRMF"->"0")
+				val statsdir=key+"stats"+filter
+				mkdir(statsdir)
+				deleteFilesInDir(statsdir)
 				
-				val fpath=key+"/"+subkey+".txt"
-				val lines=Source.fromFile(fpath).getLines().toArray
-		
-				val headers=strip(lines.head).split("\t");
-				
-				for(line<-lines.tail)
+				for(subkey_filename<-getListOfFileNames(key))
 				{
+					val subkey=subkey_filename.split("\\.")(0)
 				
-					if(interrupted) return true
-				
-					counts+=("ALL"->"%d".format((counts("ALL").toInt+1)))
-				
-					val record=(headers zip strip(line).split("\t")).toMap
-			
-					if(record.contains("sex"))
-					{
-						if(record("sex")=="M")
-						{
-							counts+=("M"->"%d".format((counts("M").toInt+1)))
-							counts+=("MF"->"%d".format((counts("MF").toInt+1)))
-						}
-						if(record("sex")=="F")
-						{
-							counts+=("F"->"%d".format((counts("F").toInt+1)))
-							counts+=("MF"->"%d".format((counts("MF").toInt+1)))
-						}
-					}
+					update_textarea("Creating stats: "+subkey)
 					
-					if(record.contains("rating"))
+					var counts=Map[String,String]("ALL"->"0","M"->"0","F"->"0","MF"->"0","RM"->"0","CRM"->"0","RF"->"0","CRF"->"0","R"->"0","CR"->"0","RMF"->"0","CRMF"->"0")
+					
+					val fpath=key+"/"+subkey+".txt"
+					val lines=Source.fromFile(fpath).getLines().toArray
+			
+					val headers=strip(lines.head).split("\t");
+					
+					for(line<-lines.tail)
 					{
-						val rating=myToFloat(record("rating")).toInt
+					
+						if(interrupted) return true
+					
+						val record=(headers zip strip(line).split("\t")).toMap
 						
-						if(rating>0)
+						var ok:Boolean=true
+						
+						if(filter contains "m")
 						{
-							counts+=("R"->"%d".format((counts("R").toInt+1)))
-							counts+=("CR"->"%d".format((counts("CR").toInt+rating)))
+							if(record.contains("birthday"))
+							{
+								val age=REFERENCE_YEAR-myToFloat(record("birthday"))
+								if((age<20)||(age>40))
+								{
+									ok=false
+								}
+							}
+							else
+							{
+								ok=false
+							}
+						}
+						
+						if(filter contains "a")
+						{
+							if(record.contains("flag"))
+							{
+								if(record("flag") contains "i")
+								{
+									ok=false
+								}
+							}
+						}
+						
+						if(ok)
+						{
+						
+							counts+=("ALL"->"%d".format((counts("ALL").toInt+1)))
+				
 							if(record.contains("sex"))
 							{
 								if(record("sex")=="M")
 								{
-									counts+=("RM"->"%d".format((counts("RM").toInt+1)))
-									counts+=("RMF"->"%d".format((counts("RMF").toInt+1)))
-									counts+=("CRM"->"%d".format((counts("CRM").toInt+rating)))
-									counts+=("CRMF"->"%d".format((counts("CRMF").toInt+rating)))
+									counts+=("M"->"%d".format((counts("M").toInt+1)))
+									counts+=("MF"->"%d".format((counts("MF").toInt+1)))
 								}
 								if(record("sex")=="F")
 								{
-									counts+=("RF"->"%d".format((counts("RF").toInt+1)))
-									counts+=("RMF"->"%d".format((counts("RMF").toInt+1)))
-									counts+=("CRF"->"%d".format((counts("CRF").toInt+rating)))
-									counts+=("CRMF"->"%d".format((counts("CRMF").toInt+rating)))
+									counts+=("F"->"%d".format((counts("F").toInt+1)))
+									counts+=("MF"->"%d".format((counts("MF").toInt+1)))
 								}
 							}
+							
+							if(record.contains("rating"))
+							{
+								val rating=myToFloat(record("rating")).toInt
+								
+								if(rating>0)
+								{
+									counts+=("R"->"%d".format((counts("R").toInt+1)))
+									counts+=("CR"->"%d".format((counts("CR").toInt+rating)))
+									if(record.contains("sex"))
+									{
+										if(record("sex")=="M")
+										{
+											counts+=("RM"->"%d".format((counts("RM").toInt+1)))
+											counts+=("RMF"->"%d".format((counts("RMF").toInt+1)))
+											counts+=("CRM"->"%d".format((counts("CRM").toInt+rating)))
+											counts+=("CRMF"->"%d".format((counts("CRMF").toInt+rating)))
+										}
+										if(record("sex")=="F")
+										{
+											counts+=("RF"->"%d".format((counts("RF").toInt+1)))
+											counts+=("RMF"->"%d".format((counts("RMF").toInt+1)))
+											counts+=("CRF"->"%d".format((counts("CRF").toInt+rating)))
+											counts+=("CRMF"->"%d".format((counts("CRMF").toInt+rating)))
+										}
+									}
+								}
+							}
+							
 						}
 					}
+					
+					counts+=("PARF"->PERCENT(counts("F").toInt,counts("MF").toInt))
+					counts+=("AVGR"->AVERAGE(counts("CR").toInt,counts("R").toInt))
+					counts+=("AVGRM"->AVERAGE(counts("CRM").toInt,counts("RM").toInt))
+					counts+=("AVGRF"->AVERAGE(counts("CRF").toInt,counts("RF").toInt))
+					counts+=("AVGRMF"->AVERAGE(counts("CRMF").toInt,counts("RMF").toInt))
+					
+					counts+=("PARFR"->PERCENT(counts("RF").toInt,counts("RMF").toInt))
+					
+					var content="key\tvalue\n"
+					for(field<-keystat_fields)
+					{
+						content=content+field+"\t"+counts(field)+"\n"
+					}
+					
+					save_txt(statsdir+"/"+subkey+".txt",content)
+				
 				}
 				
-				counts+=("PARF"->PERCENT(counts("F").toInt,counts("MF").toInt))
-				counts+=("AVGR"->AVERAGE(counts("CR").toInt,counts("R").toInt))
-				counts+=("AVGRM"->AVERAGE(counts("CRM").toInt,counts("RM").toInt))
-				counts+=("AVGRF"->AVERAGE(counts("CRF").toInt,counts("RF").toInt))
-				counts+=("AVGRMF"->AVERAGE(counts("CRMF").toInt,counts("RMF").toInt))
-				
-				counts+=("PARFR"->PERCENT(counts("RF").toInt,counts("RMF").toInt))
-				
-				var content="key\tvalue\n"
-				for(field<-keystat_fields)
-				{
-					content=content+field+"\t"+counts(field)+"\n"
-				}
-				
-				save_txt(statsdir+"/"+subkey+".txt",content)
-			
 			}
 			
 		}
@@ -1095,6 +1148,39 @@ class PlayersClass extends Application {
 		return false
 	}
 	
+	val filterlabel=new Label("  filter: none")
+	filterlabel.setMinWidth(150)
+	var currentfilter="x"
+	
+	class MyFilterButton( filter: String ) extends Button( filter )
+	{
+		val filtertext=TRANSLATE_FILTERS(filter)
+		setText("filter: "+filtertext)
+		setOnAction(new EventHandler[ActionEvent]{
+			override def handle(e: ActionEvent)
+			{
+				filterlabel.setText("  filter: "+filtertext)
+				currentfilter=filter
+			}
+		});
+	}
+	
+	var currentminnump="0"
+	val minnumplabel=new Label("  minnump: "+currentminnump)
+	minnumplabel.setMinWidth(150)
+	
+	class MyFilterAllButton( minnump: String ) extends Button( minnump )
+	{
+		setText("minnump: "+minnump)
+		setOnAction(new EventHandler[ActionEvent]{
+			override def handle(e: ActionEvent)
+			{
+				minnumplabel.setText("  minnump: "+minnump)
+				currentminnump=minnump
+			}
+		});
+	}
+	
 	class MyButton( text: String , callback: () => Unit ) extends Button( text )
 	{
 		setOnAction(new EventHandler[ActionEvent]{
@@ -1137,17 +1223,17 @@ class PlayersClass extends Application {
 	
 	def draw_participation_chart()
 	{
-		chart.make("Female participation % in the function of age","keystats/birthday.byall.txt","birthday",Array("PARF","PARFR"),birthday_to_age,Array(none,none),birthday_ok,Array(ok,ok))
+		chart.make("Female participation % in the function of age","keystats/birthday.byall"+currentfilter+".txt","birthday",Array("PARF","PARFR"),birthday_to_age,Array(none,none),birthday_ok,Array(ok,ok))
 	}
 	
 	def draw_rating_chart()
 	{
-		chart.make("Rating in the function of age","keystats/birthday.byall.txt","birthday",Array("AVGRM","AVGRF"),birthday_to_age,Array(none,none),birthday_ok,Array(ok,ok))
+		chart.make("Rating in the function of age","keystats/birthday.byall"+currentfilter+".txt","birthday",Array("AVGRM","AVGRF"),birthday_to_age,Array(none,none),birthday_ok,Array(ok,ok))
 	}
 	
 	def draw_country_chart()
 	{
-		chart.make("Rating in the function of participation","keystats/country.byall.txt","PARFR",Array("AVGRM","AVGRF"),none,Array(none,none),ok,Array(ok,ok))
+		chart.make("Rating in the function of participation","keystats/country.byall"+currentfilter+".txt","PARFR",Array("AVGRM","AVGRF"),none,Array(none,none),ok,Array(ok,ok))
 	}
 	
 
@@ -1175,7 +1261,7 @@ class PlayersClass extends Application {
 			updateRaw("Test.")
 		}
 		
-		val ButtonList=List(
+		var ButtonList=List(
 			new MyButton("DELETE ALL FILES",delete_all_files),
 			new MyButton("STARTUP",startup_thread_func),
 			new MyButton("Process XML - Phase 1 - count keys",phase1),
@@ -1185,14 +1271,29 @@ class PlayersClass extends Application {
 			new MyButton("Key stats",key_stats),
 			new MyButtonSimple("Draw participation chart",draw_participation_chart),
 			new MyButtonSimple("Draw rating chart",draw_rating_chart),
-			new MyButtonSimple("Draw country chart",draw_country_chart),
-			new MyButton("Test",runtest)
+			new MyButtonSimple("Draw country chart",draw_country_chart)
 		)
-
+		
+		for(filter<-FILTERS)
+		{
+			ButtonList=ButtonList:+new MyFilterButton(filter)
+		}
+		
 		for(button<-ButtonList)
 		{
 			root.getChildren.add(button)
 		}
+		
+		root.getChildren.add(filterlabel)
+		
+		for(minnump<-MINNUMPS)
+		{
+			root.getChildren.add(new MyFilterAllButton(minnump))
+		}
+		
+		root.getChildren.add(minnumplabel)
+		
+		root.getChildren.add(new MyButton("Test",runtest))
 		
 		root.getChildren.add(chart.canvas)
 
