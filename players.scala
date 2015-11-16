@@ -180,7 +180,7 @@ class PlayersClass extends Application {
 					done=true
 					current_step=GRID_STEPS(grid_step_i)*mult
 					val current_no=range/current_step
-					if(current_no>10)
+					if(current_no>15)
 					{
 						if(grid_step_i<(GRID_STEPS.length-1))
 						{
@@ -218,7 +218,7 @@ class PlayersClass extends Application {
 			val iy0:Float=(MINY/stepy).floor+1
 			var iy:Float=iy0
 			
-			//print("ix "+ix+" stepx "+stepx+" iy "+iy+" stepy "+stepy)
+			//println("ix "+ix+" stepx "+stepx+" iy "+iy+" stepy "+stepy)
 			
 			while(((ix)*stepx)<MAXX)
 			{
