@@ -18,6 +18,123 @@ import scala.collection.immutable.ListMap
 
 class PlayersClass extends Application {
 
+	val REFERENCE_YEAR=2015
+
+	def isValidFloat(what: String):Boolean =
+	{
+		if((what=="NA")||(what=="")) return false
+		return true
+	}
+
+	class Chart(set_canvas_width: Float, set_canvas_height: Float)
+	{
+		val CANVAS_WIDTH:Float=set_canvas_width
+		val CANVAS_HEIGHT:Float=set_canvas_height
+		val canvas=new Canvas(CANVAS_WIDTH,CANVAS_HEIGHT)
+		val gc=canvas.getGraphicsContext2D()
+		
+		val INFINITE:Float=1E20.toFloat
+		
+		val TOP_MARGIN:Float=100.0.toFloat
+		val BOTTOM_MARGIN:Float=80.0.toFloat
+		val LEFT_MARGIN:Float=100.0.toFloat
+		val RIGHT_MARGIN:Float=200.0.toFloat
+		val CHART_X0:Float=LEFT_MARGIN
+		val CHART_Y0:Float=TOP_MARGIN
+		val CHART_WIDTH:Float=CANVAS_WIDTH-(LEFT_MARGIN+RIGHT_MARGIN)
+		val CHART_HEIGHT:Float=CANVAS_HEIGHT-(TOP_MARGIN+BOTTOM_MARGIN)
+		val BOX_WIDTH:Float=CANVAS_WIDTH/200.0.toFloat
+		val BOX_HEIGHT:Float=BOX_WIDTH
+		
+		def make( path: String , xkey: String , ykey: String , xfunc: (Float) => Float , yfunc: (Float) => Float, okxfunc: (Float) => Boolean , okyfunc: (Float) => Boolean )
+		{
+		
+			var MAXX:Float=(-INFINITE)
+			var MINX:Float=INFINITE
+			var MAXY:Float=(-INFINITE)
+			var MINY:Float=INFINITE
+		
+			var XYS=Map[Float,Float]()
+			
+			for(record<-parseTxtSmart(path))
+			{
+				if(record.contains(xkey)&&record.contains(ykey))
+				{
+					val X=record(xkey)
+					val Y=record(ykey)
+					if(isValidFloat(X)&&isValidFloat(Y))
+					{
+						val XVAL:Float=xfunc(myToFloat(X))
+						val YVAL:Float=yfunc(myToFloat(Y))
+						if(okxfunc(XVAL)&&okyfunc(YVAL))
+						{
+							XYS+=(XVAL->YVAL)
+							if(XVAL>MAXX) MAXX=XVAL
+							if(XVAL<MINX) MINX=XVAL
+							if(YVAL>MAXY) MAXY=YVAL
+							if(YVAL<MINY) MINY=YVAL
+						}
+					}
+				}
+			}
+			
+			for((k,v)<-XYS)
+			{	
+				println("X "+k+" Y "+v)
+			}
+			
+			var RANGEX:Float=MAXX-MINX
+			var RANGEY:Float=MAXY-MINY
+			
+			if(RANGEX<=0)
+			{
+				println("X range too small.")
+				return
+			}
+			
+			var FACTORX:Float=CHART_WIDTH/RANGEX
+			
+			if(RANGEY<=0)
+			{
+				println("Y range too small.")
+				return
+			}
+			
+			var FACTORY:Float=CHART_HEIGHT/RANGEY
+			
+			println("MINX "+MINX+" MAXX "+MAXX+" MINY "+MINY+" MAXY "+MAXY+" RANGEX "+RANGEX+" RANGEY "+RANGEY+" FACTORX "+FACTORX+" FACTORY "+FACTORY+" CHART_X0 "+CHART_X0+" CHART_Y0 "+CHART_Y0+" CHART_WIDTH "+CHART_WIDTH+" CHART_HEIGHT "+CHART_HEIGHT)
+			
+			//draw chart
+			
+			def calcx(x: Float):Float =
+			{
+				CHART_X0+(x-MINX)*FACTORX
+			}
+			
+			def calcy(y: Float):Float =
+			{
+				CHART_Y0+CHART_HEIGHT-((y-MINY)*FACTORY)
+			}
+			
+			def drawbox(x: Float, y: Float)
+			{
+				gc.fillRect(x-BOX_WIDTH/2,y-BOX_HEIGHT/2,BOX_WIDTH,BOX_HEIGHT)
+			}
+			
+			for((k,v)<-XYS)
+			{
+				val cx=calcx(k)
+				val cy=calcy(v)
+				
+				println("x "+k+" y "+v+" cx "+cx+" cy "+cy)
+				
+				drawbox(cx,cy)
+			}
+			
+		}
+		
+	}
+
 	var infoLabel=new Label("")
 	var infoTextArea=new TextArea()
 	var root=new FlowPane()
@@ -37,6 +154,8 @@ class PlayersClass extends Application {
 	
 	val keystat_fields=Array("ALL","MF","M","F","PARF","RM","RF","RMF","R","PARFR","AVGRM","AVGRF","AVGRMF","AVGR")
 	val keystat_indices=(keystat_fields zip (1 to keystat_fields.length)).toMap
+	
+	val chart=new Chart(800,550)
 	
 	def htmlify(path: String)
 	{
@@ -794,10 +913,6 @@ class PlayersClass extends Application {
 		return false
 	}
 	
-	val CANVAS_WIDTH=800
-	val CANVAS_HEIGHT=550
-	val canvas=new Canvas(CANVAS_WIDTH,CANVAS_HEIGHT)
-	
 	class MyButton( text: String , callback: () => Unit ) extends Button( text )
 	{
 		setOnAction(new EventHandler[ActionEvent]{
@@ -806,6 +921,41 @@ class PlayersClass extends Application {
 				do_thread(callback)
 			}
 		});
+	}
+	
+	class MyButtonSimple( text: String , callback: () => Unit ) extends Button( text )
+	{
+		setOnAction(new EventHandler[ActionEvent]{
+			override def handle(e: ActionEvent)
+			{
+				callback()
+			}
+		});
+	}
+	
+	def ok(y: Float):Boolean =
+	{
+		true
+	}
+	
+	def birthday_ok(y: Float):Boolean =
+	{
+		(y>=10) && (y<=80)
+	}
+	
+	def none(y: Float):Float =
+	{
+		y
+	}
+	
+	def birthday_to_age(birthday: Float):Float =
+	{
+		REFERENCE_YEAR-birthday
+	}
+	
+	def draw_participation_chart()
+	{
+		chart.make("keystats/birthday.byall.txt","birthday","PARF",birthday_to_age,none,birthday_ok,ok)
 	}
 
 	override def start(primaryStage: Stage)
@@ -840,6 +990,7 @@ class PlayersClass extends Application {
 			new MyButton("Collect keys from players.txt",collect_keys),
 			new MyButton("Create stats",create_stats),
 			new MyButton("Key stats",key_stats),
+			new MyButtonSimple("Draw participation chart",draw_participation_chart),
 			new MyButton("Test",runtest)
 		)
 
@@ -848,7 +999,7 @@ class PlayersClass extends Application {
 			root.getChildren.add(button)
 		}
 		
-		root.getChildren.add(canvas)
+		root.getChildren.add(chart.canvas)
 
 		primaryStage.setScene(new Scene(root))
 		primaryStage.show()
