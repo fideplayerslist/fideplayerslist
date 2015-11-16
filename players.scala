@@ -6,6 +6,7 @@ import javafx.scene.control._
 import javafx.scene.canvas._
 import javafx.scene.input._
 import javafx.scene.paint._
+import javafx.scene.text._
 import javafx.event._
 import javafx.geometry._
 
@@ -26,6 +27,34 @@ class PlayersClass extends Application {
 		if((what=="NA")||(what=="")) return false
 		return true
 	}
+	
+	def calc_linear(XYS: Map[Float,Float]): List[Float] =
+	{
+		var Sx:Float=0.0.toFloat
+		var Sy:Float=0.0.toFloat
+		var Sxx:Float=0.0.toFloat
+		var Sxy:Float=0.0.toFloat
+		var Syy:Float=0.0.toFloat
+		var n=0
+		for((k,v)<-XYS)
+		{
+			val x=k
+			val y=v
+			Sx=Sx+x
+			Sy=Sy+y
+			Sxx=Sxx+x*x
+			Sxy=Sxy+x*y
+			Syy=Syy+y*y
+			n=n+1
+		}
+		
+		val Beta=(n*Sxy-Sx*Sy)/((n*Sxx)-(Sx*Sx))
+		val Alpha=(Sy/n)-(Beta*Sx/n)
+	
+		List(Alpha,Beta)
+	}
+	
+	val KEY_TRANSLATIONS=Map("PARF"->"Female participation %","PARFR"->"Female participation % rated")
 
 	class Chart(set_canvas_width: Float, set_canvas_height: Float)
 	{
@@ -38,18 +67,30 @@ class PlayersClass extends Application {
 		
 		val INFINITE:Float=1E20.toFloat
 		
+		val PADDING:Float=20.0.toFloat
 		val TOP_MARGIN:Float=100.0.toFloat
 		val BOTTOM_MARGIN:Float=80.0.toFloat
 		val LEFT_MARGIN:Float=100.0.toFloat
-		val RIGHT_MARGIN:Float=200.0.toFloat
+		val RIGHT_MARGIN:Float=400.0.toFloat
 		val CHART_X0:Float=LEFT_MARGIN
 		val CHART_Y0:Float=TOP_MARGIN
 		val CHART_WIDTH:Float=CANVAS_WIDTH-(LEFT_MARGIN+RIGHT_MARGIN)
 		val CHART_HEIGHT:Float=CANVAS_HEIGHT-(TOP_MARGIN+BOTTOM_MARGIN)
 		val BOX_WIDTH:Float=CANVAS_WIDTH/100.0.toFloat
-		val BOX_HEIGHT:Float=BOX_WIDTH
+		val CHART_Y1:Float=TOP_MARGIN+CHART_HEIGHT
+		val CHART_X1:Float=LEFT_MARGIN+CHART_WIDTH
+		val LEGEND_X0:Float=CANVAS_WIDTH-RIGHT_MARGIN+PADDING
 		
-		def make( path: String , xkey: String , ykeys: Array[String] , xfunc: (Float) => Float , yfuncs: Array[(Float) => Float], okxfunc: (Float) => Boolean , okyfuncs: Array[(Float) => Boolean] )
+		val LEGEND_Y0:Float=CHART_Y0+PADDING
+		val LEGEND_STEP:Float=CANVAS_HEIGHT/10.0.toFloat
+		
+		val TITLE_Y0:Float=PADDING
+		val TITLE_X0:Float=LEFT_MARGIN+PADDING
+		
+		val LEGEND_FONT_SIZE:Float=16.0.toFloat
+		val TITLE_FONT_SIZE:Float=22.0.toFloat
+		
+		def make( title: String, path: String , xkey: String , ykeys: Array[String] , xfunc: (Float) => Float , yfuncs: Array[(Float) => Float], okxfunc: (Float) => Boolean , okyfuncs: Array[(Float) => Boolean] )
 		{
 		
 			var MAXX:Float=(-INFINITE)
@@ -134,7 +175,27 @@ class PlayersClass extends Application {
 			def drawbox(x: Float, y: Float, c: Color)
 			{
 				gc.setFill(c)
-				gc.fillRect(x-BOX_WIDTH/2,y-BOX_HEIGHT/2,BOX_WIDTH,BOX_HEIGHT)
+				gc.fillRect(x-BOX_WIDTH/2,y-BOX_WIDTH/2,BOX_WIDTH,BOX_WIDTH)
+			}
+			
+			def drawline(x0: Float, y0: Float, x1: Float, y1: Float, c: Color)
+			{
+				gc.setLineWidth(3)
+				gc.setStroke(c)
+				gc.strokeLine(x0,y0,x1,y1)
+			}
+			
+			def drawtext(x: Float, y:Float, what: String, size: Float)
+			{
+				gc.setFont(new Font(size))
+				gc.setFill(Color.rgb(0,0,0))
+				gc.fillText(what,x,y+size/2)
+			}
+			
+			def clearmargins()
+			{
+				gc.clearRect(0,0,CANVAS_WIDTH,CHART_Y0-BOX_WIDTH)
+				gc.clearRect(0,CHART_Y1+BOX_WIDTH,CANVAS_WIDTH,CHART_Y1+BOX_WIDTH)
 			}
 			
 			i=0
@@ -150,9 +211,38 @@ class PlayersClass extends Application {
 					
 					drawbox(cx,cy,COLORS(i))
 				}
+				
+				//draw linear
+				val linear=calc_linear(XYS)
+				val Alpha=linear(0)
+				val Beta=linear(1)
+				val x0=MINX
+				val cx0=calcx(x0)
+				val y0=Alpha+x0*Beta
+				val cy0=calcy(y0)
+				val x1=MAXX
+				val cx1=calcx(x1)
+				val y1=Alpha+x1*Beta
+				val cy1=calcy(y1)
+				
+				drawline(cx0+BOX_WIDTH/2,cy0-BOX_WIDTH/2,cx1+BOX_WIDTH/2,cy1-BOX_WIDTH/2,COLORS(i))
+				
 				i=i+1
 			}
 			
+			//trendline cleanup
+			clearmargins()
+			
+			//draw legend
+			for(i <- 0 to XYSS.length-1)
+			{
+				val cy=LEGEND_Y0+LEGEND_STEP*i
+				drawbox(LEGEND_X0,cy,COLORS(i))
+				drawtext(LEGEND_X0+2*BOX_WIDTH,cy-BOX_WIDTH/3,KEY_TRANSLATIONS(ykeys(i)),LEGEND_FONT_SIZE)
+			}
+			
+			//draw title
+			drawtext(TITLE_X0,TITLE_Y0,title,TITLE_FONT_SIZE)
 		}
 		
 	}
@@ -177,7 +267,7 @@ class PlayersClass extends Application {
 	val keystat_fields=Array("ALL","MF","M","F","PARF","RM","RF","RMF","R","PARFR","AVGRM","AVGRF","AVGRMF","AVGR")
 	val keystat_indices=(keystat_fields zip (1 to keystat_fields.length)).toMap
 	
-	val chart=new Chart(800,550)
+	val chart=new Chart(1000,550)
 	
 	def htmlify(path: String)
 	{
@@ -977,7 +1067,7 @@ class PlayersClass extends Application {
 	
 	def draw_participation_chart()
 	{
-		chart.make("keystats/birthday.byall.txt","birthday",Array("PARF","PARFR"),birthday_to_age,Array(none,none),birthday_ok,Array(ok,ok))
+		chart.make("Female participation % in the function of age","keystats/birthday.byall.txt","birthday",Array("PARF","PARFR"),birthday_to_age,Array(none,none),birthday_ok,Array(ok,ok))
 	}
 
 	override def start(primaryStage: Stage)
