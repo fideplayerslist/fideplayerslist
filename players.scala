@@ -837,7 +837,7 @@ class PlayersClass extends Application {
 					
 					content=content+(for(line<-lines) yield (line.mkString("\t")+"\n")).mkString("")
 					
-					val tpath="keystats/"+key+"."+bywhat+filter+".txt"
+					val tpath="keystats/"+key+"."+bywhat+"."+filter+".txt"
 					
 					save_txt(tpath,content)
 					
@@ -1223,17 +1223,17 @@ class PlayersClass extends Application {
 	
 	def draw_participation_chart()
 	{
-		chart.make("Female participation % in the function of age","keystats/birthday.byall"+currentfilter+".txt","birthday",Array("PARF","PARFR"),birthday_to_age,Array(none,none),birthday_ok,Array(ok,ok))
+		chart.make("Female participation % in the function of age","keystats/birthday.byall."+currentfilter+".txt","birthday",Array("PARF","PARFR"),birthday_to_age,Array(none,none),birthday_ok,Array(ok,ok))
 	}
 	
 	def draw_rating_chart()
 	{
-		chart.make("Rating in the function of age","keystats/birthday.byall"+currentfilter+".txt","birthday",Array("AVGRM","AVGRF"),birthday_to_age,Array(none,none),birthday_ok,Array(ok,ok))
+		chart.make("Rating in the function of age","keystats/birthday.byall."+currentfilter+".txt","birthday",Array("AVGRM","AVGRF"),birthday_to_age,Array(none,none),birthday_ok,Array(ok,ok))
 	}
 	
 	def draw_country_chart()
 	{
-		chart.make("Rating in the function of participation","keystats/country.byall"+currentfilter+".txt","PARFR",Array("AVGRM","AVGRF"),none,Array(none,none),ok,Array(ok,ok))
+		chart.make("Rating in the function of participation","keystats/country.byall."+currentfilter+".txt","PARFR",Array("AVGRM","AVGRF"),none,Array(none,none),ok,Array(ok,ok))
 	}
 	
 
