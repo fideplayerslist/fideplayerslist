@@ -5,6 +5,7 @@ import javafx.scene.layout._
 import javafx.scene.control._
 import javafx.scene.canvas._
 import javafx.scene.input._
+import javafx.scene.paint._
 import javafx.event._
 import javafx.geometry._
 
@@ -33,6 +34,8 @@ class PlayersClass extends Application {
 		val canvas=new Canvas(CANVAS_WIDTH,CANVAS_HEIGHT)
 		val gc=canvas.getGraphicsContext2D()
 		
+		val COLORS=List(Color.rgb(255,0,0),Color.rgb(0,0,255),Color.rgb(0,255,0))
+		
 		val INFINITE:Float=1E20.toFloat
 		
 		val TOP_MARGIN:Float=100.0.toFloat
@@ -43,10 +46,10 @@ class PlayersClass extends Application {
 		val CHART_Y0:Float=TOP_MARGIN
 		val CHART_WIDTH:Float=CANVAS_WIDTH-(LEFT_MARGIN+RIGHT_MARGIN)
 		val CHART_HEIGHT:Float=CANVAS_HEIGHT-(TOP_MARGIN+BOTTOM_MARGIN)
-		val BOX_WIDTH:Float=CANVAS_WIDTH/200.0.toFloat
+		val BOX_WIDTH:Float=CANVAS_WIDTH/100.0.toFloat
 		val BOX_HEIGHT:Float=BOX_WIDTH
 		
-		def make( path: String , xkey: String , ykey: String , xfunc: (Float) => Float , yfunc: (Float) => Float, okxfunc: (Float) => Boolean , okyfunc: (Float) => Boolean )
+		def make( path: String , xkey: String , ykeys: Array[String] , xfunc: (Float) => Float , yfuncs: Array[(Float) => Float], okxfunc: (Float) => Boolean , okyfuncs: Array[(Float) => Boolean] )
 		{
 		
 			var MAXX:Float=(-INFINITE)
@@ -54,33 +57,45 @@ class PlayersClass extends Application {
 			var MAXY:Float=(-INFINITE)
 			var MINY:Float=INFINITE
 		
-			var XYS=Map[Float,Float]()
+			var XYSS=Array[Map[Float,Float]]()
 			
-			for(record<-parseTxtSmart(path))
+			var i=0
+			for(ykey<-ykeys)
 			{
-				if(record.contains(xkey)&&record.contains(ykey))
+				var XYS=Map[Float,Float]()
+				for(record<-parseTxtSmart(path))
 				{
-					val X=record(xkey)
-					val Y=record(ykey)
-					if(isValidFloat(X)&&isValidFloat(Y))
+					if(record.contains(xkey)&&record.contains(ykey))
 					{
-						val XVAL:Float=xfunc(myToFloat(X))
-						val YVAL:Float=yfunc(myToFloat(Y))
-						if(okxfunc(XVAL)&&okyfunc(YVAL))
+						val X=record(xkey)
+						val Y=record(ykey)
+						if(isValidFloat(X)&&isValidFloat(Y))
 						{
-							XYS+=(XVAL->YVAL)
-							if(XVAL>MAXX) MAXX=XVAL
-							if(XVAL<MINX) MINX=XVAL
-							if(YVAL>MAXY) MAXY=YVAL
-							if(YVAL<MINY) MINY=YVAL
+							val XVAL:Float=xfunc(myToFloat(X))
+							val YVAL:Float=yfuncs(i)(myToFloat(Y))
+							if(okxfunc(XVAL)&&okyfuncs(i)(YVAL))
+							{
+								XYS+=(XVAL->YVAL)
+								if(XVAL>MAXX) MAXX=XVAL
+								if(XVAL<MINX) MINX=XVAL
+								if(YVAL>MAXY) MAXY=YVAL
+								if(YVAL<MINY) MINY=YVAL
+							}
 						}
 					}
 				}
+				XYSS=XYSS:+XYS
+				i=i+1
 			}
 			
-			for((k,v)<-XYS)
-			{	
-				println("X "+k+" Y "+v)
+			i=0
+			for(XYS<-XYSS)
+			{
+				println("series "+i)
+				for((k,v)<-XYS)
+				{	
+					println("X "+k+" Y "+v)
+				}
 			}
 			
 			var RANGEX:Float=MAXX-MINX
@@ -116,19 +131,26 @@ class PlayersClass extends Application {
 				CHART_Y0+CHART_HEIGHT-((y-MINY)*FACTORY)
 			}
 			
-			def drawbox(x: Float, y: Float)
+			def drawbox(x: Float, y: Float, c: Color)
 			{
+				gc.setFill(c)
 				gc.fillRect(x-BOX_WIDTH/2,y-BOX_HEIGHT/2,BOX_WIDTH,BOX_HEIGHT)
 			}
 			
-			for((k,v)<-XYS)
+			i=0
+			for(XYS<-XYSS)
 			{
-				val cx=calcx(k)
-				val cy=calcy(v)
-				
-				println("x "+k+" y "+v+" cx "+cx+" cy "+cy)
-				
-				drawbox(cx,cy)
+				println("drawint series "+i)
+				for((k,v)<-XYS)
+				{
+					val cx=calcx(k)
+					val cy=calcy(v)
+					
+					println("x "+k+" y "+v+" cx "+cx+" cy "+cy)
+					
+					drawbox(cx,cy,COLORS(i))
+				}
+				i=i+1
 			}
 			
 		}
@@ -955,7 +977,7 @@ class PlayersClass extends Application {
 	
 	def draw_participation_chart()
 	{
-		chart.make("keystats/birthday.byall.txt","birthday","PARF",birthday_to_age,none,birthday_ok,ok)
+		chart.make("keystats/birthday.byall.txt","birthday",Array("PARF","PARFR"),birthday_to_age,Array(none,none),birthday_ok,Array(ok,ok))
 	}
 
 	override def start(primaryStage: Stage)
