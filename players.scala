@@ -54,7 +54,12 @@ class PlayersClass extends Application {
 		List(Alpha,Beta)
 	}
 	
-	val KEY_TRANSLATIONS=Map("PARF"->"Female participation %","PARFR"->"Female participation % rated")
+	val KEY_TRANSLATIONS=Map(
+		"PARF"->"Female participation %",
+		"PARFR"->"Female participation % rated",
+		"AVGRM"->"Average male rating",
+		"AVGRF"->"Average female rating"
+		)
 
 	class Chart(set_canvas_width: Float, set_canvas_height: Float)
 	{
@@ -64,12 +69,13 @@ class PlayersClass extends Application {
 		val gc=canvas.getGraphicsContext2D()
 		
 		val COLORS=List(Color.rgb(255,0,0),Color.rgb(0,0,255),Color.rgb(0,255,0))
+		val GRID_COLOR=Color.rgb(192,192,192)
 		
 		val INFINITE:Float=1E20.toFloat
 		
 		val PADDING:Float=20.0.toFloat
-		val TOP_MARGIN:Float=100.0.toFloat
-		val BOTTOM_MARGIN:Float=80.0.toFloat
+		val TOP_MARGIN:Float=60.0.toFloat
+		val BOTTOM_MARGIN:Float=120.0.toFloat
 		val LEFT_MARGIN:Float=100.0.toFloat
 		val RIGHT_MARGIN:Float=400.0.toFloat
 		val CHART_X0:Float=LEFT_MARGIN
@@ -79,7 +85,7 @@ class PlayersClass extends Application {
 		val BOX_WIDTH:Float=CANVAS_WIDTH/100.0.toFloat
 		val CHART_Y1:Float=TOP_MARGIN+CHART_HEIGHT
 		val CHART_X1:Float=LEFT_MARGIN+CHART_WIDTH
-		val LEGEND_X0:Float=CANVAS_WIDTH-RIGHT_MARGIN+PADDING
+		val LEGEND_X0:Float=CANVAS_WIDTH-RIGHT_MARGIN+3*PADDING
 		
 		val LEGEND_Y0:Float=CHART_Y0+PADDING
 		val LEGEND_STEP:Float=CANVAS_HEIGHT/10.0.toFloat
@@ -90,8 +96,12 @@ class PlayersClass extends Application {
 		val LEGEND_FONT_SIZE:Float=16.0.toFloat
 		val TITLE_FONT_SIZE:Float=22.0.toFloat
 		
+		val GRID_STEPS=List(5,10,20,25,75)
+		
 		def make( title: String, path: String , xkey: String , ykeys: Array[String] , xfunc: (Float) => Float , yfuncs: Array[(Float) => Float], okxfunc: (Float) => Boolean , okyfuncs: Array[(Float) => Boolean] )
 		{
+		
+			gc.clearRect(0,0,CANVAS_WIDTH,CANVAS_HEIGHT)
 		
 			var MAXX:Float=(-INFINITE)
 			var MINX:Float=INFINITE
@@ -129,16 +139,6 @@ class PlayersClass extends Application {
 				i=i+1
 			}
 			
-			i=0
-			for(XYS<-XYSS)
-			{
-				println("series "+i)
-				for((k,v)<-XYS)
-				{	
-					println("X "+k+" Y "+v)
-				}
-			}
-			
 			var RANGEX:Float=MAXX-MINX
 			var RANGEY:Float=MAXY-MINY
 			
@@ -158,7 +158,77 @@ class PlayersClass extends Application {
 			
 			var FACTORY:Float=CHART_HEIGHT/RANGEY
 			
-			println("MINX "+MINX+" MAXX "+MAXX+" MINY "+MINY+" MAXY "+MAXY+" RANGEX "+RANGEX+" RANGEY "+RANGEY+" FACTORX "+FACTORX+" FACTORY "+FACTORY+" CHART_X0 "+CHART_X0+" CHART_Y0 "+CHART_Y0+" CHART_WIDTH "+CHART_WIDTH+" CHART_HEIGHT "+CHART_HEIGHT)
+			//println("MINX "+MINX+" MAXX "+MAXX+" MINY "+MINY+" MAXY "+MAXY+" RANGEX "+RANGEX+" RANGEY "+RANGEY+" FACTORX "+FACTORX+" FACTORY "+FACTORY+" CHART_X0 "+CHART_X0+" CHART_Y0 "+CHART_Y0+" CHART_WIDTH "+CHART_WIDTH+" CHART_HEIGHT "+CHART_HEIGHT)
+			
+			//draw grid
+			def calc_step(range: Float):Float =
+			{
+				var grid_step_i=0
+				var mult:Float=1.0.toFloat
+				var done=false
+				var current_step:Float=1.0.toFloat
+				do
+				{
+					done=true
+					current_step=GRID_STEPS(grid_step_i)*mult
+					val current_no=range/current_step
+					if(current_no>10)
+					{
+						if(grid_step_i<(GRID_STEPS.length-1))
+						{
+							grid_step_i=grid_step_i+1
+						}
+						else
+						{
+							grid_step_i=0
+							mult=mult*10
+						}
+						done=false
+					}
+					if(current_no<5)
+					{
+						if(grid_step_i>0)
+						{
+							grid_step_i=grid_step_i-1
+						}
+						else
+						{
+							grid_step_i=GRID_STEPS.length-1
+							mult=mult/10
+						}
+						done=false
+					}
+				}while(!done)
+				
+				current_step
+			}
+			
+			val stepx:Float=calc_step(RANGEX)
+			val ix0:Float=(MINX/stepx).floor+1
+			var ix:Float=ix0
+			val stepy:Float=calc_step(RANGEY)
+			val iy0:Float=(MINY/stepy).floor+1
+			var iy:Float=iy0
+			
+			//print("ix "+ix+" stepx "+stepx+" iy "+iy+" stepy "+stepy)
+			
+			while(((ix)*stepx)<MAXX)
+			{
+				val x=ix*stepx
+				val cx=calcx(x)
+				drawline(cx,CHART_Y0-BOX_WIDTH,cx,CHART_Y1+BOX_WIDTH,GRID_COLOR)
+				drawtext(cx-PADDING/2,CHART_Y1+2.5.toFloat*PADDING,""+x,14)
+				ix=ix+1
+			}
+			
+			while(((iy)*stepy)<MAXY)
+			{
+				val y=iy*stepy
+				val cy=calcy(y)
+				drawline(CHART_X0-BOX_WIDTH,cy,CHART_X1-BOX_WIDTH,cy,GRID_COLOR)
+				drawtext(CHART_X0-3*PADDING,cy,""+y,14)
+				iy=iy+1
+			}
 			
 			//draw chart
 			
@@ -201,13 +271,13 @@ class PlayersClass extends Application {
 			i=0
 			for(XYS<-XYSS)
 			{
-				println("drawint series "+i)
+				//println("drawint series "+i)
 				for((k,v)<-XYS)
 				{
 					val cx=calcx(k)
 					val cy=calcy(v)
 					
-					println("x "+k+" y "+v+" cx "+cx+" cy "+cy)
+					//println("x "+k+" y "+v+" cx "+cx+" cy "+cy)
 					
 					drawbox(cx,cy,COLORS(i))
 				}
@@ -225,13 +295,13 @@ class PlayersClass extends Application {
 				val y1=Alpha+x1*Beta
 				val cy1=calcy(y1)
 				
-				drawline(cx0+BOX_WIDTH/2,cy0-BOX_WIDTH/2,cx1+BOX_WIDTH/2,cy1-BOX_WIDTH/2,COLORS(i))
+				drawline(cx0,cy0,cx1,cy1,COLORS(i))
 				
 				i=i+1
 			}
 			
 			//trendline cleanup
-			clearmargins()
+			//clearmargins()
 			
 			//draw legend
 			for(i <- 0 to XYSS.length-1)
@@ -1069,6 +1139,12 @@ class PlayersClass extends Application {
 	{
 		chart.make("Female participation % in the function of age","keystats/birthday.byall.txt","birthday",Array("PARF","PARFR"),birthday_to_age,Array(none,none),birthday_ok,Array(ok,ok))
 	}
+	
+	def draw_rating_chart()
+	{
+		chart.make("Rating in the function of age","keystats/birthday.byall.txt","birthday",Array("AVGRM","AVGRF"),birthday_to_age,Array(none,none),birthday_ok,Array(ok,ok))
+	}
+	
 
 	override def start(primaryStage: Stage)
 	{
@@ -1103,6 +1179,7 @@ class PlayersClass extends Application {
 			new MyButton("Create stats",create_stats),
 			new MyButton("Key stats",key_stats),
 			new MyButtonSimple("Draw participation chart",draw_participation_chart),
+			new MyButtonSimple("Draw rating chart",draw_rating_chart),
 			new MyButton("Test",runtest)
 		)
 
