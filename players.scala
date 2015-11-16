@@ -1,8 +1,9 @@
 import javafx.application._
-import javafx.scene.Scene
-import javafx.scene.layout._
 import javafx.stage._
+import javafx.scene._
+import javafx.scene.layout._
 import javafx.scene.control._
+import javafx.scene.canvas._
 import javafx.scene.input._
 import javafx.event._
 import javafx.geometry._
@@ -19,7 +20,7 @@ class PlayersClass extends Application {
 
 	var infoLabel=new Label("")
 	var infoTextArea=new TextArea()
-	var root=new VBox()
+	var root=new FlowPane()
 	var modal_root=new VBox()
 	var modal_stage=new Stage()
 
@@ -792,88 +793,64 @@ class PlayersClass extends Application {
 		
 		return false
 	}
+	
+	val CANVAS_WIDTH=800
+	val CANVAS_HEIGHT=550
+	val canvas=new Canvas(CANVAS_WIDTH,CANVAS_HEIGHT)
+	
+	class MyButton( text: String , callback: () => Unit ) extends Button( text )
+	{
+		setOnAction(new EventHandler[ActionEvent]{
+			override def handle(e: ActionEvent)
+			{
+				do_thread(callback)
+			}
+		});
+	}
 
 	override def start(primaryStage: Stage)
 	{
 		primaryStage.setTitle("FIDE Players")
+		primaryStage.setX(30)
+		primaryStage.setY(30)
 		
-		val startButtonR=new Button("DELETE ALL FILES")
-		val startButton0=new Button("STARTUP")
-		val startButton1=new Button("Process XML - Phase 1 - count keys")
-		val startButton2=new Button("Process XML - Phase 2 - create players.txt")
-		val startButton3=new Button("Collect keys from players.txt")
-		val startButton4=new Button("Create stats")
-		val startButton5=new Button("Key stats")
-		val testButton=new Button("Test")
+		def phase1()
+		{
+			phase=1
+			process()
+		}
 		
-		startButtonR.setOnAction(new EventHandler[ActionEvent]{
-			override def handle(e: ActionEvent)
-			{
-				do_thread(delete_all_files)
-			}
-		});
+		def phase2()
+		{
+			phase=2
+			process()
+		}
 		
-		startButton0.setOnAction(new EventHandler[ActionEvent]{
-			override def handle(e: ActionEvent)
-			{
-				do_thread(startup_thread_func)
-			}
-		});
+		def runtest()
+		{
+			//runtest
+			updateRaw("Test.")
+		}
 		
-		startButton1.setOnAction(new EventHandler[ActionEvent]{
-			override def handle(e: ActionEvent)
-			{
-				phase=1
-				do_thread(process)
-			}
-		});
-		
-		startButton2.setOnAction(new EventHandler[ActionEvent]{
-			override def handle(e: ActionEvent)
-			{
-				phase=2
-				do_thread(process)
-			}
-		});
-		
-		startButton3.setOnAction(new EventHandler[ActionEvent]{
-			override def handle(e: ActionEvent)
-			{
-				do_thread(collect_keys)
-			}
-		});
-		
-		startButton4.setOnAction(new EventHandler[ActionEvent]{
-			override def handle(e: ActionEvent)
-			{
-				do_thread(create_stats)
-			}
-		});
-		
-		startButton5.setOnAction(new EventHandler[ActionEvent]{
-			override def handle(e: ActionEvent)
-			{
-				do_thread(key_stats)
-			}
-		});
-		
-		testButton.setOnAction(new EventHandler[ActionEvent]{
-			override def handle(e: ActionEvent)
-			{
-				//runtest
-			}
-		});
-		
-		root.getChildren.add(startButtonR)
-		root.getChildren.add(startButton0)
-		root.getChildren.add(startButton1)
-		root.getChildren.add(startButton2)
-		root.getChildren.add(startButton3)
-		root.getChildren.add(startButton4)
-		root.getChildren.add(startButton5)
-		root.getChildren.add(testButton)
+		val ButtonList=List(
+			new MyButton("DELETE ALL FILES",delete_all_files),
+			new MyButton("STARTUP",startup_thread_func),
+			new MyButton("Process XML - Phase 1 - count keys",phase1),
+			new MyButton("Process XML - Phase 2 - create players.txt",phase2),
+			new MyButton("Collect keys from players.txt",collect_keys),
+			new MyButton("Create stats",create_stats),
+			new MyButton("Key stats",key_stats),
+			new MyButton("Test",runtest)
+		)
 
-		primaryStage.setScene(new Scene(root, 300, 300))
+		for(button<-ButtonList)
+		{
+			root.getChildren.add(button)
+		}
+		
+		root.getChildren.add(canvas)
+
+		primaryStage.setScene(new Scene(root))
 		primaryStage.show()
 
 	}
