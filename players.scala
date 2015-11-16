@@ -1145,6 +1145,11 @@ class PlayersClass extends Application {
 		chart.make("Rating in the function of age","keystats/birthday.byall.txt","birthday",Array("AVGRM","AVGRF"),birthday_to_age,Array(none,none),birthday_ok,Array(ok,ok))
 	}
 	
+	def draw_country_chart()
+	{
+		chart.make("Rating in the function of participation","keystats/country.byall.txt","PARFR",Array("AVGRM","AVGRF"),none,Array(none,none),ok,Array(ok,ok))
+	}
+	
 
 	override def start(primaryStage: Stage)
 	{
@@ -1180,6 +1185,7 @@ class PlayersClass extends Application {
 			new MyButton("Key stats",key_stats),
 			new MyButtonSimple("Draw participation chart",draw_participation_chart),
 			new MyButtonSimple("Draw rating chart",draw_rating_chart),
+			new MyButtonSimple("Draw country chart",draw_country_chart),
 			new MyButton("Test",runtest)
 		)
 
