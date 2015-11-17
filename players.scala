@@ -74,6 +74,9 @@ class PlayersClass extends Application {
 
 	class Chart(set_canvas_width: Float, set_canvas_height: Float)
 	{
+	
+		val MAXSERIES=3
+	
 		val CANVAS_WIDTH:Float=set_canvas_width
 		val CANVAS_HEIGHT:Float=set_canvas_height
 		val canvas=new Canvas(CANVAS_WIDTH,CANVAS_HEIGHT)
@@ -265,20 +268,20 @@ class PlayersClass extends Application {
 			
 			val stepx:Float=calc_step(RANGEX)
 			val ix0:Float=(MINX/stepx).floor+1
-			var ix:Float=ix0
 			val stepy:Float=calc_step(RANGEY)
 			val iy0:Float=(MINY/stepy).floor+1
-			var iy:Float=iy0
 			
 			//println("ix "+ix+" stepx "+stepx+" iy "+iy+" stepy "+stepy)
 			
+			//draw scale grid
 			var alt:Float=0.0.toFloat
+			var ix:Float=ix0
+			var iy:Float=iy0
 			while(((ix)*stepx)<MAXX)
 			{
 				val x=ix*stepx
 				val cx=calcx(x)
 				drawline(cx,CHART_Y0-BOX_WIDTH,cx,CHART_Y1+BOX_WIDTH,GRID_COLOR)
-				drawtext(cx-PADDING/2,CHART_Y1+2.5.toFloat*PADDING+alt*PADDING,stripfloat(""+x),14)
 				alt=1-alt
 				ix=ix+1
 			}
@@ -288,7 +291,6 @@ class PlayersClass extends Application {
 				val y=iy*stepy
 				val cy=calcy(y)
 				drawline(CHART_X0-BOX_WIDTH,cy,CHART_X1-BOX_WIDTH,cy,GRID_COLOR)
-				drawtext(CHART_X0-3.5.toFloat*PADDING,cy-BOX_WIDTH/4.2.toFloat,stripfloat(""+y),14)
 				iy=iy+1
 			}
 			
@@ -327,9 +329,10 @@ class PlayersClass extends Application {
 			def clearmargins()
 			{
 				gc.clearRect(0,0,CANVAS_WIDTH,CHART_Y0-BOX_WIDTH)
-				gc.clearRect(0,CHART_Y1+BOX_WIDTH,CANVAS_WIDTH,CHART_Y1+BOX_WIDTH)
+				gc.clearRect(0,CHART_Y1+PADDING,CANVAS_WIDTH,BOTTOM_MARGIN)
 			}
 			
+			var Betas=Array[Float]()
 			i=0
 			for(XYS<-XYSS)
 			{
@@ -345,9 +348,14 @@ class PlayersClass extends Application {
 				}
 				
 				//draw linear
+				
 				val linear=calc_linear(XYS)
+				
 				val Alpha=linear(0)
 				val Beta=linear(1)
+				
+				Betas=Betas:+Beta
+				
 				val x0=MINX
 				val cx0=calcx(x0)
 				val y0=Alpha+x0*Beta
@@ -363,14 +371,38 @@ class PlayersClass extends Application {
 			}
 			
 			//trendline cleanup
-			//clearmargins()
+			clearmargins()
+			
+			//draw scale text
+			alt=0.0.toFloat
+			ix=ix0
+			iy=iy0
+			while(((ix)*stepx)<MAXX)
+			{
+				val x=ix*stepx
+				val cx=calcx(x)
+				drawtext(cx-PADDING/2,CHART_Y1+2.5.toFloat*PADDING+alt*PADDING,stripfloat(""+x),14)
+				alt=1-alt
+				ix=ix+1
+			}
+			
+			while(((iy)*stepy)<MAXY)
+			{
+				val y=iy*stepy
+				val cy=calcy(y)
+				drawtext(CHART_X0-3.5.toFloat*PADDING,cy-BOX_WIDTH/4.2.toFloat,stripfloat(""+y),14)
+				iy=iy+1
+			}
 			
 			//draw legend
 			for(i <- 0 to XYSS.length-1)
 			{
-				val cy=LEGEND_Y0+LEGEND_STEP*i
+				var cy=LEGEND_Y0+2*LEGEND_STEP*i
 				drawbox(LEGEND_X0,cy,COLORS(i))
 				drawtext(LEGEND_X0+2*BOX_WIDTH,cy-BOX_WIDTH/3,KEY_TRANSLATIONS(ykeys(i)),LEGEND_FONT_SIZE)
+				cy=LEGEND_Y0+2*LEGEND_STEP*i+LEGEND_STEP
+				drawline(LEGEND_X0,cy,LEGEND_X0+PADDING,cy,COLORS(i))
+				drawtext(LEGEND_X0+3*BOX_WIDTH,cy-BOX_WIDTH/3,"linear, beta "+Betas(i),LEGEND_FONT_SIZE)
 			}
 			
 			//draw title
