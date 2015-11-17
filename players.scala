@@ -27,6 +27,11 @@ class PlayersClass extends Application {
 	val MINNUMPS=List("0","50","100","200","300","400","500","750","1000")
 	val TRANSLATE_FILTERS=Map("x"->"none","m"->"middle age","a"->"active","ma"->"middle age, active")
 	val TRANSLATE_FILTERS_TITLE=Map("x"->"among all players","m"->"among middle age players","a"->"among active players","ma"->"among middle age, active players")
+	
+	def stripfloat(what: String):String =
+	{
+		what.replaceAll("\\.0$","")
+	}
 
 	def isValidFloat(what: String):Boolean =
 	{
@@ -273,7 +278,7 @@ class PlayersClass extends Application {
 				val x=ix*stepx
 				val cx=calcx(x)
 				drawline(cx,CHART_Y0-BOX_WIDTH,cx,CHART_Y1+BOX_WIDTH,GRID_COLOR)
-				drawtext(cx-PADDING/2,CHART_Y1+2.5.toFloat*PADDING+alt*PADDING,""+x,14)
+				drawtext(cx-PADDING/2,CHART_Y1+2.5.toFloat*PADDING+alt*PADDING,stripfloat(""+x),14)
 				alt=1-alt
 				ix=ix+1
 			}
@@ -283,7 +288,7 @@ class PlayersClass extends Application {
 				val y=iy*stepy
 				val cy=calcy(y)
 				drawline(CHART_X0-BOX_WIDTH,cy,CHART_X1-BOX_WIDTH,cy,GRID_COLOR)
-				drawtext(CHART_X0-3.5.toFloat*PADDING,cy-BOX_WIDTH/4.2.toFloat,""+y,14)
+				drawtext(CHART_X0-3.5.toFloat*PADDING,cy-BOX_WIDTH/4.2.toFloat,stripfloat(""+y),14)
 				iy=iy+1
 			}
 			
