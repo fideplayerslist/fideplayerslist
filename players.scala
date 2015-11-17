@@ -597,6 +597,20 @@ class PlayersClass extends Application {
 	type ArrayList=Array[Array[String]]
 	def ArrayList()=Array[Array[String]]()
 	
+	def parseTxtRating(path: String):Array[String] =
+	{
+		val lines=Source.fromFile(path).getLines().toArray
+		val header=lines.head.split("\t")
+		val ratingColumn=header.indexOf("rating")
+		def getrating(line: String):Float =
+		{
+			val values=line.split("\t")
+			if((values.length-1)<ratingColumn) return 0.0.toFloat
+			myToFloat(values(ratingColumn))
+		}
+		( (header.mkString("\t")+"\n") + (((for(line<-lines.tail) yield ( if(getrating(line)>2000) line+"\n" else "" )) ).mkString) ).split("\n")
+	}
+	
 	def parseTxtSimple(path: String):Array[String]=
 	{
 		Source.fromFile(path).getLines().toArray
@@ -908,12 +922,12 @@ class PlayersClass extends Application {
 		
 			if(interrupted) return true
 			
-			if((name!=".txt")&&(name!="M.txt"))
+			//if((name!=".txt")&&(name!="M.txt"))
 			{
 		
 				update_textarea("Creating rating list: "+name)
 			
-				val lines=parseTxtSimple(key+"/"+name)
+				val lines=parseTxtRating(key+"/"+name)
 				
 				val header=strip(lines.head).split("\t")
 				
@@ -961,12 +975,12 @@ class PlayersClass extends Application {
 		
 			if(interrupted) return true
 			
-			if((name!=".txt")&&(name!="M.txt"))
+			//if((name!=".txt")&&(name!="M.txt"))
 			{
 		
 				update_textarea("Creating rating list: "+name)
 			
-				val lines=parseTxtSimple(key+"/"+name)
+				val lines=parseTxtRating(key+"/"+name)
 				
 				val header=strip(lines.head).split("\t")
 				
@@ -999,12 +1013,12 @@ class PlayersClass extends Application {
 		
 			if(interrupted) return true
 			
-			if(sensitive_keys.contains(key))
+			/*if(sensitive_keys.contains(key))
 			{
 				println("using old method")
 				create_rating_lists_for_key_old(key)
 			}
-			else
+			else*/
 			{
 				create_rating_lists_for_key(key)
 			}
