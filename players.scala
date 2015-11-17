@@ -103,8 +103,54 @@ class PlayersClass extends Application {
 		
 		val GRID_STEPS=List(5,10,20,25,75)
 		
+		val nonearray:Array[(Float) => Float]=Array(none,none,none)
+		val okarray:Array[(Float) => Boolean]=Array(ok,ok,ok)
+		
+		def topath(pname: String):String =
+		{
+			"keystats/"+pname+".byall."+currentfilter+".txt"
+		}
+		
+		def makeSimple( title: String, pname: String, xkey: String, ykeys: Array[String])
+		{
+			make(title,topath(pname),xkey,ykeys,none,nonearray,ok,okarray)
+		}
+		
+		def makeSimpleAge( title: String, ykeys: Array[String])
+		{
+			make(title,topath("birthday"),"birthday",ykeys,birthday_to_age,nonearray,birthday_ok,okarray)
+		}
+		
+		var c_title=""
+		var c_path=""
+		var c_xkey=""
+		var c_ykeys=Array[String]()
+		var c_xfunc:(Float)=>Float=none
+		var c_yfuncs:Array[(Float)=>Float]=nonearray
+		var c_okxfunc:(Float)=>Boolean=ok
+		var c_okyfuncs:Array[(Float)=>Boolean]=okarray
+		var c_valid=false
+		
+		def remake()
+		{
+			if(!c_valid) return
+			c_path=c_path.replaceAll("byall\\.[^\\.]*","byall."+currentfilter)
+			make(c_title,c_path,c_xkey,c_ykeys,c_xfunc,c_yfuncs,c_okxfunc,c_okyfuncs)
+		}
+		
 		def make( title: String, path: String , xkey: String , ykeys: Array[String] , xfunc: (Float) => Float , yfuncs: Array[(Float) => Float], okxfunc: (Float) => Boolean , okyfuncs: Array[(Float) => Boolean] )
 		{
+		
+			c_title=title
+			c_path=path
+			c_xkey=xkey
+			c_ykeys=ykeys
+			c_xfunc=xfunc
+			c_yfuncs=yfuncs
+			c_okxfunc=okxfunc
+			c_okyfuncs=okyfuncs
+			
+			c_valid=true
 		
 			gc.clearRect(0,0,CANVAS_WIDTH,CANVAS_HEIGHT)
 		
@@ -220,12 +266,14 @@ class PlayersClass extends Application {
 			
 			//println("ix "+ix+" stepx "+stepx+" iy "+iy+" stepy "+stepy)
 			
+			var alt:Float=0.0.toFloat
 			while(((ix)*stepx)<MAXX)
 			{
 				val x=ix*stepx
 				val cx=calcx(x)
 				drawline(cx,CHART_Y0-BOX_WIDTH,cx,CHART_Y1+BOX_WIDTH,GRID_COLOR)
-				drawtext(cx-PADDING/2,CHART_Y1+2.5.toFloat*PADDING,""+x,14)
+				drawtext(cx-PADDING/2,CHART_Y1+2.5.toFloat*PADDING+alt*PADDING,""+x,14)
+				alt=1-alt
 				ix=ix+1
 			}
 			
@@ -321,6 +369,7 @@ class PlayersClass extends Application {
 			
 			//draw title
 			drawtext(TITLE_X0,TITLE_Y0,title,TITLE_FONT_SIZE)
+			
 		}
 		
 	}
@@ -1161,6 +1210,7 @@ class PlayersClass extends Application {
 			{
 				filterlabel.setText("  filter: "+filtertext)
 				currentfilter=filter
+				chart.remake
 			}
 		});
 	}
@@ -1177,6 +1227,7 @@ class PlayersClass extends Application {
 			{
 				minnumplabel.setText("  minnump: "+minnump)
 				currentminnump=minnump
+				chart.remake
 			}
 		});
 	}
@@ -1223,19 +1274,39 @@ class PlayersClass extends Application {
 	
 	def draw_participation_chart()
 	{
-		chart.make("Female participation % in the function of age","keystats/birthday.byall."+currentfilter+".txt","birthday",Array("PARF","PARFR"),birthday_to_age,Array(none,none),birthday_ok,Array(ok,ok))
+		chart.makeSimpleAge(
+			"Female participation % in the function of age",
+			Array("PARF","PARFR")
+		)
 	}
 	
 	def draw_rating_chart()
 	{
-		chart.make("Rating in the function of age","keystats/birthday.byall."+currentfilter+".txt","birthday",Array("AVGRM","AVGRF"),birthday_to_age,Array(none,none),birthday_ok,Array(ok,ok))
+		chart.makeSimpleAge(
+			"Rating in the function of age",
+			Array("AVGRM","AVGRF")
+		)
 	}
 	
 	def draw_country_chart()
 	{
-		chart.make("Rating in the function of participation","keystats/country.byall."+currentfilter+".txt","PARFR",Array("AVGRM","AVGRF"),none,Array(none,none),ok,Array(ok,ok))
+		chart.makeSimple(
+			"Rating in the function of participation",
+			"country",
+			"PARFR",
+			Array("AVGRM","AVGRF")
+		)
 	}
 	
+	def draw_rating_correlation_chart()
+	{
+		chart.makeSimple(
+			"Correlation between male and female ratings",
+			"country",
+			"AVGRM",
+			Array("AVGRF")
+		)
+	}
 
 	override def start(primaryStage: Stage)
 	{
@@ -1271,7 +1342,8 @@ class PlayersClass extends Application {
 			new MyButton("Key stats",key_stats),
 			new MyButtonSimple("Draw participation chart",draw_participation_chart),
 			new MyButtonSimple("Draw rating chart",draw_rating_chart),
-			new MyButtonSimple("Draw country chart",draw_country_chart)
+			new MyButtonSimple("Draw country chart",draw_country_chart),
+			new MyButtonSimple("Draw rating correlation chart",draw_rating_correlation_chart)
 		)
 		
 		for(filter<-FILTERS)
