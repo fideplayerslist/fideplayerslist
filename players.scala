@@ -907,7 +907,7 @@ class PlayersClass extends Application {
 		
 			if(interrupted) return true
 			
-			if(name!=".txt")
+			if((name!=".txt")&&(name!="M.txt"))
 			{
 		
 				update_textarea("Creating rating list: "+name)
@@ -955,6 +955,8 @@ class PlayersClass extends Application {
 			create_rating_lists_for_key(key)
 			
 		}
+		
+		updateRaw("Creating rating lists done.")
 		
 		return false
 		
