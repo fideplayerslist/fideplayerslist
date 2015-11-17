@@ -438,14 +438,14 @@ class PlayersClass extends Application {
 	def htmlify(path: String)
 	{
 		val hpath=path.replaceAll("\\.txt$",".html")
+		
+		//println("htmlify "+path+" to "+hpath)
+		
 		val lines=parseTxtSmartA(path)
 		
 		var html="<table border=1>"
 		
-		for(line<-lines)
-		{
-			html=html+"<tr><td>"+line.mkString("</td><td>")+"</td></tr>"
-		}
+		html=html+(for(line<-lines) yield "<tr><td>"+line.mkString("</td><td>")+"</td></tr>\n").mkString
 		
 		html=html+"</table>"
 		
@@ -595,6 +595,11 @@ class PlayersClass extends Application {
 	
 	type ArrayList=Array[Array[String]]
 	def ArrayList()=Array[Array[String]]()
+	
+	def parseTxtSimple(path: String):Array[String]=
+	{
+		Source.fromFile(path).getLines().toArray
+	}
 	
 	def parseTxtSmartA(path: String):ArrayList=
 	{
@@ -884,6 +889,75 @@ class PlayersClass extends Application {
 		t.start
 		create_modal()
 		interrupted=true
+	}
+	
+	def create_rating_lists_for_key(key: String):Boolean =
+	{
+	
+		val rdir="ratinglist"+key
+		mkdir(rdir)
+		deleteFilesInDir(rdir)
+		
+		val names=getListOfFileNames(key)
+		
+		updateRaw("Creating rating lists for "+key+".")
+		
+		for(name<-names)
+		{
+		
+			if(interrupted) return true
+			
+			if(name!=".txt")
+			{
+		
+				update_textarea("Creating rating list: "+name)
+			
+				val lines=parseTxtSimple(key+"/"+name)
+				
+				val header=strip(lines.head).split("\t")
+				
+				def compfunc(leftE:String,rightE:String):Boolean =
+				{
+					val leftEr=(header zip strip(leftE).split("\t")).toMap
+					val rightEr=(header zip strip(rightE).split("\t")).toMap
+					var ratingLeftE:Float=0.0.toFloat
+					var ratingRightE:Float=0.0.toFloat
+					if(leftEr.contains("rating")) ratingLeftE=myToFloat(leftEr("rating"))
+					if(rightEr.contains("rating")) ratingRightE=myToFloat(rightEr("rating"))
+					ratingLeftE > ratingRightE
+				}
+				
+				val lines_sorted:Array[String]=lines.tail.sortWith((leftE,rightE) => compfunc(leftE,rightE)).toArray
+				
+				val lines_as_string:Array[String]=(header.mkString("\t")+"\n")+:(for(line<-lines_sorted) yield strip(line)+"\n")
+				
+				val tpath=rdir+"/"+name
+				save_txt(tpath,lines_as_string.mkString)
+				
+				htmlify(tpath)
+				
+			}
+			
+		}
+		
+		return false
+		
+	}
+	
+	def create_rating_lists():Boolean =
+	{
+	
+		for(key<-collected_keys)
+		{
+		
+			if(interrupted) return true
+			
+			create_rating_lists_for_key(key)
+			
+		}
+		
+		return false
+		
 	}
 	
 	def key_stats():Boolean =
@@ -1195,6 +1269,9 @@ class PlayersClass extends Application {
 		key_stats()
 		if(interrupted) return true
 		
+		create_rating_lists()
+		if(interrupted) return true
+		
 		return false
 		
 	}
@@ -1367,8 +1444,10 @@ class PlayersClass extends Application {
 		
 		def runtest()
 		{
+		
 			//runtest
 			updateRaw("Test.")
+			
 		}
 		
 		var ButtonList=List(
@@ -1379,6 +1458,7 @@ class PlayersClass extends Application {
 			new MyButton("Collect keys from players.txt",collect_keys),
 			new MyButton("Create stats",create_stats),
 			new MyButton("Key stats",key_stats),
+			new MyButton("Create rating lists",create_rating_lists),
 			new MyButtonSimple("Draw participation chart",draw_participation_chart),
 			new MyButtonSimple("Draw rating chart",draw_rating_chart),
 			new MyButtonSimple("Draw country chart",draw_country_chart),
