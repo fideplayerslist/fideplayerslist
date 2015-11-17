@@ -26,6 +26,7 @@ class PlayersClass extends Application {
 	val FILTERS=List("x","m","a","ma")
 	val MINNUMPS=List("0","50","100","200","300","400","500","750","1000")
 	val TRANSLATE_FILTERS=Map("x"->"none","m"->"middle age","a"->"active","ma"->"middle age, active")
+	val TRANSLATE_FILTERS_TITLE=Map("x"->"among all players","m"->"among middle age players","a"->"among active players","ma"->"among middle age, active players")
 
 	def isValidFloat(what: String):Boolean =
 	{
@@ -282,7 +283,7 @@ class PlayersClass extends Application {
 				val y=iy*stepy
 				val cy=calcy(y)
 				drawline(CHART_X0-BOX_WIDTH,cy,CHART_X1-BOX_WIDTH,cy,GRID_COLOR)
-				drawtext(CHART_X0-3*PADDING,cy,""+y,14)
+				drawtext(CHART_X0-3.5.toFloat*PADDING,cy-BOX_WIDTH/4.2.toFloat,""+y,14)
 				iy=iy+1
 			}
 			
@@ -368,7 +369,8 @@ class PlayersClass extends Application {
 			}
 			
 			//draw title
-			drawtext(TITLE_X0,TITLE_Y0,title,TITLE_FONT_SIZE)
+			val titlef=title+" , "+TRANSLATE_FILTERS_TITLE(currentfilter)+" , > "+currentminnump+" rated players"
+			drawtext(TITLE_X0,TITLE_Y0,titlef,TITLE_FONT_SIZE)
 			
 		}
 		
@@ -394,7 +396,7 @@ class PlayersClass extends Application {
 	val keystat_fields=Array("ALL","MF","M","F","PARF","RM","RF","RMF","R","PARFR","AVGRM","AVGRF","AVGRMF","AVGR")
 	val keystat_indices=(keystat_fields zip (1 to keystat_fields.length)).toMap
 	
-	val chart=new Chart(1000,550)
+	val chart=new Chart(1200,550)
 	
 	def htmlify(path: String)
 	{
@@ -1356,14 +1358,14 @@ class PlayersClass extends Application {
 			root.getChildren.add(button)
 		}
 		
-		root.getChildren.add(filterlabel)
+		//root.getChildren.add(filterlabel)
 		
 		for(minnump<-MINNUMPS)
 		{
 			root.getChildren.add(new MyFilterAllButton(minnump))
 		}
 		
-		root.getChildren.add(minnumplabel)
+		//root.getChildren.add(minnumplabel)
 		
 		root.getChildren.add(new MyButton("Test",runtest))
 		
