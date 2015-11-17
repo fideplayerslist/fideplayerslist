@@ -429,6 +429,7 @@ class PlayersClass extends Application {
 	var abs_t0=0.0
 	
 	val collected_keys=Array("birthday","country","flag","sex","title")
+	val sensitive_keys=Array("flag","sex")
 	
 	val keystat_fields=Array("ALL","MF","M","F","PARF","RM","RF","RMF","R","PARFR","AVGRM","AVGRF","AVGRMF","AVGR")
 	val keystat_indices=(keystat_fields zip (1 to keystat_fields.length)).toMap
@@ -891,7 +892,7 @@ class PlayersClass extends Application {
 		interrupted=true
 	}
 	
-	def create_rating_lists_for_key(key: String):Boolean =
+	def create_rating_lists_for_key_old(key: String):Boolean =
 	{
 	
 		val rdir="ratinglist"+key
@@ -944,6 +945,52 @@ class PlayersClass extends Application {
 		
 	}
 	
+	def create_rating_lists_for_key(key: String):Boolean =
+	{
+	
+		val rdir="ratinglist"+key
+		mkdir(rdir)
+		deleteFilesInDir(rdir)
+		
+		val names=getListOfFileNames(key)
+		
+		updateRaw("Creating rating lists for "+key+".")
+		
+		for(name<-names)
+		{
+		
+			if(interrupted) return true
+			
+			if((name!=".txt")&&(name!="M.txt"))
+			{
+		
+				update_textarea("Creating rating list: "+name)
+			
+				val lines=parseTxtSimple(key+"/"+name)
+				
+				val header=strip(lines.head).split("\t")
+				
+				val ratingColumn = header.indexOf("rating")
+				
+				val values = lines.tail.map { x => x.split("\t") }
+				
+				val lines_sorted = (values.sortBy[Float] { x => ( if((x.length-1)>=ratingColumn) -myToFloat(x(ratingColumn)) else 0.0.toFloat ) }).map(x => x.mkString("\t"))
+				
+				val lines_as_string=(header.mkString("\t")+"\n")+lines_sorted.mkString("\n")+"\n"
+				
+				val tpath=rdir+"/"+name
+				save_txt(tpath,lines_as_string)
+				
+				htmlify(tpath)
+				
+			}
+			
+		}
+		
+		return false
+		
+	}
+	
 	def create_rating_lists():Boolean =
 	{
 	
@@ -952,7 +999,15 @@ class PlayersClass extends Application {
 		
 			if(interrupted) return true
 			
-			create_rating_lists_for_key(key)
+			if(sensitive_keys.contains(key))
+			{
+				println("using old method")
+				create_rating_lists_for_key_old(key)
+			}
+			else
+			{
+				create_rating_lists_for_key(key)
+			}
 			
 		}
 		
