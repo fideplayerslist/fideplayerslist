@@ -1535,7 +1535,7 @@ class PlayersClass extends Application {
 			
 			val timer=new Timer
 			
-			def heapsize = "Heap size "+Runtime.getRuntime().totalMemory()/1000000
+			def heapsize = "Heap size "+Runtime.getRuntime().totalMemory()/1000000+"."
 			
 			updateRaw("Reading players txt. "+heapsize)
 			
@@ -1556,28 +1556,31 @@ class PlayersClass extends Application {
 				{
 			
 					val keyindex=header.split("\t").indexOf(key)
+					val ratingindex=header.split("\t").indexOf("rating")
 					
 					var valuebuffs=Map[String,ArrayBuffer[String]]()
 					
 					for(line<-lines.tail)
 					{
 						val value=getIth(line,keyindex)
+						val extline="%10s".format(getIth(line,ratingindex))+"\t"+line
 						if(valuebuffs.contains(value))
 						{
-							valuebuffs(value)+=line
+							valuebuffs(value)+=extline
 						}
 						else
 						{
-							valuebuffs+=(value->ArrayBuffer[String](line))
+							valuebuffs+=(value->ArrayBuffer[String](extline))
 						}
 					}
 					
 					mkdirs(List("collectedkeys",key))
+					deleteFilesInDir("collectedkeys/"+key)
 					
 					for((k,v)<-valuebuffs)
 					{
 						update_textarea("Writing value "+k)
-						val content=header+"\n"+v.mkString("\n")+"\n"
+						val content=key+"\t"+header+"\n"+v.sorted.reverse.mkString("\n")+"\n"
 						save_txt("collectedkeys/"+key+"/"+k+".txt",content)
 					}
 					
