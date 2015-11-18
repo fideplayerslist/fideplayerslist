@@ -1580,7 +1580,7 @@ class PlayersClass extends Application {
 					for((k,v)<-valuebuffs)
 					{
 						update_textarea("Writing value "+k)
-						val content=key+"\t"+header+"\n"+v.sorted.reverse.mkString("\n")+"\n"
+						val content="sortrating\t"+header+"\n"+v.sorted.reverse.mkString("\n")+"\n"
 						save_txt("collectedkeys/"+key+"/"+k+".txt",content)
 					}
 					
