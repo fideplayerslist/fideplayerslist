@@ -18,6 +18,7 @@ import scala.io.Source
 import scala.xml.pull._
 
 import scala.collection.immutable.ListMap
+import scala.collection.mutable.ArrayBuffer
 
 class PlayersClass extends Application {
 
@@ -28,6 +29,12 @@ class PlayersClass extends Application {
 	val TRANSLATE_FILTERS=Map("x"->"none","m"->"middle age","a"->"active","ma"->"middle age, active")
 	val TRANSLATE_FILTERS_TITLE=Map("x"->"among all players","m"->"among middle age players","a"->"among active players","ma"->"among middle age, active players")
 	
+	class Timer
+	{
+		var t0=System.nanoTime()
+		def elapsed:Double = (System.nanoTime() - t0)/1.0e9
+	}
+	
 	def stripfloat(what: String):String =
 	{
 		what.replaceAll("\\.0$","")
@@ -37,6 +44,13 @@ class PlayersClass extends Application {
 	{
 		if((what=="NA")||(what=="")) return false
 		return true
+	}
+	
+	def getIth(line: String, index: Int):String =
+	{
+		val fields=line.split("\t")
+		if(index>(fields.length-1)) return ""
+		fields(index)
 	}
 	
 	def calc_linear(XYS: Map[Float,Float]): List[Float] =
@@ -1518,6 +1532,62 @@ class PlayersClass extends Application {
 		
 			//runtest
 			updateRaw("Test.")
+			
+			val timer=new Timer
+			
+			def heapsize = "Heap size "+Runtime.getRuntime().totalMemory()/1000000
+			
+			updateRaw("Reading players txt. "+heapsize)
+			
+			update_textarea("")
+			
+			val lines=parseTxtSimple("players.txt")
+			
+			updateRaw("Reading players done. "+heapsize)
+			
+			val header=lines.head
+			
+			for(key<-collected_keys)
+			{
+			
+				updateRaw("Collecting "+key+". "+heapsize)
+				
+				def collectkey(key: String)
+				{
+			
+					val keyindex=header.split("\t").indexOf(key)
+					
+					var valuebuffs=Map[String,ArrayBuffer[String]]()
+					
+					for(line<-lines.tail)
+					{
+						val value=getIth(line,keyindex)
+						if(valuebuffs.contains(value))
+						{
+							valuebuffs(value)+=line
+						}
+						else
+						{
+							valuebuffs+=(value->ArrayBuffer[String](line))
+						}
+					}
+					
+					mkdirs(List("collectedkeys",key))
+					
+					for((k,v)<-valuebuffs)
+					{
+						update_textarea("Writing value "+k)
+						val content=header+"\n"+v.mkString("\n")+"\n"
+						save_txt("collectedkeys/"+key+"/"+k+".txt",content)
+					}
+					
+				}
+				
+				collectkey(key)
+				
+			}
+			
+			updateRaw("Collecting keys done. "+heapsize)
 			
 		}
 		
