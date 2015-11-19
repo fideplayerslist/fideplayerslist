@@ -1,2 +1,0 @@
-male GMs	male GM average rating	female GMs	female GM average rating
-723	2551.9	26	2514.3
