@@ -16,17 +16,23 @@ class CommandInterpreter
 		"xml" -> "parse XML",
 		"x" -> "exit"
 		)
+		
+	def listcommands() { result=(for((k,v)<-explanations) yield k+" : "+explanations(k)).mkString("\n") }
+	def parsexml() { result=new ParseXML("players.txt").parse }
+	def exit() { finished=true }
 	
 	val commands = Map[String,()=>Unit](
-		"l" -> (()=>(result=(for((k,v)<-explanations) yield k+" : "+explanations(k)).mkString("\n"))),
-		"xml" -> (()=>(new ParseXML("players.txt"))),
-		"x" -> (()=>(finished=true))
+		"l" -> listcommands,
+		"xml" -> parsexml,
+		"x" -> exit
 		)
 	
 	do
 	{
 
-		val input=readLine(result+"\nenter command> ")
+		val input=readLine((if(result!="") result+"\n" else "")+"enter command> ")
+		
+		result=""
 		
 		if(commands.contains(input))
 		{
