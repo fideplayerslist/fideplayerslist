@@ -7,7 +7,7 @@ import parsexml.ParseXML
 class CommandInterpreter
 {
 
-	var result="welcome"
+	var result=""
 	
 	var finished=false
 	
@@ -17,8 +17,8 @@ class CommandInterpreter
 		"x" -> "exit"
 		)
 		
-	def listcommands() { result=(for((k,v)<-explanations) yield k+" : "+explanations(k)).mkString("\n") }
-	def parsexml() { result=new ParseXML("players.txt").parse }
+	def listcommands() { result=(for((k,v)<-explanations) yield "%-8s : %s".format(k,explanations(k))).mkString("\n") }
+	def parsexml() { result=new ParseXML("players_list_xml.xml").parse }
 	def exit() { finished=true }
 	
 	val commands = Map[String,()=>Unit](
