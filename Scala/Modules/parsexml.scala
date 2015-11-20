@@ -39,6 +39,13 @@ class Dir
 		for(f<-getListOfFiles(dir)) f.delete
 	}
 
+	def saveTxt(name: String,content: String)
+	{
+		val writer=new PrintWriter(new File(name))
+		writer.write(content)
+		writer.close()
+	}
+
 }
 
 class Timer
@@ -184,6 +191,96 @@ class CountKeys(path: String)
 				}
 
 				dwriter.close
+
+				if(detailed_keycounts(k).keys.toList.length<5000)
+				{
+
+					println("collecting "+k)
+
+					def collectkey(key: String)
+					{
+				
+						var valuebuffs=Map[String,ArrayBuffer[String]]()
+						
+						for(line<-lines)
+						{
+
+							var fkey=""
+							var fvalue=""
+
+							val fields=line.split("\t")
+
+							var value_for_key=""
+							var rating=""
+
+							for(field<-fields)
+							{
+								if(fkey=="")
+								{
+									fkey=field
+								}
+								else
+								{
+									fvalue=field
+									if(fkey==key)
+									{
+										value_for_key=fvalue
+									}
+									else if(fkey=="rating")
+									{
+										rating=fvalue
+									}
+									fkey=""
+									fvalue=""
+								}
+							}
+							
+							val extline="%10s".format(rating)+"\t"+line
+							if(valuebuffs.contains(value_for_key))
+							{
+								valuebuffs(value_for_key)+=extline
+							}
+							else
+							{
+								valuebuffs+=(value_for_key->ArrayBuffer[String](extline))
+							}
+						}
+						
+						dir.deleteFilesInDir("stats/keycounts/"+key)
+						
+						for((k,v)<-valuebuffs)
+						{
+
+							println("value %s has %d players".format(k,v.length))
+
+							val path="stats/keycounts/"+key+"/"+k+".txt"
+
+							//sorted
+						
+							val content=v.sorted.reverse.mkString("\n")+"\n"
+							println("writing sorted list for value: %s , %s".format(k,(new HeapSize).heapsize))
+							dir.saveTxt(path,content)
+
+							//unsorted
+
+							/*println("writing list for value: %s , %s".format(k,(new HeapSize).heapsize))
+
+							val writer=new PrintWriter(new File(path))
+	
+							for(line<-v)
+							{
+								writer.write(line+"\n")
+							}
+
+							writer.close()*/
+							
+						}
+						
+					}
+					
+					collectkey(k)
+
+				}
 
 			}
 
