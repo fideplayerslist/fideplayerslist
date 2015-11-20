@@ -5,6 +5,8 @@ import scala.io.StdIn.readLine
 import parsexml._
 import countkeys._
 
+import scala.collection.immutable.ListMap
+
 class CommandInterpreter
 {
 
@@ -12,23 +14,26 @@ class CommandInterpreter
 	
 	var finished=false
 	
-	val explanations= Map[String,String](
-		"l" -> "list commands",
+	val explanations= ListMap[String,String](
+		"startup" -> "xml + ck",
 		"xml" -> "parse XML",
 		"ck" -> "count keys",
+		"l" -> "list commands",
 		"x" -> "exit"
 		)
 		
-	def listcommands() { result=(for((k,v)<-explanations) yield "%-8s : %s".format(k,explanations(k))).mkString("\n") }
-	def parsexml() { result=new ParseXML("players_list_xml.xml").parse }
-	def count_keys() { result=new CountKeys("players.txt").count }
-	def exit() { finished=true }
+	def listcommands_func() { result=(for((k,v)<-explanations) yield "%-8s : %s".format(k,explanations(k))).mkString("\n") }
+	def startup_func() { parsexml_func(); countkeys_func() }
+	def parsexml_func() { result=new ParseXML("players_list_xml.xml").parse }
+	def countkeys_func() { result=new CountKeys("players.txt").count }
+	def exit_func() { finished=true }
 	
 	val commands = Map[String,()=>Unit](
-		"l" -> listcommands,
-		"xml" -> parsexml,
-		"ck" -> count_keys,
-		"x" -> exit
+		"l" -> listcommands_func,
+		"startup" -> startup_func,
+		"xml" -> parsexml_func,
+		"ck" -> countkeys_func,
+		"x" -> exit_func
 		)
 	
 	do
