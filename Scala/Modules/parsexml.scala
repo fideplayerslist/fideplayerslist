@@ -6,7 +6,40 @@ import java.lang.System
 import scala.io.Source
 import scala.xml.pull._
 
+import scala.collection.immutable.ListMap
 import scala.collection.mutable.ArrayBuffer
+
+class Dir
+{
+
+	def mkdirs(path: List[String]) = // return true if path was created
+		path.tail.foldLeft(new File(path.head)){(a,b) => a.mkdir; new File(a,b)}.mkdir
+		
+	def mkdir(path: String) = // create single dir
+		mkdirs(List(path))
+
+	def getListOfFiles(dir: String):List[File] =
+	{
+		val d = new File(dir)
+		if (d.exists && d.isDirectory)
+		{
+			d.listFiles.filter(_.isFile).toList
+		}
+		else
+		{
+			List[File]()
+		}
+	}
+	
+	def getListOfFileNames(dir: String):List[String] =
+		for(f<-getListOfFiles(dir)) yield f.getName
+		
+	def deleteFilesInDir(dir: String)
+	{
+		for(f<-getListOfFiles(dir)) f.delete
+	}
+
+}
 
 class Timer
 {
@@ -41,6 +74,8 @@ class CountKeys(path: String)
 
 		var keycounts=Map[String,Int]()
 
+		var detailed_keycounts=Map[String,Map[String,Int]]()
+
 		var cnt=0
 
 		for(line<-lines)
@@ -72,6 +107,28 @@ class CountKeys(path: String)
 						keycounts+=(key->1)
 					}
 
+					if((key!="name")&&(key!="fideid"))
+					{
+
+						var keycount=Map[String,Int]()
+
+						if(detailed_keycounts.contains(key))
+						{
+							keycount=detailed_keycounts(key)
+						}
+
+						if(keycount.contains(value))
+						{
+							keycount+=(value->(keycount(value)+1))
+						}
+						else
+						{
+							keycount+=(value->1)
+						}
+
+						detailed_keycounts+=(key->keycount)
+					}
+
 
 					key=""
 					value=""
@@ -79,7 +136,7 @@ class CountKeys(path: String)
 
 			}
 
-			if((cnt%200000)==0)
+			if((cnt%100000)==0)
 			{
 				println("counted %d , %s".format(cnt,(new HeapSize).heapsize))
 
@@ -93,10 +150,43 @@ class CountKeys(path: String)
 
 		println("total counted %d , %s".format(cnt,(new HeapSize).heapsize))
 
+		val dir=new Dir
+
+		dir.mkdir("stats")
+
+		dir.deleteFilesInDir("stats")
+
+		dir.mkdir("stats/keycounts")
+
+		dir.deleteFilesInDir("stats/keycounts")
+
 		val writer=new PrintWriter(new File("keycounts.txt"))
 
 		for((k,v)<-keycounts)
 		{
+
+			(new File("stats/keycounts/"+k)).delete
+
+			if(detailed_keycounts.contains(k))
+			{
+
+				dir.mkdir("stats/keycounts/"+k)
+
+				dir.deleteFilesInDir("stats/keycounts/"+k)
+
+				val dwriter=new PrintWriter(new File("stats/keycounts/"+k+".txt"))
+
+				val sorted_detailed_keycount=ListMap(detailed_keycounts(k).toSeq.sortWith(_._1 < _._1):_*)
+
+				for((dk,dv)<-sorted_detailed_keycount)
+				{
+					dwriter.write("%s\t%d\n".format(dk,dv))
+				}
+
+				dwriter.close
+
+			}
+
 			println("%-20s : %d".format(k,v))
 			writer.write("%s\t%d\n".format(k,v))
 		}
