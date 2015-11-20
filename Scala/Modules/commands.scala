@@ -3,6 +3,7 @@ package commands
 import scala.io.StdIn.readLine
 
 import parsexml._
+import countkeys._
 
 class CommandInterpreter
 {
