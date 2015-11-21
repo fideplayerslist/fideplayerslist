@@ -19,7 +19,7 @@ class CountKeys(path: String)
 	def count(simple: Boolean):String =
 	{
 
-		val lines=(readTxtLinesVerbose("players.txt"))
+		val lines=(readTxtLines("players.txt"))
 
 		var keycounts=Map[String,Int]()
 
@@ -200,14 +200,12 @@ class CountKeys(path: String)
 						for((k,v)<-valuebuffs)
 						{
 
-							println("value %s has %d players".format(k,v.length))
-
 							val path="stats/keycounts/"+key+"/"+k+".txt"
 
 							//sorted
 						
 							val content=v.sorted.reverse.mkString("\n")+"\n"
-							println("writing sorted list for value: %s , %s".format(k,heapsize))
+							println("writing sorted list for value: %s ( %d ) , %s".format(k,v.length,heapsize))
 							saveTxt(path,content)
 
 							//unsorted

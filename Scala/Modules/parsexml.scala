@@ -68,6 +68,12 @@ class ParseXML(path: String)
 					{
 						if((current_tag!="")&&(current_value!=""))
 						{
+							
+							if(current_tag=="country")
+							{
+								current_value=current_value.toUpperCase
+							}
+
 							if(current_record=="")
 							{
 								current_record=current_tag+"\t"+current_value

@@ -16,6 +16,22 @@ object HeapSize
 	def heapsize = "heap size "+Runtime.getRuntime().totalMemory()/1000000
 }
 
+object Parse
+{
+	def isInt(what: String):Boolean =
+	{
+		try
+		{
+			val i=what.toInt
+		}
+		catch
+		{
+			case ex:NumberFormatException=>return false
+		}
+		return true
+	}
+}
+
 object Dir
 {
 

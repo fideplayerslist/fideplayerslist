@@ -6,7 +6,11 @@ import utils.Dir._
 
 import globals.Globals._
 
+import record._
+
 import scala.collection.mutable.ArrayBuffer
+
+import scala.io.StdIn.readLine
 
 class Stats
 {
@@ -19,6 +23,7 @@ class Stats
 		deleteFilesInDir("stats/stats")
 
 		for(key<-collected_keys)
+		//for(key<-List("title"))
 		{
 			println("creating stats for "+key)
 
@@ -51,15 +56,18 @@ class Stats
 
 						println("value : "+value)
 
-						val lines=readTxtLinesVerbose(keycountdir+"/"+filename)
+						val lines=readTxtLines(keycountdir+"/"+filename)
 
 						class Stat(set_path:String)
 						{
 							var ALL:Int=0
+							var M:Int=0
+							var F:Int=0
+							var MF:Int=0
 							val path=set_path
 						}
 
-						var statsmap=Map[String,Stat]()
+						var statsmap=scala.collection.mutable.Map[String,Stat]()
 
 						for(filter<-filters)
 						{
@@ -72,16 +80,64 @@ class Stats
 						{
 							for(filter<-filters)
 							{
-								statsmap(filter).ALL=statsmap(filter).ALL+1
+
+								val stat=statsmap(filter)
+
+								val record=new Record(line)
+
+								var cond=true
+
+								if(filter.contains("m"))
+								{
+									if(!record.hasAge)
+									{
+										cond=false
+									}
+									else
+									{
+										cond=(record.age>=20)&&(record.age<=40)
+									}
+								}
+
+								if(filter.contains("a"))
+								{
+									if(record.inActive)
+									{
+										cond=false
+									}
+								}
+
+								if(cond)
+								{
+
+									stat.ALL=stat.ALL+1
+
+									if(record.hasSex)
+									{
+										stat.MF=stat.MF+1
+										if(record.sex=="M")
+										{
+											stat.M=stat.M+1
+										}
+										else
+										{
+											stat.F=stat.F+1
+										}
+									}
+
+								}
+
+								statsmap(filter)=stat
 							}
 						}
 
 						for(filter<-filters)
 						{
 							val stat=statsmap(filter)
-							var content="ALL\t"+stat.ALL+"\n"
+							var content="ALL\t"+stat.ALL+"\nM\t"+stat.M+"\nF\t"+stat.F+"\nMF\t"+stat.MF+"\n"
 
 							saveTxt(stat.path,content)
+							htmlify(stat.path)
 						}
 
 					}
