@@ -4,6 +4,7 @@ import scala.io.StdIn.readLine
 
 import parsexml._
 import countkeys._
+import stats._
 
 import scala.collection.immutable.ListMap
 
@@ -21,6 +22,7 @@ class CommandInterpreter
 	def parsexml_func() { result=new ParseXML("players_list_xml.xml").parse }
 	def countkeys_simple_func() { result=new CountKeys("players.txt").count(true) }
 	def countkeys_func() { result=new CountKeys("players.txt").count(false) }
+	def create_stats_func() { result=new Stats().create() }
 	def exit_func() { finished=true }
 
 	val commands=ListMap[String,Command](
@@ -29,6 +31,7 @@ class CommandInterpreter
 		"cks"->new Command("count keys simple",countkeys_simple_func),
 		"ck"->new Command("count keys",countkeys_func),
 		"l"->new Command("list commands",listcommands_func),
+		"s"->new Command("create stats",create_stats_func),
 		"x"->new Command("exit",exit_func)
 	)
 	
