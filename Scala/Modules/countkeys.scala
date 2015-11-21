@@ -16,10 +16,10 @@ import globals.Globals._
 class CountKeys(path: String)
 {
 
-	def count():String =
+	def count(simple: Boolean):String =
 	{
 
-		val lines=(readTxtLines("players.txt"))
+		val lines=(readTxtLinesVerbose("players.txt"))
 
 		var keycounts=Map[String,Int]()
 
@@ -85,36 +85,43 @@ class CountKeys(path: String)
 
 			}
 
-			if((cnt%100000)==0)
+			if((cnt%50000)==0)
 			{
-				println("counted %d , %s".format(cnt,heapsize))
-
-				for((k,v)<-keycounts)
-				{
-					println("%-20s : %d".format(k,v))
-				}
+				println("counted %d".format(cnt))
 			}
 
 		}
 
-		println("total counted %d , %s".format(cnt,heapsize))
+		println("counting ok, total counted %d".format(cnt))
 
-		mkdir("stats")
+		if(!simple)
+		{
 
-		deleteFilesInDir("stats")
+			mkdir("stats")
 
-		mkdir("stats/keycounts")
+			deleteFilesInDir("stats")
 
-		deleteFilesInDir("stats/keycounts")
+			mkdir("stats/keycounts")
+
+			deleteFilesInDir("stats/keycounts")
+
+		}
 
 		val writer=new PrintWriter(new File("keycounts.txt"))
+
+		writer.write("key\tcount\tstatus\tmissing\nall\t%d\tcomplete\t\n".format(cnt))
 
 		for((k,v)<-keycounts)
 		{
 
-			deleteFilesInDir("stats/keycounts/"+k)
+			if(!simple)
+			{
 
-			(new File("stats/keycounts/"+k)).delete
+				deleteFilesInDir("stats/keycounts/"+k)
+
+				(new File("stats/keycounts/"+k)).delete
+
+			}
 
 			if(detailed_keycounts.contains(k))
 			{
@@ -130,7 +137,7 @@ class CountKeys(path: String)
 
 				dwriter.close
 
-				if((detailed_keycounts(k).keys.toList.length<5000)&&(collected_keys.contains(k)))
+				if((!simple)&&(detailed_keycounts(k).keys.toList.length<5000)&&(collected_keys.contains(k)))
 				{
 
 					mkdir("stats/keycounts/"+k)
@@ -226,11 +233,21 @@ class CountKeys(path: String)
 
 			}
 
-			println("%-20s : %d".format(k,v))
-			writer.write("%s\t%d\n".format(k,v))
+			val missing=cnt-v
+
+			val status=if(missing>0) "missing" else "complete"
+
+			val missing_string=if(missing>0) ""+missing else ""
+
+			println("%-20s : %-10d %-10s %s".format(k,v,status,missing_string))
+
+			writer.write("%s\t%d\t%s\t%s\n".format(k,v,status,missing_string))
+
 		}
 
 		writer.close
+
+		htmlify("keycounts.txt")
 
 		"Done."
 	}

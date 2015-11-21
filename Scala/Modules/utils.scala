@@ -53,13 +53,33 @@ object Dir
 		writer.close()
 	}
 
-	def readTxtLines(path:String):Array[String]=
+	def readTxtLinesVerbose(path:String):Array[String]=
 	{
 		val timer=new Timer
 		println("reading lines of %s , %s".format(path,HeapSize.heapsize))
 		val lines=Source.fromFile(path).getLines().toArray
 		println("number of lines %d , elapsed %f , %s".format(lines.length,timer.elapsed,HeapSize.heapsize))
 		lines
+	}
+
+	def readTxtLines(path:String):Array[String]=
+	{
+		Source.fromFile(path).getLines().toArray
+	}
+
+	def htmlify(path: String)
+	{
+		val hpath=path.replaceAll("\\.txt$",".html")
+		
+		val lines=readTxtLines(path)
+		
+		var html="<table border=1>"
+		
+		html=html+(for(line<-lines) yield "<tr><td>"+line.split("\t").mkString("</td><td>")+"</td></tr>\n").mkString
+		
+		html=html+"</table>"
+		
+		saveTxt(hpath,html)
 	}
 
 }

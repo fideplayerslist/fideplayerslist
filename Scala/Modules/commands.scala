@@ -13,28 +13,24 @@ class CommandInterpreter
 	var result=""
 	
 	var finished=false
-	
-	val explanations= ListMap[String,String](
-		"startup" -> "xml + ck",
-		"xml" -> "parse XML",
-		"ck" -> "count keys",
-		"l" -> "list commands",
-		"x" -> "exit"
-		)
-		
-	def listcommands_func() { result=(for((k,v)<-explanations) yield "%-8s : %s".format(k,explanations(k))).mkString("\n") }
+
+	class Command(set_explanation:String, set_func:()=>Unit){val explanation=set_explanation;val func=set_func}
+
+	def listcommands_func() { result=(for((k,v)<-commands) yield "%-8s : %s".format(k,v.explanation)).mkString("\n") }
 	def startup_func() { parsexml_func(); countkeys_func() }
 	def parsexml_func() { result=new ParseXML("players_list_xml.xml").parse }
-	def countkeys_func() { result=new CountKeys("players.txt").count }
+	def countkeys_simple_func() { result=new CountKeys("players.txt").count(true) }
+	def countkeys_func() { result=new CountKeys("players.txt").count(false) }
 	def exit_func() { finished=true }
-	
-	val commands = Map[String,()=>Unit](
-		"l" -> listcommands_func,
-		"startup" -> startup_func,
-		"xml" -> parsexml_func,
-		"ck" -> countkeys_func,
-		"x" -> exit_func
-		)
+
+	val commands=ListMap[String,Command](
+		"startup"->new Command("xml + ck",startup_func),
+		"xml"->new Command("parse XML",parsexml_func),
+		"cks"->new Command("count keys simple",countkeys_simple_func),
+		"ck"->new Command("count keys",countkeys_func),
+		"l"->new Command("list commands",listcommands_func),
+		"x"->new Command("exit",exit_func)
+	)
 	
 	do
 	{
@@ -45,7 +41,7 @@ class CommandInterpreter
 		
 		if(commands.contains(input))
 		{
-			commands(input)()
+			commands(input).func()
 		}
 		else
 		{
