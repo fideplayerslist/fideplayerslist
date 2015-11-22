@@ -1695,7 +1695,7 @@ class PlayersClass extends Application {
 		
 		//root.getChildren.add(minnumplabel)
 		
-		root.getChildren.add(new MyButton("Test",runtest))
+		//root.getChildren.add(new MyButton("Test",runtest))
 		
 		root.getChildren.add(chart.canvas)
 
