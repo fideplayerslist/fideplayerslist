@@ -233,6 +233,7 @@ class CountKeys(path: String)
 							saveTxt(path,content)
 
 							var rank=0
+							var activerank=0
 							var ratinglist=scala.collection.mutable.ArrayBuffer[String]()
 
 							for(line<-Source.fromFile(path).getLines())
@@ -241,8 +242,18 @@ class CountKeys(path: String)
 
 								if((record.hasRating)&&(record.rating>=2000))
 								{
+
 									rank=rank+1
-									val rline="%d\t%s\t%d\t%s\t%s\t%d\t".format(rank,record.name,record.rating,record.country,record.sex,record.age)
+
+									var activerank_field=""
+
+									if(record.active)
+									{
+										activerank=activerank+1
+										activerank_field=""+activerank
+									}
+
+									val rline="%d\t%s\t%s\t%d\t%s\t%s\t%d\t".format(rank,activerank_field,record.name,record.rating,record.country,record.sex,record.age)
 
 									ratinglist+=rline
 								}
@@ -250,7 +261,7 @@ class CountKeys(path: String)
 
 							if(rank>0)
 							{
-								var content="rank\tname\trating\tcountry\tsex\tage\n"
+								var content="rank\tactive rank\tname\trating\tcountry\tsex\tage\n"
 
 								val lcontent=ratinglist.mkString("\n")+"\n"
 
