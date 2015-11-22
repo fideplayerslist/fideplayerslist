@@ -83,6 +83,9 @@ class PlayersClass extends Application {
 	val KEY_TRANSLATIONS=Map(
 		"PARF"->"Female participation %",
 		"PARFR"->"Female participation % rated",
+		"AVGR"->"Average rating",
+		"M"->"Male",
+		"F"->"Female",
 		"AVGRM"->"Average male rating",
 		"AVGRF"->"Average female rating"
 		)
@@ -139,6 +142,22 @@ class PlayersClass extends Application {
 		{
 			make(title,topath(pname),xkey,ykeys,none,nonearray,ok,okarray)
 		}
+
+		var dotrend:Boolean=true
+
+		def makeSimpleNoTrend( title: String, pname: String, xkey: String, ykeys: Array[String])
+		{
+			dotrend=false
+			make(title,topath(pname),xkey,ykeys,none,nonearray,ok,okarray)
+			dotrend=true
+		}
+
+		def makeSimpleNoTrendCheckX( title: String, pname: String, xkey: String, checkx: (Float)=>Boolean, ykeys: Array[String])
+		{
+			dotrend=false
+			make(title,topath(pname),xkey,ykeys,none,nonearray,checkx,okarray)
+			dotrend=true
+		}
 		
 		def makeSimpleAge( title: String, ykeys: Array[String])
 		{
@@ -154,12 +173,15 @@ class PlayersClass extends Application {
 		var c_okxfunc:(Float)=>Boolean=ok
 		var c_okyfuncs:Array[(Float)=>Boolean]=okarray
 		var c_valid=false
+		var c_dotrend=false
 		
 		def remake()
 		{
 			if(!c_valid) return
 			c_path=c_path.replaceAll("[^/]+/byall",currentfilter+"/byall")
+			dotrend=c_dotrend
 			make(c_title,c_path,c_xkey,c_ykeys,c_xfunc,c_yfuncs,c_okxfunc,c_okyfuncs)
+			dotrend=false
 		}
 		
 		def make( title: String, path: String , xkey: String , ykeys: Array[String] , xfunc: (Float) => Float , yfuncs: Array[(Float) => Float], okxfunc: (Float) => Boolean , okyfuncs: Array[(Float) => Boolean] )
@@ -173,6 +195,7 @@ class PlayersClass extends Application {
 			c_yfuncs=yfuncs
 			c_okxfunc=okxfunc
 			c_okyfuncs=okyfuncs
+			c_dotrend=dotrend
 			
 			c_valid=true
 		
@@ -363,24 +386,29 @@ class PlayersClass extends Application {
 				}
 				
 				//draw linear
+
+				if(dotrend)
+				{
 				
-				val linear=calc_linear(XYS)
-				
-				val Alpha=linear(0)
-				val Beta=linear(1)
-				
-				Betas=Betas:+Beta
-				
-				val x0=MINX
-				val cx0=calcx(x0)
-				val y0=Alpha+x0*Beta
-				val cy0=calcy(y0)
-				val x1=MAXX
-				val cx1=calcx(x1)
-				val y1=Alpha+x1*Beta
-				val cy1=calcy(y1)
-				
-				drawline(cx0,cy0,cx1,cy1,COLORS(i))
+					val linear=calc_linear(XYS)
+					
+					val Alpha=linear(0)
+					val Beta=linear(1)
+					
+					Betas=Betas:+Beta
+					
+					val x0=MINX
+					val cx0=calcx(x0)
+					val y0=Alpha+x0*Beta
+					val cy0=calcy(y0)
+					val x1=MAXX
+					val cx1=calcx(x1)
+					val y1=Alpha+x1*Beta
+					val cy1=calcy(y1)
+					
+					drawline(cx0,cy0,cx1,cy1,COLORS(i))
+
+				}
 				
 				i=i+1
 			}
@@ -412,12 +440,18 @@ class PlayersClass extends Application {
 			//draw legend
 			for(i <- 0 to XYSS.length-1)
 			{
-				var cy=LEGEND_Y0+2*LEGEND_STEP*i
+
+				val legend_step_factor=if(dotrend) 2 else 1
+
+				var cy=LEGEND_Y0+legend_step_factor*LEGEND_STEP*i
 				drawbox(LEGEND_X0,cy,COLORS(i))
 				drawtext(LEGEND_X0+2*BOX_WIDTH,cy-BOX_WIDTH/3,KEY_TRANSLATIONS(ykeys(i)),LEGEND_FONT_SIZE)
-				cy=LEGEND_Y0+2*LEGEND_STEP*i+LEGEND_STEP
-				drawline(LEGEND_X0,cy,LEGEND_X0+PADDING,cy,COLORS(i))
-				drawtext(LEGEND_X0+3*BOX_WIDTH,cy-BOX_WIDTH/3,"linear, beta "+Betas(i),LEGEND_FONT_SIZE)
+				if(dotrend)
+				{
+					cy=LEGEND_Y0+2*LEGEND_STEP*i+LEGEND_STEP
+					drawline(LEGEND_X0,cy,LEGEND_X0+PADDING,cy,COLORS(i))
+					drawtext(LEGEND_X0+3*BOX_WIDTH,cy-BOX_WIDTH/3,"linear, beta "+Betas(i),LEGEND_FONT_SIZE)
+				}
 			}
 			
 			//draw title
@@ -1499,6 +1533,31 @@ class PlayersClass extends Application {
 			Array("AVGRM","AVGRF")
 		)
 	}
+
+	def checkrating(rating:Float):Boolean =
+		((rating>=1000)&&(rating<=3000))
+
+	def draw_distribution_chart()
+	{
+		chart.makeSimpleNoTrendCheckX(
+			"Rating distribution",
+			"rating",
+			"AVGR",
+			checkrating,
+			Array("M","F")
+		)
+	}
+
+	def draw_female_distribution_chart()
+	{
+		chart.makeSimpleNoTrendCheckX(
+			"Rating distribution",
+			"rating",
+			"AVGR",
+			checkrating,
+			Array("F")
+		)
+	}
 	
 	def draw_rating_correlation_chart()
 	{
@@ -1607,7 +1666,9 @@ class PlayersClass extends Application {
 			new MyButtonSimple("Draw participation chart",draw_participation_chart),
 			new MyButtonSimple("Draw rating chart",draw_rating_chart),
 			new MyButtonSimple("Draw country chart",draw_country_chart),
-			new MyButtonSimple("Draw rating correlation chart",draw_rating_correlation_chart)
+			new MyButtonSimple("Draw rating correlation chart",draw_rating_correlation_chart),
+			new MyButtonSimple("Draw distribution chart",draw_distribution_chart),
+			new MyButtonSimple("Draw female distribution chart",draw_female_distribution_chart)
 		)
 		
 		for(filter<-FILTERS)
