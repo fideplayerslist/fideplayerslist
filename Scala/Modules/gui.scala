@@ -152,10 +152,10 @@ class PlayersClass extends Application {
 			dotrend=true
 		}
 
-		def makeSimpleNoTrendCheckX( title: String, pname: String, xkey: String, checkx: (Float)=>Boolean, ykeys: Array[String])
+		def makeSimpleNoTrendCheckXY( title: String, pname: String, xkey: String, checkx: (Float)=>Boolean, ykeys: Array[String], checky: (Float)=>Boolean)
 		{
 			dotrend=false
-			make(title,topath(pname),xkey,ykeys,none,nonearray,checkx,okarray)
+			make(title,topath(pname),xkey,ykeys,none,nonearray,checkx,Array(checky,checky,checky))
 			dotrend=true
 		}
 		
@@ -1537,25 +1537,30 @@ class PlayersClass extends Application {
 	def checkrating(rating:Float):Boolean =
 		((rating>=1000)&&(rating<=3000))
 
+	def checkcount(count:Float):Boolean =
+		(count>0)
+
 	def draw_distribution_chart()
 	{
-		chart.makeSimpleNoTrendCheckX(
+		chart.makeSimpleNoTrendCheckXY(
 			"Rating distribution",
 			"rr",
 			"AVGR",
 			checkrating,
-			Array("M","F")
+			Array("M","F"),
+			checkcount
 		)
 	}
 
 	def draw_female_distribution_chart()
 	{
-		chart.makeSimpleNoTrendCheckX(
+		chart.makeSimpleNoTrendCheckXY(
 			"Rating distribution",
 			"rr",
 			"AVGR",
 			checkrating,
-			Array("F")
+			Array("F"),
+			checkcount
 		)
 	}
 	
