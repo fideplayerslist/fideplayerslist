@@ -68,7 +68,7 @@ class YoungTalents
 					if(surplus>0)
 					{
 
-						val tline="%10d\t%s\t%s\t%s\t%d\t%d".format(surplus,record.name,record.country,record.sex,expr.toInt,record.rating)
+						val tline="%10d\t%s\t%s\t%s\t%d\t%d\t%d".format(surplus,record.name,record.country,record.sex,record.age,expr.toInt,record.rating)
 
 						talents+=tline
 
@@ -97,7 +97,7 @@ class YoungTalents
 
 		val sliced=numbered.slice(0,1000)
 
-		val content="rank\trating surplus\tname\tcountry\tsex\texpected rating\tactual rating\n"+sliced.mkString("\n")+"\n"
+		val content="rank\trating surplus\tname\tcountry\tsex\tage\texpected rating\tactual rating\n"+sliced.mkString("\n")+"\n"
 
 		val tpath="stats/youngtalents.txt"
 

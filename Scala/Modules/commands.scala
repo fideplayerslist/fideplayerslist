@@ -35,8 +35,8 @@ class CommandInterpreter
 
 		println("startup ok, elapsed %.0f".format(timer.elapsed))
 
-
 		result="Done."
+		
 	}
 	def parsexml_func() { result=new ParseXML("players_list_xml.xml").parse }
 	def countkeys_simple_func() { result=new CountKeys("players.txt").count(true) }
