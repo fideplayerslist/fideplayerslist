@@ -19,6 +19,8 @@ class CountKeys(path: String)
 	def count(simple: Boolean):String =
 	{
 
+		println("counting keys")
+
 		val lines=(readTxtLines("players.txt"))
 
 		var keycounts=Map[String,Int]()

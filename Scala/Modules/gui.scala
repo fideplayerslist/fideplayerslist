@@ -1541,7 +1541,7 @@ class PlayersClass extends Application {
 	{
 		chart.makeSimpleNoTrendCheckX(
 			"Rating distribution",
-			"rating",
+			"rr",
 			"AVGR",
 			checkrating,
 			Array("M","F")
@@ -1552,7 +1552,7 @@ class PlayersClass extends Application {
 	{
 		chart.makeSimpleNoTrendCheckX(
 			"Rating distribution",
-			"rating",
+			"rr",
 			"AVGR",
 			checkrating,
 			Array("F")

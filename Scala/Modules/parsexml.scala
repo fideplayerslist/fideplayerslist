@@ -7,7 +7,10 @@ import scala.io.Source
 import scala.xml.pull._
 
 import utils.Timer
-import utils.HeapSize._
+
+import utils.Parse._
+
+import globals.Globals._
 
 class ParseXML(path: String)
 {
@@ -25,7 +28,7 @@ class ParseXML(path: String)
 
 		var cnt=0
 
-		println("Parse XML "+path)
+		println("parsing "+path)
 
 		var current_record=""
 
@@ -60,7 +63,7 @@ class ParseXML(path: String)
 						{
 							val elapsed=timer.elapsed
 							val rate=cnt/elapsed
-							println("processed %8d , elapsed %5.0f , rate %5.0f , %s ".format(cnt,elapsed,rate,heapsize))
+							println("processed %8d , elapsed %5.0f , rate %5.0f".format(cnt,elapsed,rate))
 						}
 
 					}
@@ -74,13 +77,30 @@ class ParseXML(path: String)
 								current_value=current_value.toUpperCase
 							}
 
+							var additional_field=""
+
+							if(current_tag=="rating")
+							{
+								if(isInt(current_value))
+								{
+									val rating=current_value.toInt
+									var rr=((rating/rating_refinement).toInt)*rating_refinement
+
+									additional_field="rr\t"+rr+"\t"
+								}
+							}
+
+							val normal_field=current_tag+"\t"+current_value
+
+							val actual_field=additional_field+normal_field
+
 							if(current_record=="")
 							{
-								current_record=current_tag+"\t"+current_value
+								current_record=actual_field
 							}
 							else
 							{
-								current_record=current_record+"\t"+current_tag+"\t"+current_value
+								current_record=current_record+"\t"+actual_field
 							}
 						}
 					}
@@ -103,7 +123,7 @@ class ParseXML(path: String)
 
 		}
 
-		println("ok, total number of records "+cnt)
+		println("parsing %s ok, total number of records %d".format(path,cnt))
 		
 		writer.close()
 
