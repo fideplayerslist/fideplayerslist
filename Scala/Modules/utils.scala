@@ -18,6 +18,26 @@ object HeapSize
 
 object Parse
 {
+
+	def strip(content: String):String=
+		content.replaceAll("[\r\n]","")
+
+	def myToFloat(what: String):Float =
+	{
+		if((what=="NA")||(what=="")||(what=="0"))
+		{
+			return 0.toFloat
+		}
+		val whats=what.replaceAll("^0+","")
+		val floatmatch=""",[0-9]{2}$""".r.unanchored
+		whats match
+			{
+				case floatmatch(_*) => return whats.split(",").mkString.toFloat/100
+				case _ =>
+			}
+		whats.toFloat
+	}
+
 	def isInt(what: String):Boolean =
 	{
 		try
@@ -96,6 +116,16 @@ object Dir
 		html=html+"</table>"
 		
 		saveTxt(hpath,html)
+	}
+
+	def parseTxtSmart(path: String):Array[Map[String,String]]=
+	{
+		val lines=Source.fromFile(path).getLines().toArray
+		
+		val headers=Parse.strip(lines.head).split("\t");
+		
+		for(line<-lines.tail) yield
+			(headers zip Parse.strip(line).split("\t")).toMap
 	}
 
 }

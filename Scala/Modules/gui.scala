@@ -132,7 +132,7 @@ class PlayersClass extends Application {
 		
 		def topath(pname: String):String =
 		{
-			"keystats/"+pname+".byall."+currentfilter+".txt"
+			"stats/keystats/"+pname+"/"+currentfilter+"/byall.txt"
 		}
 		
 		def makeSimple( title: String, pname: String, xkey: String, ykeys: Array[String])
@@ -158,7 +158,7 @@ class PlayersClass extends Application {
 		def remake()
 		{
 			if(!c_valid) return
-			c_path=c_path.replaceAll("byall\\.[^\\.]*","byall."+currentfilter)
+			c_path=c_path.replaceAll("[^/]+/byall",currentfilter+"/byall")
 			make(c_title,c_path,c_xkey,c_ykeys,c_xfunc,c_yfuncs,c_okxfunc,c_okyfuncs)
 		}
 		

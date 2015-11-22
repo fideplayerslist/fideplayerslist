@@ -64,6 +64,14 @@ class Stats
 							var M:Int=0
 							var F:Int=0
 							var MF:Int=0
+							var R:Int=0
+							var CR:Double=0.0
+							var RM:Int=0
+							var CRM:Double=0.0
+							var RF:Int=0
+							var CRF:Double=0.0
+							var RMF:Int=0
+							var CRMF:Double=0.0
 							val path=set_path
 						}
 
@@ -112,6 +120,12 @@ class Stats
 
 									stat.ALL=stat.ALL+1
 
+									if(record.hasRating)
+									{
+										stat.R=stat.R+1
+										stat.CR=stat.CR+record.rating
+									}
+
 									if(record.hasSex)
 									{
 										stat.MF=stat.MF+1
@@ -122,6 +136,21 @@ class Stats
 										else
 										{
 											stat.F=stat.F+1
+										}
+										if(record.hasRating)
+										{
+											stat.RMF=stat.RMF+1
+											stat.CRMF=stat.CRMF+record.rating
+											if(record.sex=="M")
+											{
+												stat.RM=stat.RM+1
+												stat.CRM=stat.CRM+record.rating
+											}
+											else
+											{
+												stat.RF=stat.RF+1
+												stat.CRF=stat.CRF+record.rating
+											}
 										}
 									}
 
@@ -134,7 +163,34 @@ class Stats
 						for(filter<-filters)
 						{
 							val stat=statsmap(filter)
-							var content="ALL\t"+stat.ALL+"\nM\t"+stat.M+"\nF\t"+stat.F+"\nMF\t"+stat.MF+"\n"
+
+							def PERCENT(cnt: Double, den: Double):String =
+								if(den!=0) "%.2f".format(cnt/den*100) else "NA"
+
+							def AVERAGE(cnt: Double, den: Double):String =
+								if(den!=0) "%.2f".format(cnt/den) else "NA"
+
+							var content=
+								"key\tvalue"+
+								"\nALL\t"+stat.ALL+
+								"\nR\t"+stat.R+
+								"\nCR\t"+stat.CR+
+								"\nAVGR\t"+AVERAGE(stat.CR,stat.R)+
+								"\nMF\t"+stat.MF+
+								"\nRMF\t"+stat.RMF+
+								"\nCRMF\t"+stat.CRMF+
+								"\nAVGRMF\t"+AVERAGE(stat.CRMF,stat.RMF)+
+								"\nM\t"+stat.M+
+								"\nRM\t"+stat.RM+
+								"\nCRM\t"+stat.CRM+
+								"\nAVGRM\t"+AVERAGE(stat.CRM,stat.RM)+
+								"\nF\t"+stat.F+
+								"\nPARF\t"+PERCENT(stat.F,stat.MF)+
+								"\nRF\t"+stat.RF+
+								"\nPARFR\t"+PERCENT(stat.RF,stat.RMF)+
+								"\nCRF\t"+stat.CRF+
+								"\nAVGRF\t"+AVERAGE(stat.CRF,stat.RF)+
+								"\n"
 
 							saveTxt(stat.path,content)
 							htmlify(stat.path)
