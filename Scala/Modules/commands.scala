@@ -34,10 +34,10 @@ class CommandInterpreter
 		"xml"->new Command("parse XML",parsexml_func),
 		"cks"->new Command("count keys simple",countkeys_simple_func),
 		"ck"->new Command("count keys",countkeys_func),
-		"l"->new Command("list commands",listcommands_func),
 		"s"->new Command("create stats",create_stats_func),
 		"k"->new Command("key stats",key_stats_func),
 		"yt"->new Command("young talents",young_talents_func),
+		"l"->new Command("list commands",listcommands_func),
 		"x"->new Command("exit",exit_func)
 	)
 	

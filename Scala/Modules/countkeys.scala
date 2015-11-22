@@ -139,7 +139,13 @@ class CountKeys(path: String)
 
 				dwriter.close
 
-				if((!simple)&&(detailed_keycounts(k).keys.toList.length<5000)&&(collected_keys.contains(k)))
+				val numvalues=detailed_keycounts(k).keys.toList.length
+				val iscollected=collected_keys.contains(k)
+
+				println("collected : "+collected_keys.mkString(" , "))
+				println("key "+k+" simple "+simple+" num values "+numvalues+" iscollected "+iscollected)
+
+				if((!simple)&&(numvalues<5000)&&(iscollected))
 				{
 
 					mkdir("stats/keycounts/"+k)

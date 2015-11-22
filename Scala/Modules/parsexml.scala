@@ -53,7 +53,7 @@ class ParseXML(path: String)
 
 						cnt=cnt+1
 
-						val content=current_record+"\n"
+						val content="st\treg\t"+current_record+"\n"
 
 						writer.write(content)
 
