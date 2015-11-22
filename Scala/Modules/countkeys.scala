@@ -253,7 +253,7 @@ class CountKeys(path: String)
 										activerank_field=""+activerank
 									}
 
-									val rline="%d\t%s\t%s\t%d\t%s\t%s\t%d\t".format(rank,activerank_field,record.name,record.rating,record.country,record.sex,record.age)
+									val rline="%d\t%s\t%s\t%s\t%s\t%d\t%s\t%s\t%d\t".format(rank,activerank_field,record.name,record.title,record.w_title,record.rating,record.country,record.sex,record.age)
 
 									ratinglist+=rline
 								}
@@ -261,7 +261,7 @@ class CountKeys(path: String)
 
 							if(rank>0)
 							{
-								var content="rank\tactive rank\tname\trating\tcountry\tsex\tage\n"
+								var content="rank\tactive rank\tname\ttitle\twomen title\trating\tcountry\tsex\tage\n"
 
 								val lcontent=ratinglist.mkString("\n")+"\n"
 

@@ -25,6 +25,8 @@ class Record(line: String)
 	var inActive:Boolean=false
 	var active:Boolean=true
 	var name:String=""
+	var title:String=""
+	var w_title:String=""
 
 	var key=""
 	var value=""
@@ -90,6 +92,14 @@ class Record(line: String)
 			else if(key=="name")
 			{
 				name=value
+			}
+			else if(key=="title")
+			{
+				title=value
+			}
+			else if(key=="w_title")
+			{
+				w_title=value
 			}
 
 			key=""
