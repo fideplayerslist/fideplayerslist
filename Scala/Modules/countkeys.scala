@@ -13,6 +13,8 @@ import utils.HeapSize._
 
 import globals.Globals._
 
+import record._
+
 class CountKeys(path: String)
 {
 
@@ -107,6 +109,10 @@ class CountKeys(path: String)
 
 			deleteFilesInDir("stats/keycounts")
 
+			mkdir("stats/ratinglists")
+
+			deleteFilesInDir("stats/ratinglists")
+
 		}
 
 		val writer=new PrintWriter(new File("keycounts.txt"))
@@ -122,6 +128,10 @@ class CountKeys(path: String)
 				deleteFilesInDir("stats/keycounts/"+k)
 
 				(new File("stats/keycounts/"+k)).delete
+
+				deleteFilesInDir("stats/ratinglists/"+k)
+
+				(new File("stats/ratinglists/"+k)).delete
 
 			}
 
@@ -151,6 +161,10 @@ class CountKeys(path: String)
 					mkdir("stats/keycounts/"+k)
 
 					deleteFilesInDir("stats/keycounts/"+k)
+
+					mkdir("stats/ratinglists/"+k)
+
+					deleteFilesInDir("stats/ratinglists/"+k)
 
 					println("collecting "+k)
 
@@ -204,6 +218,8 @@ class CountKeys(path: String)
 						}
 						
 						deleteFilesInDir("stats/keycounts/"+key)
+
+						deleteFilesInDir("stats/ratinglists/"+key)
 						
 						for((k,v)<-valuebuffs)
 						{
@@ -215,6 +231,36 @@ class CountKeys(path: String)
 							val content=v.sorted.reverse.mkString("\n")+"\n"
 							println("writing sorted list for value: %s ( %d ) , %s".format(k,v.length,heapsize))
 							saveTxt(path,content)
+
+							var rank=0
+							var ratinglist=scala.collection.mutable.ArrayBuffer[String]()
+
+							for(line<-Source.fromFile(path).getLines())
+							{
+								val record=new Record(line)
+
+								if((record.hasRating)&&(record.rating>=2000))
+								{
+									rank=rank+1
+									val rline="%d\t%s\t%d\t%s\t%s\t%d\t".format(rank,record.name,record.rating,record.country,record.sex,record.age)
+
+									ratinglist+=rline
+								}
+							}
+
+							if(rank>0)
+							{
+								var content="rank\tname\trating\tcountry\tsex\tage\n"
+
+								val lcontent=ratinglist.mkString("\n")+"\n"
+
+								content=content+lcontent
+
+								val rpath="stats/ratinglists/"+key+"/"+k+".txt"
+
+								saveTxt(rpath,content)
+								htmlify(rpath)
+							}
 
 							//unsorted
 
