@@ -6,6 +6,7 @@ import parsexml._
 import countkeys._
 import stats._
 import keystats._
+import youngtalents._
 
 import scala.collection.immutable.ListMap
 
@@ -25,6 +26,7 @@ class CommandInterpreter
 	def countkeys_func() { result=new CountKeys("players.txt").count(false) }
 	def create_stats_func() { result=new Stats().create() }
 	def key_stats_func() { result=new KeyStats().create() }
+	def young_talents_func() { result=new YoungTalents().create() }
 	def exit_func() { finished=true }
 
 	val commands=ListMap[String,Command](
@@ -35,6 +37,7 @@ class CommandInterpreter
 		"l"->new Command("list commands",listcommands_func),
 		"s"->new Command("create stats",create_stats_func),
 		"k"->new Command("key stats",key_stats_func),
+		"yt"->new Command("young talents",young_talents_func),
 		"x"->new Command("exit",exit_func)
 	)
 	

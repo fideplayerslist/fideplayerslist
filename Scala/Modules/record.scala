@@ -7,6 +7,7 @@ class Record(line: String)
 {
 
 	var country_str:String=""
+	var country:String=""
 	var hasCountry:Boolean=false
 	var birthday:Int=0
 	var birthday_str:String=""
@@ -22,6 +23,8 @@ class Record(line: String)
 	var hasSex:Boolean=false
 	var flag_str:String=""
 	var inActive:Boolean=false
+	var active:Boolean=true
+	var name:String=""
 
 	var key=""
 	var value=""
@@ -70,6 +73,7 @@ class Record(line: String)
 			else if(key=="country")
 			{
 				country_str=value
+				country=value
 				if(value!="")
 				{
 					hasCountry=true
@@ -83,9 +87,16 @@ class Record(line: String)
 					inActive=true
 				}
 			}
+			else if(key=="name")
+			{
+				name=value
+			}
 
 			key=""
 			value=""
 		}
 	}
+
+	active=(!inActive)
+
 }

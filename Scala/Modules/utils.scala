@@ -128,4 +128,18 @@ object Dir
 			(headers zip Parse.strip(line).split("\t")).toMap
 	}
 
+	def parseRecord(path: String):Map[String,String]=
+	{
+		val kvs=parseTxtSmart(path)
+
+		var m=Map[String,String]()
+
+		for(kv<-kvs)
+		{
+			m+=(kv("key")->kv("value"))
+		}
+
+		m
+	}
+
 }
