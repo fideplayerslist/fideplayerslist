@@ -103,6 +103,11 @@ object Dir
 		Source.fromFile(path).getLines().toArray
 	}
 
+	def readTxt(path:String):String =
+	{
+		Source.fromFile(path).getLines().mkString("\n")
+	}
+
 	def htmlify(path: String)
 	{
 		val hpath=path.replaceAll("\\.txt$",".html")

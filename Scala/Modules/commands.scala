@@ -7,6 +7,7 @@ import countkeys._
 import stats._
 import keystats._
 import youngtalents._
+import titled._
 
 import scala.collection.immutable.ListMap
 
@@ -32,6 +33,7 @@ class CommandInterpreter
 		create_stats_func()
 		key_stats_func()
 		young_talents_func()
+		titled_percountry_func()
 
 		println("startup ok, elapsed %.0f".format(timer.elapsed))
 
@@ -44,16 +46,18 @@ class CommandInterpreter
 	def create_stats_func() { result=new Stats().create() }
 	def key_stats_func() { result=new KeyStats().create() }
 	def young_talents_func() { result=new YoungTalents().create() }
+	def titled_percountry_func() { result=new Titled().percountry() }
 	def exit_func() { finished=true }
 
 	val commands=ListMap[String,Command](
-		"startup"->new Command("xml + ck + s + k + yt",startup_func),
+		"startup"->new Command("xml + ck + s + k + yt + t",startup_func),
 		"xml"->new Command("parse XML",parsexml_func),
 		"cks"->new Command("count keys simple",countkeys_simple_func),
 		"ck"->new Command("count keys",countkeys_func),
 		"s"->new Command("create stats",create_stats_func),
 		"k"->new Command("key stats",key_stats_func),
 		"yt"->new Command("young talents",young_talents_func),
+		"t"->new Command("titled per country",titled_percountry_func),
 		"l"->new Command("list commands",listcommands_func),
 		"x"->new Command("exit",exit_func)
 	)
