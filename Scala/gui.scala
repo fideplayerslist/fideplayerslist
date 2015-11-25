@@ -1,11 +1,13 @@
 import javafx.application._
 
-import gui.PlayersClass
+//import gui.PlayersClass
+
+import drawchart.DrawChartClass
 
 object Gui
 {
 	def main(args: Array[String])
 	{
-		Application.launch(classOf[PlayersClass], args: _*)
+		Application.launch(classOf[DrawChartClass], args: _*)
 	}
 }
