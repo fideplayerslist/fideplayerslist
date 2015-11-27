@@ -42,9 +42,9 @@ class DrawChartClass extends Application
 		def draw()
 		{
 			chart.draw(
-				title="Chart title",
-				xlegend="X axis",
-				ylegend="Y axis"
+				set_title="Chart title",
+				set_xlegend="X axis",
+				set_ylegend="Y axis"
 			)
 		}
 
