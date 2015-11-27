@@ -22,6 +22,9 @@ object Parse
 	def strip(content: String):String=
 		content.replaceAll("[\r\n]","")
 
+	def isValue(what:String):Boolean =
+		(what!="NA")&&(what!="")
+
 	def myToFloat(what: String):Float =
 	{
 		if((what=="NA")||(what=="")||(what=="0"))
@@ -43,6 +46,37 @@ object Parse
 		try
 		{
 			val i=what.toInt
+		}
+		catch
+		{
+			case ex:NumberFormatException=>return false
+		}
+		return true
+	}
+
+	def myToDouble(what:String):Double =
+	{
+		if(isInt(what))
+		{
+			return what.toInt.toDouble
+		}
+		if(isDouble(what))
+		{
+			return what.toDouble
+		}
+		return myToFloat(what).toDouble
+	}
+
+	def isDouble(what: String):Boolean =
+	{
+		if(isInt(what))
+		{
+			return true
+		}
+
+		try
+		{
+			val i=what.toDouble
 		}
 		catch
 		{

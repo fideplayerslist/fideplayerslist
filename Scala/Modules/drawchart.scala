@@ -14,6 +14,8 @@ import javafx.geometry._
 
 import mychart._
 
+import globals.Globals._
+
 class DrawChartClass extends Application
 {
 
@@ -37,14 +39,23 @@ class DrawChartClass extends Application
 
 		var root=new FlowPane()
 
-		var chart=new MyChart()
+		def birthday_to_age(b:Double):Double=REFERENCE_YEAR-b
+
+		def age_ok(a:Double):Boolean=((a>=10)&&(a<=80))
+
+		var chart=new MyChart(
+			DATA_SOURCE_TO_PATH_FUNC=(x => "stats/keystats/"+x+"/x/byall.txt")
+			)
 
 		def draw()
 		{
 			chart.draw(
 				set_title="Chart title",
 				set_xlegend="X axis",
-				set_ylegend="Y axis"
+				set_ylegend="Y axis",
+				set_data_source="birthday",
+				set_x_series=Series(FIELD="birthday",APPLY_FUNC=birthday_to_age,OK_FUNC=age_ok,FORCE_MIN=0),
+				set_y_series=List(Series(FIELD="PARF"),Series(FIELD="PARFR",COLOR=Color.rgb(0,0,255)))
 			)
 		}
 
