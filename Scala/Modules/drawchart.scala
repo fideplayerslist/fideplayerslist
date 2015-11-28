@@ -31,6 +31,7 @@ class DrawChartClass extends Application
 
 	val FILTERS=List("x","m","a","ma")
 	val TRANSLATE_FILTERS=Map("x"->"none","m"->"middle age","a"->"active","ma"->"middle age, active")
+	val TRANSLATE_FILTERS_TITLE=Map("x"->"among all players","m"->"among middle age players","a"->"among active players","ma"->"among middle age, active players")
 
 	var current_filter="x"
 
@@ -74,7 +75,7 @@ class DrawChartClass extends Application
 			root.getChildren.add(chart.canvas_group)
 		}
 
-		def subtitle=" , "+TRANSLATE_FILTERS(current_filter)+" , > "+current_limit_value.toInt+" players"
+		def subtitle=" , "+TRANSLATE_FILTERS_TITLE(current_filter)+" , > "+current_limit_value.toInt+" players"
 
 		def draw_participation()
 		{
@@ -159,10 +160,12 @@ class DrawChartClass extends Application
 
 				set_y_series=List(
 					Series(
-						FIELD="RM"
+						FIELD="RM",
+						OK_FUNC=greater_than_zero
 						),
 					Series(
 						FIELD="RF",
+						OK_FUNC=greater_than_zero,
 						COLOR=Color.rgb(0,0,255)
 						)
 					),
