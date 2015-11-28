@@ -79,30 +79,39 @@ case class Series(
 	var TRUE_MAX_V=0.0
 }
 
+object MyChart
+{
+	val GRAY=Color.rgb(220,220,220)
+	val PINK=Color.rgb(255,192,192)
+	val TITLE=Color.rgb(200,255,200)
+	val YELLOW=Color.rgb(255,255,192)
+	val GRID=Color.rgb(192,192,64)
+}
+
 class MyChart(
 	var DATA_SOURCE_TO_PATH_FUNC:(String)=>String = (x => x),
 	val TITLE_FONT_SIZE:Int=20,
 	val TITLE_HEIGHT:Int=50,
-	val TITLE_BACKGROUND:Color=Color.rgb(192,192,255),
+	val TITLE_BACKGROUND:Color=MyChart.TITLE,
 	val AXIS_LEGEND_FONT_SIZE:Int=18,
 	val AXIS_Y_LEGEND_WIDTH:Int=50,
-	val AXIS_Y_LEGEND_BACKGROUND:Color=Color.rgb(192,192,192),
+	val AXIS_Y_LEGEND_BACKGROUND:Color=MyChart.GRAY,
 	val AXIS_Y_SCALE_WIDTH:Int=100,
-	val AXIS_Y_SCALE_BACKGROUND:Color=Color.rgb(255,192,192),
+	val AXIS_Y_SCALE_BACKGROUND:Color=MyChart.PINK,
 	val CHART_WIDTH:Int=750,
 	val CHART_HEIGHT:Int=350,
-	val CHART_BACKGROUND:Color=Color.rgb(255,255,192),
+	val CHART_BACKGROUND:Color=MyChart.YELLOW,
 	val AXIS_X_SCALE_HEIGHT:Int=80,
-	val AXIS_X_SCALE_BACKGROUND:Color=Color.rgb(255,192,192),
+	val AXIS_X_SCALE_BACKGROUND:Color=MyChart.PINK,
 	val AXIS_X_LEGEND_HEIGHT:Int=50,
-	val AXIS_X_LEGEND_BACKGROUND:Color=Color.rgb(192,192,192),
+	val AXIS_X_LEGEND_BACKGROUND:Color=MyChart.GRAY,
 	val LEGEND_WIDTH:Int=400,
-	val LEGEND_BACKGROUND:Color=Color.rgb(192,192,192),
+	val LEGEND_BACKGROUND:Color=MyChart.GRAY,
 	val LEGEND_FONT_SIZE:Int=18,
 	val LEGEND_STEP:Int=40,
 	val PADDING:Int=10,
 	val BOX_WIDTH:Int=10,
-	val GRID_COLOR:Color=Color.rgb(192,192,64),
+	val GRID_COLOR:Color=MyChart.GRID,
 	val SCALE_FONT_SIZE:Int=14,
 	val FONT_FAMILY:String="Courier New",
 	val KEY_TRANSLATIONS:Map[String,String]=Map[String,String]()
@@ -200,8 +209,8 @@ class MyChart(
 	{
 		val text:Text = new Text(what)
 
-		val text_x0=calc_middle(AXIS_Y_LEGEND_X0,AXIS_Y_LEGEND_WIDTH,AXIS_LEGEND_FONT_SIZE)+AXIS_LEGEND_FONT_SIZE/2
-		val text_y0=CHART_Y1-PADDING
+		val text_x0=calc_middle(AXIS_Y_LEGEND_X0,AXIS_Y_LEGEND_WIDTH,AXIS_LEGEND_FONT_SIZE)+AXIS_LEGEND_FONT_SIZE-5
+		val text_y0=CHART_Y1-2*PADDING
 
 		text.setX(text_x0);
 		text.setY(text_y0);
@@ -286,15 +295,17 @@ class MyChart(
 		gc.setFill(AXIS_X_SCALE_BACKGROUND)
 		gc.fillRect(AXIS_X_SCALE_X0,AXIS_X_SCALE_Y0,AXIS_X_SCALE_WIDTH,AXIS_X_SCALE_HEIGHT)
 
-		/*gc.setFill(TITLE_BACKGROUND)
-		gc.fillRect(TITLE_X0,TITLE_Y0,TITLE_WIDTH,TITLE_HEIGHT)*/
+		gc.setFill(TITLE_BACKGROUND)
+		gc.fillRect(0,TITLE_Y0,CANVAS_WIDTH,TITLE_HEIGHT)
+		gc.fillRect(0,CHART_Y1,CHART_X0,AXIS_X_SCALE_HEIGHT+AXIS_X_LEGEND_HEIGHT)
+		gc.fillRect(CHART_X1,CHART_Y1,LEGEND_WIDTH,AXIS_X_SCALE_HEIGHT+AXIS_X_LEGEND_HEIGHT)
 
 		gc.setFill(LEGEND_BACKGROUND)
 		gc.fillRect(LEGEND_X0,LEGEND_Y0,LEGEND_WIDTH,LEGEND_HEIGHT)
 
-		drawtext(CHART_X0+PADDING,calc_middle(TITLE_Y0,TITLE_HEIGHT,TITLE_FONT_SIZE),title,TITLE_FONT_SIZE)
+		drawtext(2*PADDING,calc_middle(TITLE_Y0,TITLE_HEIGHT,TITLE_FONT_SIZE)-3,title,TITLE_FONT_SIZE)
 
-		drawtext(CHART_X0+PADDING,calc_middle(AXIS_X_LEGEND_Y0,AXIS_X_LEGEND_HEIGHT,AXIS_LEGEND_FONT_SIZE),xlegend,AXIS_LEGEND_FONT_SIZE)
+		drawtext(CHART_X0+2*PADDING,calc_middle(AXIS_X_LEGEND_Y0,AXIS_X_LEGEND_HEIGHT,AXIS_LEGEND_FONT_SIZE)-3,xlegend,AXIS_LEGEND_FONT_SIZE)
 
 		drawylegendtext(ylegend)
 
@@ -689,7 +700,7 @@ class MyChart(
 			{
 				cy=LEGEND_Y0+2*LEGEND_STEP*i+LEGEND_STEP+2*PADDING
 				drawline(LEGEND_X0+2*PADDING,cy,LEGEND_X0+2*PADDING+2*BOX_WIDTH,cy,get_color_i(i))
-				drawtext(LEGEND_X0+2*PADDING+3*BOX_WIDTH,cy-BOX_WIDTH-2,"linear, beta "+y_series(i).Beta,LEGEND_FONT_SIZE)
+				drawtext(LEGEND_X0+2*PADDING+3*BOX_WIDTH,cy-BOX_WIDTH-2,"linear, beta "+"%.5f".format(y_series(i).Beta),LEGEND_FONT_SIZE)
 			}
 		}
 	}
@@ -790,7 +801,7 @@ class MyChart(
 
 	def clear()
 	{
-		gc.clearRect(0,0,CANVAS_WIDTH,CANVAS_HEIGHT)	
+		gc.clearRect(0,0,CANVAS_WIDTH,CANVAS_HEIGHT)
 		remove_childs()
 	}
 
