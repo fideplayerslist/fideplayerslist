@@ -91,8 +91,10 @@ class MyChart(
 	val AXIS_X_LEGEND_BACKGROUND:Color=Color.rgb(192,192,192),
 	val LEGEND_WIDTH:Int=400,
 	val LEGEND_BACKGROUND:Color=Color.rgb(192,192,192),
-	val PADDING:Int=15,
-	val BOX_WIDTH:Int=10
+	val PADDING:Int=10,
+	val BOX_WIDTH:Int=10,
+	val GRID_COLOR:Color=Color.rgb(192,192,64),
+	val SCALE_FONT_SIZE:Int=14
 )
 {
 	val CANVAS_WIDTH=AXIS_Y_LEGEND_WIDTH+AXIS_Y_SCALE_WIDTH+CHART_WIDTH+LEGEND_WIDTH
@@ -108,6 +110,7 @@ class MyChart(
 	val AXIS_Y_LEGEND_HEIGHT=CHART_HEIGHT
 
 	val AXIS_Y_SCALE_X0=AXIS_Y_LEGEND_WIDTH	
+	val AXIS_Y_SCALE_X1=AXIS_Y_SCALE_X0+AXIS_Y_SCALE_WIDTH
 	val AXIS_Y_SCALE_Y0=CHART_Y0
 	val AXIS_Y_SCALE_HEIGHT=CHART_HEIGHT
 
@@ -136,7 +139,14 @@ class MyChart(
 
 	def calc_middle(c0:Int,size:Int,fontsize:Int):Int = c0+(size-fontsize)/2
 
-	def drawtext(x: Float, y:Float, what: String, size: Float = 12)
+	def drawline(x0: Double, y0: Double, x1: Double, y1: Double, c: Color)
+	{
+		gc.setLineWidth(3)
+		gc.setStroke(c)
+		gc.strokeLine(x0,y0,x1,y1)
+	}
+
+	def drawtext(x: Double, y:Double, what: String, size: Double = 12)
 	{
 		gc.setFont(new Font(size))
 		gc.setFill(Color.rgb(0,0,0))
@@ -186,9 +196,70 @@ class MyChart(
 	var MAX_Y=0.0
 	var FACTOR_X=0.0
 	var FACTOR_Y=0.0
+	var STEP_X=0.0
+	var STEP_Y=0.0
+
+	def drawxscale()
+	{
+
+		var x=MIN_X+STEP_X
+
+		var i=0
+
+		while(x < MAX_X)
+		{
+
+			val xc=cx(x)-SCALE_FONT_SIZE/2
+
+			drawtext(xc,AXIS_X_SCALE_Y0+PADDING+i*SCALE_FONT_SIZE*2,""+x.toInt,SCALE_FONT_SIZE)
+
+			i+=1
+
+			if(i>1)
+			{
+				i=0
+			}
+
+			x+=STEP_X
+
+		}
+
+	}
+
+	def drawyscale()
+	{
+
+		var y=MIN_Y+STEP_Y
+
+		while(y < MAX_Y)
+		{
+
+			val yc=cy(y)-SCALE_FONT_SIZE/2
+
+			val what=""+y
+
+			val whatnice=what.replaceAll("\\.0$","")
+
+			drawtext(AXIS_Y_SCALE_X1-PADDING-whatnice.length*SCALE_FONT_SIZE,yc,whatnice,SCALE_FONT_SIZE)
+
+			y+=STEP_Y
+
+		}
+
+	}
+
+	def drawscales()
+	{
+
+		drawyscale()
+
+		drawxscale()
+
+	}
 
 	def drawsurround()
 	{
+
 		gc.setFill(AXIS_Y_LEGEND_BACKGROUND)
 		gc.fillRect(AXIS_Y_LEGEND_X0,AXIS_Y_LEGEND_Y0,AXIS_Y_LEGEND_WIDTH,AXIS_Y_LEGEND_HEIGHT)
 		gc.setFill(AXIS_Y_SCALE_BACKGROUND)
@@ -198,9 +269,6 @@ class MyChart(
 		gc.fillRect(AXIS_X_LEGEND_X0,AXIS_X_LEGEND_Y0,AXIS_X_LEGEND_WIDTH,AXIS_X_LEGEND_HEIGHT)
 		gc.setFill(AXIS_X_SCALE_BACKGROUND)
 		gc.fillRect(AXIS_X_SCALE_X0,AXIS_X_SCALE_Y0,AXIS_X_SCALE_WIDTH,AXIS_X_SCALE_HEIGHT)
-
-		/*gc.setFill(CHART_BACKGROUND)
-		gc.fillRect(CHART_X0,CHART_Y0,CHART_WIDTH,CHART_HEIGHT)*/
 
 		gc.setFill(TITLE_BACKGROUND)
 		gc.fillRect(TITLE_X0,TITLE_Y0,TITLE_WIDTH,TITLE_HEIGHT)
@@ -213,7 +281,63 @@ class MyChart(
 		drawtext(CHART_X0+PADDING,calc_middle(AXIS_X_LEGEND_Y0,AXIS_X_LEGEND_HEIGHT,AXIS_LEGEND_FONT_SIZE),xlegend,AXIS_LEGEND_FONT_SIZE)
 
 		drawylegendtext(ylegend)
+
+		drawscales()
+
 	}
+
+	val GRID_STEPS=List(5,10,20,25,75)
+
+	def calc_step(range: Double):Double =
+	{
+
+		var grid_step_i=0
+
+		var mult:Double=1.0
+
+		var done=false
+
+		var current_step:Double=1.0
+
+		do
+		{
+			done=true
+			current_step=GRID_STEPS(grid_step_i)*mult
+			val current_no=range/current_step
+			if(current_no>15)
+			{
+				if(grid_step_i<(GRID_STEPS.length-1))
+				{
+					grid_step_i=grid_step_i+1
+				}
+				else
+				{
+					grid_step_i=0
+					mult=mult*10
+				}
+				done=false
+			}
+			if(current_no<5)
+			{
+				if(grid_step_i>0)
+				{
+					grid_step_i=grid_step_i-1
+				}
+				else
+				{
+					grid_step_i=GRID_STEPS.length-1
+					mult=mult/10
+				}
+				done=false
+			}
+		}while(!done)
+		
+		current_step
+
+	}
+
+	def step_correct_down(what: Double,step: Double):Double = ((what/step).floor-1)*step
+	def step_correct_up(what: Double,step: Double):Double = ((what/step).floor+2)*step
 
 	def parse_XYSS():Boolean =
 	{
@@ -300,12 +424,16 @@ class MyChart(
 			return false
 		}
 
-		FACTOR_X=CHART_WIDTH/X_RANGE
+		STEP_X=calc_step(X_RANGE)
 
-		MIN_X=x_series.RANGE.MINV
-		MAX_X=x_series.RANGE.MAXV
+		MIN_X=step_correct_down(x_series.RANGE.MINV,STEP_X)
+		MAX_X=step_correct_up(x_series.RANGE.MAXV,STEP_X)
 
-		println("x range : "+MIN_X+" - "+MAX_X+" , factor "+FACTOR_X)
+		val X_RANGE_CORRECTED=MAX_X-MIN_X
+
+		FACTOR_X=CHART_WIDTH/X_RANGE_CORRECTED
+
+		println("x range : "+MIN_X+" - "+MAX_X+" , factor "+FACTOR_X+" , step "+STEP_X)
 
 		val Y_RANGE=new Range
 
@@ -330,12 +458,16 @@ class MyChart(
 			return false
 		}
 
-		MIN_Y=Y_RANGE.MINV
-		MAX_Y=Y_RANGE.MAXV
+		STEP_Y=calc_step(Y_RANGE.RANGE)
 
-		FACTOR_Y=CHART_HEIGHT/Y_RANGE.RANGE
+		MIN_Y=step_correct_down(Y_RANGE.MINV,STEP_Y)
+		MAX_Y=step_correct_up(Y_RANGE.MAXV,STEP_Y)
 
-		println("overall y range: "+MIN_Y+" - "+MAX_Y+" , factor "+FACTOR_Y)
+		val Y_RANGE_CORRECTED=MAX_Y-MIN_Y
+
+		FACTOR_Y=CHART_HEIGHT/Y_RANGE_CORRECTED
+
+		println("overall y range: "+MIN_Y+" - "+MAX_Y+" , factor "+FACTOR_Y+" , step "+STEP_Y)
 
 		return true
 	}
@@ -349,8 +481,40 @@ class MyChart(
 	def cx(x: Double):Double = CHART_X0+(x-MIN_X)*FACTOR_X
 	def cy(y: Double):Double = CHART_Y0+CHART_HEIGHT-(y-MIN_Y)*FACTOR_Y
 
+	def drawgrid()
+	{
+
+		gc.setFill(CHART_BACKGROUND)
+		gc.fillRect(CHART_X0,CHART_Y0,CHART_WIDTH,CHART_HEIGHT)
+
+		var x=MIN_X
+
+		while(x<=MAX_X)
+		{
+
+			val xc=cx(x)
+
+			drawline(xc,CHART_Y0,xc,CHART_Y1,GRID_COLOR)
+
+			x+=STEP_X
+		}
+
+		var y=MIN_Y
+
+		while(y<=MAX_Y)
+		{
+
+			val yc=cy(y)
+
+			drawline(CHART_X0,yc,CHART_X1,yc,GRID_COLOR)
+
+			y+=STEP_Y
+		}
+	}
+
 	def drawseries()
 	{
+
 		var i=0
 		for(series<-XYSS)
 		{
@@ -421,6 +585,8 @@ class MyChart(
 		{
 			return
 		}
+
+		drawgrid()
 
 		drawseries()
 

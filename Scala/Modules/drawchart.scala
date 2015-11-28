@@ -50,12 +50,29 @@ class DrawChartClass extends Application
 		def draw()
 		{
 			chart.draw(
-				set_title="Chart title",
-				set_xlegend="X axis",
-				set_ylegend="Y axis",
+
+				set_title="Participation in the function of age",
+				set_xlegend="Age [ years ]",
+				set_ylegend="Participation [ % ]",
+
 				set_data_source="birthday",
-				set_x_series=Series(FIELD="birthday",APPLY_FUNC=birthday_to_age,OK_FUNC=age_ok,FORCE_MIN=0),
-				set_y_series=List(Series(FIELD="PARF"),Series(FIELD="PARFR",COLOR=Color.rgb(0,0,255)))
+
+				set_x_series=Series(
+					FIELD="birthday",
+					APPLY_FUNC=birthday_to_age,
+					OK_FUNC=age_ok
+					),
+
+				set_y_series=List(
+					Series(
+						FIELD="PARF"
+						),
+					Series(
+						FIELD="PARFR",
+						COLOR=Color.rgb(0,0,255)
+						)
+					)
+
 			)
 		}
 
