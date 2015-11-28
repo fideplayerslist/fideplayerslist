@@ -177,6 +177,93 @@ class DrawChartClass extends Application
 			)
 		}
 
+		def draw_rating_by_number_of_rated()
+		{
+			chart.draw(
+
+				set_title="Rating by number of rated"+subtitle,
+				set_xlegend="Number of rated players",
+				set_ylegend="Average rating",
+
+				set_data_source="country",
+
+				set_x_series=Series(
+					FIELD="R"
+					),
+
+				set_y_series=List(
+					Series(
+						FIELD="AVGR",
+						OK_FUNC=rating_ok,
+						COLOR=Color.rgb(0,0,255)
+						)
+					),
+
+				set_do_trend=true,
+
+				set_limit=Limit("R",current_limit_value)
+
+			)
+		}
+
+		def draw_rating_by_participation()
+		{
+			chart.draw(
+
+				set_title="Rating by participation"+subtitle,
+				set_xlegend="Female participation [ % ]",
+				set_ylegend="Average rating",
+
+				set_data_source="country",
+
+				set_x_series=Series(
+					FIELD="PARFR"
+					),
+
+				set_y_series=List(
+					Series(
+						FIELD="AVGR",
+						OK_FUNC=rating_ok,
+						COLOR=Color.rgb(0,0,255)
+						)
+					),
+
+				set_do_trend=true,
+
+				set_limit=Limit("R",current_limit_value)
+
+			)
+		}
+
+		def draw_female_rating_by_participation()
+		{
+			chart.draw(
+
+				set_title="Female rating by participation"+subtitle,
+				set_xlegend="Female participation [ % ]",
+				set_ylegend="Average female rating",
+
+				set_data_source="country",
+
+				set_x_series=Series(
+					FIELD="PARFR"
+					),
+
+				set_y_series=List(
+					Series(
+						FIELD="AVGRF",
+						OK_FUNC=rating_ok,
+						COLOR=Color.rgb(0,0,255)
+						)
+					),
+
+				set_do_trend=true,
+
+				set_limit=Limit("R",current_limit_value)
+
+			)
+		}
+
 		var current_callback:()=>Unit=draw_participation
 
 		class MyButton( text: String , callback: () => Unit ) extends Button( text )
@@ -217,7 +304,7 @@ class DrawChartClass extends Application
 		{
 			def changed(ov:ObservableValue[_ <: Number],old_val:Number,new_val:Number)
 			{
-				val x:Double=(""+new_val).toDouble
+				val x:Double=new_val.doubleValue()
 				current_limit_value=x
 				getchart
 				current_callback()
@@ -242,6 +329,9 @@ class DrawChartClass extends Application
 			new MyDrawButton("Draw participation",draw_participation),
 			new MyDrawButton("Draw rating distribution",draw_rating_distribution),
 			new MyDrawButton("Draw age distribution of rated",draw_age_distribution_of_rated),
+			new MyDrawButton("Draw rating by number of rated",draw_rating_by_number_of_rated),
+			new MyDrawButton("Draw rating by participation",draw_rating_by_participation),
+			new MyDrawButton("Draw female rating by participation",draw_female_rating_by_participation),
 			new MyButton("Clear",clear)
 		)
 
