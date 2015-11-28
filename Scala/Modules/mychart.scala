@@ -69,7 +69,7 @@ case class Series(
 	val APPLY_FUNC:(Double)=>Double=(x => x),
 	val FORCE_MIN:Double=Series.INFINITE,
 	val FORCE_MAX:Double=(-Series.INFINITE),
-	val COLOR:Color=Color.rgb(255,0,0)
+	val COLOR:Color=null
 )
 {
 	val RANGE=new Range
@@ -104,6 +104,7 @@ class MyChart(
 	val BOX_WIDTH:Int=10,
 	val GRID_COLOR:Color=Color.rgb(192,192,64),
 	val SCALE_FONT_SIZE:Int=14,
+	val FONT_FAMILY:String="Courier New",
 	val KEY_TRANSLATIONS:Map[String,String]=Map[String,String]()
 )
 {
@@ -180,7 +181,7 @@ class MyChart(
 
 	def drawtext(x: Double, y:Double, what: String, size: Double = 12)
 	{
-		gc.setFont(new Font(size))
+		gc.setFont(new Font(FONT_FAMILY,size))
 		gc.setFill(Color.rgb(0,0,0))
 		gc.fillText(what,x,y+size)
 	}
@@ -199,13 +200,13 @@ class MyChart(
 	{
 		val text:Text = new Text(what)
 
-		val text_x0=calc_middle(AXIS_Y_LEGEND_X0,AXIS_Y_LEGEND_WIDTH,AXIS_LEGEND_FONT_SIZE)+AXIS_LEGEND_FONT_SIZE
+		val text_x0=calc_middle(AXIS_Y_LEGEND_X0,AXIS_Y_LEGEND_WIDTH,AXIS_LEGEND_FONT_SIZE)+AXIS_LEGEND_FONT_SIZE/2
 		val text_y0=CHART_Y1-PADDING
 
 		text.setX(text_x0);
 		text.setY(text_y0);
 
-		text.setFont(new Font(AXIS_LEGEND_FONT_SIZE));
+		text.setFont(new Font(FONT_FAMILY,AXIS_LEGEND_FONT_SIZE));
 
  		text.getTransforms().add(new Rotate(270, text_x0, text_y0));
 
@@ -285,8 +286,8 @@ class MyChart(
 		gc.setFill(AXIS_X_SCALE_BACKGROUND)
 		gc.fillRect(AXIS_X_SCALE_X0,AXIS_X_SCALE_Y0,AXIS_X_SCALE_WIDTH,AXIS_X_SCALE_HEIGHT)
 
-		gc.setFill(TITLE_BACKGROUND)
-		gc.fillRect(TITLE_X0,TITLE_Y0,TITLE_WIDTH,TITLE_HEIGHT)
+		/*gc.setFill(TITLE_BACKGROUND)
+		gc.fillRect(TITLE_X0,TITLE_Y0,TITLE_WIDTH,TITLE_HEIGHT)*/
 
 		gc.setFill(LEGEND_BACKGROUND)
 		gc.fillRect(LEGEND_X0,LEGEND_Y0,LEGEND_WIDTH,LEGEND_HEIGHT)
@@ -617,6 +618,33 @@ class MyChart(
 		}
 	}
 
+	val DEFAULT_COLORS=List(
+		Color.rgb(255,0,0),
+		Color.rgb(0,0,255),
+		Color.rgb(0,255,0)
+		)
+
+	def get_color_i(i:Int):Color =
+	{
+		val COLOR=y_series(i).COLOR
+
+		if(COLOR==null)
+		{
+			if(i < DEFAULT_COLORS.length)
+			{
+				return DEFAULT_COLORS(i)
+			}
+			else
+			{
+				return Color.rgb(0,0,0)
+			}
+		}
+		else
+		{
+			COLOR
+		}
+	}
+
 	def drawseries()
 	{
 
@@ -625,7 +653,7 @@ class MyChart(
 		{
 			for((x,y)<-series)
 			{
-				drawbox(cx(x),cy(y),y_series(i).COLOR)
+				drawbox(cx(x),cy(y),get_color_i(i))
 			}
 			i+=1
 		}
@@ -633,6 +661,7 @@ class MyChart(
 
 	def drawtrends()
 	{
+		var i=0
 		for(series<-y_series)
 		{
 			val trend_x0=cx(x_series.TRUE_MIN_V)
@@ -640,7 +669,9 @@ class MyChart(
 			val trend_x1=cx(x_series.TRUE_MAX_V)
 			val trend_y1=cy(series.Alpha+(x_series.TRUE_MAX_V)*series.Beta)
 
-			drawline(trend_x0,trend_y0,trend_x1,trend_y1,series.COLOR)
+			drawline(trend_x0,trend_y0,trend_x1,trend_y1,get_color_i(i))
+
+			i+=1
 		}
 	}
 
@@ -652,12 +683,12 @@ class MyChart(
 			val legend_step_factor=if(do_trend) 2 else 1
 
 			var cy=LEGEND_Y0+legend_step_factor*LEGEND_STEP*i+2*PADDING
-			drawbox(LEGEND_X0+2*PADDING,cy,y_series(i).COLOR)
+			drawbox(LEGEND_X0+2*PADDING,cy,get_color_i(i))
 			drawtext(LEGEND_X0+2*PADDING+2*BOX_WIDTH,cy-BOX_WIDTH-2,KEY_TRANSLATIONS(y_series(i).FIELD),LEGEND_FONT_SIZE)
 			if(do_trend)
 			{
 				cy=LEGEND_Y0+2*LEGEND_STEP*i+LEGEND_STEP+2*PADDING
-				drawline(LEGEND_X0+2*PADDING,cy,LEGEND_X0+2*PADDING+2*BOX_WIDTH,cy,y_series(i).COLOR)
+				drawline(LEGEND_X0+2*PADDING,cy,LEGEND_X0+2*PADDING+2*BOX_WIDTH,cy,get_color_i(i))
 				drawtext(LEGEND_X0+2*PADDING+3*BOX_WIDTH,cy-BOX_WIDTH-2,"linear, beta "+y_series(i).Beta,LEGEND_FONT_SIZE)
 			}
 		}

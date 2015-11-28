@@ -98,8 +98,7 @@ class DrawChartClass extends Application
 						FIELD="PARF"
 						),
 					Series(
-						FIELD="PARFR",
-						COLOR=Color.rgb(0,0,255)
+						FIELD="PARFR"
 						)
 					),
 
@@ -126,8 +125,7 @@ class DrawChartClass extends Application
 				set_y_series=List(
 					Series(
 						FIELD="M",
-						OK_FUNC=greater_than_zero,
-						COLOR=Color.rgb(0,0,255)
+						OK_FUNC=greater_than_zero
 						),
 					Series(
 						FIELD="F",
@@ -165,8 +163,7 @@ class DrawChartClass extends Application
 						),
 					Series(
 						FIELD="RF",
-						OK_FUNC=greater_than_zero,
-						COLOR=Color.rgb(0,0,255)
+						OK_FUNC=greater_than_zero
 						)
 					),
 
@@ -194,8 +191,7 @@ class DrawChartClass extends Application
 				set_y_series=List(
 					Series(
 						FIELD="AVGR",
-						OK_FUNC=rating_ok,
-						COLOR=Color.rgb(0,0,255)
+						OK_FUNC=rating_ok
 						)
 					),
 
@@ -223,8 +219,7 @@ class DrawChartClass extends Application
 				set_y_series=List(
 					Series(
 						FIELD="AVGR",
-						OK_FUNC=rating_ok,
-						COLOR=Color.rgb(0,0,255)
+						OK_FUNC=rating_ok
 						)
 					),
 
@@ -252,8 +247,7 @@ class DrawChartClass extends Application
 				set_y_series=List(
 					Series(
 						FIELD="AVGRF",
-						OK_FUNC=rating_ok,
-						COLOR=Color.rgb(0,0,255)
+						OK_FUNC=rating_ok
 						)
 					),
 
