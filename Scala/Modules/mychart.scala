@@ -16,6 +16,8 @@ import utils.Dir._
 import utils.Parse._
 import utils.Log._
 
+case class Limit(val FIELD_NAME:String="",val LIMIT:Double=0.0){}
+
 class Range
 {
 
@@ -101,7 +103,8 @@ class MyChart(
 	val PADDING:Int=10,
 	val BOX_WIDTH:Int=10,
 	val GRID_COLOR:Color=Color.rgb(192,192,64),
-	val SCALE_FONT_SIZE:Int=14
+	val SCALE_FONT_SIZE:Int=14,
+	val KEY_TRANSLATIONS:Map[String,String]=Map[String,String]()
 )
 {
 
@@ -115,6 +118,7 @@ class MyChart(
 	var x_series:Series=null
 	var y_series:List[Series]=null
 	var do_trend:Boolean=true
+	var limit:Limit=new Limit
 	var XYSS:scala.collection.mutable.ArrayBuffer[Map[Double,Double]]=null
 	var MIN_X=0.0
 	var MAX_X=0.0
@@ -369,8 +373,16 @@ class MyChart(
 			Syy=Syy+y*y
 			n=n+1
 		}
+
+		val denomBeta=(n*Sxx)-(Sx*Sx)
+
+		if((denomBeta==0)||(n==0))
+		{
+			log("warning: linear trend could not be calculated")
+			return(List(0,0))
+		}
 		
-		val Beta=(n*Sxy-Sx*Sy)/((n*Sxx)-(Sx*Sx))
+		val Beta=(n*Sxy-Sx*Sy)/(denomBeta)
 		val Alpha=(Sy/n)-(Beta*Sx/n)
 	
 		List(Alpha,Beta)
@@ -392,12 +404,15 @@ class MyChart(
 
 		for(record<-records)
 		{
+
 			if(record.contains(X_FIELD))
 			{
+
 				val x_str=record(X_FIELD)
 
 				if(isValue(x_str))
 				{
+
 					val x_orig=myToDouble(x_str)
 
 					val x=x_series.APPLY_FUNC(x_orig)
@@ -430,12 +445,42 @@ class MyChart(
 									if(y_ok)
 									{
 
-										XYSS(i)+=(x->y)
+										var limit_ok=true
+										if(limit.FIELD_NAME!="")
+										{
+											if(record.contains(limit.FIELD_NAME))
+											{
+												val limit_str=record(limit.FIELD_NAME)
+												if(isValue(limit_str))
+												{
+													val limit_value=myToDouble(limit_str)
 
-										//log("series "+i+" added x "+x+" y "+y)
+													if(limit_value < limit.LIMIT)
+													{
+														limit_ok=false
+													}
+												}
+												else
+												{
+													limit_ok=false
+												}
+											}
+											else
+											{
+												limit_ok=false
+											}
+										}
 
-										x_series.RANGE.add(x)
-										y_series(i).RANGE.add(y)
+										log("limit ok "+limit_ok)
+										if(limit_ok)
+										{
+											XYSS(i)+=(x->y)
+
+											log("series "+i+" added x "+x+" y "+y)
+
+											x_series.RANGE.add(x)
+											y_series(i).RANGE.add(y)
+										}
 
 									}
 
@@ -450,21 +495,29 @@ class MyChart(
 			}
 		}
 
+		log("building series done")
+
 		x_series.RANGE.force_min(x_series.FORCE_MIN)
 		x_series.RANGE.force_max(x_series.FORCE_MAX)
 
+		log("force min max done")
+
 		val X_RANGE=x_series.RANGE.RANGE
 
-		if(X_RANGE==0)
+		if((X_RANGE.abs < 1.0e-6) || (X_RANGE.abs> 1.0e6 ))
 		{
-			log("error: x range zero")
+			log("error: x range extreme "+X_RANGE)
 			return false
 		}
+
+		log("calculating step for range "+X_RANGE)
 
 		STEP_X=calc_step(X_RANGE)
 
 		x_series.TRUE_MIN_V=x_series.RANGE.MINV
 		x_series.TRUE_MAX_V=x_series.RANGE.MAXV
+
+		log("step correction")
 
 		MIN_X=step_correct_down(x_series.TRUE_MIN_V,STEP_X)
 		MAX_X=step_correct_up(x_series.TRUE_MAX_V,STEP_X)
@@ -480,6 +533,8 @@ class MyChart(
 		var i=0		
 		for(series<-y_series)
 		{
+
+			log("adjusting series "+i)
 
 			y_series(i).TRUE_MIN_V=y_series(i).RANGE.MINV
 			y_series(i).TRUE_MAX_V=y_series(i).RANGE.MAXV
@@ -589,16 +644,6 @@ class MyChart(
 		}
 	}
 
-	val KEY_TRANSLATIONS=Map(
-		"PARF"->"Female participation %",
-		"PARFR"->"Female participation % rated",
-		"AVGR"->"Average rating",
-		"M"->"Male",
-		"F"->"Female",
-		"AVGRM"->"Average male rating",
-		"AVGRF"->"Average female rating"
-		)
-
 	def drawlegend()
 	{
 		for(i <- 0 to XYSS.length-1)
@@ -626,7 +671,8 @@ class MyChart(
 		set_data_source_path:String=null,
 		set_x_series:Series=null,
 		set_y_series:List[Series]=null,
-		set_do_trend:Boolean=true
+		set_do_trend:Boolean=true,
+		set_limit:Limit=new Limit()
 	)
 	{
 
@@ -638,6 +684,7 @@ class MyChart(
 		x_series=set_x_series
 		y_series=set_y_series
 		do_trend=set_do_trend
+		limit=set_limit
 
 		if(data_source_path==null)
 		{
