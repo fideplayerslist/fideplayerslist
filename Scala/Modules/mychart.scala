@@ -70,6 +70,10 @@ case class Series(
 )
 {
 	val RANGE=new Range
+	var Alpha=0.0
+	var Beta=0.0
+	var TRUE_MIN_V=0.0
+	var TRUE_MAX_V=0.0
 }
 
 class MyChart(
@@ -80,23 +84,44 @@ class MyChart(
 	val AXIS_LEGEND_FONT_SIZE:Int=18,
 	val AXIS_Y_LEGEND_WIDTH:Int=50,
 	val AXIS_Y_LEGEND_BACKGROUND:Color=Color.rgb(192,192,192),
-	val AXIS_Y_SCALE_WIDTH:Int=150,
+	val AXIS_Y_SCALE_WIDTH:Int=100,
 	val AXIS_Y_SCALE_BACKGROUND:Color=Color.rgb(255,192,192),
 	val CHART_WIDTH:Int=600,
 	val CHART_HEIGHT:Int=350,
 	val CHART_BACKGROUND:Color=Color.rgb(255,255,192),
-	val AXIS_X_SCALE_HEIGHT:Int=100,
+	val AXIS_X_SCALE_HEIGHT:Int=80,
 	val AXIS_X_SCALE_BACKGROUND:Color=Color.rgb(255,192,192),
 	val AXIS_X_LEGEND_HEIGHT:Int=50,
 	val AXIS_X_LEGEND_BACKGROUND:Color=Color.rgb(192,192,192),
 	val LEGEND_WIDTH:Int=400,
 	val LEGEND_BACKGROUND:Color=Color.rgb(192,192,192),
+	val LEGEND_FONT_SIZE:Int=18,
+	val LEGEND_STEP:Int=40,
 	val PADDING:Int=10,
 	val BOX_WIDTH:Int=10,
 	val GRID_COLOR:Color=Color.rgb(192,192,64),
 	val SCALE_FONT_SIZE:Int=14
 )
 {
+
+	var title=""
+	var xlegend=""
+	var ylegend=""
+	var data_source=""
+	var data_source_path=""
+	var x_series:Series=null
+	var y_series:List[Series]=null
+	var do_trend:Boolean=true
+	var XYSS:scala.collection.mutable.ArrayBuffer[Map[Double,Double]]=null
+	var MIN_X=0.0
+	var MAX_X=0.0
+	var MIN_Y=0.0
+	var MAX_Y=0.0
+	var FACTOR_X=0.0
+	var FACTOR_Y=0.0
+	var STEP_X=0.0
+	var STEP_Y=0.0
+
 	val CANVAS_WIDTH=AXIS_Y_LEGEND_WIDTH+AXIS_Y_SCALE_WIDTH+CHART_WIDTH+LEGEND_WIDTH
 	val CANVAS_HEIGHT=TITLE_HEIGHT+CHART_HEIGHT+AXIS_X_SCALE_HEIGHT+AXIS_X_LEGEND_HEIGHT
 
@@ -181,23 +206,6 @@ class MyChart(
 
  		canvas_group.getChildren().add(text)
 	}
-
-	var title=""
-	var xlegend=""
-	var ylegend=""
-	var data_source=""
-	var data_source_path=""
-	var x_series:Series=null
-	var y_series:List[Series]=null
-	var XYSS:scala.collection.mutable.ArrayBuffer[Map[Double,Double]]=null
-	var MIN_X=0.0
-	var MAX_X=0.0
-	var MIN_Y=0.0
-	var MAX_Y=0.0
-	var FACTOR_X=0.0
-	var FACTOR_Y=0.0
-	var STEP_X=0.0
-	var STEP_Y=0.0
 
 	def drawxscale()
 	{
@@ -339,6 +347,32 @@ class MyChart(
 	def step_correct_down(what: Double,step: Double):Double = ((what/step).floor-1)*step
 	def step_correct_up(what: Double,step: Double):Double = ((what/step).floor+2)*step
 
+	def calc_linear(XYS: Map[Double,Double]): List[Double] =
+	{
+		var Sx:Double=0.0
+		var Sy:Double=0.0
+		var Sxx:Double=0.0
+		var Sxy:Double=0.0
+		var Syy:Double=0.0
+		var n=0
+		for((k,v)<-XYS)
+		{
+			val x=k
+			val y=v
+			Sx=Sx+x
+			Sy=Sy+y
+			Sxx=Sxx+x*x
+			Sxy=Sxy+x*y
+			Syy=Syy+y*y
+			n=n+1
+		}
+		
+		val Beta=(n*Sxy-Sx*Sy)/((n*Sxx)-(Sx*Sx))
+		val Alpha=(Sy/n)-(Beta*Sx/n)
+	
+		List(Alpha,Beta)
+	}
+
 	def parse_XYSS():Boolean =
 	{
 
@@ -426,8 +460,11 @@ class MyChart(
 
 		STEP_X=calc_step(X_RANGE)
 
-		MIN_X=step_correct_down(x_series.RANGE.MINV,STEP_X)
-		MAX_X=step_correct_up(x_series.RANGE.MAXV,STEP_X)
+		x_series.TRUE_MIN_V=x_series.RANGE.MINV
+		x_series.TRUE_MAX_V=x_series.RANGE.MAXV
+
+		MIN_X=step_correct_down(x_series.TRUE_MIN_V,STEP_X)
+		MAX_X=step_correct_up(x_series.TRUE_MAX_V,STEP_X)
 
 		val X_RANGE_CORRECTED=MAX_X-MIN_X
 
@@ -441,13 +478,23 @@ class MyChart(
 		for(series<-y_series)
 		{
 
+			y_series(i).TRUE_MIN_V=y_series(i).RANGE.MINV
+			y_series(i).TRUE_MAX_V=y_series(i).RANGE.MAXV
+
 			y_series(i).RANGE.force_min(series.FORCE_MIN)
 			y_series(i).RANGE.force_max(series.FORCE_MAX)
 
-			println("y range "+i+" : "+series.RANGE.MINV+" - "+series.RANGE.MAXV)
+			println("y range "+i+" : "+y_series(i).TRUE_MIN_V+" - "+y_series(i).TRUE_MAX_V)
 
-			Y_RANGE.add(y_series(i).RANGE.MINV)
-			Y_RANGE.add(y_series(i).RANGE.MAXV)
+			Y_RANGE.add(y_series(i).TRUE_MIN_V)
+			Y_RANGE.add(y_series(i).TRUE_MAX_V)
+
+			val trend=calc_linear(XYSS(i))
+
+			y_series(i).Alpha=trend(0)
+			y_series(i).Beta=trend(1)
+
+			println("Alpha "+y_series(i).Alpha+" Beta "+y_series(i).Beta)
 
 			i+=1
 		}
@@ -526,6 +573,48 @@ class MyChart(
 		}
 	}
 
+	def drawtrends()
+	{
+		for(series<-y_series)
+		{
+			val trend_x0=cx(x_series.TRUE_MIN_V)
+			val trend_y0=cy(series.Alpha+x_series.TRUE_MIN_V*series.Beta)
+			val trend_x1=cx(x_series.TRUE_MAX_V)
+			val trend_y1=cy(series.Alpha+(x_series.TRUE_MAX_V)*series.Beta)
+
+			drawline(trend_x0,trend_y0,trend_x1,trend_y1,series.COLOR)
+		}
+	}
+
+	val KEY_TRANSLATIONS=Map(
+		"PARF"->"Female participation %",
+		"PARFR"->"Female participation % rated",
+		"AVGR"->"Average rating",
+		"M"->"Male",
+		"F"->"Female",
+		"AVGRM"->"Average male rating",
+		"AVGRF"->"Average female rating"
+		)
+
+	def drawlegend()
+	{
+		for(i <- 0 to XYSS.length-1)
+		{
+
+			val legend_step_factor=if(do_trend) 2 else 1
+
+			var cy=LEGEND_Y0+legend_step_factor*LEGEND_STEP*i+2*PADDING
+			drawbox(LEGEND_X0+2*PADDING,cy,y_series(i).COLOR)
+			drawtext(LEGEND_X0+2*PADDING+2*BOX_WIDTH,cy-BOX_WIDTH-2,KEY_TRANSLATIONS(y_series(i).FIELD),LEGEND_FONT_SIZE)
+			if(do_trend)
+			{
+				cy=LEGEND_Y0+2*LEGEND_STEP*i+LEGEND_STEP+2*PADDING
+				drawline(LEGEND_X0+2*PADDING,cy,LEGEND_X0+2*PADDING+2*BOX_WIDTH,cy,y_series(i).COLOR)
+				drawtext(LEGEND_X0+2*PADDING+3*BOX_WIDTH,cy-BOX_WIDTH-2,"linear, beta "+y_series(i).Beta,LEGEND_FONT_SIZE)
+			}
+		}
+	}
+
 	def draw(
 		set_title:String="",
 		set_xlegend:String="",
@@ -533,7 +622,8 @@ class MyChart(
 		set_data_source:String=null,
 		set_data_source_path:String=null,
 		set_x_series:Series=null,
-		set_y_series:List[Series]=null
+		set_y_series:List[Series]=null,
+		set_do_trend:Boolean=true
 	)
 	{
 
@@ -544,6 +634,7 @@ class MyChart(
 		data_source_path=set_data_source_path
 		x_series=set_x_series
 		y_series=set_y_series
+		do_trend=set_do_trend
 
 		if(data_source_path==null)
 		{
@@ -590,7 +681,14 @@ class MyChart(
 
 		drawseries()
 
+		if(do_trend)
+		{
+			drawtrends()
+		}
+
 		drawsurround()
+
+		drawlegend()
 
 	}
 

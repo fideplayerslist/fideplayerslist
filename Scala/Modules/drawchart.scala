@@ -43,11 +43,16 @@ class DrawChartClass extends Application
 
 		def age_ok(a:Double):Boolean=((a>=10)&&(a<=80))
 
+		def rating_ok(r:Double):Boolean=((r>=1000)&&(r<=3000))
+
+		def greater_than_zero(x:Double):Boolean=(x>0)
+
 		var chart=new MyChart(
-			DATA_SOURCE_TO_PATH_FUNC=(x => "stats/keystats/"+x+"/x/byall.txt")
+			DATA_SOURCE_TO_PATH_FUNC=(x => "stats/keystats/"+x+"/x/byall.txt"),
+			CHART_WIDTH=750
 			)
 
-		def draw()
+		def draw_participation()
 		{
 			chart.draw(
 
@@ -76,13 +81,46 @@ class DrawChartClass extends Application
 			)
 		}
 
+		def draw_distribution()
+		{
+			chart.draw(
+
+				set_title="Rating distribution",
+				set_xlegend="Rating",
+				set_ylegend="Frequency",
+
+				set_data_source="rr",
+
+				set_x_series=Series(
+					FIELD="AVGR",
+					OK_FUNC=rating_ok
+					),
+
+				set_y_series=List(
+					Series(
+						FIELD="M",
+						OK_FUNC=greater_than_zero,
+						COLOR=Color.rgb(0,0,255)
+						),
+					Series(
+						FIELD="F",
+						OK_FUNC=greater_than_zero
+						)
+					),
+
+				set_do_trend=false
+
+			)
+		}
+
 		def clear()
 		{
 			chart.clear()
 		}
 
 		val buttons:Array[Button]=Array(
-			new MyButton("Draw",draw),
+			new MyButton("Draw participation",draw_participation),
+			new MyButton("Draw distribution",draw_distribution),
 			new MyButton("Clear",clear)
 		)
 
