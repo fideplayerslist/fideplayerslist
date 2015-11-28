@@ -16,18 +16,19 @@ import mychart._
 
 import globals.Globals._
 
+import utils.Log._
+
 class DrawChartClass extends Application
 {
 
-	class MyButton( text: String , callback: () => Unit ) extends Button( text )
-	{
-		setOnAction(new EventHandler[ActionEvent]{
-			override def handle(e: ActionEvent)
-			{
-				callback()
-			}
-		});
-	}
+	do_log=false
+
+	var root=new FlowPane()
+
+	val FILTERS=List("x","m","a","ma")
+	val TRANSLATE_FILTERS=Map("x"->"none","m"->"middle age","a"->"active","ma"->"middle age, active")
+
+	var current_filter="x"
 
 	override def start(primaryStage: Stage)
 	{
@@ -37,8 +38,6 @@ class DrawChartClass extends Application
 		primaryStage.setX(30)
 		primaryStage.setY(30)
 
-		var root=new FlowPane()
-
 		def birthday_to_age(b:Double):Double=REFERENCE_YEAR-b
 
 		def age_ok(a:Double):Boolean=((a>=10)&&(a<=80))
@@ -47,10 +46,16 @@ class DrawChartClass extends Application
 
 		def greater_than_zero(x:Double):Boolean=(x>0)
 
-		var chart=new MyChart(
-			DATA_SOURCE_TO_PATH_FUNC=(x => "stats/keystats/"+x+"/x/byall.txt"),
-			CHART_WIDTH=750
+		var chart=new MyChart()
+		def getchart
+		{
+			val size=root.getChildren.size()
+			root.getChildren.remove(size-1,size)
+			chart=new MyChart(
+			DATA_SOURCE_TO_PATH_FUNC=(x => "stats/keystats/"+x+"/"+current_filter+"/byall.txt")
 			)
+			root.getChildren.add(chart.canvas)
+		}
 
 		def draw_participation()
 		{
@@ -113,16 +118,57 @@ class DrawChartClass extends Application
 			)
 		}
 
+		var current_callback:()=>Unit=draw_participation
+
+		class MyButton( text: String , callback: () => Unit ) extends Button( text )
+		{
+			setOnAction(new EventHandler[ActionEvent]{
+				override def handle(e: ActionEvent)
+				{
+					callback()
+				}
+			});
+		}
+
+		class MyDrawButton( text: String , callback: () => Unit ) extends Button( text )
+		{
+			setOnAction(new EventHandler[ActionEvent]{
+				override def handle(e: ActionEvent)
+				{
+					current_callback=callback
+					getchart
+					current_callback()
+				}
+			});
+		}
+
+		class MyFilterButton( filter: String ) extends Button( "Filter "+TRANSLATE_FILTERS(filter) )
+		{
+			setOnAction(new EventHandler[ActionEvent]{
+				override def handle(e: ActionEvent)
+				{
+					current_filter=filter
+					getchart
+					current_callback()
+				}
+			});
+		}
+
 		def clear()
 		{
 			chart.clear()
 		}
 
-		val buttons:Array[Button]=Array(
-			new MyButton("Draw participation",draw_participation),
-			new MyButton("Draw distribution",draw_distribution),
+		val buttons=scala.collection.mutable.ArrayBuffer[Button](
+			new MyDrawButton("Draw participation",draw_participation),
+			new MyDrawButton("Draw distribution",draw_distribution),
 			new MyButton("Clear",clear)
 		)
+
+		for(filter<-FILTERS)
+		{
+			buttons+=new MyFilterButton(filter)
+		}
 
 		for(button<-buttons) root.getChildren.add(button)
 

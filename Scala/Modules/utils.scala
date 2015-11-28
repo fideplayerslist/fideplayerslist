@@ -182,3 +182,15 @@ object Dir
 	}
 
 }
+
+object Log
+{
+	var do_log=true
+	def log(what: String)
+	{
+		if(do_log)
+		{
+			println(what)
+		}
+	}
+}

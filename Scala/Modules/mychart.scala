@@ -14,6 +14,7 @@ import javafx.geometry._
 
 import utils.Dir._
 import utils.Parse._
+import utils.Log._
 
 class Range
 {
@@ -86,7 +87,7 @@ class MyChart(
 	val AXIS_Y_LEGEND_BACKGROUND:Color=Color.rgb(192,192,192),
 	val AXIS_Y_SCALE_WIDTH:Int=100,
 	val AXIS_Y_SCALE_BACKGROUND:Color=Color.rgb(255,192,192),
-	val CHART_WIDTH:Int=600,
+	val CHART_WIDTH:Int=750,
 	val CHART_HEIGHT:Int=350,
 	val CHART_BACKGROUND:Color=Color.rgb(255,255,192),
 	val AXIS_X_SCALE_HEIGHT:Int=80,
@@ -103,6 +104,8 @@ class MyChart(
 	val SCALE_FONT_SIZE:Int=14
 )
 {
+
+	do_log=false
 
 	var title=""
 	var xlegend=""
@@ -429,7 +432,7 @@ class MyChart(
 
 										XYSS(i)+=(x->y)
 
-										println("series "+i+" added x "+x+" y "+y)
+										//log("series "+i+" added x "+x+" y "+y)
 
 										x_series.RANGE.add(x)
 										y_series(i).RANGE.add(y)
@@ -454,7 +457,7 @@ class MyChart(
 
 		if(X_RANGE==0)
 		{
-			println("error: x range zero")
+			log("error: x range zero")
 			return false
 		}
 
@@ -470,7 +473,7 @@ class MyChart(
 
 		FACTOR_X=CHART_WIDTH/X_RANGE_CORRECTED
 
-		println("x range : "+MIN_X+" - "+MAX_X+" , factor "+FACTOR_X+" , step "+STEP_X)
+		log("x range : "+MIN_X+" - "+MAX_X+" , factor "+FACTOR_X+" , step "+STEP_X)
 
 		val Y_RANGE=new Range
 
@@ -484,7 +487,7 @@ class MyChart(
 			y_series(i).RANGE.force_min(series.FORCE_MIN)
 			y_series(i).RANGE.force_max(series.FORCE_MAX)
 
-			println("y range "+i+" : "+y_series(i).TRUE_MIN_V+" - "+y_series(i).TRUE_MAX_V)
+			log("y range "+i+" : "+y_series(i).TRUE_MIN_V+" - "+y_series(i).TRUE_MAX_V)
 
 			Y_RANGE.add(y_series(i).TRUE_MIN_V)
 			Y_RANGE.add(y_series(i).TRUE_MAX_V)
@@ -494,14 +497,14 @@ class MyChart(
 			y_series(i).Alpha=trend(0)
 			y_series(i).Beta=trend(1)
 
-			println("Alpha "+y_series(i).Alpha+" Beta "+y_series(i).Beta)
+			log("Alpha "+y_series(i).Alpha+" Beta "+y_series(i).Beta)
 
 			i+=1
 		}
 
 		if(Y_RANGE.RANGE==0)
 		{
-			println("error: y range zero")
+			log("error: y range zero")
 			return false
 		}
 
@@ -514,7 +517,7 @@ class MyChart(
 
 		FACTOR_Y=CHART_HEIGHT/Y_RANGE_CORRECTED
 
-		println("overall y range: "+MIN_Y+" - "+MAX_Y+" , factor "+FACTOR_Y+" , step "+STEP_Y)
+		log("overall y range: "+MIN_Y+" - "+MAX_Y+" , factor "+FACTOR_Y+" , step "+STEP_Y)
 
 		return true
 	}
@@ -640,7 +643,7 @@ class MyChart(
 		{
 			if(data_source==null)
 			{
-				println("error: no data source")
+				log("error: no data source")
 				return
 			}
 			else
@@ -649,19 +652,19 @@ class MyChart(
 			}
 		}
 
-		println(s"data source path: $data_source_path")
+		log(s"data source path: $data_source_path")
 
 		if(x_series==null)
 		{
-			println("error: missing x series")
+			log("error: missing x series")
 			return
 		}
 
-		println("x series "+x_series.FIELD)
+		log("x series "+x_series.FIELD)
 
 		if(y_series==null)
 		{
-			println("error: missing y series")
+			log("error: missing y series")
 			return
 		}
 
@@ -669,26 +672,41 @@ class MyChart(
 		for(s<-y_series)
 		{
 			i+=1
-			println("y series "+i+" "+s.FIELD)
+			log("y series "+i+" "+s.FIELD)
 		}
+
+		log("parsing data")
 
 		if(!parse_XYSS())
 		{
+			log("parsing data failed, chart drawing aborted")
 			return
 		}
 
+		log("drawing grid")
+
 		drawgrid()
+
+		log("drawing series")
 
 		drawseries()
 
 		if(do_trend)
 		{
+			log("drawing trends")
+
 			drawtrends()
 		}
 
+		log("drawing surround")
+
 		drawsurround()
 
+		log("drawing legend")
+
 		drawlegend()
+
+		log("chart drawn ok")
 
 	}
 
