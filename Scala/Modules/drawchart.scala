@@ -54,7 +54,7 @@ class DrawChartClass extends Application
 			chart=new MyChart(
 			DATA_SOURCE_TO_PATH_FUNC=(x => "stats/keystats/"+x+"/"+current_filter+"/byall.txt")
 			)
-			root.getChildren.add(chart.canvas)
+			root.getChildren.add(chart.canvas_group)
 		}
 
 		def draw_participation()
