@@ -68,8 +68,8 @@ class DrawChartClass extends Application
 					"F"->"Female",
 					"AVGRM"->"Average male rating",
 					"AVGRF"->"Average female rating",
-					"RM"->"Rated males",
-					"RF"->"Rated females"
+					"RM"->"Rated male",
+					"RF"->"Rated female"
 				)
 			)
 			root.getChildren.add(chart.canvas_group)
@@ -129,7 +129,8 @@ class DrawChartClass extends Application
 						),
 					Series(
 						FIELD="F",
-						OK_FUNC=greater_than_zero
+						OK_FUNC=greater_than_zero,
+						APPLY_FUNC= x => 9*x
 						)
 					),
 
@@ -218,33 +219,9 @@ class DrawChartClass extends Application
 
 				set_y_series=List(
 					Series(
-						FIELD="AVGR",
+						FIELD="AVGRM",
 						OK_FUNC=rating_ok
-						)
-					),
-
-				set_do_trend=true,
-
-				set_limit=Limit("R",current_limit_value)
-
-			)
-		}
-
-		def draw_female_rating_by_participation()
-		{
-			chart.draw(
-
-				set_title="Female rating by participation"+subtitle,
-				set_xlegend="Female participation [ % ]",
-				set_ylegend="Average female rating",
-
-				set_data_source="country",
-
-				set_x_series=Series(
-					FIELD="PARFR"
-					),
-
-				set_y_series=List(
+						),
 					Series(
 						FIELD="AVGRF",
 						OK_FUNC=rating_ok
@@ -325,7 +302,6 @@ class DrawChartClass extends Application
 			new MyDrawButton("Draw age distribution of rated",draw_age_distribution_of_rated),
 			new MyDrawButton("Draw rating by number of rated",draw_rating_by_number_of_rated),
 			new MyDrawButton("Draw rating by participation",draw_rating_by_participation),
-			new MyDrawButton("Draw female rating by participation",draw_female_rating_by_participation),
 			new MyButton("Clear",clear)
 		)
 

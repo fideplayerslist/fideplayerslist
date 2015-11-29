@@ -21,15 +21,15 @@ case class Limit(val FIELD_NAME:String="",val LIMIT:Double=0.0){}
 class Range
 {
 
-	var MINV:Double=Series.INFINITE
+	var MIN_V:Double=Series.INFINITE
 
-	var MAXV:Double=(-Series.INFINITE)
+	var MAX_V:Double=(-Series.INFINITE)
 
 	def force_min(what: Double)
 	{
 		if(what < Series.INFINITE)
 		{
-			MINV=what
+			MIN_V=what
 		}
 	}
 
@@ -37,25 +37,25 @@ class Range
 	{
 		if(what > (-Series.INFINITE))
 		{
-			MAXV=what
+			MAX_V=what
 		}
 	}
 
 	def add(what: Double)
 	{
-		if(what > MAXV)
+		if(what > MAX_V)
 		{
-			MAXV=what
+			MAX_V=what
 		}
 
-		if(what < MINV)
+		if(what < MIN_V)
 		{
-			MINV=what
+			MIN_V=what
 		}
 
 	}
 
-	def RANGE:Double=MAXV-MINV
+	def RANGE:Double=MAX_V-MIN_V
 }
 
 object Series
@@ -86,6 +86,7 @@ object MyChart
 	val TITLE=Color.rgb(200,255,200)
 	val YELLOW=Color.rgb(255,255,192)
 	val GRID=Color.rgb(192,192,64)
+	val AXIS=Color.rgb(0,0,0)
 }
 
 class MyChart(
@@ -114,7 +115,13 @@ class MyChart(
 	val GRID_COLOR:Color=MyChart.GRID,
 	val SCALE_FONT_SIZE:Int=14,
 	val FONT_FAMILY:String="Courier New",
-	val KEY_TRANSLATIONS:Map[String,String]=Map[String,String]()
+	val KEY_TRANSLATIONS:Map[String,String]=Map[String,String](),
+	val AXIS_COLOR:Color=MyChart.AXIS,
+	val DEFAULT_COLORS:List[Color]=List(
+		Color.rgb(255,0,0),
+		Color.rgb(0,0,255),
+		Color.rgb(0,255,0)
+		)
 )
 {
 
@@ -138,6 +145,10 @@ class MyChart(
 	var FACTOR_Y=0.0
 	var STEP_X=0.0
 	var STEP_Y=0.0
+	var TRUE_MIN_X=0.0
+	var TRUE_MAX_X=0.0
+	var TRUE_MIN_Y=0.0
+	var TRUE_MAX_Y=0.0
 
 	val CANVAS_WIDTH=AXIS_Y_LEGEND_WIDTH+AXIS_Y_SCALE_WIDTH+CHART_WIDTH+LEGEND_WIDTH
 	val CANVAS_HEIGHT=TITLE_HEIGHT+CHART_HEIGHT+AXIS_X_SCALE_HEIGHT+AXIS_X_LEGEND_HEIGHT
@@ -236,7 +247,10 @@ class MyChart(
 
 			val xc=cx(x)-SCALE_FONT_SIZE/2
 
-			drawtext(xc,AXIS_X_SCALE_Y0+PADDING+i*SCALE_FONT_SIZE*2,""+x.toInt,SCALE_FONT_SIZE)
+			if((x>=TRUE_MIN_X)&&(x<=TRUE_MAX_X))
+			{
+				drawtext(xc,AXIS_X_SCALE_Y0+PADDING+i*SCALE_FONT_SIZE*2,""+x.toInt,SCALE_FONT_SIZE)
+			}
 
 			i+=1
 
@@ -265,7 +279,16 @@ class MyChart(
 
 			val whatnice=what.replaceAll("\\.0$","")
 
-			drawtext(AXIS_Y_SCALE_X1-PADDING-whatnice.length*SCALE_FONT_SIZE,yc,whatnice,SCALE_FONT_SIZE)
+			if((y>=TRUE_MIN_Y)&&(y<=TRUE_MAX_Y))
+			{
+
+				val l=whatnice.length
+
+				val offset=l*SCALE_FONT_SIZE/2
+
+				drawtext(AXIS_Y_SCALE_X1-2*PADDING-offset,yc-3,whatnice,SCALE_FONT_SIZE)
+
+			}
 
 			y+=STEP_Y
 
@@ -509,6 +532,9 @@ class MyChart(
 
 		log("building series done")
 
+		TRUE_MIN_X=x_series.RANGE.MIN_V
+		TRUE_MAX_X=x_series.RANGE.MAX_V
+
 		x_series.RANGE.force_min(x_series.FORCE_MIN)
 		x_series.RANGE.force_max(x_series.FORCE_MAX)
 
@@ -526,8 +552,8 @@ class MyChart(
 
 		STEP_X=calc_step(X_RANGE)
 
-		x_series.TRUE_MIN_V=x_series.RANGE.MINV
-		x_series.TRUE_MAX_V=x_series.RANGE.MAXV
+		x_series.TRUE_MIN_V=x_series.RANGE.MIN_V
+		x_series.TRUE_MAX_V=x_series.RANGE.MAX_V
 
 		log("step correction")
 
@@ -548,8 +574,8 @@ class MyChart(
 
 			log("adjusting series "+i)
 
-			y_series(i).TRUE_MIN_V=y_series(i).RANGE.MINV
-			y_series(i).TRUE_MAX_V=y_series(i).RANGE.MAXV
+			y_series(i).TRUE_MIN_V=y_series(i).RANGE.MIN_V
+			y_series(i).TRUE_MAX_V=y_series(i).RANGE.MAX_V
 
 			y_series(i).RANGE.force_min(series.FORCE_MIN)
 			y_series(i).RANGE.force_max(series.FORCE_MAX)
@@ -575,10 +601,13 @@ class MyChart(
 			return false
 		}
 
+		TRUE_MIN_Y=Y_RANGE.MIN_V
+		TRUE_MAX_Y=Y_RANGE.MAX_V
+
 		STEP_Y=calc_step(Y_RANGE.RANGE)
 
-		MIN_Y=step_correct_down(Y_RANGE.MINV,STEP_Y)
-		MAX_Y=step_correct_up(Y_RANGE.MAXV,STEP_Y)
+		MIN_Y=step_correct_down(Y_RANGE.MIN_V,STEP_Y)
+		MAX_Y=step_correct_up(Y_RANGE.MAX_V,STEP_Y)
 
 		val Y_RANGE_CORRECTED=MAX_Y-MIN_Y
 
@@ -627,13 +656,11 @@ class MyChart(
 
 			y+=STEP_Y
 		}
-	}
 
-	val DEFAULT_COLORS=List(
-		Color.rgb(255,0,0),
-		Color.rgb(0,0,255),
-		Color.rgb(0,255,0)
-		)
+		drawline(cx(0),CHART_Y0,cx(0),CHART_Y1,AXIS_COLOR)
+		drawline(CHART_X0,cy(0),CHART_X1,cy(0),AXIS_COLOR)
+
+	}
 
 	def get_color_i(i:Int):Color =
 	{
