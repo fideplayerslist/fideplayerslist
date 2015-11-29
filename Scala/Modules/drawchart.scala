@@ -23,6 +23,33 @@ import utils.Log._
 class DrawChartClass extends Application
 {
 
+	trait HasId
+	{
+		var id:Int=0
+	}
+
+	class RadioButton
+	{
+
+		var buttons=List[Button with HasId]()
+
+		def select(id: Int)
+		{
+			for(button<-buttons)
+			{
+				val style=button.getStyle
+				if(id==button.id)
+				{
+					button.setStyle(style.replaceAll("-fx-border-width: [^;]*","-fx-border-width: 8"))
+				}
+				else
+				{
+					button.setStyle(style.replaceAll("-fx-border-width: [^;]*","-fx-border-width: 3"))
+				}
+			}
+		}
+	}
+
 	do_log=false
 
 	var root=new FlowPane()
@@ -247,27 +274,33 @@ class DrawChartClass extends Application
 			});
 		}
 
-		class MyDrawButton( text: String , callback: () => Unit ) extends Button( text )
+		val BORDER_STYLE="-fx-border-style: solid; -fx-border-width: 3px; -fx-border-radius: 10px; -fx-border-color: #00007f;"
+
+		class MyDrawButton( text: String , callback: () => Unit , val parent: RadioButton , set_id:Int ) extends Button( text ) with HasId
 		{
-			setStyle("-fx-background-color:#3fff3f; -fx-padding: 3px; -fx-font-size: 16px; -fx-border-style: solid; -fx-border-width: 2; -fx-border-radius: 10px;")
+			id=set_id
+			setStyle("-fx-background-color:#3fff3f; -fx-padding: 3px; -fx-font-size: 16px; "+BORDER_STYLE)
 			setOnAction(new EventHandler[ActionEvent]{
 				override def handle(e: ActionEvent)
 				{
 					current_callback=callback
 					getchart
+					parent.select(id)
 					current_callback()
 				}
 			});
 		}
 
-		class MyFilterButton( filter: String ) extends Button( TRANSLATE_FILTERS(filter) )
+		class MyFilterButton( filter: String , val parent: RadioButton , set_id:Int ) extends Button( TRANSLATE_FILTERS(filter) ) with HasId
 		{
-			setStyle("-fx-background-color:#ffff7f; -fx-padding: 3px; -fx-font-size: 16px; -fx-border-style: solid; -fx-border-width: 2; -fx-border-radius: 10px;")
+			id=set_id
+			setStyle("-fx-background-color:#ffff7f; -fx-padding: 3px; -fx-font-size: 16px; "+BORDER_STYLE)
 			setOnAction(new EventHandler[ActionEvent]{
 				override def handle(e: ActionEvent)
 				{
 					current_filter=filter
 					getchart
+					parent.select(id)
 					current_callback()
 				}
 			});
@@ -298,32 +331,49 @@ class DrawChartClass extends Application
 			chart.clear()
 		}
 
-		val buttons=scala.collection.mutable.ArrayBuffer[Button](
-			new MyDrawButton("Participation",draw_participation),
-			new MyDrawButton("Rating distribution",draw_rating_distribution),
-			new MyDrawButton("Age distribution of rated",draw_age_distribution_of_rated),
-			new MyDrawButton("Rating by number of rated",draw_rating_by_number_of_rated),
-			new MyDrawButton("Rating by participation",draw_rating_by_participation),
-			new MyButton("Clear",clear)
+		val draw_radio=new RadioButton
+
+		val draw_buttons=List(
+			new MyDrawButton("Participation",draw_participation,draw_radio,1),
+			new MyDrawButton("Rating distribution",draw_rating_distribution,draw_radio,2),
+			new MyDrawButton("Age distribution of rated",draw_age_distribution_of_rated,draw_radio,3),
+			new MyDrawButton("Rating by number of rated",draw_rating_by_number_of_rated,draw_radio,4),
+			new MyDrawButton("Rating by participation",draw_rating_by_participation,draw_radio,5)
 		)
 
-		for(filter<-FILTERS)
-		{
-			buttons+=new MyFilterButton(filter)
-		}
+		draw_radio.buttons=draw_buttons
+
+		draw_radio.select(1)
+
+		val filter_radio=new RadioButton
+
+		var i=0
+		val filter_buttons:List[Button with HasId]=for(filter<-FILTERS)
+			yield { i+=1; new MyFilterButton(filter,filter_radio,i) }
+
+		filter_radio.buttons=filter_buttons
+
+		filter_radio.select(1)
 
 		root.setPadding(new Insets(5,5,5,5))
 
 		root.setHgap(10)
 		root.setVgap(3)
 
-		for(button<-buttons) root.getChildren.add(button)
+		for(button<-draw_buttons) root.getChildren.add(button)
+
+		root.getChildren.add(new MyButton("Clear",clear))
+
+		for(button<-filter_buttons) root.getChildren.add(button)
 
 		root.getChildren.add(slider)
 
 		root.getChildren.add(chart.canvas_group)
 
 		primaryStage.setScene(new Scene(root))
+
+		getchart
+		draw_participation()
 
 		primaryStage.show()
 
