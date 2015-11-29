@@ -42,8 +42,8 @@ class DrawChartClass extends Application
 
 		primaryStage.setTitle("FIDE Players Charts")
 
-		primaryStage.setX(30)
-		primaryStage.setY(30)
+		primaryStage.setX(5)
+		primaryStage.setY(5)
 
 		def birthday_to_age(b:Double):Double=REFERENCE_YEAR-b
 
@@ -249,6 +249,7 @@ class DrawChartClass extends Application
 
 		class MyDrawButton( text: String , callback: () => Unit ) extends Button( text )
 		{
+			setStyle("-fx-background-color:#3fff3f; -fx-padding: 3px; -fx-font-size: 16px; -fx-border-style: solid; -fx-border-width: 2; -fx-border-radius: 10px;")
 			setOnAction(new EventHandler[ActionEvent]{
 				override def handle(e: ActionEvent)
 				{
@@ -259,8 +260,9 @@ class DrawChartClass extends Application
 			});
 		}
 
-		class MyFilterButton( filter: String ) extends Button( "Filter "+TRANSLATE_FILTERS(filter) )
+		class MyFilterButton( filter: String ) extends Button( TRANSLATE_FILTERS(filter) )
 		{
+			setStyle("-fx-background-color:#ffff7f; -fx-padding: 3px; -fx-font-size: 16px; -fx-border-style: solid; -fx-border-width: 2; -fx-border-radius: 10px;")
 			setOnAction(new EventHandler[ActionEvent]{
 				override def handle(e: ActionEvent)
 				{
@@ -297,11 +299,11 @@ class DrawChartClass extends Application
 		}
 
 		val buttons=scala.collection.mutable.ArrayBuffer[Button](
-			new MyDrawButton("Draw participation",draw_participation),
-			new MyDrawButton("Draw rating distribution",draw_rating_distribution),
-			new MyDrawButton("Draw age distribution of rated",draw_age_distribution_of_rated),
-			new MyDrawButton("Draw rating by number of rated",draw_rating_by_number_of_rated),
-			new MyDrawButton("Draw rating by participation",draw_rating_by_participation),
+			new MyDrawButton("Participation",draw_participation),
+			new MyDrawButton("Rating distribution",draw_rating_distribution),
+			new MyDrawButton("Age distribution of rated",draw_age_distribution_of_rated),
+			new MyDrawButton("Rating by number of rated",draw_rating_by_number_of_rated),
+			new MyDrawButton("Rating by participation",draw_rating_by_participation),
 			new MyButton("Clear",clear)
 		)
 
@@ -309,6 +311,11 @@ class DrawChartClass extends Application
 		{
 			buttons+=new MyFilterButton(filter)
 		}
+
+		root.setPadding(new Insets(5,5,5,5))
+
+		root.setHgap(10)
+		root.setVgap(3)
 
 		for(button<-buttons) root.getChildren.add(button)
 

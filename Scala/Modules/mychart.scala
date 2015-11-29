@@ -413,7 +413,7 @@ class MyChart(
 
 		if((denomBeta==0)||(n==0))
 		{
-			log("warning: linear trend could not be calculated")
+			log("warning: linear trend could not be calculated",true)
 			return(List(0,0))
 		}
 		
@@ -535,6 +535,12 @@ class MyChart(
 		TRUE_MIN_X=x_series.RANGE.MIN_V
 		TRUE_MAX_X=x_series.RANGE.MAX_V
 
+		if(TRUE_MAX_X<=TRUE_MIN_X)
+		{
+			log(s"error: x range not positive, min $TRUE_MIN_X, max $TRUE_MAX_X",true)
+			return false
+		}
+
 		x_series.RANGE.force_min(x_series.FORCE_MIN)
 		x_series.RANGE.force_max(x_series.FORCE_MAX)
 
@@ -542,23 +548,14 @@ class MyChart(
 
 		val X_RANGE=x_series.RANGE.RANGE
 
-		if((X_RANGE.abs < 1.0e-6) || (X_RANGE.abs> 1.0e6 ))
-		{
-			log("error: x range extreme "+X_RANGE)
-			return false
-		}
-
 		log("calculating step for range "+X_RANGE)
 
 		STEP_X=calc_step(X_RANGE)
 
-		x_series.TRUE_MIN_V=x_series.RANGE.MIN_V
-		x_series.TRUE_MAX_V=x_series.RANGE.MAX_V
-
 		log("step correction")
 
-		MIN_X=step_correct_down(x_series.TRUE_MIN_V,STEP_X)
-		MAX_X=step_correct_up(x_series.TRUE_MAX_V,STEP_X)
+		MIN_X=step_correct_down(TRUE_MIN_X,STEP_X)
+		MAX_X=step_correct_up(TRUE_MAX_X,STEP_X)
 
 		val X_RANGE_CORRECTED=MAX_X-MIN_X
 
@@ -595,9 +592,9 @@ class MyChart(
 			i+=1
 		}
 
-		if(Y_RANGE.RANGE==0)
+		if(Y_RANGE.RANGE<=0)
 		{
-			log("error: y range zero")
+			log(s"error: y range not positive",true)
 			return false
 		}
 
@@ -702,10 +699,10 @@ class MyChart(
 		var i=0
 		for(series<-y_series)
 		{
-			val trend_x0=cx(x_series.TRUE_MIN_V)
-			val trend_y0=cy(series.Alpha+x_series.TRUE_MIN_V*series.Beta)
-			val trend_x1=cx(x_series.TRUE_MAX_V)
-			val trend_y1=cy(series.Alpha+(x_series.TRUE_MAX_V)*series.Beta)
+			val trend_x0=cx(TRUE_MIN_X)
+			val trend_y0=cy(series.Alpha+TRUE_MIN_X*series.Beta)
+			val trend_x1=cx(TRUE_MAX_X)
+			val trend_y1=cy(series.Alpha+TRUE_MAX_X*series.Beta)
 
 			drawline(trend_x0,trend_y0,trend_x1,trend_y1,get_color_i(i))
 

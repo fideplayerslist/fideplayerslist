@@ -186,9 +186,9 @@ object Dir
 object Log
 {
 	var do_log=true
-	def log(what: String)
+	def log(what: String,force: Boolean=false)
 	{
-		if(do_log)
+		if((do_log)||force)
 		{
 			println(what)
 		}
