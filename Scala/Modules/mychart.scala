@@ -509,7 +509,14 @@ class MyChart(
 										log("limit ok "+limit_ok)
 										if(limit_ok)
 										{
-											XYSS(i)+=(x->y)
+
+											val r=scala.util.Random
+
+											val d:Double=r.nextDouble/1.0e6
+
+											val xr=x+d
+
+											XYSS(i)+=(xr->y)
 
 											log("series "+i+" added x "+x+" y "+y)
 
@@ -686,9 +693,12 @@ class MyChart(
 		var i=0
 		for(series<-XYSS)
 		{
+			var j=0
 			for((x,y)<-series)
 			{
+				log(s"plot $j x $x y $y")
 				drawbox(cx(x),cy(y),get_color_i(i))
+				j+=1
 			}
 			i+=1
 		}
