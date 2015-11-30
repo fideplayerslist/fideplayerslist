@@ -96,7 +96,10 @@ class DrawChartClass extends Application
 					"AVGRM"->"Average male rating",
 					"AVGRF"->"Average female rating",
 					"RM"->"Rated male",
-					"RF"->"Rated female"
+					"RF"->"Rated female",
+					"T"->"Titled",
+					"GM"->"GMs",
+					"TP"->"Titled points"
 				)
 			)
 			root.getChildren.add(chart.canvas_group)
@@ -262,6 +265,89 @@ class DrawChartClass extends Application
 			)
 		}
 
+		def draw_rating_by_titled_points()
+		{
+			chart.draw(
+
+				set_title="Rating by titled points"+subtitle,
+				set_xlegend="Titled points",
+				set_ylegend="Average rating",
+
+				set_data_source="country",
+
+				set_x_series=Series(
+					FIELD="TP"
+					),
+
+				set_y_series=List(
+					Series(
+						FIELD="AVGR",
+						OK_FUNC=rating_ok
+						)
+					),
+
+				set_do_trend=true,
+
+				set_limit=Limit("R",current_limit_value)
+
+			)
+		}
+
+		def draw_rating_by_gms()
+		{
+			chart.draw(
+
+				set_title="Rating by number of GMs"+subtitle,
+				set_xlegend="Number of GMs",
+				set_ylegend="Average rating",
+
+				set_data_source="country",
+
+				set_x_series=Series(
+					FIELD="GM"
+					),
+
+				set_y_series=List(
+					Series(
+						FIELD="AVGR",
+						OK_FUNC=rating_ok
+						)
+					),
+
+				set_do_trend=true,
+
+				set_limit=Limit("R",current_limit_value)
+
+			)
+		}
+
+		def draw_gms_by_titled()
+		{
+			chart.draw(
+
+				set_title="GMs by titled"+subtitle,
+				set_xlegend="Number of titled",
+				set_ylegend="Number of GMs",
+
+				set_data_source="country",
+
+				set_x_series=Series(
+					FIELD="T"
+					),
+
+				set_y_series=List(
+					Series(
+						FIELD="GM"
+						)
+					),
+
+				set_do_trend=true,
+
+				set_limit=Limit("R",current_limit_value)
+
+			)
+		}
+
 		var current_callback:()=>Unit=draw_participation
 
 		class MyButton( text: String , callback: () => Unit ) extends Button( text )
@@ -338,7 +424,10 @@ class DrawChartClass extends Application
 			new MyDrawButton("Rating distribution",draw_rating_distribution,draw_radio,2),
 			new MyDrawButton("Age distribution of rated",draw_age_distribution_of_rated,draw_radio,3),
 			new MyDrawButton("Rating by number of rated",draw_rating_by_number_of_rated,draw_radio,4),
-			new MyDrawButton("Rating by participation",draw_rating_by_participation,draw_radio,5)
+			new MyDrawButton("Rating by participation",draw_rating_by_participation,draw_radio,5),
+			new MyDrawButton("Rating by titled points",draw_rating_by_titled_points,draw_radio,6),
+			new MyDrawButton("Rating by GMs",draw_rating_by_gms,draw_radio,7),
+			new MyDrawButton("GMs by titled",draw_gms_by_titled,draw_radio,8)
 		)
 
 		draw_radio.buttons=draw_buttons

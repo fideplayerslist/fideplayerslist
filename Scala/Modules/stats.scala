@@ -72,6 +72,12 @@ class Stats
 							var CRF:Double=0.0
 							var RMF:Int=0
 							var CRMF:Double=0.0
+							// titled
+							var T:Int=0
+							// GM
+							var GM:Int=0
+							// points for titled, see globals, title_values
+							var TP:Int=0
 							val path=set_path
 						}
 
@@ -119,6 +125,16 @@ class Stats
 								{
 
 									stat.ALL=stat.ALL+1
+
+									if(record.hasTitle)
+									{
+										stat.T=stat.T+1
+										stat.TP=stat.TP+record.titlePoints
+										if(record.title=="GM")
+										{
+											stat.GM=stat.GM+1
+										}
+									}
 
 									if(record.hasRating)
 									{
@@ -190,6 +206,9 @@ class Stats
 								"\nPARFR\t"+PERCENT(stat.RF,stat.RMF)+
 								"\nCRF\t"+stat.CRF+
 								"\nAVGRF\t"+AVERAGE(stat.CRF,stat.RF)+
+								"\nT\t"+stat.T+
+								"\nGM\t"+stat.GM+
+								"\nTP\t"+stat.TP+
 								"\n"
 
 							saveTxt(stat.path,content)

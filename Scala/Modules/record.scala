@@ -26,6 +26,8 @@ class Record(line: String)
 	var active:Boolean=true
 	var name:String=""
 	var title:String=""
+	var hasTitle:Boolean=false
+	var titlePoints:Int=0
 	var w_title:String=""
 
 	var key=""
@@ -96,6 +98,11 @@ class Record(line: String)
 			else if(key=="title")
 			{
 				title=value
+				if(collected_titles.contains(title))
+				{
+					hasTitle=true
+					titlePoints=title_values(title)
+				}
 			}
 			else if(key=="w_title")
 			{
