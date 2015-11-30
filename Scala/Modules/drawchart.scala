@@ -293,6 +293,34 @@ class DrawChartClass extends Application
 			)
 		}
 
+		def draw_rating_by_titled()
+		{
+			chart.draw(
+
+				set_title="Rating by titled"+subtitle,
+				set_xlegend="Number of titled",
+				set_ylegend="Average rating",
+
+				set_data_source="country",
+
+				set_x_series=Series(
+					FIELD="T"
+					),
+
+				set_y_series=List(
+					Series(
+						FIELD="AVGR",
+						OK_FUNC=rating_ok
+						)
+					),
+
+				set_do_trend=true,
+
+				set_limit=Limit("R",current_limit_value)
+
+			)
+		}
+
 		def draw_rating_by_gms()
 		{
 			chart.draw(
@@ -426,8 +454,9 @@ class DrawChartClass extends Application
 			new MyDrawButton("Rating by number of rated",draw_rating_by_number_of_rated,draw_radio,4),
 			new MyDrawButton("Rating by participation",draw_rating_by_participation,draw_radio,5),
 			new MyDrawButton("Rating by titled points",draw_rating_by_titled_points,draw_radio,6),
-			new MyDrawButton("Rating by GMs",draw_rating_by_gms,draw_radio,7),
-			new MyDrawButton("GMs by titled",draw_gms_by_titled,draw_radio,8)
+			new MyDrawButton("Rating by titled",draw_rating_by_titled,draw_radio,7),
+			new MyDrawButton("Rating by GMs",draw_rating_by_gms,draw_radio,8),
+			new MyDrawButton("GMs by titled",draw_gms_by_titled,draw_radio,9)
 		)
 
 		draw_radio.buttons=draw_buttons
