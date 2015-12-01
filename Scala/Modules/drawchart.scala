@@ -23,6 +23,8 @@ import utils.Log._
 class DrawChartClass extends Application
 {
 
+	val NON_SELECTED_BUTTON_BORDER_COLOR="#7faf7f"
+
 	trait HasId
 	{
 		var id:Int=0
@@ -37,14 +39,16 @@ class DrawChartClass extends Application
 		{
 			for(button<-buttons)
 			{
-				val style=button.getStyle
+				var style=button.getStyle
 				if(id==button.id)
 				{
-					button.setStyle(style.replaceAll("-fx-border-width: [^;]*","-fx-border-width: 8"))
+					style=style.replaceAll("-fx-border-color: [^;]*","-fx-border-color: #ff0000")
+					button.setStyle(style)
 				}
 				else
 				{
-					button.setStyle(style.replaceAll("-fx-border-width: [^;]*","-fx-border-width: 3"))
+					style=style.replaceAll("-fx-border-color: [^;]*","-fx-border-color: "+NON_SELECTED_BUTTON_BORDER_COLOR)
+					button.setStyle(style)
 				}
 			}
 		}
@@ -388,12 +392,12 @@ class DrawChartClass extends Application
 			});
 		}
 
-		val BORDER_STYLE="-fx-border-style: solid; -fx-border-width: 3px; -fx-border-radius: 10px; -fx-border-color: #00007f;"
+		val BORDER_STYLE=s"-fx-border-style: solid; -fx-border-width: 6px; -fx-border-radius: 10px; -fx-border-color: $NON_SELECTED_BUTTON_BORDER_COLOR;"
 
 		class MyDrawButton( text: String , callback: () => Unit , val parent: RadioButton , set_id:Int ) extends Button( text ) with HasId
 		{
 			id=set_id
-			setStyle("-fx-background-color:#3fff3f; -fx-padding: 3px; -fx-font-size: 16px; "+BORDER_STYLE)
+			setStyle("-fx-background-color:#3fff3f; -fx-padding: 4px; -fx-font-size: 16px; "+BORDER_STYLE)
 			setOnAction(new EventHandler[ActionEvent]{
 				override def handle(e: ActionEvent)
 				{
