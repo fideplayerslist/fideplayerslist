@@ -16,6 +16,8 @@ import utils.Dir._
 import utils.Parse._
 import utils.Log._
 
+import scala.collection.mutable.ArrayBuffer
+
 case class Limit(val FIELD_NAME:String="",val LIMIT:Double=0.0){}
 
 class Range
@@ -136,7 +138,7 @@ class MyChart(
 	var y_series:List[Series]=null
 	var do_trend:Boolean=true
 	var limit:Limit=new Limit
-	var XYSS:scala.collection.mutable.ArrayBuffer[Map[Double,Double]]=null
+	var XYSS:ArrayBuffer[ArrayBuffer[Tuple2[Double,Double]]]=null
 	var MIN_X=0.0
 	var MAX_X=0.0
 	var MIN_Y=0.0
@@ -389,7 +391,7 @@ class MyChart(
 	def step_correct_down(what: Double,step: Double):Double = ((what/step).floor-1)*step
 	def step_correct_up(what: Double,step: Double):Double = ((what/step).floor+2)*step
 
-	def calc_linear(XYS: Map[Double,Double]): List[Double] =
+	def calc_linear(XYS: ArrayBuffer[Tuple2[Double,Double]]): Tuple2[Double,Double] =
 	{
 		var Sx:Double=0.0
 		var Sy:Double=0.0
@@ -397,10 +399,10 @@ class MyChart(
 		var Sxy:Double=0.0
 		var Syy:Double=0.0
 		var n=0
-		for((k,v)<-XYS)
+		for(t<-XYS)
 		{
-			val x=k
-			val y=v
+			val x=t._1
+			val y=t._2
 			Sx=Sx+x
 			Sy=Sy+y
 			Sxx=Sxx+x*x
@@ -414,23 +416,23 @@ class MyChart(
 		if((denomBeta==0)||(n==0))
 		{
 			log("warning: linear trend could not be calculated",true)
-			return(List(0,0))
+			return(Tuple2(0,0))
 		}
 		
 		val Beta=(n*Sxy-Sx*Sy)/(denomBeta)
 		val Alpha=(Sy/n)-(Beta*Sx/n)
 	
-		List(Alpha,Beta)
+		Tuple2(Alpha,Beta)
 	}
 
 	def parse_XYSS():Boolean =
 	{
 
-		XYSS=scala.collection.mutable.ArrayBuffer[Map[Double,Double]]()
+		XYSS=ArrayBuffer[ArrayBuffer[Tuple2[Double,Double]]]()
 
 		for(series<-y_series)
 		{
-			XYSS+=Map[Double,Double]()
+			XYSS+=ArrayBuffer[Tuple2[Double,Double]]()
 		}
 
 		val records=parseTxtSmart(data_source_path)
@@ -507,21 +509,17 @@ class MyChart(
 										}
 
 										log("limit ok "+limit_ok)
+
 										if(limit_ok)
 										{
 
-											val r=scala.util.Random
-
-											val d:Double=r.nextDouble/1.0e6
-
-											val xr=x+d
-
-											XYSS(i)+=(xr->y)
+											XYSS(i)+=Tuple2(x,y)
 
 											log("series "+i+" added x "+x+" y "+y)
 
 											x_series.RANGE.add(x)
 											y_series(i).RANGE.add(y)
+
 										}
 
 									}
@@ -591,8 +589,8 @@ class MyChart(
 
 			val trend=calc_linear(XYSS(i))
 
-			y_series(i).Alpha=trend(0)
-			y_series(i).Beta=trend(1)
+			y_series(i).Alpha=trend._1
+			y_series(i).Beta=trend._2
 
 			log("Alpha "+y_series(i).Alpha+" Beta "+y_series(i).Beta)
 
@@ -694,8 +692,10 @@ class MyChart(
 		for(series<-XYSS)
 		{
 			var j=0
-			for((x,y)<-series)
+			for(t<-series)
 			{
+				val x=t._1
+				val y=t._2
 				log(s"plot $j x $x y $y")
 				drawbox(cx(x),cy(y),get_color_i(i))
 				j+=1
