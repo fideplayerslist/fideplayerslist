@@ -23,7 +23,13 @@ object Create extends App
 
 	for(d1<-List("main","test")) for(d2<-List("java","resources","scala")) mkdirs(List(project_name,"src",d1,d2))
 
-	val build_sbt=s"""name := "$project_name"
+	val build_sbt=s"""import com.github.retronym.SbtOneJar._
+
+oneJarSettings
+
+libraryDependencies += "commons-lang" % "commons-lang" % "2.6"
+
+name := "$project_name"
 
 version := "1.0"
 
@@ -31,6 +37,10 @@ scalaVersion := "2.11.7"
 """
 
 	val build_properties=s"""sbt.version=0.13.8
+
+"""
+
+	val plugins_sbt=s"""addSbtPlugin("org.scala-sbt.plugins" % "sbt-onejar" % "0.8")
 
 """
 
@@ -42,5 +52,6 @@ scalaVersion := "2.11.7"
 
 	saveTxt(s"$project_name/build.sbt",build_sbt)
 	saveTxt(s"$project_name/project/build.properties",build_properties)
+	saveTxt(s"$project_name/project/plugins.sbt",plugins_sbt)
 	saveTxt(s"$project_name/src/main/scala/$project_name.scala",main_scala)
 }
