@@ -83,6 +83,7 @@ class KeyStats
 				create_by_sortindex(keystat_indices("RF"),"byratedf")
 				create_by_sortindex(keystat_indices("T"),"bytitled")
 				create_by_sortindex(keystat_indices("GM"),"bygms")
+				create_by_sortindex(keystat_indices("SGM"),"bysgms")
 				create_by_sortindex(keystat_indices("TP"),"bytitledpoints")
 				
 			}

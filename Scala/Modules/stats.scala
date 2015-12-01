@@ -76,6 +76,8 @@ class Stats
 							var T:Int=0
 							// GM
 							var GM:Int=0
+							// super GM
+							var SGM:Int=0
 							// points for titled, see globals, title_values
 							var TP:Int=0
 							val path=set_path
@@ -133,6 +135,13 @@ class Stats
 										if(record.title=="GM")
 										{
 											stat.GM=stat.GM+1
+											if(record.hasRating)
+											{
+												if(record.rating>2650)
+												{
+													stat.SGM=stat.SGM+1
+												}
+											}
 										}
 									}
 
@@ -208,6 +217,7 @@ class Stats
 								"\nAVGRF\t"+AVERAGE(stat.CRF,stat.RF)+
 								"\nT\t"+stat.T+
 								"\nGM\t"+stat.GM+
+								"\nSGM\t"+stat.SGM+
 								"\nTP\t"+stat.TP+
 								"\n"
 
